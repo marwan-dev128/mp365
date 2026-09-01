@@ -191,16 +191,16 @@ A: A financial management implementation replaces spreadsheet-patched accounting
 ## Industries
 
 ### Manufacturing
-Q: How does Dynamics 365 support manufacturing operations?
-A: Dynamics 365 Finance & Operations and Business Central support manufacturing operations with integrated inventory, production scheduling, and supply chain visibility, while Power Platform connects shop-floor data collection to the same system — replacing the spreadsheet-and-whiteboard tracking common at mid-market manufacturers.
+Q: Should a mid-market manufacturer implement Business Central or Dynamics 365 Supply Chain Management?
+A: The deciding factor is your production data model, not your headcount. Business Central models production as BOMs and routings and has no formula concept, so any manufacturer whose batch yields co-products or by-products is ruled out on data model alone. Discrete manufacturers, however complex, usually belong on Business Central Premium, and Supply Chain Management is over-buying at roughly twice the list price per user.
 
 ### Healthcare
 Q: Is Microsoft 365 HIPAA compliant?
-A: Microsoft 365 can support HIPAA compliance when configured correctly — Microsoft will sign a Business Associate Agreement (BAA) for eligible plans, but compliance depends on how retention, access controls, and data loss prevention are configured, not on the license alone. MP365 configures Microsoft Purview and access governance to meet HIPAA requirements for healthcare clients.
+A: Microsoft 365 can hold PHI. The HIPAA Business Associate Agreement reaches Exchange Online, SharePoint Online, Teams, OneDrive, Entra ID, the Microsoft Purview portal and Microsoft 365 Copilot, and it applies by default through the Data Protection Addendum. Microsoft's own answer to whether that agreement makes an organization compliant is no. Compliance is a configuration and documentation state you have to build, and then evidence.
 
 ### Retail
-Q: How can retail companies use Power Platform for store operations?
-A: Retail companies use Power Apps and Power Automate to digitize store-level processes — inventory counts, task checklists, and issue reporting — that otherwise run on paper or disconnected spreadsheets, feeding data back into Dynamics 365 or existing POS and inventory systems in real time.
+Q: Does a multi-store retailer need Dynamics 365 Commerce or Business Central?
+A: Most multi-location specialty retailers are better served by Business Central than by Dynamics 365 Commerce. Commerce lists at $210 per headquarters user per month against Business Central Premium's $110, both US list, plus a separately priced e-commerce add-on and a Commerce Scale Unit sized by device count. Commerce earns that cost only when one pricing, promotion and loyalty engine has to execute identically across physical POS, web and call center on shared inventory.
 
 ## Glossary
 
