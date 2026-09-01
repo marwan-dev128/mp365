@@ -74,6 +74,23 @@ export const staticPageFaqs: StaticPageFaqGroup[] = [
     ],
   },
   {
+    path: "/industries/",
+    faqs: [
+      {
+        q: "Why does the industry matter if the technology is the same?",
+        a: "The platform is the same; the constraints around it are not. A manufacturer's Dynamics 365 decision turns on production complexity and multi-site inventory, a healthcare organization's turns on where PHI is allowed to live and what has to be logged, and a retailer's turns on whether the point-of-sale system stays. The Microsoft products overlap heavily — what changes is which decisions are load-bearing, and which failure modes are expensive.",
+      },
+      {
+        q: "What if our industry isn't listed here?",
+        a: "These three are where MP365 has the deepest operational pattern library, not the limit of the work. Distribution, professional services, construction, and nonprofit organizations run on the same Microsoft 365, Dynamics 365, and Power Platform building blocks. [Tell us what you're working with](/contact/) and we will say plainly whether the pattern transfers.",
+      },
+      {
+        q: "Do you build industry-specific software, or configure Microsoft products?",
+        a: "Configure, extend, and integrate — not build vertical software. Most mid-market industry requirements are met by configuring [Dynamics 365](/services/dynamics-365/) correctly, adding [Power Platform](/services/power-platform/) where a process has no product, and integrating the systems that already work. Industry-specific ISV add-ons are evaluated on their merits; sometimes buying one is the right answer and we will say so.",
+      },
+    ],
+  },
+  {
     path: "/pricing/",
     faqs: [
       {

@@ -6,7 +6,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { DualTitle } from "@/components/ui/DualTitle";
 import { ServiceCard } from "@/components/ui/ServiceCard";
-import { ArrowUpRight, Check, Layers, Phone, Shield, Users } from "@/components/ui/Icons";
+import { ClientLogos } from "@/components/ClientLogos";
+import { ArrowUpRight, Check, Layers, MicrosoftLogo, Phone, Shield, Users } from "@/components/ui/Icons";
 import {
   getServices,
   getIndustries,
@@ -93,7 +94,7 @@ export default async function HomePage() {
           <div className="relative mx-auto grid max-w-[1240px] items-center gap-10 px-6 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
             <div>
               <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-1.5 text-[12.5px] font-semibold text-white/85 backdrop-blur">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                <MicrosoftLogo className="h-3.5 w-3.5" />
                 Microsoft consulting partner · {settings.city}, {settings.region}
               </p>
 
@@ -142,6 +143,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ----------------------------------------------------------- Client Logos */}
+      <ClientLogos />
 
       {/* ------------------------------------------------------------ What we do */}
       <section className="mx-auto max-w-[1240px] px-6 py-20">

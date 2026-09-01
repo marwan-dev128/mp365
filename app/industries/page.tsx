@@ -1,8 +1,9 @@
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
+import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
-import { getIndustries } from "@/lib/data";
+import { getIndustries, getStaticPageFaqs } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { excerpt } from "@/lib/richtext";
 import { collectionPageSchema } from "@/lib/schema";
@@ -18,7 +19,10 @@ export const metadata = buildMetadata({
 });
 
 export default async function IndustriesPage() {
-  const industries = await getIndustries();
+  const [industries, faqs] = await Promise.all([
+    getIndustries(),
+    getStaticPageFaqs("/industries/"),
+  ]);
   return (
     <>
       <JsonLd
@@ -33,6 +37,8 @@ export default async function IndustriesPage() {
       <PageHero
         eyebrow="Industries"
         h1="Solutions shaped by industry, not a generic template"
+        answerQuestion="How does Microsoft consulting differ by industry?"
+        answerText="The Microsoft products barely change between industries — what changes is which decisions carry the most risk. Manufacturers are choosing between Business Central and Finance and Operations on production complexity. Healthcare organizations are deciding where PHI may live and what has to be logged. Retailers are deciding what stays on the point-of-sale system. The build is the same; the constraints are not."
         breadcrumbs={[{ name: "Industries", path: "/industries/" }]}
       />
       <Container className="pt-14">
@@ -54,6 +60,9 @@ export default async function IndustriesPage() {
             ))}
           </ul>
         </section>
+        <div className="mt-20">
+          <FaqSection faqs={faqs} path="/industries/" />
+        </div>
       </Container>
       <CtaBand />
     </>

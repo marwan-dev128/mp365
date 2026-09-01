@@ -222,6 +222,28 @@
   text-wrap: pretty;
 }
 
+/* --------------------------------------------------------------------------
+   Infinite Client/Partner Marquee
+   -------------------------------------------------------------------------- */
+@keyframes mp-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.mp-animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: mp-marquee 28s linear infinite;
+}
+
+.mp-animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -238,5 +260,9 @@
   }
   .group:hover .mp-card-arrow {
     transform: none;
+  }
+  .mp-animate-marquee {
+    animation: none;
+    overflow-x: auto;
   }
 }

@@ -7,6 +7,17 @@ type IconProps = { className?: string };
 
 const base = "shrink-0";
 
+export function MicrosoftLogo({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`${base} ${className ?? "h-3.5 w-3.5"}`}>
+      <path fill="#F25022" d="M1 1h10v10H1z" />
+      <path fill="#7FBA00" d="M13 1h10v10H13z" />
+      <path fill="#00A4EF" d="M1 13h10v10H1z" />
+      <path fill="#FFB900" d="M13 13h10v10H13z" />
+    </svg>
+  );
+}
+
 export function ArrowUpRight({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={`${base} ${className ?? ""}`}>
