@@ -1,0 +1,337 @@
+# MP365 — Full Site Content
+
+MP365 (Modern Partners 365) is a Microsoft consulting partner specializing in Microsoft 365 M&A tenant migration, Dynamics 365, Power Platform, and data governance for mid-market and enterprise organizations.
+
+Legal name: Modern Partners 365. Address: 59 Winding Brook Trail, Vernon, CT 06066. Phone: (+1) 860-208-9537. Email: info@mp-365.com. Serves: Connecticut, New England, United States.
+
+## Services
+
+### M&A Tenant Migration
+Q: What is Microsoft 365 M&A tenant migration?
+A: M&A tenant migration is the process of consolidating, splitting, or merging Microsoft 365 tenants when companies combine or separate — moving mailboxes, Teams, SharePoint, and identities between tenants while keeping both organizations operating. MP365 plans and executes these migrations end to end, from Day-1 coexistence through full cutover.
+Every merger, acquisition, or divestiture eventually becomes an IT integration project — and the hardest part of that project is almost always Microsoft 365. Mailboxes, Teams conversations, SharePoint sites, and Power Platform automations all live inside a tenant boundary that doesn't merge on its own.
+MP365 has guided organizations through tenant consolidations, carve-outs, and cross-tenant mergers for over 15 years, separating, combining, and standing up new Microsoft 365 environments without stalling the deal timeline.
+#### Where M&A migrations go wrong
+Most delays trace back to the same three causes: no coexistence plan for the period between signing and cutover, licensing and identity conflicts discovered mid-migration instead of during due diligence, and no tested rollback path if a wave fails.
+We build the migration plan backward from the deal's Day-1 and TSA-exit dates, not forward from a generic migration checklist — so the technical plan matches the legal and financial timeline it has to serve.
+#### What moves in a tenant-to-tenant migration
+Exchange Online mailboxes and calendars, Teams chat history and channels, SharePoint and OneDrive content, Entra ID (Azure AD) identities and group memberships, Power Automate flows and Power Apps, and any Dynamics 365 or Power Platform environments in scope.
+We also handle the parts most vendors skip: DNS and domain cutover sequencing, license reconciliation across the combined entity, and Teams Voice/PSTN continuity so phones keep ringing on cutover day.
+Scope drives budget more than headcount does — see what actually drives tenant migration cost for how mailbox count, data volume, and rebuilt content combine, and data governance for the retention and legal-hold questions that decide what can legally move.
+FAQ:
+- Q: How long does a Microsoft 365 tenant-to-tenant migration take?
+  A: A single-department pilot migration typically takes 2–4 weeks; a full-company tenant merger runs 8–16 weeks depending on mailbox count, data volume, and how many custom Power Platform or Dynamics 365 apps are in scope. M&A-driven migrations are usually scoped to hit a specific Day-1 or TSA-exit deadline rather than a fixed duration.
+- Q: Can employees keep working during the migration?
+  A: Yes. We run migrations in waves with mail flow and calendar coexistence configured from day one, so users in both the source and target tenant can email, schedule meetings with, and (with the right coexistence tooling) chat with each other throughout the project.
+- Q: What happens to Teams chat history during a merger?
+  A: Teams 1:1 and group chat history can be migrated to the target tenant using cross-tenant migration tooling, though channel conversations and some metadata (reactions, some app data) may have limitations depending on the source and target configuration — we assess this during due diligence and set expectations before migration begins.
+- Q: Do we need to buy new Microsoft 365 licenses for the merged company?
+  A: Usually you reconcile existing licenses rather than buying entirely new ones — we audit both tenants' license SKUs and agreements (EA, CSP, NCE) during due diligence and recommend the lowest-cost path to cover the combined user count without over-provisioning.
+- Q: How does the TSA exit date affect the migration timeline?
+  A: The transition services agreement (TSA) exit date is a contractual deadline for leaving the seller's systems, so it sets the migration's end date rather than the other way round. MP365 plans backward from the TSA exit and Day-1 dates, sequencing waves so the final cutover lands before the agreement expires — which usually means starting identity and licensing work well before the technical migration begins.
+- Q: Can we start migrating before the deal closes?
+  A: Discovery and planning can start before close; data movement generally cannot, because the acquiring company has no legal right to the target's data until the transaction completes. In practice that means the due-diligence inventory, Day-1 coexistence design, and wave plan are built during the pre-close period so execution can begin immediately at close.
+- Q: What happens if a migration wave fails partway through?
+  A: Each wave is scoped so a failure affects one business unit rather than the whole company, and every wave has a tested rollback path defined before it runs — users stay on the source tenant and mail flow is unchanged until their wave is verified. This is why we sequence waves by business unit and pilot the plan on a small group first, rather than migrating the organization in a single cutover.
+- Q: How is a divestiture or carve-out different from a merger?
+  A: A merger consolidates two tenants into one; a divestiture or carve-out extracts one business unit's identities, mailboxes, and content out of a shared tenant into a new one, usually against a TSA deadline. Carve-outs are typically harder, because shared SharePoint sites, Teams, and distribution groups have to be separated rather than merged, and what stays behind matters as much as what moves.
+- Q: What happens to Teams Voice and phone numbers at cutover?
+  A: Teams Voice and PSTN numbers do not move automatically with a tenant migration — number porting or direct-routing reconfiguration has to be sequenced separately, and it is one of the most common causes of Day-1 disruption when it is left to the end. We plan voice continuity as part of the cutover sequence rather than as a post-migration task.
+- Q: What happens to our Power Automate flows and Power Apps?
+  A: Power Automate flows and Power Apps do not transfer between tenants automatically; they are exported and re-imported into the target tenant, then reconnected to their data sources and re-owned, because connections authenticate against the tenant they were built in. We inventory Power Platform assets during due diligence so this work is scoped rather than discovered at cutover.
+
+### Microsoft 365 Migration
+Q: What does a Microsoft 365 migration include?
+A: A Microsoft 365 migration moves email, files, and collaboration data from your current platform — Google Workspace, on-prem Exchange, or another tenant — into Microsoft 365, including mailbox migration, file and SharePoint content transfer, identity setup, and user training. MP365 manages the full project so IT teams aren't running it alongside their day job.
+Moving to Microsoft 365 touches every employee's inbox, files, and daily workflow — which is exactly why most internal IT teams don't have the bandwidth to run it as a side project.
+MP365 provides a fully managed migration from Google Workspace, legacy on-premises Exchange, or another cloud platform into Microsoft 365, so the transition is planned, tested, and executed with minimal disruption to the business.
+#### Migration paths we run
+Google Workspace to Microsoft 365, on-premises Exchange to Exchange Online, hybrid Exchange configurations, and consolidating multiple existing Microsoft 365 tenants into one.
+Each path has different failure points — Google-to-365 migrations lose calendar and contact fidelity if mapped incorrectly; on-prem migrations need directory synchronization planned before the first mailbox moves. We scope the plan to the specific source platform.
+#### What's included
+Pre-migration assessment and license planning, mailbox and file migration with delta syncs to minimize downtime, SharePoint and Teams provisioning aligned to how your teams actually work, security baseline configuration (MFA, conditional access, data loss prevention), and end-user training so adoption doesn't stall after go-live.
+FAQ:
+- Q: How much does a Microsoft 365 migration cost?
+  A: Cost depends primarily on user count, data volume, and source platform complexity — a Google Workspace migration for a 50-person company is a different scope than an on-prem Exchange migration with legacy compliance holds. MP365 provides a fixed-scope quote after a short discovery call rather than a per-mailbox rate card, since hidden complexity (PST files, legal holds, custom mail flow rules) is what actually drives cost overruns.
+- Q: Will employees lose email or files during the migration?
+  A: No — migrations are designed around delta syncs, meaning data continues syncing up to the moment of cutover, and mailboxes/files are verified against source counts before the old system is decommissioned.
+- Q: How long does it take to migrate from Google Workspace to Microsoft 365?
+  A: A typical 100–300 user Google Workspace to Microsoft 365 migration takes 4–8 weeks from kickoff to full cutover, including a pilot wave, main migration waves, and a stabilization period.
+- Q: Do we pay for both platforms while the migration is running?
+  A: Yes, for a period — source and destination licenses overlap from the start of the first migration wave until the old platform is decommissioned, and that overlap is a real budget line most migration quotes leave out. The overlap is shortened by keeping the wave schedule tight and decommissioning on a fixed date rather than leaving the old system running “just in case.”
+- Q: How much downtime is there on cutover day?
+  A: For a wave-based migration with delta syncs, users are typically offline only for the short window between the final sync and the mail-flow switch, not for the whole cutover. The larger practical disruption is the first working day afterwards, when users re-authenticate, re-add mobile devices, and reconnect desktop clients — which is why cutovers are scheduled for a weekend and support is staffed for the following week.
+- Q: What happens to PST files and archived email?
+  A: PST files scattered on desktops and file shares are not part of a mailbox migration unless they are found and imported deliberately, and they are one of the most common causes of scope and cost overruns. We inventory PST files, archive mailboxes, and any legal holds during the pre-migration assessment so they are either imported into Exchange Online or explicitly ruled out of scope.
+
+### Dynamics 365 Consulting
+Q: What is Dynamics 365 and what does it replace?
+A: Dynamics 365 is Microsoft's suite of CRM and ERP applications — including Sales, Customer Service, Business Central, and Finance & Operations — that companies use to replace disconnected spreadsheets, legacy CRMs like older Salesforce or Goldmine instances, or aging on-prem ERP systems. MP365 implements, customizes, and integrates Dynamics 365 with the rest of a company's Microsoft 365 environment.
+Microsoft's Business Applications suite streamlines operations, customer engagement, and decision-making — but only when it's configured around how your business actually sells, services, and reports, not the out-of-the-box defaults.
+MP365 implements and customizes Dynamics 365 CRM and ERP modules, integrating them with SharePoint, Power Platform, and the rest of your Microsoft 365 environment rather than treating it as a standalone system.
+#### Dynamics 365 modules we implement
+Dynamics 365 Sales and Customer Service for CRM; Business Central for small-to-midsize company ERP and financials; Finance & Operations for larger, multi-entity organizations with complex supply chain or manufacturing needs.
+#### Dynamics 365 vs Salesforce vs Business Central
+Dynamics 365 CRM is the stronger fit for organizations already standardized on Microsoft 365, since it shares identity, Outlook, Teams, and Power Platform integration natively — reducing the number of separate systems users have to context-switch between. Salesforce has a larger third-party app ecosystem but requires separate licensing and integration work to connect to Microsoft tools.
+Business Central fits small-to-midsize companies needing integrated financials, inventory, and light manufacturing in one system; Finance & Operations fits larger, multi-entity, multi-currency organizations with more complex supply chain requirements.
+FAQ:
+- Q: How much does a Dynamics 365 implementation cost?
+  A: A focused Dynamics 365 Sales or Customer Service implementation for a mid-market team typically starts in the low-to-mid five figures; Business Central or Finance & Operations implementations with financial and inventory data migration run higher depending on entity count and integration complexity. MP365 scopes a fixed-price quote after discovery rather than billing implementation as open-ended hours.
+- Q: Should we choose Dynamics 365 or Salesforce?
+  A: If your organization is already standardized on Microsoft 365 and wants CRM natively integrated with Outlook, Teams, and Power Platform, Dynamics 365 typically reduces total integration cost and license sprawl. Salesforce may fit better if you need its specific third-party app ecosystem and aren't primarily a Microsoft shop.
+- Q: Can Dynamics 365 integrate with our existing Power Platform apps?
+  A: Yes — Dynamics 365 is built on the same Dataverse platform as Power Apps and Power Automate, so custom apps and flows can read and write Dynamics 365 data natively without middleware.
+- Q: How long does a Dynamics 365 implementation take?
+  A: A focused Dynamics 365 Sales or Customer Service deployment for a single team can go live in roughly 4–6 weeks using a templated configuration; a Business Central or Finance & Operations implementation involving financial data migration, multiple entities, and integrations takes substantially longer. The variables that move the number most are entity count, how much historical data has to come across, and how many integrations are in scope.
+- Q: What time commitment do you need from our team?
+  A: Implementations fail more often from unavailable client-side subject-matter experts than from technical problems. Expect to name a decision-maker who can approve process changes, plus one subject-matter expert per functional area for requirements sessions, testing, and user acceptance — concentrated around discovery and the testing period rather than spread evenly across the project.
+- Q: Can we implement Dynamics 365 in phases?
+  A: Yes, and for most mid-market organizations it is the lower-risk path — going live with core financials or a single sales team first, then adding modules once the first phase is stable. Phasing works best when the split follows a natural business boundary (one entity, one function, one region); splitting a single process across phases usually creates more integration work than it saves.
+
+### Power Platform Solutions
+Q: What is Microsoft Power Platform used for?
+A: Microsoft Power Platform — Power Apps, Power Automate, Power BI, and Copilot Studio — is used to build custom business apps, automate approval and data workflows, and create reporting dashboards without traditional custom-code development. MP365 builds Power Platform solutions and puts governance around them so low-code apps don't turn into unmanaged shadow IT.
+Power Platform lets teams build apps and automations quickly — the risk is that "quickly" without governance becomes dozens of ungoverned apps nobody in IT knows exist. MP365 builds the apps and puts the environment strategy, data loss prevention policies, and application lifecycle management around them from day one.
+#### What we build
+Custom Power Apps for field operations, inventory, and approval workflows; Power Automate flows that eliminate manual, email-based processes; Power BI dashboards connected to Dynamics 365, SharePoint, or SQL data sources; and Copilot Studio agents for internal support and FAQ automation.
+#### Governance, not just apps
+We set up environment strategy (dev/test/prod separation), data loss prevention policies, and an application lifecycle management process so citizen-developed apps get reviewed before they touch production data — turning Power Platform from a compliance risk into a managed capability.
+FAQ:
+- Q: Is Power Apps a replacement for custom software development?
+  A: For internal line-of-business apps — approval workflows, inventory trackers, field data collection — Power Apps typically replaces the need for custom development and ships in weeks instead of months. For customer-facing products or apps needing complex custom logic outside Dataverse's data model, traditional development is usually still the better fit.
+- Q: What is shadow IT risk in Power Platform, and how is it prevented?
+  A: Shadow IT risk happens when employees build Power Apps or Power Automate flows connected to sensitive data without IT review or data loss prevention policies in place. It's prevented with an environment strategy that separates dev/test/prod, DLP policies that block risky connector combinations, and a lightweight review process for apps before they go into production use.
+- Q: Do we need premium Power Platform licenses?
+  A: You need a premium license when an app or flow uses a premium connector — including Dataverse, Azure SQL, and the on-premises data gateway — while apps built only on Microsoft 365 data such as SharePoint lists and Outlook are covered by standard Microsoft 365 licensing. Because premium licensing is per user or per app, the licensing model should be decided during design, not after the app is built. See Power Platform licensing, explained without the matrix for the full picture.
+- Q: Can Power Apps connect to on-premises SQL and legacy systems?
+  A: Yes — the on-premises data gateway lets Power Apps and Power Automate read and write to on-premises SQL Server and other supported sources without moving the data to the cloud. It requires a premium license and a gateway server that IT maintains, so it is worth confirming both before designing an app around an on-premises data source.
+- Q: What happens to apps built by employees who have left?
+  A: Apps and flows owned by a departed employee keep running until their account or license is removed, at which point they can fail silently — a common cause of “the approval process just stopped working.” Preventing it is a governance task: co-owning business-critical apps with a service account or group, keeping an inventory of what exists, and reviewing ownership as part of the leaver process. A Power Platform health check surfaces the apps already at risk.
+
+### Data Governance
+Q: What is data governance in Microsoft 365?
+A: Data governance in Microsoft 365 is the set of policies and tools — retention labels, sensitivity labels, access controls, and Microsoft Purview configuration — that ensure company data is accurate, secure, and retained (or deleted) according to legal and business requirements. MP365 designs and implements these policies so growth and M&A activity don't outpace data control.
+Data governance is the systematic management of data assets within an organization — the processes, policies, standards, and tools that ensure data integrity, accuracy, security, and usability. Without it, every merger, audit, or legal hold becomes a scramble.
+#### What we implement
+Microsoft Purview configuration for data classification and sensitivity labeling, retention and deletion policies aligned to legal and regulatory requirements, access governance (least-privilege permissions, guest access review), and eDiscovery readiness for litigation holds.
+#### Why it matters most during M&A
+Data governance gaps surface fastest during a merger or acquisition, when two companies' retention policies, permission structures, and compliance obligations suddenly have to reconcile. We build governance frameworks that hold up under that kind of stress test, not just a compliance checkbox.
+FAQ:
+- Q: What is Microsoft Purview used for?
+  A: Microsoft Purview is Microsoft's unified data governance platform, used to classify and label sensitive data, apply retention and deletion policies, manage compliance risk, and support eDiscovery across Microsoft 365, Azure, and other connected data sources.
+- Q: Do we need data governance before an M&A tenant migration?
+  A: Yes — data governance gaps (missing retention policies, undocumented sensitive data, unclear ownership) should be identified during due diligence, before migration begins, since they directly affect what can legally be migrated, retained, or must be held separately.
+- Q: Do we still need Microsoft Purview if we already have Microsoft 365 E5?
+  A: E5 includes the Purview capabilities most organizations need — sensitivity labels, retention policies, data loss prevention, eDiscovery, and insider risk management — so the question is usually not whether to buy Purview but whether the capabilities you already own have been configured. In most environments the licenses are in place and the policies are not, which is where the actual governance gap sits.
+- Q: What's the difference between retention labels and sensitivity labels?
+  A: Retention labels control how long content is kept and what happens when that period ends — they answer “when can this be deleted?” Sensitivity labels control who can open content and what they can do with it, applying encryption and access restrictions that travel with the file. Most organizations need both, and they are configured independently of each other.
+- Q: Where do we start if we have no data governance policies today?
+  A: Start by finding out what you actually have — where sensitive data lives, which sites and mailboxes have no clear owner, and what your legal and regulatory retention obligations really are. Policy design before that discovery tends to produce rules nobody can enforce; classification and ownership come first, retention and access controls second.
+
+### Application Modernization
+Q: What does application modernization mean on Azure?
+A: Application modernization on Azure means re-architecting or migrating legacy, on-premises applications onto Azure cloud infrastructure using agile DevOps practices — improving scalability, security, and how fast new features ship. MP365 evaluates legacy applications and executes the modernization path that fits, from lift-and-shift to full re-architecture.
+Legacy applications built for on-premises infrastructure become a growth constraint — every new feature takes longer, every scaling event is a fire drill. MP365 leverages AI and cloud-based technology through Azure to help deliver modern, agile solutions without a full rebuild-from-scratch risk.
+#### Modernization paths
+Lift-and-shift for applications that just need to leave aging on-prem hardware, containerization for apps that need better scalability without a full rewrite, and re-architecture for applications where the underlying design is the actual constraint.
+#### DevOps and delivery
+We set up CI/CD pipelines, infrastructure as code, and monitoring so that after modernization, shipping changes is a routine deployment rather than a scheduled outage.
+FAQ:
+- Q: What's the difference between lift-and-shift and re-architecture?
+  A: Lift-and-shift moves an application to Azure with minimal code changes — fastest and lowest risk, but doesn't fix underlying scalability or maintainability problems. Re-architecture redesigns the application to use cloud-native services (containers, managed databases, serverless functions) — more effort upfront, but removes the constraints that lift-and-shift leaves in place.
+
+### Collaboration Enablement
+Q: What is collaboration enablement in Microsoft 365?
+A: Collaboration enablement is the practice of restructuring SharePoint sites, Teams, and enterprise search so employees can actually find information and communicate effectively, instead of working around a sprawling, undocumented intranet. MP365 audits and rebuilds the information architecture behind search, Teams sites, and SharePoint.
+Most companies don't have a Microsoft 365 collaboration problem — they have an information architecture problem that Microsoft 365 makes visible. MP365 helps maximize search, communication, and Team sites so employees get a more modern experience and can actually find what they need.
+#### What we fix
+Sprawling, duplicate SharePoint sites with no clear ownership; Teams created for every project and never archived; enterprise search that returns noise instead of the right document; and onboarding that leaves new hires unable to find basic company information.
+FAQ:
+- Q: Why can't employees find documents in SharePoint search?
+  A: Poor SharePoint search results are usually caused by inconsistent metadata, duplicate or orphaned sites, and unclear information architecture — not a limitation of the search engine itself. Fixing search means fixing site structure and metadata first.
+- Q: Will Microsoft 365 Copilot work better if we fix SharePoint first?
+  A: Yes — Copilot answers from the content a user already has permission to see, so duplicate documents, stale sites, and over-broad permissions directly degrade the quality of its answers and can surface content to people who should not see it. Cleaning up information architecture and permissions is the practical prerequisite to a Copilot rollout, not an optional follow-up.
+- Q: How do you clean up SharePoint sprawl without deleting content people still use?
+  A: By measuring before deleting: identifying sites with no activity and no owner, confirming ownership with the business, and archiving rather than deleting anything uncertain. The usual sequence is to inventory and classify sites, agree a retention decision per site with its owner, archive the inactive ones, and only then restructure what remains — so nothing disappears without someone having signed off on it.
+- Q: Should every project get its own Teams site?
+  A: No — creating a team per project is the single most common cause of sprawl, because projects end and the teams don't. A workable rule is that a team is created for a group of people who work together repeatedly, while short-lived projects get a channel inside an existing team, with an owner and an expiry decision recorded when it is created.
+
+### Contract Management Enablement
+Q: How do you automate contract management in Microsoft 365?
+A: Contract management is automated in Microsoft 365 by replacing email-based, manual contract handoffs with a structured Power Automate workflow and SharePoint or Dynamics 365 repository — giving every stakeholder instant, accurate visibility into a contract's stage instead of chasing status by email. MP365 designs and builds these workflows around how contracts actually move through your organization.
+Contracts handled by email and moved manually between stages waste time on status-chasing with no instant, accurate visibility into where anything stands. MP365 replaces that with a governed, automated workflow inside Microsoft 365.
+#### What we build
+A structured contract repository (SharePoint or Dynamics 365), automated routing and approval workflows in Power Automate, status dashboards so stakeholders don't need to ask, and renewal/expiration alerts so contracts don't lapse silently.
+FAQ:
+- Q: Can contract management be automated without buying a separate CLM platform?
+  A: Yes — for many mid-market organizations, a well-designed SharePoint or Dynamics 365 repository combined with Power Automate workflows delivers most of the visibility and automation of a dedicated contract lifecycle management (CLM) platform, without the added license cost and integration overhead.
+- Q: Should contracts live in SharePoint or Dynamics 365?
+  A: SharePoint is the better repository when contracts are documents that need version control, metadata, and retention; Dynamics 365 is the better home when contract records need to be tied to customer, opportunity, or vendor records that already live in CRM. Most implementations use both — the document in SharePoint, the record and its status in Dynamics 365 — rather than choosing one.
+- Q: Does an automated contract workflow support e-signature?
+  A: Yes — Power Automate connects to major e-signature platforms, so a signature request can be triggered by an approval step and the executed document filed back into the repository automatically. Which platform you use matters less than making the signature step part of the workflow rather than a manual handoff that breaks the audit trail.
+
+## Solutions
+
+### SharePoint & Intranet
+Q: What does a modern SharePoint intranet project actually involve?
+A: A SharePoint intranet project is an information architecture and governance engagement more than a design one. The work is deciding which sites exist, how they connect through hubs and global navigation, who owns each one, how permissions and labels are set, and how search is tuned. Page design is the last and smallest phase.
+
+### Data Analytics
+Q: What does a Power BI data analytics engagement on Dynamics 365 data actually involve?
+A: A Power BI engagement on Dynamics 365 data is four decisions, not a dashboard: how data leaves the source, how it is shaped into a model, how row-level security is enforced once source security stops applying, and who pays to view the result. MP365 designs those four, builds the semantic model, and hands your team something they can change without calling us.
+
+### Automated CRM Deployment
+Q: Can Dynamics 365 CRM be deployed in weeks instead of months?
+A: Yes, when the scope matches a templated build. Automated CRM deployment is a Dynamics 365 Sales or Customer Service go-live assembled from a pre-configured solution and released through a scripted deployment path rather than hand-built in production. Configuration, forms, security roles, and dashboards ship as a managed solution; your work is decisions, data preparation, and testing. It suits organizations with a standard pipeline and reasonably clean data.
+
+### Financial Management
+Q: What does a Dynamics 365 financial management implementation actually involve?
+A: A financial management implementation replaces spreadsheet-patched accounting with Dynamics 365 Business Central or Dynamics 365 Finance. The work covers chart of accounts and dimension design, opening balance and history conversion, month-end close redesign, approval and segregation-of-duties controls, and financial reporting. Most mid-market projects sequence as design, configuration, data conversion, a parallel close, then cutover at a fiscal period boundary.
+
+## Industries
+
+### Manufacturing
+Q: How does Dynamics 365 support manufacturing operations?
+A: Dynamics 365 Finance & Operations and Business Central support manufacturing operations with integrated inventory, production scheduling, and supply chain visibility, while Power Platform connects shop-floor data collection to the same system — replacing the spreadsheet-and-whiteboard tracking common at mid-market manufacturers.
+
+### Healthcare
+Q: Is Microsoft 365 HIPAA compliant?
+A: Microsoft 365 can support HIPAA compliance when configured correctly — Microsoft will sign a Business Associate Agreement (BAA) for eligible plans, but compliance depends on how retention, access controls, and data loss prevention are configured, not on the license alone. MP365 configures Microsoft Purview and access governance to meet HIPAA requirements for healthcare clients.
+
+### Retail
+Q: How can retail companies use Power Platform for store operations?
+A: Retail companies use Power Apps and Power Automate to digitize store-level processes — inventory counts, task checklists, and issue reporting — that otherwise run on paper or disconnected spreadsheets, feeding data back into Dynamics 365 or existing POS and inventory systems in real time.
+
+## Glossary
+
+### Tenant-to-Tenant Migration
+A tenant-to-tenant migration moves users' mailboxes, OneDrive files and Teams chats from one Microsoft 365 tenant to another, usually after a merger, acquisition or divestiture. Microsoft 365 tenants cannot be merged: the tooling moves content, not identity, so every user and group is recreated in the target before anything is copied, and the source tenant is later decommissioned.
+
+### Day-1 Coexistence
+Day-1 coexistence is the set of Microsoft 365 configurations that lets two separate tenants behave like one organization from the day a deal legally closes — cross-tenant mail routing, free/busy calendar lookup, a combined address list and Teams chat — while mailboxes, files and identities stay where they are until the migration finishes months later.
+
+### TSA Exit
+A TSA exit is the point at which a carved-out or acquired business stops using the seller's IT systems and runs entirely on its own. In Microsoft 365 terms, the mail, files, identities and applications covered by the Transition Services Agreement have left the seller's tenant by the contractual end date, after which extension fees apply.
+
+### Cutover Migration
+A cutover migration moves every mailbox, user and group from a source environment to a target in one batch, on a single switchover date, with no period of running both systems. Microsoft's Exchange cutover method allows up to 2,000 mailboxes but recommends 150 or fewer; above that, a phased or hybrid approach is safer.
+
+### Cross-Tenant Identity Mapping
+Cross-tenant identity mapping is the one-to-one link between each user, group and mailbox in a source Microsoft 365 tenant and its counterpart in the target tenant. Migration tools read that map to decide whose mail, files, chats and permissions land where. Get a row wrong and the data moves to the wrong person.
+
+### Carve-Out (IT Separation)
+A carve-out is the IT separation of a divested business — a sold division, spin-off or subsidiary — out of its parent's Microsoft 365 tenant. No operation splits a tenant in two, so a carve-out means standing up a target tenant and migrating only the identities, data and applications the purchase agreement actually transfers.
+
+### Data Loss Prevention (DLP)
+Data Loss Prevention (DLP) is a policy engine that detects sensitive content — card numbers, patient identifiers, contract terms, source code — and then audits, warns, or blocks the way it is shared. In Microsoft's stack the name covers two separate systems: Purview DLP, which inspects content across Microsoft 365, and Power Platform data policies, which restrict connectors.
+
+### Microsoft Purview
+Microsoft Purview is Microsoft's brand for data security, data governance, and risk and compliance tooling: sensitivity labels, data loss prevention, retention, eDiscovery, insider risk and data cataloging, run from one portal and covering Microsoft 365 plus, increasingly, data outside it. Microsoft 365 E3 covers a basic subset; most advanced capabilities require E5 or the Purview Suite add-on.
+
+### Retention Policy
+A retention policy in Microsoft Purview automatically keeps content for a set period, deletes it after a set period, or both. It applies to whole locations — Exchange mailboxes, SharePoint sites, OneDrive, Teams messages, Copilot interactions — and enforces itself invisibly: if a user deletes an item early, a hidden copy is preserved until the period ends.
+
+### Sensitivity Label
+A sensitivity label is a Microsoft Purview classification you apply to a file, email, meeting invite, or container such as a Teams site. It records how sensitive the content is and can enforce protection with it — headers, footers, watermarks, encryption and usage rights that stay with the file wherever it goes, including outside your tenant.
+
+### eDiscovery Hold
+An eDiscovery hold is a preservation policy attached to a case in Microsoft Purview that stops content in named mailboxes, SharePoint and OneDrive sites, Teams and Microsoft 365 Groups from being permanently deleted or overwritten. Users notice nothing and keep deleting as normal; copies are kept invisibly until the hold is released.
+
+### Dataverse
+Dataverse is Microsoft's managed cloud database behind Power Platform and Dynamics 365. Renamed from Common Data Service in 2020, it stores data in tables of rows and columns and enforces security, server-side business logic and auditing at the data layer itself. Dynamics 365 Sales, Customer Service and Field Service run directly on it; using it requires a premium licence.
+
+### Power Platform Environment
+A Power Platform environment is a container inside a Microsoft Entra tenant that holds apps, flows, agents, connections and at most one Dataverse database. It is the boundary for admin roles, data policies and data residency. Dataverse data is scoped to the environment it sits in, which is how you separate development, test and production.
+
+### Premium Connector
+A premium connector is a Power Platform data connection — SQL Server, Dataverse, custom connectors, on-premises gateways — that falls outside the Power Apps and Power Automate rights bundled with Microsoft 365. One premium connection makes an app or flow premium, so everyone who runs it needs a standalone Power Apps or Power Automate licence, not just the maker.
+
+## Migrations
+
+### Dynamics GP to Business Central Migration
+Q: Should I migrate from Dynamics GP to Business Central?
+A: Most organizations should plan a Dynamics GP to Business Central migration once GP's extended support timeline becomes a real constraint or GP can no longer support current entity/reporting needs — Business Central runs on the same Dynamics 365 platform, integrates natively with Microsoft 365 and Power Platform, and is the direct modernization path Microsoft itself steers GP customers toward.
+
+### Salesforce to Dynamics 365 Migration
+Q: When does it make sense to migrate from Salesforce to Dynamics 365?
+A: Switching from Salesforce to Dynamics 365 typically makes sense when an organization is already standardized on Microsoft 365 and wants CRM natively integrated with Outlook, Teams, and Power Platform — reducing license sprawl and integration overhead — rather than for feature parity alone, since both platforms cover core CRM functionality well.
+
+### Dynamics NAV to Business Central Migration
+Q: Is migrating from Dynamics NAV to Business Central easier than from GP?
+A: Yes, generally — Business Central was built directly on the NAV codebase, so the data model and much of the business logic map more directly than a GP migration does, though NAV customizations (like GP's) still need individual evaluation rather than a straight data copy.
+
+### Dynamics AX to Dynamics 365 Migration
+Q: What does an AX to Dynamics 365 migration involve?
+A: A Dynamics AX to Dynamics 365 migration moves an organization from on-premises AX to Dynamics 365 Finance & Operations — the cloud successor Microsoft built specifically for AX customers — requiring a review of X++ customizations, integrations, and reporting alongside the core data migration.
+
+## Compare
+
+### Business Central vs. Finance & Operations
+Q: What's the real difference between Business Central and Finance & Operations?
+A: Business Central and Finance & Operations are both Dynamics 365 ERP products, but they're built for different operational complexity — Business Central fits single or few-entity companies needing integrated financials and light manufacturing, while Finance & Operations fits larger, multi-entity, multi-currency organizations with complex supply chain requirements.
+
+### Dynamics 365 vs. Salesforce
+Q: Is Dynamics 365 or Salesforce better for CRM?
+A: Neither is universally "better" — Dynamics 365 typically wins for organizations already standardized on Microsoft 365 that want CRM natively integrated with Outlook, Teams, and Power Platform without extra license sprawl, while Salesforce's advantage is its larger third-party app ecosystem for organizations not primarily built on Microsoft tools.
+
+### Business Central vs. NetSuite
+Q: Is Business Central or NetSuite better for a mid-market company?
+A: For organizations already standardized on Microsoft 365, Business Central typically wins on integration cost and user familiarity (native Outlook, Teams, Excel); NetSuite's strength is a longer track record as a pure cloud-native ERP with a broad built-in feature set that doesn't assume a Microsoft-centric stack.
+
+### Power Apps vs. Custom Development
+Q: Should I build a Power App or hire developers for custom software?
+A: Power Apps typically wins for internal line-of-business tools — approval workflows, inventory trackers, field data collection — where speed and lower cost matter more than deep customization; traditional custom development wins for customer-facing products or apps needing complex logic outside Dataverse's data model.
+
+## Pricing
+
+### Microsoft 365 Tenant Migration Cost
+Q: How much does a Microsoft 365 tenant migration cost?
+A: Microsoft 365 tenant-to-tenant migration cost is driven primarily by mailbox/user count, data volume, and how many custom Power Platform or Dynamics 365 apps are in scope — small migrations (under 100 users) commonly run in the low five figures, while larger, multi-thousand-user M&A migrations with complex coexistence requirements can reach six figures.
+
+### Business Central Implementation Cost
+Q: How much does a Business Central implementation cost?
+A: Business Central implementation cost commonly ranges from roughly $20K–$60K for a straightforward single-entity setup with standard financials, up to $150K–$400K+ for multi-entity organizations with manufacturing, complex inventory, or significant data migration and integration work.
+
+### Dynamics 365 Licensing Explained
+Q: How does Dynamics 365 licensing work?
+A: Dynamics 365 is licensed per user per month, with different tiers for each application (Sales, Customer Service, Business Central, Finance, Supply Chain), plus attach pricing for organizations already licensing one Dynamics 365 app who add another — the most common licensing mistake is over-licensing full users when a lower-cost "Team Member" tier covers read-mostly access needs.
+
+## Assessments
+
+### Microsoft 365 Tenant Migration Assessment
+Q: What does a tenant migration assessment include?
+A: A Microsoft 365 tenant migration assessment inventories both tenants' licensing, identity structure, data volume, and custom apps, then delivers a migration plan and cost estimate mapped to your deal's Day-1 and TSA-exit dates — so the technical plan is set before the migration itself begins, not discovered mid-project.
+
+### Power Platform Health Check
+Q: What is a Power Platform health check?
+A: A Power Platform health check inventories every Power App and Power Automate flow already running in your Microsoft 365 tenant — including ones IT doesn't know about — and evaluates each against data loss prevention policy, ownership, and production-readiness, producing a governance plan instead of a shutdown order.
+
+### Business Central Readiness Assessment
+Q: What does a Business Central readiness assessment include?
+A: A Business Central readiness assessment reviews your current financial system (QuickBooks, GP, NAV, or spreadsheets), evaluates data quality and the third-party systems that need to integrate, and delivers a realistic implementation scope and timeline before you commit to a project.
+
+## Dynamics 365 Products
+
+### Dynamics 365 Sales
+Q: What does Dynamics 365 Sales do?
+A: Dynamics 365 Sales is Microsoft's CRM application for pipeline management, opportunity tracking, and sales forecasting, built to work natively inside Outlook and Teams so sellers log activity without switching apps — with Copilot features that draft emails, summarize records, and surface deal-risk signals.
+
+### Dynamics 365 Customer Service
+Q: What does Dynamics 365 Customer Service include?
+A: Dynamics 365 Customer Service is Microsoft's application for case management, omnichannel support (chat, email, voice), knowledge base search, and Copilot-assisted agent workflows that draft responses and surface relevant knowledge articles during a live case.
+
+### Dynamics 365 Finance
+Q: What is Dynamics 365 Finance, specifically?
+A: Dynamics 365 Finance is the financial management application within the Finance & Operations product line — general ledger, accounts payable/receivable, budgeting, and multi-entity consolidation for organizations with complex, multi-country financial operations, distinct from Business Central's lighter-weight financials.
+
+### Dynamics 365 Supply Chain Management
+Q: What does Dynamics 365 Supply Chain Management do?
+A: Dynamics 365 Supply Chain Management handles inventory, warehousing, procurement, and production planning for organizations with complex, multi-site supply chains — the Finance & Operations application built for manufacturers and distributors that have outgrown Business Central's lighter inventory features.
+
+### Dynamics 365 Business Central
+Q: What is Dynamics 365 Business Central built for?
+A: Dynamics 365 Business Central is Microsoft's ERP for small-to-midsize companies — integrated general ledger, accounts payable/receivable, inventory, and light manufacturing in one system, positioned as the modernization path for organizations outgrowing QuickBooks or an older Dynamics GP/NAV instance.
+
+### Dynamics 365 Field Service
+Q: What does Dynamics 365 Field Service manage?
+A: Dynamics 365 Field Service manages work orders, technician scheduling and dispatch, asset/equipment history, and mobile access for field technicians — built on the same Dataverse platform as Dynamics 365 Sales and Customer Service, so a service request can flow from a support case straight into a scheduled field visit.

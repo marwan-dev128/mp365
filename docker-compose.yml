@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: mp365-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mp365
+      POSTGRES_PASSWORD: mp365_dev_local
+      POSTGRES_DB: mp365
+    ports:
+      - "5433:5432" # non-default host port to avoid clashing with any existing local Postgres
+    volumes:
+      - mp365_db_data:/var/lib/postgresql/data
+
+volumes:
+  mp365_db_data:

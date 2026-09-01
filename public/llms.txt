@@ -1,0 +1,62 @@
+# MP365 (Modern Partners 365)
+
+> MP365 is a Microsoft consulting partner based in Vernon, Connecticut, specializing in Microsoft 365 M&A tenant migration, Dynamics 365, Power Platform, and data governance for mid-market and enterprise organizations. Founded on 20+ years of Microsoft platform experience, MP365 positions itself against large systems integrators by delivering senior expertise without a multi-month discovery cycle.
+
+Key facts: Legal name Modern Partners 365. Headquartered at 59 Winding Brook Trail, Vernon, CT 06066. Phone +1 (860) 208-9537. Email info@mp-365.com. Serves Connecticut, New England, and clients nationwide. Leadership: Mohammed Khaliefa (President, 20+ years Microsoft platform leadership) and Dr. Raafat Elfouly (CTO, Ph.D., author of 50+ published papers).
+
+## Services
+
+- [M&A Tenant Migration](https://mp-365.com/services/ma-tenant-migration/): Tenant-to-tenant Microsoft 365 migration for mergers, acquisitions, and divestitures.
+- [Microsoft 365 Migration](https://mp-365.com/services/microsoft-365-migration/): Fully managed migration from Google Workspace, on-prem Exchange, or another cloud into Microsoft 365.
+- [Dynamics 365 Consulting](https://mp-365.com/services/dynamics-365/): CRM and ERP implementation — Sales, Customer Service, Business Central, Finance & Operations.
+- [Power Platform Solutions](https://mp-365.com/services/power-platform/): Power Apps, Power Automate, Power BI, and Copilot Studio, with governance built in.
+- [Data Governance](https://mp-365.com/services/data-governance/): Microsoft Purview-based retention, classification, and access governance.
+- [Application Modernization](https://mp-365.com/services/application-modernization/): Legacy application migration and re-architecture on Azure.
+- [Collaboration Enablement](https://mp-365.com/services/collaboration-enablement/): SharePoint, Teams, and enterprise search restructuring.
+- [Contract Management Enablement](https://mp-365.com/services/contract-management/): Automated contract workflows replacing email-based tracking.
+
+## Solutions
+
+- [SharePoint & Intranet](https://mp-365.com/solutions/sharepoint-intranet/)
+- [Data Analytics](https://mp-365.com/solutions/data-analytics/)
+- [Automated CRM Deployment](https://mp-365.com/solutions/crm-deployment/)
+- [Financial Management](https://mp-365.com/solutions/financial-management/)
+
+## Industries
+
+- [Manufacturing](https://mp-365.com/industries/manufacturing/)
+- [Healthcare](https://mp-365.com/industries/healthcare/)
+- [Retail](https://mp-365.com/industries/retail/)
+
+## Migrations
+
+- [Dynamics GP to Business Central](https://mp-365.com/migrations/dynamics-gp-to-business-central/)
+- [Salesforce to Dynamics 365](https://mp-365.com/migrations/salesforce-to-dynamics-365/)
+
+## Compare
+
+- [Business Central vs. Finance & Operations](https://mp-365.com/compare/business-central-vs-finance-operations/)
+- [Dynamics 365 vs. Salesforce](https://mp-365.com/compare/dynamics-365-vs-salesforce/)
+
+## Pricing
+
+- [Microsoft 365 Tenant Migration Cost](https://mp-365.com/pricing/tenant-migration-cost/)
+- [Business Central Implementation Cost](https://mp-365.com/pricing/business-central-implementation-cost/)
+
+## Assessments
+
+- [Microsoft 365 Tenant Migration Assessment](https://mp-365.com/assessments/tenant-migration/)
+- [Power Platform Health Check](https://mp-365.com/assessments/power-platform-health-check/)
+
+## Company
+
+- [About](https://mp-365.com/about/)
+- [Connecticut](https://mp-365.com/microsoft-consultant-connecticut/)
+- [Case Studies](https://mp-365.com/case-studies/)
+- [Blog](https://mp-365.com/blog/)
+- [Glossary](https://mp-365.com/resources/glossary/)
+- [Contact](https://mp-365.com/contact/)
+
+## Optional
+
+- [Full site content (llms-full.txt)](https://mp-365.com/llms-full.txt): flattened plain-text version of all pages above, for models that fetch a single file instead of crawling links.

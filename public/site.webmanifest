@@ -1,0 +1,13 @@
+{
+  "name": "MP365 — Modern Partners 365",
+  "short_name": "MP365",
+  "description": "Microsoft consulting partner specializing in M&A tenant migration, Microsoft 365, Dynamics 365, and Power Platform.",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#001033",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}

@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   MP-365 Enterprise Design System
+   Ported from the reference at C:/Working/Khalifa (DESIGN_SYSTEM.md +
+   .agents/skills/mp365-design-system/SKILL.md). Token names and values are
+   kept 1:1 with that spec so the two stay reconcilable.
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --mp-navy-dark: #001033;
+  --mp-navy-subtle: #06163d;
+  --mp-navy-card: #081c48;
+  --mp-azure-primary: #0062ff;
+  --mp-azure-hover: #0050d8;
+  --mp-azure-subtle: #ebf3ff;
+  --mp-cyan-accent: #00d2ff;
+
+  /* Canvas & neutrals */
+  --mp-surface-bg: #ffffff;
+  --mp-surface-light: #f4f5f7;
+  --mp-surface-card: #ffffff;
+  --mp-surface-muted: #ebeff5;
+
+  /* Typography colors */
+  --mp-text-primary: #001033;
+  --mp-text-secondary: #4a5568;
+  /* Darkened from the reference's #8C9BAE, which measured 2.83:1 on white and
+     2.60:1 on surface-light — failing WCAG AA at every size it is used at.
+     #616E83 gives 5.16:1 on white and 4.73:1 on surface-light, so it passes on
+     both grounds it actually appears on. */
+  --mp-text-muted: #616e83;
+  --mp-text-inverse: #ffffff;
+
+  /* Structure */
+  --mp-border-light: #e2e8f0;
+  --mp-border-azure: rgba(0, 98, 255, 0.25);
+  --mp-radius-pill: 9999px;
+  --mp-radius-card: 20px;
+  --mp-radius-hero: 32px;
+  --mp-radius-badge: 12px;
+
+  /* Layered ambient shadows — a 1px contact shadow plus a wide diffuse
+     falloff, which is what keeps surfaces from reading as flat. */
+  --mp-shadow-sm: 0 1px 3px rgba(0, 16, 51, 0.04), 0 4px 14px rgba(0, 16, 51, 0.04);
+  --mp-shadow-card: 0 1px 3px rgba(0, 16, 51, 0.02), 0 10px 30px rgba(0, 16, 51, 0.05);
+  --mp-shadow-hover: 0 4px 12px rgba(0, 16, 51, 0.04), 0 20px 40px rgba(0, 98, 255, 0.12);
+  --mp-shadow-azure: 0 8px 24px -4px rgba(0, 98, 255, 0.4), 0 14px 34px rgba(0, 16, 51, 0.2);
+  --mp-shadow-cyan-glow: 0 0 24px rgba(0, 210, 255, 0.45);
+
+  --mp-spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The reference is a committed light-mode enterprise identity — dark navy
+   surfaces are a deliberate compositional element (hero, footer), not a
+   theme. Painting a full dark palette would invert those relationships and
+   lose the design. The page therefore commits to one look and paints every
+   surface explicitly, so it holds on any host background. */
+
+@theme inline {
+  --color-navy: var(--mp-navy-dark);
+  --color-navy-subtle: var(--mp-navy-subtle);
+  --color-navy-card: var(--mp-navy-card);
+  --color-azure: var(--mp-azure-primary);
+  --color-azure-hover: var(--mp-azure-hover);
+  --color-azure-subtle: var(--mp-azure-subtle);
+  --color-cyan: var(--mp-cyan-accent);
+
+  --color-surface: var(--mp-surface-bg);
+  --color-surface-light: var(--mp-surface-light);
+  --color-surface-card: var(--mp-surface-card);
+  --color-surface-muted: var(--mp-surface-muted);
+
+  --color-ink: var(--mp-text-primary);
+  --color-ink-2: var(--mp-text-secondary);
+  --color-muted: var(--mp-text-muted);
+  --color-line: var(--mp-border-light);
+
+  --radius-card: var(--mp-radius-card);
+  --radius-hero: var(--mp-radius-hero);
+  --radius-badge: var(--mp-radius-badge);
+
+  --shadow-mp-sm: var(--mp-shadow-sm);
+  --shadow-mp-card: var(--mp-shadow-card);
+  --shadow-mp-hover: var(--mp-shadow-hover);
+  --shadow-mp-azure: var(--mp-shadow-azure);
+
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* These element defaults MUST live in @layer base. Unlayered rules win over
+   every layered Tailwind utility regardless of specificity, so an unlayered
+   `h1 { color }` would silently defeat `text-white` on the dark hero. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--mp-surface-bg);
+    color: var(--mp-text-primary);
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+    color: var(--mp-text-primary);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--mp-azure-primary);
+    color: #fff;
+  }
+}
+
+@layer base {
+  /* Focus rings — azure, offset, on every interactive control. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--mp-azure-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Component primitives from the reference that are awkward to express as
+   utility classes — the concave breadcrumb notch especially.
+   -------------------------------------------------------------------------- */
+
+/* Spring-loaded compression: interactive surfaces physically respond. */
+.mp-press {
+  transition: transform 0.25s var(--mp-spring-ease), box-shadow 0.25s var(--mp-spring-ease),
+    background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.mp-press:active {
+  transform: scale(0.98);
+}
+
+/* The hero's bottom-right breadcrumb plate, with the two concave corner
+   notches that make it read as cut out of the hero rather than sat on top.
+   The box-shadow spread paints the inverse curve. */
+.mp-breadcrumb-notch {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  background: var(--mp-surface-bg);
+  border-top-left-radius: 20px;
+}
+.mp-breadcrumb-notch::before,
+.mp-breadcrumb-notch::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-bottom-right-radius: 20px;
+  box-shadow: 6px 6px 0 6px var(--mp-surface-bg);
+  pointer-events: none;
+}
+.mp-breadcrumb-notch::before {
+  top: -20px;
+  right: 0;
+}
+.mp-breadcrumb-notch::after {
+  bottom: 0;
+  left: -20px;
+}
+
+/* Service card: the arrow rotates to 45° on hover, so the ↗ resolves into a
+   straight arrow as you approach it. */
+.mp-card-arrow {
+  transition: transform 0.25s var(--mp-spring-ease), background-color 0.2s ease, color 0.2s ease;
+}
+.group:hover .mp-card-arrow {
+  background-color: var(--mp-azure-primary);
+  color: #fff;
+  transform: rotate(45deg);
+}
+.group\/featured:hover .mp-card-arrow-featured {
+  transform: rotate(45deg);
+}
+
+/* --------------------------------------------------------------------------
+   Long-form article prose (components/blog/ArticleBody.tsx).
+   -------------------------------------------------------------------------- */
+
+/* Body links carry an underline, not just azure colour. Azure (#0062ff)
+   against secondary body text (#4a5568) measures ~1.5:1 — far below the 3:1
+   WCAG 1.4.1 requires before colour alone may distinguish a link — so the
+   underline is the accessible signal and the colour is reinforcement.
+   Scoped to paragraphs and list items so the heading permalink glyphs stay
+   clean. */
+.mp-prose p a,
+.mp-prose li a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(0, 98, 255, 0.4);
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: auto;
+}
+.mp-prose p a:hover,
+.mp-prose li a:hover {
+  text-decoration-color: var(--mp-azure-primary);
+}
+
+/* Avoids single-word last lines in long paragraphs. Ignored by browsers that
+   do not support it, which simply get today's behaviour. */
+.mp-prose p {
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .mp-press:active {
+    transform: none;
+  }
+  .group:hover .mp-card-arrow {
+    transform: none;
+  }
+}

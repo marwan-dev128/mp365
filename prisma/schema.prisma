@@ -1,0 +1,456 @@
+// MP365 content database schema.
+//
+// Design principle: this schema is the source of truth for editable content
+// (services, solutions, industries, case studies, blog, glossary), but pages
+// are still statically generated (SSG + ISR) from it at build/revalidate
+// time — never rendered client-side from a live query. That's what keeps the
+// SEO/AEO/GEO/LLM foundation intact: crawlers and AI bots always receive
+// fully-rendered static HTML, and editors get a database instead of code
+// deploys for content changes.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Prisma 7: connection URL is no longer set here — it lives in
+// prisma.config.ts (for the CLI) and is passed to the driver adapter in
+// lib/db.ts (for the app at runtime). See both files.
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Site-wide singleton (canonical NAP + entity facts — reused by JSON-LD,
+// metadata, footer, and llms.txt so every surface states identical facts).
+// ---------------------------------------------------------------------------
+model SiteSettings {
+  id          Int      @id @default(1)
+  brandName   String
+  legalName   String
+  tagline     String
+  description String
+  url         String
+  foundedYear String
+  phone       String
+  phoneDisplay String
+  email       String
+  street      String
+  city        String
+  region      String
+  postalCode  String
+  country     String
+  latitude    Float
+  longitude   Float
+  areaServed  String[] // e.g. ["Connecticut", "New England", "United States"]
+  sameAs      String[] // LinkedIn, Partner Center, Clutch, G2, etc.
+  updatedAt   DateTime @updatedAt
+}
+
+model Person {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        String
+  role        String
+  credentials String
+  order       Int        @default(0)
+  posts       BlogPost[]
+}
+
+// ---------------------------------------------------------------------------
+// Shared FAQ shape, reused via polymorphic parent fields rather than a
+// separate join table per content type — simplest for a small editorial team.
+// ---------------------------------------------------------------------------
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String   @db.Text
+  order     Int      @default(0)
+
+  serviceId  String?
+  service    Service?  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  solutionId String?
+  solution   Solution? @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+  industryId String?
+  industry   Industry? @relation(fields: [industryId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+  @@index([solutionId])
+  @@index([industryId])
+}
+
+model OldSlug {
+  id        String   @id @default(cuid())
+  path      String   @unique // e.g. "/services/business-applications/"
+
+  serviceId  String?
+  service    Service?  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  solutionId String?
+  solution   Solution? @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+  industryId String?
+  industry   Industry? @relation(fields: [industryId], references: [id], onDelete: Cascade)
+}
+
+model ProcessStep {
+  id          String  @id @default(cuid())
+  name        String
+  description String  @db.Text
+  order       Int     @default(0)
+  serviceId   String
+  service     Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+}
+
+model ContentSection {
+  id        String   @id @default(cuid())
+  heading   String
+  body      String[] // paragraphs
+  order     Int      @default(0)
+
+  serviceId  String?
+  service    Service?  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  solutionId String?
+  solution   Solution? @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+  @@index([solutionId])
+}
+
+enum ServiceCategory {
+  Migration
+  Modernization
+  BusinessApplications
+  Governance
+}
+
+model Service {
+  id              String          @id @default(cuid())
+  slug            String          @unique
+  name            String
+  shortName       String
+  category        ServiceCategory
+  metaTitle       String
+  metaDescription String          @db.Text
+  heroQuestion    String
+  heroAnswer      String          @db.Text
+  imageUrl        String?
+  intro           String[]
+  order           Int             @default(0)
+
+  sections        ContentSection[]
+  process         ProcessStep[]
+  faqs            Faq[]
+  oldSlugs        OldSlug[]
+
+  relatedServiceSlugs String[] @default([])
+
+  caseStudies     CaseStudy[]
+  glossaryTerms   GlossaryTerm[]  @relation("TermServices")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Solution {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  metaTitle       String
+  metaDescription String   @db.Text
+  heroQuestion    String
+  heroAnswer      String   @db.Text
+  imageUrl        String?
+  intro           String[]
+  order           Int      @default(0)
+  /**
+   * Ordered typed blocks (prose | list | steps | table | price-range), the
+   * same shape as MarketingPage.sections and GlossaryTerm.sections, rendered
+   * by components/marketing/PageBody.tsx. Named `blocks` rather than
+   * `sections` because that name is taken by the legacy ContentSection
+   * relation below, which these supersede.
+   */
+  blocks          Json     @default("[]")
+  /**
+   * Cross-links. Previously a hardcoded map in the page component, which meant
+   * an editor could not change them and a renamed slug failed silently.
+   */
+  relatedServiceSlugs String[] @default([])
+  relatedTermSlugs    String[] @default([])
+  /** Full paths to marketing hub pages, e.g. "/pricing/dynamics-365-licensing/". */
+  relatedPageRefs     String[] @default([])
+
+  /** @deprecated superseded by `blocks`; kept so old rows still render. */
+  sections ContentSection[]
+  faqs     Faq[]
+  oldSlugs OldSlug[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Industry {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  metaTitle       String
+  metaDescription String   @db.Text
+  heroQuestion    String
+  heroAnswer      String   @db.Text
+  imageUrl        String?
+  intro           String[]
+  challenges      String[]
+  order           Int      @default(0)
+  /**
+   * Ordered typed blocks (prose | list | steps | table), the same shape as
+   * Solution.blocks and MarketingPage.sections, rendered by
+   * components/marketing/PageBody.tsx. Industry pages shipped as ~150-word
+   * stubs — intro plus a bullet list — while every sibling page type carried
+   * structured depth; this is what closes that gap.
+   */
+  blocks          Json     @default("[]")
+  /**
+   * Cross-links. Previously a hardcoded RELATED_SERVICE_SLUGS map inside
+   * app/industries/[slug]/page.tsx — the same anti-pattern already removed
+   * from the solution pages: invisible to editors, and silently wrong when a
+   * slug is renamed.
+   */
+  relatedServiceSlugs String[] @default([])
+  relatedTermSlugs    String[] @default([])
+  /** Full paths to marketing hub pages, e.g. "/pricing/dynamics-365-licensing/". */
+  relatedPageRefs     String[] @default([])
+
+  faqs     Faq[]
+  oldSlugs OldSlug[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CaseStudy {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  client          String
+  industryLabel   String
+  metaTitle       String
+  metaDescription String   @db.Text
+  summary         String   @db.Text
+  problem         String[]
+  approach        String[]
+  result          String[]
+  metrics         Json     @default("[]") // [{ label, value }]
+  published       Boolean  @default(false) // gate placeholder content from going live
+  order           Int      @default(0)
+
+  serviceId String?
+  service   Service? @relation(fields: [serviceId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum BlogCluster {
+  MAMigration
+  Dynamics365
+  PowerPlatform
+  DataGovernance
+}
+
+model BlogPost {
+  id              String      @id @default(cuid())
+  slug            String      @unique
+  title           String
+  metaDescription String      @db.Text
+  cluster         BlogCluster
+  authorId        String
+  author          Person      @relation(fields: [authorId], references: [id])
+  datePublished   DateTime
+  dateModified    DateTime
+  excerpt         String      @db.Text
+  body            Json        // [{ heading?, paragraphs: string[], list?: string[] }]
+  published       Boolean     @default(true)
+  /**
+   * Hero artwork, rendered inside the article's banner and reused as the
+   * og:image and BlogPosting.image. Optional: a post without one falls back
+   * to the site's branded OG card, which is what every post did before this
+   * column existed.
+   */
+  imageUrl        String?
+  /**
+   * Alt text for `imageUrl`. Null means "decorative" and renders alt="" —
+   * correct for the generic office photography this site uses, where the H1
+   * beside the image already carries the meaning and a description of the
+   * scene would only add noise for screen-reader users. Set it when the image
+   * genuinely carries information the copy does not.
+   */
+  imageAlt        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Per-cluster editorial config for the blog article template. The sidebar CTA
+// on every post is chosen by the post's cluster, so this is one row per
+// cluster rather than one per post — and it lives here rather than in code so
+// changing "Talk to a Dynamics consultant" is a content edit, not a deploy.
+//
+// A missing row is not an error: the template falls back to a neutral default
+// (see lib/data.ts), so adding a BlogCluster value cannot break a live page.
+// ---------------------------------------------------------------------------
+model BlogClusterCta {
+  id      String      @id @default(cuid())
+  cluster BlogCluster @unique
+  /** Small uppercase eyebrow above the title, e.g. "Dynamics 365". */
+  tag     String
+  title   String
+  body    String      @db.Text
+  ctaText String
+  ctaHref String      @default("/contact/")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GlossaryTerm {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  term            String
+  /** 40-60 words, self-contained — this is what answer engines quote. */
+  shortDefinition String   @db.Text
+  /** Alternative names people search for the same concept. */
+  aliases         String[] @default([])
+  /**
+   * Ordered typed blocks (prose | list | steps | table), same shape as
+   * MarketingPage.sections so components/marketing/PageBody.tsx renders both.
+   */
+  sections        Json     @default("[]")
+  /** Legacy flat paragraphs — superseded by `sections`, kept for old rows. */
+  expansion       String[]
+  relatedTermSlugs String[] @default([])
+  order           Int      @default(0)
+  /**
+   * The one service this term most belongs to; groups the glossary index.
+   * Must be stored explicitly — `relatedServices` is an implicit many-to-many,
+   * so its order is whatever the join table happens to return. Reading [0] as
+   * "the primary" silently filed every governance term under Migration.
+   */
+  primaryServiceSlug String?
+
+  relatedServices Service[]      @relation("TermServices")
+  faqs            GlossaryFaq[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GlossaryFaq {
+  id       String       @id @default(cuid())
+  question String
+  answer   String       @db.Text
+  order    Int          @default(0)
+  termId   String
+  term     GlossaryTerm @relation(fields: [termId], references: [id], onDelete: Cascade)
+
+  @@index([termId])
+}
+
+// ---------------------------------------------------------------------------
+// Growth-plan content hubs (/compare, /migrations, /pricing, /assessments,
+// /dynamics-365). One flexible model instead of five near-identical ones —
+// `sections` holds an ordered array of typed blocks (prose | table | steps |
+// price-range | list) rendered by components/marketing/PageBody.tsx.
+// `published` gates pages with placeholder/unconfirmed figures (esp.
+// PRICING) from going live or appearing in the sitemap — same pattern as
+// CaseStudy.
+// ---------------------------------------------------------------------------
+enum MarketingPageType {
+  MIGRATION
+  COMPARISON
+  PRICING
+  ASSESSMENT
+  PRODUCT
+}
+
+model MarketingPage {
+  id              String            @id @default(cuid())
+  type            MarketingPageType
+  hub             String            // "migrations" | "compare" | "pricing" | "assessments" | "dynamics-365"
+  slug            String            // path segment under its hub
+  name            String
+  metaTitle       String
+  metaDescription String            @db.Text
+  heroQuestion    String
+  heroAnswer      String            @db.Text
+  imageUrl        String?
+  sections        Json              @default("[]")
+  relatedServiceSlugs String[]      @default([])
+  relatedPageRefs String[]          @default([]) // "hub/slug" strings for cross-hub links
+  published       Boolean           @default(false)
+  order           Int               @default(0)
+
+  faqs Faq2[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([hub, slug])
+}
+
+// ---------------------------------------------------------------------------
+// Contact form submissions. Persisted first, then optionally forwarded to a
+// webhook — so an inbound enquiry is never lost if the webhook is down or
+// not yet configured. Not exposed by any read route; view via Prisma Studio.
+// ---------------------------------------------------------------------------
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  message   String   @db.Text
+  /** Set when the webhook forward succeeded; null means still un-forwarded. */
+  forwardedAt DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// FAQs for pages that have no content row of their own — the homepage,
+// /about/, /microsoft-consultant-connecticut/, and the hub indexes. Those
+// routes are hand-built React (app/page.tsx etc.) rather than rows, so their
+// Q&A can't hang off Service/Solution/Industry/MarketingPage like every
+// other FAQ does.
+//
+// Keyed by `path` instead of a FK so a new static page gets FAQs without a
+// schema change. `path` is the canonical trailing-slash URL used everywhere
+// else in the codebase (SITE_URL + path), so it also feeds faqSchema()'s
+// @id/isPartOf binding unchanged. Answers support the same inline markup as
+// the rest of the seeded copy (see lib/richtext.ts).
+// ---------------------------------------------------------------------------
+model StaticPageFaq {
+  id       String @id @default(cuid())
+  /** Canonical page path, e.g. "/", "/about/", "/pricing/". */
+  path     String
+  question String
+  answer   String @db.Text
+  order    Int    @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([path, question])
+  @@index([path])
+}
+
+// Separate from Faq (which uses required-optional FK columns per parent
+// type) to avoid another migration touching the existing Faq table.
+model Faq2 {
+  id        String        @id @default(cuid())
+  question  String
+  answer    String        @db.Text
+  order     Int           @default(0)
+  pageId    String
+  page      MarketingPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([pageId])
+}
