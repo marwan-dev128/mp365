@@ -66,9 +66,15 @@ export function PageHero({
                 className="object-cover"
               />
               {/* Scrim. The banner's own gradients are tuned for flat navy and
-                  do not carry white text over photography — this holds the H1
-                  well past 4.5:1 on any frame. */}
-              <div aria-hidden="true" className="absolute inset-0 bg-navy/72" />
+                  do not carry text over photography on their own.
+                  80% is not a taste call — it is the weakest scrim that still
+                  passes WCAG AA for the *cyan* eyebrow, which is the tightest
+                  element here. Worst case (a pure-white frame, under the
+                  azure radial's peak, at the gradient's lightest point) the
+                  eyebrow lands at 4.70:1 and the white H1 at 8.4:1. At 72% the
+                  eyebrow measured 4.21:1 — below the 4.5:1 floor for text that
+                  size. */}
+              <div aria-hidden="true" className="absolute inset-0 bg-navy/80" />
               <div
                 aria-hidden="true"
                 className="absolute inset-0 bg-gradient-to-t from-navy via-navy/45 to-navy/25"
