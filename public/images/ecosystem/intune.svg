@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
+  <defs>
+    <linearGradient id="intune-blue" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0078D4"/>
+      <stop offset="100%" stop-color="#004E8C"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="10" width="32" height="22" rx="3" fill="url(#intune-blue)"/>
+  <rect x="11" y="13" width="26" height="16" rx="1.5" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M20 32v6h8v-6" stroke="#0078D4" stroke-width="2.5" fill="none"/>
+  <rect x="14" y="38" width="20" height="2.5" rx="1.2" fill="#004E8C"/>
+  <circle cx="24" cy="21" r="4" fill="#0078D4"/>
+  <path d="M19 28c0-2.8 2.2-5 5-5s5 2.2 5 5" fill="#0078D4"/>
+</svg>

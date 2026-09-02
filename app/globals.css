@@ -244,6 +244,58 @@
   animation-play-state: paused;
 }
 
+/* --------------------------------------------------------------------------
+   Orbital Ecosystem Animations (Hero Section)
+   -------------------------------------------------------------------------- */
+@keyframes mp-spin-cw {
+  from {
+    transform: rotate(var(--start-angle, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--start-angle, 0deg) + 360deg));
+  }
+}
+
+@keyframes mp-spin-ccw {
+  from {
+    transform: rotate(var(--start-angle, 0deg));
+  }
+  to {
+    transform: rotate(calc(var(--start-angle, 0deg) - 360deg));
+  }
+}
+
+@keyframes mp-counter-spin-cw {
+  from {
+    transform: translate(-50%, -50%) rotate(calc(0deg - var(--start-angle, 0deg)));
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(calc(-360deg - var(--start-angle, 0deg)));
+  }
+}
+
+@keyframes mp-counter-spin-ccw {
+  from {
+    transform: translate(-50%, -50%) rotate(calc(0deg - var(--start-angle, 0deg)));
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(calc(360deg - var(--start-angle, 0deg)));
+  }
+}
+
+@keyframes mp-float-badge {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.mp-float-anim {
+  animation: mp-float-badge 4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -265,4 +317,9 @@
     animation: none;
     overflow-x: auto;
   }
+  .mp-float-anim {
+    animation: none;
+  }
 }
+
+
