@@ -113,6 +113,23 @@ export default async function ResourcesPage() {
               View playbooks <ArrowUpRight className="h-3.5 w-3.5" />
             </span>
           </Link>
+          <Link
+            href="/resources/worked-examples/"
+            className="group flex flex-col justify-between rounded-[var(--mp-radius-card)] border border-line bg-white p-5 shadow-[0_2px_12px_rgba(0,16,51,0.03)] transition-all hover:-translate-y-1 hover:border-azure/40 hover:shadow-mp-hover"
+          >
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-azure">Walkthroughs</span>
+              <p className="mt-1 font-display text-[15.5px] font-bold text-navy transition-colors group-hover:text-azure">
+                Worked Examples
+              </p>
+              <p className="mt-1 text-[12.5px] text-muted">
+                How a project like yours unfolds, decision by decision
+              </p>
+            </div>
+            <span className="mt-4 inline-flex items-center gap-1 text-[12.5px] font-bold text-azure">
+              Read the examples <ArrowUpRight className="h-3.5 w-3.5" />
+            </span>
+          </Link>
         </div>
 
         {/* 2-Column Glossary & Guides Cards */}

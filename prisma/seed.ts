@@ -3,15 +3,17 @@
 // nothing in app/ or lib/ imports them anymore; the DB is the runtime
 // source of truth). Safe to re-run: every model is upserted by its slug.
 import "dotenv/config";
-import { ServiceCategory, BlogCluster } from "@prisma/client";
+import { ServiceCategory, BlogCluster, CaseStudyKind } from "@prisma/client";
 import { prisma } from "../lib/db";
 import { site } from "./seed-data/site";
 import { services } from "./seed-data/services";
 import { solutions } from "./seed-data/solutions";
 import { industries } from "./seed-data/industries";
 import { caseStudies } from "./seed-data/case-studies";
+import { workedExamples } from "./seed-data/worked-examples";
 import { blogPosts } from "./seed-data/blog";
 import { blogClusterCtas } from "./seed-data/blog-cluster-ctas";
+import { standaloneRedirects } from "./seed-data/redirects";
 import { glossaryTerms } from "./seed-data/glossary";
 import { marketingPages } from "./seed-data/marketing-pages";
 import { staticPageFaqs } from "./seed-data/static-page-faqs";
@@ -260,44 +262,37 @@ async function main() {
     }
   }
 
-  console.log("Seeding Case Studies…");
-  for (const [i, c] of caseStudies.entries()) {
+  console.log("Seeding Case Studies + Worked Examples…");
+  // Client rows still contain [CONTENT NEEDED] placeholders and default to
+  // unpublished; worked examples declare `published: true` in their seed file.
+  for (const [i, c] of [...caseStudies, ...workedExamples].entries()) {
+    const kind = c.kind === "WORKED_EXAMPLE" ? CaseStudyKind.WORKED_EXAMPLE : CaseStudyKind.CLIENT;
+    const fields = {
+      kind,
+      client: c.client,
+      industryLabel: c.industry,
+      imageUrl: c.imageUrl ?? null,
+      metaTitle: c.metaTitle,
+      metaDescription: c.metaDescription,
+      summary: c.summary,
+      problem: c.problem,
+      approach: c.approach,
+      result: c.result,
+      metrics: c.metrics,
+      serviceId: serviceIdBySlug[c.serviceSlug] ?? null,
+      published: c.published ?? false,
+      order: i,
+    };
     await prisma.caseStudy.upsert({
       where: { slug: c.slug },
-      create: {
-        slug: c.slug,
-        client: c.client,
-        industryLabel: c.industry,
-        metaTitle: c.metaTitle,
-        metaDescription: c.metaDescription,
-        summary: c.summary,
-        problem: c.problem,
-        approach: c.approach,
-        result: c.result,
-        metrics: c.metrics,
-        serviceId: serviceIdBySlug[c.serviceSlug] ?? null,
-        published: false, // contains [CONTENT NEEDED] placeholders — flip on once real content lands
-        order: i,
-      },
-      update: {
-        client: c.client,
-        industryLabel: c.industry,
-        metaTitle: c.metaTitle,
-        metaDescription: c.metaDescription,
-        summary: c.summary,
-        problem: c.problem,
-        approach: c.approach,
-        result: c.result,
-        metrics: c.metrics,
-        serviceId: serviceIdBySlug[c.serviceSlug] ?? null,
-        order: i,
-      },
+      create: { slug: c.slug, ...fields },
+      update: fields,
     });
   }
 
   console.log("Seeding Blog Posts…");
   for (const p of blogPosts) {
-    await prisma.blogPost.upsert({
+    const created = await prisma.blogPost.upsert({
       where: { slug: p.slug },
       create: {
         slug: p.slug,
@@ -325,6 +320,13 @@ async function main() {
         body: p.body,
       },
     });
+
+    await prisma.faq.deleteMany({ where: { blogPostId: created.id } });
+    for (const [j, f] of (p.faqs ?? []).entries()) {
+      await prisma.faq.create({
+        data: { blogPostId: created.id, question: f.q, answer: f.a, order: j },
+      });
+    }
   }
 
   console.log("Seeding blog cluster CTAs…");
@@ -340,6 +342,24 @@ async function main() {
       where: { cluster: CLUSTER_MAP[c.cluster] },
       create: { cluster: CLUSTER_MAP[c.cluster], ...data },
       update: data,
+    });
+  }
+
+  // Redirects whose destination is not a Service/Solution/Industry row —
+  // retired WordPress blog posts and category archives, and /about-us/.
+  // Without these, 21 indexed URLs 404 at cutover. See seed-data/redirects.ts.
+  console.log("Seeding standalone redirects…");
+  // Clear only the rows this file owns (targetPath set), so re-seeding cannot
+  // strip the FK-based redirects written by the service/solution/industry
+  // loops above.
+  await prisma.oldSlug.deleteMany({
+    where: { targetPath: { not: null }, path: { notIn: standaloneRedirects.map((r) => r.from) } },
+  });
+  for (const r of standaloneRedirects) {
+    await prisma.oldSlug.upsert({
+      where: { path: r.from },
+      create: { path: r.from, targetPath: r.to },
+      update: { targetPath: r.to, serviceId: null, solutionId: null, industryId: null },
     });
   }
 

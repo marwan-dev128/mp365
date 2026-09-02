@@ -3,6 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedSidebar } from "@/components/RelatedSidebar";
+import { FaqSection } from "@/components/FaqSection";
 import { ArrowUp } from "@/components/ui/Icons";
 import { SITE_URL } from "@/lib/config";
 import { articleSchema, personSchema, webPageSchema } from "@/lib/schema";
@@ -142,6 +143,14 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               <div id="article-body" className="pt-9">
                 <ArticleBody sections={sections} />
               </div>
+
+              {/* FaqSection emits the FAQPage JSON-LD bound to this page's
+                  @id, the same component every other content type uses. */}
+              {post.faqs.length > 0 && (
+                <div className="mt-14">
+                  <FaqSection faqs={post.faqs} path={path} title="Questions this raises" />
+                </div>
+              )}
 
               <footer className="mt-12 flex flex-col gap-8 border-t border-line pt-8">
                 {relatedServices.length > 0 && (

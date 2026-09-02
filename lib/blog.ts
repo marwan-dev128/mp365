@@ -1,4 +1,5 @@
 import { stripInlineMarkup } from "./richtext";
+import type { MarketingBlock } from "./marketing-blocks";
 
 // Blog article utilities — heading IDs, table of contents, and reading time.
 //
@@ -12,15 +13,16 @@ import { stripInlineMarkup } from "./richtext";
 // drift the moment a post has duplicate headings — the deduped "-2" suffix
 // would land on one side only, and the TOC would link to nothing.
 
-/** A body block as stored in BlogPost.body (prisma/schema.prisma). */
-export type BlogBodyBlock = {
-  heading?: string;
-  /** Some seeded blocks are list-only and carry an empty array. */
-  paragraphs?: string[];
-  list?: string[];
-  /** Reserved for a future sub-heading level; defaults to 2 when absent. */
-  level?: number;
-};
+/**
+ * A body block as stored in BlogPost.body — the same typed-block union that
+ * Solution.blocks, Industry.blocks and MarketingPage.sections use, so a blog
+ * post can carry a comparison table or a numbered process without inventing a
+ * second vocabulary for the same shapes.
+ *
+ * `level` is blog-specific: articles are long enough to want an H3 tier under
+ * an H2, which landing pages are not.
+ */
+export type BlogBodyBlock = MarketingBlock & { level?: 2 | 3 };
 
 /** A body block after ID assignment. `headingId` is set iff `heading` is. */
 export type BlogSection = BlogBodyBlock & { headingId?: string; level: 2 | 3 };
@@ -66,6 +68,30 @@ export function parseBlogBody(body: unknown): BlogBodyBlock[] {
   return Array.isArray(body) ? (body as BlogBodyBlock[]) : [];
 }
 
+/** Every rendered string in a block, flattened — used for word count. */
+function blockStrings(block: BlogBodyBlock): string[] {
+  const out: string[] = [block.heading ?? ""];
+  switch (block.type) {
+    case "prose":
+      out.push(...block.paragraphs);
+      break;
+    case "list":
+      out.push(...block.items);
+      break;
+    case "steps":
+      for (const s of block.steps) out.push(s.name, s.description);
+      break;
+    case "table":
+      out.push(...block.headers, ...block.rows.flat());
+      break;
+    case "price-range":
+      for (const t of block.tiers) out.push(t.label, t.range, t.note ?? "");
+      if (block.disclaimer) out.push(block.disclaimer);
+      break;
+  }
+  return out;
+}
+
 /**
  * Assigns a stable, unique DOM id to every block that has a heading.
  *
@@ -106,8 +132,7 @@ export function tocFromSections(sections: BlogSection[]): TocItem[] {
 export function countWords(blocks: BlogBodyBlock[]): number {
   let words = 0;
   for (const block of blocks) {
-    const strings = [block.heading ?? "", ...(block.paragraphs ?? []), ...(block.list ?? [])];
-    for (const s of strings) {
+    for (const s of blockStrings(block)) {
       const flat = stripInlineMarkup(s).trim();
       if (flat) words += flat.split(/\s+/).length;
     }

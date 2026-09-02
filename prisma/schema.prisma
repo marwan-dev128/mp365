@@ -72,10 +72,19 @@ model Faq {
   solution   Solution? @relation(fields: [solutionId], references: [id], onDelete: Cascade)
   industryId String?
   industry   Industry? @relation(fields: [industryId], references: [id], onDelete: Cascade)
+  /**
+   * Blog posts were the only content type with no FAQs, which is backwards:
+   * question-shaped queries are exactly what an article ranks for, and the
+   * article template already renders FaqSection and emits FAQPage schema for
+   * every other type.
+   */
+  blogPostId String?
+  blogPost   BlogPost? @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
 
   @@index([serviceId])
   @@index([solutionId])
   @@index([industryId])
+  @@index([blogPostId])
 }
 
 model OldSlug {
@@ -88,6 +97,28 @@ model OldSlug {
   solution   Solution? @relation(fields: [solutionId], references: [id], onDelete: Cascade)
   industryId String?
   industry   Industry? @relation(fields: [industryId], references: [id], onDelete: Cascade)
+
+  /**
+   * Redirect target for sources whose destination is NOT a Service, Solution
+   * or Industry row — a retired blog post, a WordPress category archive,
+   * /about-us/, or any future one-off.
+   *
+   * This column exists because the three FKs above could only ever express
+   * three kinds of redirect. The old WordPress site had 15 indexed blog posts
+   * and 6 category archives whose closest counterparts are a BlogPost, a
+   * MarketingPage or a hand-built route, so before this they had no way to be
+   * represented at all and would have 404'd on launch — deleting the only
+   * pages on the old site carrying recent dates and topical titles.
+   *
+   * Stored as a full path (leading and trailing slash) rather than a second
+   * set of FKs: the targets span four different models plus static routes, and
+   * a foreign key per destination type is how this table got stuck in the
+   * first place. lib/redirects.test.ts pins every target to a real route, so a
+   * free-form string cannot rot into a redirect to a 404.
+   *
+   * An FK, if one is also set, wins — see getOldSlugRedirects().
+   */
+  targetPath String?
 }
 
 model ProcessStep {
@@ -226,11 +257,27 @@ model Industry {
   updatedAt DateTime @updatedAt
 }
 
+// A CaseStudy row is one of two very different things, and the site never
+// blurs them:
+//   CLIENT          a real, named engagement. Stays `published: false` until
+//                   the client has approved scope, quotes and any figures.
+//   WORKED_EXAMPLE  an illustrative scenario attributed to no client. Shows
+//                   how a project of that shape unfolds; claims no outcome.
+//                   Rendered under /resources/worked-examples/ with a
+//                   permanent notice, never in the /case-studies/ listing.
+enum CaseStudyKind {
+  CLIENT
+  WORKED_EXAMPLE
+}
+
 model CaseStudy {
-  id              String   @id @default(cuid())
-  slug            String   @unique
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  kind            CaseStudyKind @default(CLIENT)
+  /** For CLIENT rows the organization's name; for WORKED_EXAMPLE the scenario title. */
   client          String
   industryLabel   String
+  imageUrl        String?
   metaTitle       String
   metaDescription String   @db.Text
   summary         String   @db.Text
@@ -266,8 +313,17 @@ model BlogPost {
   datePublished   DateTime
   dateModified    DateTime
   excerpt         String      @db.Text
-  body            Json        // [{ heading?, paragraphs: string[], list?: string[] }]
+  /**
+   * Ordered typed blocks (prose | list | steps | table), the same shape as
+   * Solution.blocks, Industry.blocks and MarketingPage.sections. Blog bodies
+   * were flat `{heading, paragraphs, list}` objects and averaged 265 words,
+   * with no way to express a comparison table — which is the single most
+   * useful shape for the "X vs Y" and "what does it cost" questions these
+   * posts answer.
+   */
+  body            Json
   published       Boolean     @default(true)
+  faqs            Faq[]
   /**
    * Hero artwork, rendered inside the article's banner and reused as the
    * og:image and BlogPosting.image. Optional: a post without one falls back

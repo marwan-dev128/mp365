@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -67,6 +68,15 @@ export default async function CaseStudiesPage() {
             Case studies are being finalized — check back soon.
           </p>
         )}
+        <p className="mt-12 max-w-[68ch] text-[14.5px] leading-[1.7] text-muted">
+          Want to see how a project of a given shape unfolds before the client-approved write-ups
+          land? Our{" "}
+          <Link href="/resources/worked-examples/" className="font-semibold text-azure hover:underline">
+            worked examples
+          </Link>{" "}
+          walk through a tenant merger, a GP to Business Central move and a HIPAA configuration
+          decision by decision. They are illustrative scenarios, clearly labelled as such.
+        </p>
       </Container>
       <CtaBand />
     </>

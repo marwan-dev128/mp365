@@ -272,22 +272,44 @@ export const getIndustryBySlug = cache(async (slug: string) => {
 });
 
 export const getCaseStudies = cache(async () => {
+  // Real engagements only. Worked examples are the same table but a different
+  // promise to the reader, and /case-studies/ says "real engagements, not
+  // hypotheticals" in its hero — so they are never listed here.
   return prisma.caseStudy.findMany({
-    where: { published: true },
+    where: { published: true, kind: "CLIENT" },
     orderBy: { order: "asc" },
     include: { service: true },
   });
+});
+
+// --- Worked examples --------------------------------------------------------
+// Illustrative scenarios attributed to no client, rendered under
+// /resources/worked-examples/ with a permanent notice. Same row shape as a
+// case study; the `kind` column is the only thing separating the two, and
+// every accessor filters on it so neither can leak into the other's listing.
+export const getWorkedExamples = cache(async () => {
+  return prisma.caseStudy.findMany({
+    where: { published: true, kind: "WORKED_EXAMPLE" },
+    orderBy: { order: "asc" },
+    include: { service: true },
+  });
+});
+
+export const getWorkedExampleBySlug = cache(async (slug: string) => {
+  const row = await prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
+  return row && row.kind === "WORKED_EXAMPLE" ? row : null;
 });
 
 // Case study detail pages render even when unpublished (placeholder content
 // is visibly marked as such in the UI) so editors can preview drafts by URL;
 // only the public listing filters to `published: true`.
 export const getCaseStudyBySlug = cache(async (slug: string) => {
-  return prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
+  const row = await prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
+  return row && row.kind === "CLIENT" ? row : null;
 });
 
 export const getAllCaseStudySlugs = cache(async () => {
-  return prisma.caseStudy.findMany({ select: { slug: true } });
+  return prisma.caseStudy.findMany({ where: { kind: "CLIENT" }, select: { slug: true } });
 });
 
 export const getBlogPosts = cache(async () => {
@@ -300,9 +322,12 @@ export const getBlogPosts = cache(async () => {
 });
 
 export const getBlogPostBySlug = cache(async (slug: string) => {
-  const p = await prisma.blogPost.findUnique({ where: { slug }, include: { author: true } });
+  const p = await prisma.blogPost.findUnique({
+    where: { slug },
+    include: { author: true, faqs: { orderBy: { order: "asc" } } },
+  });
   if (!p) return null;
-  return { ...p, clusterLabel: CLUSTER_LABELS[p.cluster] };
+  return { ...p, clusterLabel: CLUSTER_LABELS[p.cluster], faqs: mapFaqs(p.faqs) };
 });
 
 /**
@@ -429,10 +454,22 @@ export async function getOldSlugRedirects() {
   });
   return rows
     .map((row) => {
+      // An FK wins over targetPath: the FK is validated by the database, so
+      // it cannot point at a slug that no longer exists, while targetPath is
+      // a free string. They are never both set by the seed.
       const target = row.service ?? row.solution ?? row.industry;
-      if (!target) return null;
-      const base = row.service ? "services" : row.solution ? "solutions" : "industries";
-      return { source: row.path, destination: `/${base}/${target.slug}/` };
+      if (target) {
+        const base = row.service ? "services" : row.solution ? "solutions" : "industries";
+        return { source: row.path, destination: `/${base}/${target.slug}/` };
+      }
+      // Retired blog posts, WordPress category archives, /about-us/ — targets
+      // that span BlogPost, MarketingPage and hand-built routes, which the
+      // three FK columns could not express. lib/redirects.test.ts pins every
+      // one of these to a real route.
+      if (row.targetPath) {
+        return { source: row.path, destination: row.targetPath };
+      }
+      return null;
     })
     // Defensive: an OldSlug row whose path already equals its own target's
     // current URL (a page whose slug never changed) produces a redirect to

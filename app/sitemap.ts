@@ -5,6 +5,7 @@ import {
   getSolutions,
   getIndustries,
   getCaseStudies,
+  getWorkedExamples,
   getBlogPosts,
   getGlossaryTerms,
   getMarketingPages,
@@ -15,12 +16,13 @@ import {
 // sitemap can never drift out of sync with the site the way the old
 // hand-maintained WordPress sitemap.xml had (it was missing whole sections).
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [services, solutions, industries, caseStudies, blogPosts, glossaryTerms, marketingByHub] =
+  const [services, solutions, industries, caseStudies, workedExamples, blogPosts, glossaryTerms, marketingByHub] =
     await Promise.all([
       getServices(),
       getSolutions(),
       getIndustries(),
       getCaseStudies(), // published only — matches what's actually crawlable
+      getWorkedExamples(),
       getBlogPosts(),
       getGlossaryTerms(),
       Promise.all(MARKETING_HUBS.map((hub) => getMarketingPages(hub))),
@@ -86,6 +88,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "yearly",
   }));
 
+  const workedExampleRoutes: MetadataRoute.Sitemap = [
+    ...(workedExamples.length > 0
+      ? [{ url: `${SITE_URL}/resources/worked-examples/`, priority: 0.6, changeFrequency: "monthly" as const }]
+      : []),
+    ...workedExamples.map((e) => ({
+      url: `${SITE_URL}/resources/worked-examples/${e.slug}/`,
+      lastModified: e.updatedAt,
+      priority: 0.6,
+      changeFrequency: "yearly" as const,
+    })),
+  ];
+
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((p) => ({
     url: `${SITE_URL}/blog/${p.slug}/`,
     lastModified: p.dateModified,
@@ -115,6 +129,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...solutionRoutes,
     ...industryRoutes,
     ...caseStudyRoutes,
+    ...workedExampleRoutes,
     ...blogRoutes,
     ...glossaryRoutes,
     ...marketingRoutes,

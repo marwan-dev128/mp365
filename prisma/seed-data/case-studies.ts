@@ -1,8 +1,18 @@
 export type CaseStudy = {
   slug: string;
+  /**
+   * CLIENT rows are real, named engagements and stay unpublished until the
+   * client approves. WORKED_EXAMPLE rows are illustrative scenarios attributed
+   * to nobody — see ./worked-examples.ts. Defaults to CLIENT.
+   */
+  kind?: "CLIENT" | "WORKED_EXAMPLE";
+  /** The organization's name for CLIENT rows; the scenario title for WORKED_EXAMPLE. */
   client: string;
   industry: string;
   serviceSlug: string;
+  imageUrl?: string;
+  /** Worked examples ship published; client rows default to false until approved. */
+  published?: boolean;
   metaTitle: string;
   metaDescription: string;
   summary: string;
