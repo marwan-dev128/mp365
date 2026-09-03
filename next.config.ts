@@ -8,8 +8,16 @@ import { getOldSlugRedirects } from "./lib/data";
 // of sync with the routes it targets, and new redirects can be added by
 // inserting a row instead of a deploy.
 async function buildRedirects() {
-  const rows = await getOldSlugRedirects();
-  return rows.map((r) => ({ ...r, permanent: true as const }));
+  try {
+    const rows = await getOldSlugRedirects();
+    return rows.map((r) => ({ ...r, permanent: true as const }));
+  } catch (error) {
+    console.warn(
+      "[next.config] Warning: Could not connect to database to load OldSlug redirects. Skipping dynamic redirects.",
+      error instanceof Error ? error.message : error
+    );
+    return [];
+  }
 }
 
 const nextConfig: NextConfig = {

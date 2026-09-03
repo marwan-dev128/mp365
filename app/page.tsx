@@ -6,7 +6,7 @@ import { SectionTag } from "@/components/ui/SectionTag";
 import { DualTitle } from "@/components/ui/DualTitle";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { ClientLogos } from "@/components/ClientLogos";
-import { HeroV2 } from "@/components/hero-section";
+import { HeroSection } from "@/components/hero-section";
 import { Check, Layers, Shield, Users } from "@/components/ui/Icons";
 import {
   getServices,
@@ -80,7 +80,7 @@ export default async function HomePage() {
       />
 
       {/* ---------------------------------------------------------------- Hero */}
-      <HeroV2 settings={settings} />
+      <HeroSection settings={settings} />
 
 
       {/* ----------------------------------------------------------- Client Logos */}

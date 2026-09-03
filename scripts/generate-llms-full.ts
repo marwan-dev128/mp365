@@ -120,7 +120,10 @@ async function main() {
 
 main()
   .catch((e) => {
-    console.error(e);
-    process.exit(1);
+    console.warn(
+      "Warning: Could not regenerate public/llms-full.txt from database. Preserving existing file.",
+      e instanceof Error ? e.message : e
+    );
+    process.exit(0);
   })
   .finally(() => process.exit(0));

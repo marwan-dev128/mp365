@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run generate:llms",
+    "postinstall": "prisma generate",
+    "prebuild": "prisma generate && npm run generate:llms",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
