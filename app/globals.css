@@ -324,7 +324,18 @@ body {
     transition-duration: 0.001ms !important;
   }
   .mp-press:active {
-  line-height: 1.5;
+    transform: none;
+  }
+  .group:hover .mp-card-arrow {
+    transform: none;
+  }
+  .mp-animate-marquee {
+    animation: none;
+    overflow-x: auto;
+  }
+  .mp-float-anim {
+    animation: none;
+  }
 }
 
 .text-body-xs {
