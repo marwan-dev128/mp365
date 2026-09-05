@@ -107,6 +107,9 @@ async function main() {
         intro: s.intro,
         order: i,
         relatedServiceSlugs: s.relatedServiceSlugs,
+        blocks: s.blocks ?? [],
+        relatedTermSlugs: s.relatedTermSlugs ?? [],
+        relatedPageRefs: s.relatedPageRefs ?? [],
       },
       update: {
         name: s.name,
@@ -120,12 +123,15 @@ async function main() {
         intro: s.intro,
         order: i,
         relatedServiceSlugs: s.relatedServiceSlugs,
+        blocks: s.blocks ?? [],
+        relatedTermSlugs: s.relatedTermSlugs ?? [],
+        relatedPageRefs: s.relatedPageRefs ?? [],
       },
     });
     serviceIdBySlug[s.slug] = created.id;
 
     await prisma.contentSection.deleteMany({ where: { serviceId: created.id } });
-    for (const [j, sec] of s.sections.entries()) {
+    for (const [j, sec] of (s.sections ?? []).entries()) {
       await prisma.contentSection.create({
         data: { serviceId: created.id, heading: sec.heading, body: sec.body, order: j },
       });

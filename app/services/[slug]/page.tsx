@@ -12,9 +12,11 @@ import { TimelineEstimator } from "@/components/TimelineEstimator";
 import { RelatedSidebar } from "@/components/RelatedSidebar";
 import { SidebarCta } from "@/components/SidebarCta";
 import { ArrowUpRight } from "@/components/ui/Icons";
+import { MarketingPageBody } from "@/components/marketing/PageBody";
 import { getServices, getServiceBySlug, getSiteSettings } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceSchema, howToSchema, webPageSchema } from "@/lib/schema";
+import { parseBlocks } from "@/lib/marketing-blocks";
 import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 3600;
@@ -53,6 +55,9 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const related = allServices.filter((s) => service.relatedServiceSlugs.includes(s.slug));
+  const blocks = parseBlocks(service.blocks);
+  // Rows authored before `blocks` existed still carry ContentSection rows.
+  const legacySections = blocks.length === 0 ? service.sections : [];
 
   return (
     <>
@@ -108,7 +113,8 @@ export default async function ServicePage({
               ))}
             </div>
 
-            {service.sections.map((section) => (
+            {blocks.length > 0 && <MarketingPageBody blocks={blocks} />}
+            {legacySections.map((section) => (
               <div key={section.id}>
                 <h2 className="mb-5 font-display text-[26px] font-extrabold text-navy">{section.heading}</h2>
                 <div className="flex flex-col gap-4">
@@ -155,6 +161,18 @@ export default async function ServicePage({
               <RelatedSidebar
                 title="Related services"
                 items={related.map((r) => ({ name: r.name, href: `/services/${r.slug}/` }))}
+              />
+            )}
+            {service.relatedPages.length > 0 && (
+              <RelatedSidebar title="Go deeper" items={service.relatedPages} />
+            )}
+            {service.relatedTerms.length > 0 && (
+              <RelatedSidebar
+                title="Related terms"
+                items={service.relatedTerms.map((t) => ({
+                  name: t.term,
+                  href: `/resources/glossary/${t.slug}/`,
+                }))}
               />
             )}
             {service.slug === "dynamics-365" && (

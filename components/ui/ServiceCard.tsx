@@ -51,10 +51,10 @@ export function ServiceCard({
   return (
     <Link
       href={href}
-      className={`group mp-press flex min-h-[320px] w-full flex-col justify-between rounded-[var(--mp-radius-card)] p-6 ${
+      className={`group mp-press flex min-h-[340px] w-full flex-col justify-between rounded-[28px] p-7 sm:p-8 ${
         featured
-          ? "border-0 bg-gradient-to-br from-azure to-[#0048c8] shadow-mp-azure"
-          : "border border-line bg-surface-card shadow-mp-sm hover:-translate-y-1 hover:border-[var(--mp-border-azure)] hover:shadow-mp-hover"
+          ? "border border-azure/40 bg-gradient-to-br from-azure to-[#0048c8] text-white"
+          : "border border-line bg-surface-card hover:border-[var(--mp-border-azure)] hover:bg-white"
       }`}
     >
       <div>
@@ -62,7 +62,7 @@ export function ServiceCard({
           <div>
             {eyebrow && (
               <p
-                className={`mb-2 text-[11px] font-bold uppercase tracking-[0.1em] ${
+                className={`mb-2 text-[11px] font-medium uppercase tracking-[0.1em] ${
                   featured ? "text-cyan" : "text-muted"
                 }`}
               >
@@ -70,7 +70,7 @@ export function ServiceCard({
               </p>
             )}
             <h3
-              className={`font-display text-[17px] font-extrabold leading-snug ${
+              className={`font-display text-[18px] sm:text-[19px] font-bold leading-snug tracking-[-0.03em] ${
                 featured ? "text-white" : "text-navy"
               }`}
             >
@@ -89,7 +89,7 @@ export function ServiceCard({
           </span>
         </div>
         <p
-          className={`mt-3 text-[13.5px] leading-[1.65] ${
+          className={`mt-3 text-[14px] leading-[1.65] ${
             featured ? "text-white/85" : "text-ink-2"
           }`}
         >
@@ -97,9 +97,9 @@ export function ServiceCard({
         </p>
       </div>
 
-      {/* Inset media panel with realistic photography */}
+      {/* Inset media panel with 18px corner radius */}
       <div
-        className={`relative mt-5 h-[140px] overflow-hidden rounded-[14px] ${
+        className={`relative mt-6 h-[140px] overflow-hidden rounded-[18px] ${
           featured ? "bg-white/10" : "bg-surface-muted"
         }`}
       >
@@ -146,8 +146,8 @@ export function ServiceCard({
         )}
         <span
           aria-hidden="true"
-          className={`absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-lg shadow-sm backdrop-blur-xs ${
-            featured ? "bg-cyan text-navy" : "bg-white/90 text-azure"
+          className={`absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-xs ${
+            featured ? "bg-cyan text-navy" : "bg-white/95 text-azure border border-line/60"
           }`}
         >
           <Cloud className="h-4 w-4" />

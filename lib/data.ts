@@ -120,7 +120,27 @@ export const getServiceBySlug = cache(async (slug: string) => {
     include: { sections: { orderBy: { order: "asc" } }, process: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
   });
   if (!s) return null;
-  return { ...s, categoryLabel: CATEGORY_LABELS[s.category], faqs: mapFaqs(s.faqs) };
+
+  // Same resolution as solutions: a slug that no longer exists renders as
+  // nothing rather than as a link to a 404. (Helpers are function
+  // declarations further down; hoisting makes them usable here.)
+  const [terms, relatedPages] = await Promise.all([
+    s.relatedTermSlugs.length
+      ? prisma.glossaryTerm.findMany({
+          where: { slug: { in: s.relatedTermSlugs } },
+          select: { slug: true, term: true },
+        })
+      : Promise.resolve([]),
+    resolveRelatedPages(s.relatedPageRefs),
+  ]);
+
+  return {
+    ...s,
+    categoryLabel: CATEGORY_LABELS[s.category],
+    faqs: mapFaqs(s.faqs),
+    relatedTerms: inAuthoredOrder(terms, s.relatedTermSlugs, (r) => r.slug),
+    relatedPages,
+  };
 });
 
 export const getSolutions = cache(async () => {
@@ -416,7 +436,26 @@ export const getMarketingPageBySlug = cache(async (hub: MarketingHub, slug: stri
     include: { faqs: { orderBy: { order: "asc" } } },
   });
   if (!p) return null;
-  return { ...p, faqs: mapFaqs(p.faqs) };
+
+  // These arrays were seeded from day one but no hub template ever rendered
+  // them — the 20 hub pages averaged 3-5 internal links, the lowest on the
+  // site. Resolved here so the sidebar can show only links that exist.
+  const [services, relatedPages] = await Promise.all([
+    p.relatedServiceSlugs.length
+      ? prisma.service.findMany({
+          where: { slug: { in: p.relatedServiceSlugs } },
+          select: { slug: true, name: true },
+        })
+      : Promise.resolve([]),
+    resolveRelatedPages(p.relatedPageRefs.filter((r) => r !== `/${hub}/${slug}/`)),
+  ]);
+
+  return {
+    ...p,
+    faqs: mapFaqs(p.faqs),
+    relatedServices: inAuthoredOrder(services, p.relatedServiceSlugs, (r) => r.slug),
+    relatedPages,
+  };
 });
 
 export const getAllMarketingPageSlugs = cache(async (hub: MarketingHub) => {

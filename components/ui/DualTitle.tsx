@@ -16,7 +16,7 @@ export function DualTitle({
 }) {
   return (
     <Tag
-      className={`font-display text-[clamp(28px,3.6vw,38px)] leading-[1.18] tracking-[-0.025em] ${className ?? ""}`}
+      className={`font-display text-[clamp(28px,3.6vw,42px)] leading-[1.12] tracking-[-0.03em] ${className ?? ""}`}
     >
       <span className="block font-extrabold text-navy">{bold}</span>
       {light && <span className="block font-medium text-ink-2">{light}</span>}

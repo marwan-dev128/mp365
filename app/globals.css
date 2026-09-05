@@ -8,48 +8,61 @@
    ========================================================================== */
 
 :root {
-  /* Brand */
-  --mp-navy-dark: #001033;
-  --mp-navy-subtle: #06163d;
-  --mp-navy-card: #081c48;
-  --mp-azure-primary: #0062ff;
-  --mp-azure-hover: #0050d8;
-  --mp-azure-subtle: #ebf3ff;
-  --mp-cyan-accent: #00d2ff;
+  /* Perk Electric Lime & Parchment Palette */
+  --perk-lime: #beff50;
+  --perk-lime-hover: #abf23a;
+  --perk-parchment: #f5f5eb;
+  --perk-ink: #14140f;
+  --perk-card: #ebebe0;
+  --perk-card-white: #ffffff;
+  --perk-border: #e0e0d2;
+  --perk-muted: #66665e;
+
+  /* MP / Perk Tokens */
+  --mp-navy-dark: #14140f;
+  --mp-navy-subtle: #1e1e18;
+  --mp-navy-card: #14140f;
+  --mp-azure-primary: #beff50;
+  --mp-azure-hover: #abf23a;
+  --mp-azure-subtle: #f0f7e6;
+  --mp-cyan-accent: #beff50;
 
   /* Canvas & neutrals */
-  --mp-surface-bg: #ffffff;
-  --mp-surface-light: #f4f5f7;
+  --mp-surface-bg: #f5f5eb;
+  --mp-surface-light: #ebebe0;
   --mp-surface-card: #ffffff;
-  --mp-surface-muted: #ebeff5;
+  --mp-surface-muted: #e6e6da;
 
   /* Typography colors */
-  --mp-text-primary: #001033;
-  --mp-text-secondary: #4a5568;
-  /* Darkened from the reference's #8C9BAE, which measured 2.83:1 on white and
-     2.60:1 on surface-light — failing WCAG AA at every size it is used at.
-     #616E83 gives 5.16:1 on white and 4.73:1 on surface-light, so it passes on
-     both grounds it actually appears on. */
-  --mp-text-muted: #616e83;
-  --mp-text-inverse: #ffffff;
+  --mp-text-primary: #14140f;
+  --mp-text-secondary: #47473f;
+  --mp-text-muted: #66665e;
+  --mp-text-inverse: #14140f;
 
-  /* Structure */
-  --mp-border-light: #e2e8f0;
-  --mp-border-azure: rgba(0, 98, 255, 0.25);
+  /* Structure & Shapes (Perk Geometry System) */
+  --mp-border-light: #e0e0d2;
+  --mp-border-azure: rgba(190, 255, 80, 0.5);
   --mp-radius-pill: 9999px;
-  --mp-radius-card: 20px;
-  --mp-radius-hero: 32px;
-  --mp-radius-badge: 12px;
+  --mp-radius-card: 28px;
+  --mp-radius-hero: 28px;
+  --mp-radius-badge: 18px;
+  --mp-radius-inner: 18px;
+  --mp-radius-button: 9999px;
+  --mp-radius-input: 9999px;
 
-  /* Layered ambient shadows — a 1px contact shadow plus a wide diffuse
-     falloff, which is what keeps surfaces from reading as flat. */
-  --mp-shadow-sm: 0 1px 3px rgba(0, 16, 51, 0.04), 0 4px 14px rgba(0, 16, 51, 0.04);
-  --mp-shadow-card: 0 1px 3px rgba(0, 16, 51, 0.02), 0 10px 30px rgba(0, 16, 51, 0.05);
-  --mp-shadow-hover: 0 4px 12px rgba(0, 16, 51, 0.04), 0 20px 40px rgba(0, 98, 255, 0.12);
-  --mp-shadow-azure: 0 8px 24px -4px rgba(0, 98, 255, 0.4), 0 14px 34px rgba(0, 16, 51, 0.2);
-  --mp-shadow-cyan-glow: 0 0 24px rgba(0, 210, 255, 0.45);
+  /* Elevation: zero shadows */
+  --mp-shadow-sm: none;
+  --mp-shadow-card: none;
+  --mp-shadow-hover: none;
+  --mp-shadow-azure: none;
+  --mp-shadow-cyan-glow: none;
 
   --mp-spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background-color: var(--perk-parchment);
+  color: var(--perk-ink);
 }
 
 /* The reference is a committed light-mode enterprise identity — dark navy
@@ -80,6 +93,9 @@
   --radius-card: var(--mp-radius-card);
   --radius-hero: var(--mp-radius-hero);
   --radius-badge: var(--mp-radius-badge);
+  --radius-inner: var(--mp-radius-inner);
+  --radius-button: var(--mp-radius-button);
+  --radius-input: var(--mp-radius-input);
 
   --shadow-mp-sm: var(--mp-shadow-sm);
   --shadow-mp-card: var(--mp-shadow-card);
@@ -111,7 +127,7 @@
     font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
     color: var(--mp-text-primary);
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
 
@@ -308,18 +324,65 @@
     transition-duration: 0.001ms !important;
   }
   .mp-press:active {
-    transform: none;
-  }
-  .group:hover .mp-card-arrow {
-    transform: none;
-  }
-  .mp-animate-marquee {
-    animation: none;
-    overflow-x: auto;
-  }
-  .mp-float-anim {
-    animation: none;
-  }
+  line-height: 1.5;
 }
 
+.text-body-xs {
+  font-size: 13px;
+  line-height: 1.4;
+}
 
+.text-body-xs-mobile {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.max-w-layout {
+  max-width: 1360px;
+}
+
+.rounded-small {
+  border-radius: 20px;
+}
+
+.rounded-medium {
+  border-radius: 28px;
+}
+
+.bg-overlay-dark-alpha05 {
+  background-color: rgba(20, 20, 15, 0.05);
+}
+
+.bg-overlay-dark-alpha10 {
+  background-color: rgba(20, 20, 15, 0.1);
+}
+
+.styled-button-with-overlay {
+  background-color: #beff50;
+  color: #14140f;
+  display: inline-flex;
+}
+
+.styled-button-with-overlay .button-loader {
+  display: none;
+}
+
+.styled-button-with-overlay .buttonIconHover {
+  display: none;
+}
+
+.styled-button-with-overlay:hover .buttonIcon {
+  display: none;
+}
+
+.styled-button-with-overlay:hover .buttonIconHover {
+  display: block;
+}
+
+.styled-button-with-overlay:hover .hover-overlay {
+  opacity: 1;
+}
+
+.styled-button-with-overlay:active .pressed-overlay {
+  opacity: 1;
+}

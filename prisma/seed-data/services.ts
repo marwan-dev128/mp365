@@ -1,6 +1,8 @@
 export type Faq = { q: string; a: string };
 export type ProcessStep = { name: string; description: string };
 
+import type { MarketingBlock } from "../../lib/marketing-blocks";
+
 export type Service = {
   slug: string;
   oldSlugs: string[]; // for the 301 redirect map
@@ -12,10 +14,17 @@ export type Service = {
   heroQuestion: string;
   heroAnswer: string; // 40-60 word snippet-formatted answer
   intro: string[];
-  sections: { heading: string; body: string[] }[];
+  /** Typed content blocks — same renderer as solutions and the hubs. */
+  blocks?: MarketingBlock[];
   process?: ProcessStep[];
   faqs: Faq[];
   relatedServiceSlugs: string[];
+  /** Bare glossary slugs. */
+  relatedTermSlugs?: string[];
+  /** Full hub-page paths, e.g. "/pricing/tenant-migration-cost/". */
+  relatedPageRefs?: string[];
+  /** @deprecated superseded by `blocks`; kept so old rows still render. */
+  sections?: { heading: string; body: string[] }[];
 };
 
 export const services: Service[] = [
