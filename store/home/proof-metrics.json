@@ -1,0 +1,19 @@
+{
+  "logo": {
+    "src": "/images/mp365/microsoft-solutions-partner-badge.webp",
+    "alt": "Microsoft Solutions Partner"
+  },
+  "metrics": [
+    {
+      "value": "20+ yrs",
+      "label": "of Microsoft work"
+    },
+    {
+      "value": "8–16 wks",
+      "label": "to merge tenants"
+    }
+  ],
+  "quote": "“A tenant merger runs on the deal calendar—not the IT calendar. Waves are planned backward from Day-1 and TSA exit dates, with coexistence held throughout and rollback tested for each wave.”",
+  "author": "MP365, Microsoft Solutions Partner in Vernon, Connecticut",
+  "caseStudyHref": "/contact/"
+}

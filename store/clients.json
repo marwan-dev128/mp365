@@ -1,0 +1,33 @@
+{
+  "label": "Organizations we have worked with",
+  "clients": [
+    {
+      "name": "Blue Buffalo",
+      "logo": "/images/clients/blue-buffalo.webp"
+    },
+    {
+      "name": "Carlisle Construction Materials",
+      "logo": "/images/clients/carlisle.webp"
+    },
+    {
+      "name": "Hunter Panels",
+      "logo": "/images/clients/hunter-panels.webp"
+    },
+    {
+      "name": "Intellinet",
+      "logo": "/images/clients/intellinet.webp"
+    },
+    {
+      "name": "Post University",
+      "logo": "/images/clients/post-university.webp"
+    },
+    {
+      "name": "Spyglass MTG",
+      "logo": "/images/clients/spyglass-mtg.webp"
+    },
+    {
+      "name": "State of Connecticut",
+      "logo": "/images/clients/state-of-connecticut.webp"
+    }
+  ]
+}

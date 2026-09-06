@@ -4,34 +4,11 @@ import { stripInlineMarkup } from "@/lib/richtext";
 import type { BlogSection } from "@/lib/blog";
 
 /**
- * Renders the CMS body blocks as the article's prose.
- *
- * Blocks are the same typed union the rest of the site uses (prose | list |
- * steps | table), so an article can carry a comparison table without a second
- * content vocabulary. The visual treatment differs from
- * components/marketing/PageBody.tsx on purpose: this is long-form reading at a
- * 640px measure, not a landing page.
- *
- * Structure notes:
- *  - A block with a heading becomes a <section aria-labelledby={id}>; a block
- *    without one stays a plain <div>. An unnamed <section> is worse than no
- *    landmark at all — it adds a region a screen-reader user can jump into
- *    that announces nothing.
- *  - Heading IDs come from buildSections(), the same pass that feeds the table
- *    of contents, so every TOC entry is guaranteed to resolve.
- *  - `scroll-mt-28` clears the 95px sticky header, so a #anchor arrival (from
- *    the TOC, a permalink, or a search result) lands with the heading visible
- *    rather than tucked underneath the nav.
- *  - `.mp-prose` (app/globals.css) underlines body links, so a link is not
- *    signalled by colour alone — azure-on-slate measures 1.5:1, well under
- *    the 3:1 WCAG 1.4.1 needs for a colour-only distinction.
- *  - Tables break the 640px measure deliberately: a three-column comparison
- *    at reading width is unreadable. They scroll inside their own container so
- *    the page body never scrolls sideways.
+ * Renders the CMS body blocks as the article's prose with mp's editorial styling.
  */
 export function ArticleBody({ sections }: { sections: BlogSection[] }) {
   return (
-    <div className="mp-prose flex flex-col gap-11">
+    <div className="flex flex-col gap-10">
       {sections.map((section, i) => {
         const isLead = i === 0 && !section.heading;
         const Heading = section.level === 3 ? "h3" : "h2";
@@ -41,24 +18,24 @@ export function ArticleBody({ sections }: { sections: BlogSection[] }) {
           <Wrapper
             key={section.headingId ?? `block-${i}`}
             {...(section.headingId ? { "aria-labelledby": section.headingId } : {})}
-            className={i > 0 && section.heading ? "border-t border-line/70 pt-9" : undefined}
+            className={i > 0 && section.heading ? "pt-6" : undefined}
           >
             {section.heading && section.headingId && (
               <Heading
                 id={section.headingId}
-                className={`group mb-4 scroll-mt-28 font-display font-extrabold tracking-tight text-navy ${
+                className={`group scroll-mt-32 font-bold tracking-tight text-mp-ink flex items-center gap-2 ${
                   section.level === 3
-                    ? "text-[18.5px] sm:text-[20px]"
-                    : "text-[23px] sm:text-[26px]"
+                    ? "text-[20px] sm:text-[22px] mb-3.5 mt-8"
+                    : "text-[26px] sm:text-[30px] mb-5 mt-10"
                 }`}
               >
-                <RichText text={section.heading} />
-                {/* Section permalink. Hidden until hover/focus so it never
-                    competes with the heading, but always reachable. */}
+                <span>
+                  <RichText text={section.heading} />
+                </span>
                 <a
                   href={`#${section.headingId}`}
                   aria-label={`Link to section: ${stripInlineMarkup(section.heading)}`}
-                  className="ml-2 align-middle text-[0.7em] font-bold text-azure opacity-0 transition-opacity duration-150 group-hover:opacity-60 hover:opacity-100 focus-visible:opacity-100"
+                  className="text-[0.7em] font-mono font-bold text-mp-muted opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus-visible:opacity-100 hover:text-mp-ink"
                 >
                   <span aria-hidden="true">#</span>
                 </a>
@@ -83,8 +60,8 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
               key={j}
               className={
                 isLead && j === 0
-                  ? "text-[18px] font-normal leading-[1.7] text-ink sm:text-[20px]"
-                  : "text-[17px] leading-[1.8] text-ink-2 sm:text-[18px]"
+                  ? "text-[18px] sm:text-[20px] leading-[1.7] text-mp-ink font-normal"
+                  : "text-[16.5px] sm:text-[17.5px] leading-[1.8] text-mp-secondary"
               }
             >
               <RichText text={p} />
@@ -95,14 +72,14 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
 
     case "list":
       return (
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-3 my-4">
           {section.items.map((item, j) => (
             <li
               key={j}
-              className="flex items-start gap-3.5 rounded-xl border border-line/80 bg-surface-light/50 p-4 transition-colors hover:border-azure/30 hover:bg-white"
+              className="flex items-start gap-3.5 rounded-[16px] border border-mp-border bg-mp-parchment/60 p-4 transition-colors hover:bg-mp-parchment"
             >
-              <Check className="mt-1 h-4 w-4 shrink-0 text-azure" />
-              <span className="text-[16px] leading-[1.7] text-ink-2">
+              <Check className="mt-1 h-4 w-4 shrink-0 text-mp-ink" />
+              <span className="text-[16px] leading-[1.7] text-mp-secondary">
                 <RichText text={item} />
               </span>
             </li>
@@ -112,21 +89,21 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
 
     case "steps":
       return (
-        <ol className="flex flex-col gap-4">
+        <ol className="flex flex-col gap-4 my-4">
           {section.steps.map((step, j) => (
             <li
               key={step.name}
-              className="flex gap-4 rounded-[var(--mp-radius-card)] border border-line bg-surface-light/60 p-5"
+              className="flex gap-4 rounded-[20px] border border-mp-border bg-mp-parchment/60 p-5 sm:p-6"
             >
               <span
                 aria-hidden="true"
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-azure font-display text-[13px] font-bold tabular-nums text-white"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mp-ink font-mono text-[13px] font-bold tabular-nums text-white"
               >
                 {j + 1}
               </span>
-              <div className="min-w-0">
-                <p className="font-display text-[16px] font-bold text-navy">{step.name}</p>
-                <p className="mt-1.5 text-[16px] leading-[1.7] text-ink-2">
+              <div className="min-w-0 flex-1">
+                <p className="font-bold text-[17px] text-mp-ink">{step.name}</p>
+                <p className="mt-1.5 text-[15.5px] leading-[1.7] text-mp-secondary">
                   <RichText text={step.description} />
                 </p>
               </div>
@@ -136,31 +113,25 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
       );
 
     case "table": {
-      // A blank first header cell is the comparison shape ("", "A", "B"),
-      // where each row is labelled by its attribute rather than by data.
       const firstColIsRowHeader = section.headers[0] === "";
       const label = section.heading ? stripInlineMarkup(section.heading) : "Comparison table";
       return (
-        // Wider than the 640px prose measure: a three-column comparison set at
-        // reading width wraps every cell to one word.
-        <div className="lg:-mr-[120px] xl:-mr-[180px]">
-          {/* tabIndex makes a horizontally-scrollable region keyboard-scrollable;
-              role="group" + a name stop it being an unlabelled tab stop. */}
+        <div className="my-6 overflow-hidden rounded-[20px] border border-mp-border bg-white">
           <div
             role="group"
             tabIndex={0}
             aria-label={label}
-            className="overflow-x-auto rounded-[var(--mp-radius-card)] border border-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--mp-azure-primary)]"
+            className="overflow-x-auto focus-visible:outline-none"
           >
             <table className="w-full min-w-[560px] text-[14.5px]">
               {section.heading && <caption className="sr-only">{label}</caption>}
               <thead>
-                <tr className="bg-surface-light">
+                <tr className="bg-mp-parchment border-b border-mp-border">
                   {section.headers.map((h, j) => (
                     <th
                       key={h || `col-${j}`}
                       scope="col"
-                      className="whitespace-nowrap border-b border-line px-5 py-3 text-left font-display text-[11px] font-bold uppercase tracking-[0.09em] text-muted"
+                      className="whitespace-nowrap px-5 py-3.5 text-left font-mono text-[11.5px] font-bold uppercase tracking-[0.1em] text-mp-muted"
                     >
                       {h}
                     </th>
@@ -169,21 +140,21 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
               </thead>
               <tbody>
                 {section.rows.map((row, j) => (
-                  <tr key={j} className="border-b border-line last:border-0">
+                  <tr key={j} className="border-b border-mp-border last:border-0 hover:bg-mp-parchment/40 transition-colors">
                     {row.map((cell, k) =>
                       k === 0 && firstColIsRowHeader ? (
                         <th
                           key={k}
                           scope="row"
-                          className="px-5 py-3.5 text-left align-top font-semibold leading-[1.6] text-navy"
+                          className="px-5 py-4 text-left align-top font-bold leading-[1.6] text-mp-ink"
                         >
                           <RichText text={cell} />
                         </th>
                       ) : (
                         <td
                           key={k}
-                          className={`px-5 py-3.5 align-top leading-[1.6] ${
-                            k === 0 ? "font-semibold text-navy" : "text-ink-2"
+                          className={`px-5 py-4 align-top leading-[1.6] ${
+                            k === 0 ? "font-semibold text-mp-ink" : "text-mp-secondary"
                           }`}
                         >
                           <RichText text={cell} />
@@ -200,8 +171,6 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
     }
 
     default:
-      // price-range belongs on /pricing/, not in an article — the blog content
-      // test rejects it, so reaching here means the data is wrong, not the UI.
       return null;
   }
 }

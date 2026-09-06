@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { getSiteSettings, getPeople, getServices, getSolutions, getIndustries } from "@/lib/data";
 import { BRAND_NAME, SITE_URL } from "@/lib/config";
@@ -61,7 +62,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   ]);
 
   return (
-    <html lang="en" className={`${jakarta.variable} ${inter.variable} h-full`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+      className={`${jakarta.variable} ${inter.variable} h-full`}
+    >
       {/*
         suppressHydrationWarning covers attributes injected into <body> by
         browser extensions before React hydrates — Grammarly's
@@ -77,6 +83,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         suppressHydrationWarning
         className="min-h-full flex flex-col font-sans antialiased"
       >
+        <SmoothScroll />
         <JsonLd data={organizationSchema(settings, people)} />
         <JsonLd data={websiteSchema(settings)} />
         {/* WCAG 2.4.1 Bypass Blocks — the announcement strip, logo, four

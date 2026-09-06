@@ -1,14 +1,6 @@
 import { LinkedIn, Mail, XSocial } from "@/components/ui/Icons";
 import { CopyLinkButton } from "./CopyLinkButton";
 
-/**
- * A compact share row: three plain <a> links plus one copy-link button.
- *
- * No SDKs, no iframes, no third-party script — the LinkedIn/X/mail buttons are
- * ordinary hyperlinks, which is why this costs nothing in bundle size or in
- * Core Web Vitals and cannot leak reader data to a social network on page
- * load. Each carries its own accessible name; the icons are decorative.
- */
 export function SocialShare({
   url,
   title,
@@ -41,7 +33,7 @@ export function SocialShare({
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <span className="mr-0.5 text-[11px] font-bold uppercase tracking-[0.12em] text-muted">
+      <span className="mr-1 text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-muted">
         Share
       </span>
       {targets.map(({ name, href, Icon }) => (
@@ -49,12 +41,10 @@ export function SocialShare({
           key={name}
           href={href}
           target="_blank"
-          // noopener/noreferrer: the share window must not get a handle on
-          // this page via window.opener.
           rel="noopener noreferrer"
-          className="mp-press inline-flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-ink-2 hover:border-[var(--mp-border-azure)] hover:bg-azure-subtle hover:text-azure"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-mp-border bg-white text-mp-ink hover:border-mp-ink hover:bg-mp-ink hover:text-white transition-all shadow-2xs"
         >
-          <Icon className="h-4 w-4" />
+          <Icon className="h-3.5 w-3.5" />
           <span className="sr-only">Share this article on {name}</span>
         </a>
       ))}

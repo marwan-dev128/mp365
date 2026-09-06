@@ -1,0 +1,50 @@
+{
+  "title": "The four solutions",
+  "subtitle": "Alongside the services, four solutions run as defined builds. Each has a known shape, a short set of decisions, and a handover to your team.",
+  "cards": [
+    {
+      "id": "sharepoint-intranet",
+      "hasImage": true,
+      "image": "/images/mp365/automation/microsoft-data-integration.webp",
+      "imageAlt": "SharePoint intranet site structure",
+      "imageType": "contain",
+      "title": "SharePoint intranet",
+      "description": "A defined build: site templates, navigation, news and permissions set in a fixed order, then handed to an owner on your side who can extend it without calling us.",
+      "linkText": "See the solution",
+      "href": "/solutions/sharepoint-intranet/"
+    },
+    {
+      "id": "data-analytics",
+      "hasImage": true,
+      "image": "/images/mp365/why/governance-approvals-workflow.webp",
+      "imageAlt": "Power BI reporting model",
+      "imageType": "contain",
+      "title": "Data analytics in Power BI",
+      "description": "Power BI models built on your Dynamics 365, SharePoint, and SQL Server data. Row-level security is designed in, and the model is documented so your team can change it.",
+      "linkText": "See the solution",
+      "href": "/solutions/data-analytics/"
+    },
+    {
+      "id": "crm-deployment",
+      "hasImage": false,
+      "image": "",
+      "imageAlt": "Templated CRM deployment",
+      "imageType": "none",
+      "title": "Automated CRM deployment",
+      "description": "A templated Dynamics 365 Sales or Customer Service go-live, pre-configured and scripted. Your work is decisions, data, and testing.",
+      "linkText": "See the solution",
+      "href": "/solutions/crm-deployment/"
+    },
+    {
+      "id": "financial-management",
+      "hasImage": true,
+      "image": "/images/mp365/automation/power-automate-process-flow.webp",
+      "imageAlt": "Financial management in Business Central",
+      "imageType": "cover",
+      "title": "Financial management",
+      "description": "Business Central or Dynamics 365 Finance replaces accounting patched with spreadsheets. Chart of accounts, dimensions, and the month-end close get designed before you cut over.",
+      "linkText": "See the solution",
+      "href": "/solutions/financial-management/"
+    }
+  ]
+}

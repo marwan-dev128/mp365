@@ -24,7 +24,7 @@ export function HeroV1({ settings }: HeroV1Props) {
           className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(255,255,255,0.4)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.4)_1px,transparent_1px)] [background-size:64px_64px]"
         />
 
-        <div className="relative mx-auto grid max-w-[1240px] items-center gap-10 px-6 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
+        <div className="relative mx-auto grid max-w-[1440px] items-center gap-10 px-6 sm:px-10 lg:px-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
           <div>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-1.5 text-[12.5px] font-semibold text-white/85 backdrop-blur">
               <MicrosoftLogo className="h-3.5 w-3.5" />

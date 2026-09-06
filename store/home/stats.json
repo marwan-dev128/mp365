@@ -1,0 +1,38 @@
+{
+  "stats": [
+    {
+      "id": "experience",
+      "iconBg": "#5FE3C8",
+      "iconSrc": "/images/mp365/icons/twenty-years-experience-icon.svg",
+      "iconAlt": "Years in market",
+      "titleLines": [
+        "20+ years",
+        "in market"
+      ],
+      "description": "Microsoft platform engagements since 2005."
+    },
+    {
+      "id": "pilot",
+      "iconBg": "#F2A93B",
+      "iconSrc": "/images/mp365/icons/pilot-migration-timeline-icon.svg",
+      "iconAlt": "Pilot migration",
+      "titleLines": [
+        "2–4",
+        "week pilot*"
+      ],
+      "description": "A single department, migrated and verified first."
+    },
+    {
+      "id": "merger",
+      "iconBg": "#9BD9E3",
+      "iconSrc": "/images/mp365/icons/tenant-merger-timeline-icon.webp",
+      "iconAlt": "Tenant merger",
+      "titleLines": [
+        "8–16 weeks",
+        "tenant merger*"
+      ],
+      "description": "Mailboxes, Teams, SharePoint and identities moved."
+    }
+  ],
+  "footnote": "*timelines depend on user count, data volume and app scope"
+}

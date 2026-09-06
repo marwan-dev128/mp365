@@ -119,7 +119,7 @@ export function PageHero({
       {full && <Breadcrumbs items={full} variant="bar" />}
 
       {(answerQuestion || children) && (
-        <div className="mx-auto max-w-[1240px] px-6 pt-10">
+        <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4 pt-10">
           {answerQuestion && answerText && (
             <div className="relative overflow-hidden rounded-[var(--mp-radius-card)] border border-line bg-gradient-to-br from-white via-surface-card to-azure-subtle/30 p-6 sm:p-8 shadow-[0_4px_24px_rgba(0,16,51,0.03)] transition-all hover:border-[var(--mp-border-azure)]">
               <div

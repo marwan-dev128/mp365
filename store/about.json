@@ -1,0 +1,61 @@
+{
+  "badge": "MICROSOFT SOLUTIONS PARTNER · VERNON, CT",
+  "title": "Senior Microsoft delivery.\n20+ years. Zero bureaucracy.",
+  "subtitle": "Mid-market and enterprise organizations need senior, hands-on Microsoft expertise without the multi-month discovery cycles and rotating account managers of global systems integrators.",
+  "stats": [
+    {
+      "value": "20+",
+      "unit": "Years",
+      "label": "Leading Microsoft platform engagements"
+    },
+    {
+      "value": "100%",
+      "unit": "Senior-Led",
+      "label": "Specialists who scope the plan do the work"
+    },
+    {
+      "value": "Day-1",
+      "unit": "Readiness",
+      "label": "Built backward from TSA exit deadlines"
+    },
+    {
+      "value": "Vernon, CT",
+      "unit": "Headquarters",
+      "label": "Serving Connecticut, New England & National"
+    }
+  ],
+  "philosophy": {
+    "title": "Built around how modern Microsoft projects actually succeed",
+    "subtitle": "The traditional consulting model was built for a different era. Here is how we work differently.",
+    "cards": [
+      {
+        "tag": "NO JUNIOR HANDOFFS",
+        "title": "Direct access to senior architects",
+        "description": "Large systems integrators sell with senior partners and staff with junior engineers learning on your bill. At MP365, the senior specialists who scope your architecture are the ones who configure the tenant and run the cutover.",
+        "highlight": "Named senior lead on every engagement"
+      },
+      {
+        "tag": "M&A TIMELINES",
+        "title": "Engineered for TSA deadlines",
+        "description": "Acquisitions and carve-outs have rigid legal dates. We don't use generic checklists; we engineer migration plans backward from Day-1 cutover and TSA exit dates, prioritizing coexistence and tested rollbacks.",
+        "highlight": "Day-1 coexistence first, zero business disruption"
+      },
+      {
+        "tag": "PROVEN AT SCALE",
+        "title": "Trusted by industrial & enterprise leaders",
+        "description": "From global manufacturers like Carlisle Construction Materials and Hunter Panels to OTIS Elevator and state government agencies, we have delivered complex Dynamics 365, Power Platform, and Microsoft 365 projects at enterprise scale.",
+        "highlight": "Battle-tested across 20+ years of delivery"
+      }
+    ]
+  },
+  "locationCard": {
+    "eyebrow": "HEADQUARTERS & SERVICE AREA",
+    "title": "Based in Connecticut, delivering across North America",
+    "description": "Modern Partners 365 is headquartered in Vernon, CT, serving enterprises throughout New England and nationwide. We combine the agility of a focused regional team with enterprise-grade Microsoft engineering.",
+    "address": "59 Winding Brook Trail, Vernon, CT 06066",
+    "phone": "(+1) 860-208-9537",
+    "phoneHref": "tel:+18602089537",
+    "email": "info@mp-365.com",
+    "emailHref": "mailto:info@mp-365.com"
+  }
+}

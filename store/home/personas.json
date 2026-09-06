@@ -1,0 +1,42 @@
+{
+  "title": "Planned with IT leaders,\nfelt by every employee.",
+  "subtitle": "A Microsoft project lands differently on every role. We answer to all four.",
+  "personas": [
+    {
+      "eyebrow": "IT LEADERSHIP",
+      "title": "Migrations that don’t slip",
+      "description": "Your team already has a day job. We take the Microsoft project off their desk and hand your engineers a plan to review, so nobody is running a second job at night or carrying the risk alone.",
+      "linkText": "Plan your migration",
+      "href": "/contact/",
+      "image": "/images/mp365/personas/it-leadership-microsoft-migration.webp",
+      "alt": "IT leadership planning a Microsoft 365 migration"
+    },
+    {
+      "eyebrow": "M&A INTEGRATION",
+      "title": "The deal timetable,\nnot the IT timetable.",
+      "description": "The people running the deal need a date they can hold. We work to the integration timetable your legal and finance leads set, and say early when a system will not make it.",
+      "linkText": "Scope your tenant migration",
+      "href": "/contact/",
+      "image": "/images/mp365/personas/ma-integration-tenant-migration.webp",
+      "alt": "M&A integration team planning a tenant migration to a Day-1 deadline"
+    },
+    {
+      "eyebrow": "FINANCE & OPS",
+      "title": "One system.\nOne set of numbers.",
+      "description": "Dynamics 365 — Business Central or Finance & Operations — with Power BI on top, so the month-end number in the board pack is the one in the ledger.",
+      "linkText": "Modernize your back office",
+      "href": "/contact/",
+      "image": "/images/mp365/personas/finance-operations-dynamics-365.webp",
+      "alt": "Finance and operations lead reviewing Dynamics 365 reporting"
+    },
+    {
+      "eyebrow": "END USERS",
+      "title": "Log in Monday,\nfind your work waiting.",
+      "description": "Your files, Teams channels and calendar arrive where people expect them, and everyone hears what is changing before it changes rather than on the morning it does.",
+      "linkText": "Make the cutover day uneventful",
+      "href": "/contact/",
+      "image": "/images/mp365/personas/end-users-microsoft-365-adoption.webp",
+      "alt": "Employee working in Microsoft 365 the morning after cutover"
+    }
+  ]
+}

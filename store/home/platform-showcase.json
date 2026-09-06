@@ -1,0 +1,84 @@
+{
+  "title": "Migrate, build, and govern across Microsoft 365",
+  "description": "From tenant merges and carve-outs to Dynamics 365 deployments and Microsoft 365 data controls — three practice areas, one stack.",
+  "tabs": [
+    {
+      "id": "migrations",
+      "label": "Migrate",
+      "description": "Everything that has to move when a company changes shape — identity, mail, files, Teams and the automations built on them. Two of the eight services sit here, and both are judged on one thing: whether people can work the morning after.",
+      "linkText": "See migrations",
+      "linkHref": "/services/ma-tenant-migration/",
+      "video": "/videos/mp365/microsoft-365-migration-console.mp4",
+      "proof": {
+        "logoSrc": "",
+        "logoAlt": "",
+        "metrics": [
+          {
+            "value": "2",
+            "label": "migration services"
+          },
+          {
+            "value": "3",
+            "label": "industries served"
+          }
+        ],
+        "quote": "“A tenant move is one project, not a mailbox job—identities, mail, Teams, files, and the automations built on top all have to land together and still work the next morning.”",
+        "author": "MP365 delivery approach, M&A and Microsoft 365 migration",
+        "caseStudyHref": ""
+      },
+      "videoPoster": "/images/mp365/posters/microsoft-365-migration-console.webp"
+    },
+    {
+      "id": "business-apps",
+      "label": "Build",
+      "description": "The service and solution work that sits on Dataverse and the Microsoft 365 identity you already run. Model the process first, then the app, then the reporting on top of it — reversing that order is what produces a system nobody uses.",
+      "linkText": "See Dynamics",
+      "linkHref": "/services/dynamics-365/",
+      "video": "/videos/mp365/dynamics-365-power-platform-build.mp4",
+      "proof": {
+        "logoSrc": "",
+        "logoAlt": "",
+        "metrics": [
+          {
+            "value": "3",
+            "label": "application services"
+          },
+          {
+            "value": "4",
+            "label": "solution areas"
+          }
+        ],
+        "quote": "“Business applications only stick when they run on the identity, files, and processes a company already uses every day.”",
+        "author": "MP365 delivery approach, business applications",
+        "caseStudyHref": ""
+      },
+      "videoPoster": "/images/mp365/posters/dynamics-365-power-platform-build.webp"
+    },
+    {
+      "id": "governance",
+      "label": "Govern",
+      "description": "Who can reach which data, and proof of it when asked. Least-privilege permissions, guest access reviews in Entra ID, and access decisions the tenant enforces on its own rather than a policy document nobody reads.",
+      "linkText": "See governance",
+      "linkHref": "/services/data-governance/",
+      "video": "/videos/mp365/microsoft-purview-compliance-console.mp4",
+      "proof": {
+        "logoSrc": "",
+        "logoAlt": "",
+        "metrics": [
+          {
+            "value": "8",
+            "label": "services covered"
+          },
+          {
+            "value": "3",
+            "label": "governance areas"
+          }
+        ],
+        "quote": "“Governance is only real when the policy is enforced by the tenant itself, not by a document telling people what they should do.”",
+        "author": "MP365 delivery approach, data governance work",
+        "caseStudyHref": ""
+      },
+      "videoPoster": "/images/mp365/posters/microsoft-purview-compliance-console.webp"
+    }
+  ]
+}

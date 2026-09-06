@@ -1,0 +1,398 @@
+{
+  "announcement": {
+    "text": "Merging or carving out a Microsoft 365 tenant? Get a scoped migration plan built backward from your Day-1 and TSA-exit dates.",
+    "linkText": "Book a scoping call.",
+    "linkHref": "/contact/",
+    "phone": "(+1) 860-208-9537",
+    "phoneHref": "tel:+18602089537",
+    "enabled": true
+  },
+  "logo": {
+    "text": "mp365",
+    "badge": "+",
+    "href": "/"
+  },
+  "navLinks": [
+    {
+      "label": "Services",
+      "href": "/services/"
+    },
+    {
+      "label": "Solutions",
+      "href": "/solutions/"
+    },
+    {
+      "label": "Industries",
+      "href": "/industries/"
+    },
+    {
+      "label": "Resources",
+      "href": "/resources/"
+    },
+    {
+      "label": "Company",
+      "href": "/about/"
+    }
+  ],
+  "megaMenuGroups": [
+    {
+      "id": "services",
+      "label": "Services",
+      "href": "/services/",
+      "width": "full",
+      "columns": [
+        {
+          "title": "Cloud & M&A Migration",
+          "items": [
+            {
+              "label": "M&A Tenant Migration",
+              "href": "/services/ma-tenant-migration/",
+              "description": "Tenant-to-tenant consolidations, carve-outs & Day-1 coexistence.",
+              "icon": "cloud-refresh"
+            },
+            {
+              "label": "Microsoft 365 Migration",
+              "href": "/services/microsoft-365-migration/",
+              "description": "Exchange, Teams, SharePoint & OneDrive migrated with zero data loss.",
+              "icon": "cloud"
+            },
+            {
+              "label": "Platform Migrations",
+              "href": "/migrations/dynamics-gp-to-business-central/",
+              "description": "Dynamics GP, AX, NAV, and Salesforce to Microsoft cloud platforms.",
+              "icon": "layers"
+            }
+          ]
+        },
+        {
+          "title": "Business Applications",
+          "items": [
+            {
+              "label": "Dynamics 365 Consulting",
+              "href": "/services/dynamics-365/",
+              "description": "Enterprise CRM, Sales, Customer Insights & Business Central ERP.",
+              "icon": "sparkles"
+            },
+            {
+              "label": "Power Platform Solutions",
+              "href": "/services/power-platform/",
+              "description": "Low-code apps, automated workflows & enterprise governance.",
+              "icon": "zap"
+            },
+            {
+              "label": "Application Modernization",
+              "href": "/services/application-modernization/",
+              "description": "Migrate legacy applications to cloud-native Azure architecture.",
+              "icon": "code"
+            }
+          ]
+        },
+        {
+          "title": "Governance & Readiness",
+          "items": [
+            {
+              "label": "Data Governance",
+              "href": "/services/data-governance/",
+              "description": "Information protection, compliance retention & legal hold frameworks.",
+              "icon": "shield"
+            },
+            {
+              "label": "Readiness Assessments",
+              "href": "/assessments/tenant-migration/",
+              "description": "Fixed-fee pre-migration architecture and risk assessments.",
+              "icon": "clipboard-check"
+            },
+            {
+              "label": "Collaboration Enablement",
+              "href": "/services/collaboration-enablement/",
+              "description": "Teams Voice, PSTN cutovers & modern SharePoint architecture.",
+              "icon": "users"
+            }
+          ]
+        }
+      ],
+      "featureCard": {
+        "tag": "M&A Discovery",
+        "title": "Planning a Tenant Merger or Carve-Out?",
+        "description": "Get a migration roadmap engineered backward from your Day-1 and TSA-exit dates.",
+        "href": "/contact/",
+        "ctaText": "Book Scoping Call",
+        "bgImage": "/images/mp365/discovery/tenant-migration-due-diligence.webp"
+      },
+      "bottomLinks": [
+        {
+          "label": "Explore all 8 services →",
+          "href": "/services/"
+        },
+        {
+          "label": "Compare migration paths →",
+          "href": "/compare/"
+        },
+        {
+          "label": "Fixed-scope pricing tiers →",
+          "href": "/pricing/"
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "label": "Solutions",
+      "href": "/solutions/",
+      "width": "medium",
+      "columns": [
+        {
+          "title": "M&A Cutover & Identity",
+          "items": [
+            {
+              "label": "Day-1 Identity & Coexistence",
+              "href": "/resources/glossary/day-1-coexistence/",
+              "description": "GAL sync and uninterrupted cross-tenant communication on Day-1.",
+              "icon": "users"
+            },
+            {
+              "label": "TSA-Exit Planning",
+              "href": "/resources/glossary/tsa-exit/",
+              "description": "Structured milestones to exit Transitional Service Agreements early.",
+              "icon": "calendar"
+            },
+            {
+              "label": "Tenant Divestitures & Splits",
+              "href": "/services/ma-tenant-migration/",
+              "description": "Carve-outs designed to isolate target users without disruption.",
+              "icon": "layers"
+            }
+          ]
+        },
+        {
+          "title": "Workplace & Systems",
+          "items": [
+            {
+              "label": "SharePoint & Intranet",
+              "href": "/solutions/sharepoint-intranet/",
+              "description": "Modern company intranets, document centers & knowledge hubs.",
+              "icon": "layout"
+            },
+            {
+              "label": "Data Analytics & Power BI",
+              "href": "/solutions/data-analytics/",
+              "description": "Executive reporting dashboards and real-time operational metrics.",
+              "icon": "chart"
+            },
+            {
+              "label": "Automated CRM Deployment",
+              "href": "/solutions/crm-deployment/",
+              "description": "Standardized Dynamics 365 pipelines deployed in days, not months.",
+              "icon": "sparkles"
+            },
+            {
+              "label": "Financial Management",
+              "href": "/solutions/financial-management/",
+              "description": "Business Central ERP implementations for multi-entity finance.",
+              "icon": "calculator"
+            }
+          ]
+        }
+      ],
+      "featureCard": {
+        "tag": "Customer Story",
+        "title": "Hunter Panels",
+        "description": "4,000+ users cut over to Dynamics 365 with zero operational downtime.",
+        "href": "/case-studies/hunter-panels/",
+        "ctaText": "View Case Study",
+        "bgImage": "/images/mp365/case-studies/hunter-panels-dynamics-365.webp"
+      },
+      "bottomLinks": [
+        {
+          "label": "Browse worked migration examples →",
+          "href": "/resources/worked-examples/"
+        },
+        {
+          "label": "View customer case studies →",
+          "href": "/case-studies/"
+        }
+      ]
+    },
+    {
+      "id": "industries",
+      "label": "Industries",
+      "href": "/industries/",
+      "width": "compact",
+      "columns": [
+        {
+          "title": "Target Sectors",
+          "items": [
+            {
+              "label": "Manufacturing & Supply Chain",
+              "href": "/industries/manufacturing/",
+              "description": "Shop-floor ERP continuity, plant cutovers & operational telemetry.",
+              "icon": "factory"
+            },
+            {
+              "label": "Healthcare & Life Sciences",
+              "href": "/industries/healthcare/",
+              "description": "HIPAA compliance, PHI security across Teams & strict governance.",
+              "icon": "healthcare"
+            },
+            {
+              "label": "Retail & Distribution",
+              "href": "/industries/retail/",
+              "description": "Multi-location inventory tracking, POS & seasonal licensing.",
+              "icon": "store"
+            }
+          ]
+        }
+      ],
+      "featureCard": {
+        "tag": "Featured Client",
+        "title": "Carlisle Construction",
+        "description": "Multi-plant cloud modernization uniting 15 facilities into Microsoft 365.",
+        "href": "/case-studies/carlisle-construction/",
+        "ctaText": "Read Story",
+        "bgImage": "/images/mp365/case-studies/carlisle-construction-microsoft-365.webp"
+      },
+      "bottomLinks": [
+        {
+          "label": "Explore all industry solutions →",
+          "href": "/industries/"
+        }
+      ]
+    },
+    {
+      "id": "resources",
+      "label": "Resources",
+      "href": "/resources/",
+      "width": "medium",
+      "columns": [
+        {
+          "title": "Technical Blueprints",
+          "items": [
+            {
+              "label": "Worked Examples",
+              "href": "/resources/worked-examples/",
+              "description": "Step-by-step blueprints of actual M&A migration scenarios.",
+              "icon": "file-text"
+            },
+            {
+              "label": "Pricing Guides & Calculators",
+              "href": "/pricing/",
+              "description": "Transparent ranges based on mailbox counts, data volume & scope.",
+              "icon": "calculator"
+            },
+            {
+              "label": "Technical Glossary",
+              "href": "/resources/glossary/",
+              "description": "24 authoritative reference guides on Microsoft enterprise architecture.",
+              "icon": "book"
+            }
+          ]
+        },
+        {
+          "title": "Insights & Comparisons",
+          "items": [
+            {
+              "label": "Case Studies",
+              "href": "/case-studies/",
+              "description": "Real outcomes across Fortune 500 enterprises and mid-market leaders.",
+              "icon": "award"
+            },
+            {
+              "label": "Engineering Blog",
+              "href": "/blog/",
+              "description": "In-depth teardowns on Dynamics 365, licensing & migration strategy.",
+              "icon": "newspaper"
+            },
+            {
+              "label": "Platform Comparisons",
+              "href": "/compare/",
+              "description": "Dynamics vs Salesforce, BC vs NetSuite, Power Apps vs Custom.",
+              "icon": "git-compare"
+            }
+          ]
+        }
+      ],
+      "featureCard": {
+        "tag": "Architecture Guide",
+        "title": "Day-1 Cutover Blueprint",
+        "description": "How 10,000+ mailbox consolidations keep email and Teams flowing smoothly.",
+        "href": "/resources/worked-examples/tenant-merger-with-a-tsa-deadline/",
+        "ctaText": "Read Blueprint",
+        "bgImage": "/images/mp365/discovery/microsoft-365-estate-mapping.webp"
+      },
+      "bottomLinks": [
+        {
+          "label": "Browse full technical library →",
+          "href": "/resources/"
+        },
+        {
+          "label": "Search the architecture glossary →",
+          "href": "/resources/glossary/"
+        }
+      ]
+    },
+    {
+      "id": "company",
+      "label": "Company",
+      "href": "/about/",
+      "width": "compact",
+      "columns": [
+        {
+          "title": "About MP365",
+          "items": [
+            {
+              "label": "Our Approach & Philosophy",
+              "href": "/about/",
+              "description": "20+ years of senior-led Microsoft delivery. Zero bureaucracy.",
+              "icon": "compass"
+            },
+            {
+              "label": "Executive Leadership",
+              "href": "/about/#leadership",
+              "description": "Meet President Mohammed Khaliefa and CTO Dr. Raafat Elfouly.",
+              "icon": "award"
+            },
+            {
+              "label": "Vernon, CT Headquarters",
+              "href": "/about/#headquarters",
+              "description": "Local New England roots with national delivery capabilities.",
+              "icon": "map-pin"
+            },
+            {
+              "label": "Contact & Consultation",
+              "href": "/contact/",
+              "description": "Direct phone and consultation access with our technical team.",
+              "icon": "phone"
+            }
+          ]
+        }
+      ],
+      "featureCard": {
+        "tag": "100% Senior-Led",
+        "title": "Direct Architect Access",
+        "description": "Discovery calls are with senior technical consultants, not a sales queue.",
+        "href": "/contact/",
+        "ctaText": "Speak with an Architect",
+        "bgImage": "/images/mp365/microsoft-cloud-data-centre-banner.webp"
+      },
+      "bottomLinks": [
+        {
+          "label": "Read our full company story →",
+          "href": "/about/"
+        },
+        {
+          "label": "Call our Vernon, CT office: (+1) 860-208-9537",
+          "href": "tel:+18602089537"
+        }
+      ]
+    }
+  ],
+  "rightActions": {
+    "login": {
+      "label": "Contact",
+      "href": "/contact/"
+    },
+    "primaryCta": {
+      "label": "Book a consultation",
+      "href": "/contact/"
+    }
+  }
+}

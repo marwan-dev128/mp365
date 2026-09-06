@@ -1,5 +1,5 @@
 /**
- * Perk-style category eyebrow pill: weight 500, 11px uppercase label with
+ * mp-style category eyebrow pill: weight 500, 11px uppercase label with
  * generous 0.1em tracking in a rounded-full pill container.
  */
 export function SectionTag({

@@ -2,10 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "@/components/ui/Icons";
 
 /**
- * End-of-article author block. Renders only the fields the Person row
- * actually carries — nothing here is invented to fill the card out, and the
- * whole component is skipped if there is no role or credentials to show
- * beyond the name already in the byline.
+ * End-of-article author block with mp's styling.
  */
 export function AuthorCard({
   author,
@@ -23,31 +20,31 @@ export function AuthorCard({
   return (
     <aside
       aria-label="About the author"
-      className="flex flex-col gap-4 rounded-[var(--mp-radius-card)] border border-line bg-surface-light/60 p-6 sm:flex-row sm:items-center"
+      className="flex flex-col gap-5 rounded-[24px] border border-mp-border bg-mp-parchment p-6 sm:p-8 sm:flex-row sm:items-center my-10"
     >
       <span
         aria-hidden="true"
-        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-navy to-azure font-display text-lg font-bold text-white"
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-mp-ink font-mono text-lg font-bold text-white shadow-xs"
       >
         {initials}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
+        <p className="text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-muted">
           Written by
         </p>
-        <p className="mt-1 font-display text-[16px] font-bold text-navy">
+        <p className="mt-1 font-bold text-[17px] text-mp-ink">
           {author.name}
-          {author.role && <span className="font-medium text-ink-2"> — {author.role}</span>}
+          {author.role && <span className="font-normal text-mp-secondary"> — {author.role}</span>}
         </p>
         {author.credentials && (
-          <p className="mt-1 text-[13.5px] leading-[1.6] text-ink-2">{author.credentials}</p>
+          <p className="mt-1 text-[13.5px] leading-relaxed text-mp-secondary">{author.credentials}</p>
         )}
       </div>
       <Link
         href="/about/"
-        className="group mp-press inline-flex shrink-0 items-center gap-1.5 self-start rounded-full border border-line bg-white px-4 py-2 text-[13px] font-bold text-navy hover:border-[var(--mp-border-azure)] hover:text-azure sm:self-center"
+        className="group inline-flex shrink-0 items-center gap-1.5 self-start rounded-full border border-mp-ink bg-white px-5 py-2 text-[13px] font-mono font-bold uppercase tracking-wider text-mp-ink hover:bg-mp-ink hover:text-white transition-all sm:self-center"
       >
-        Meet the team
+        Meet author
         <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </Link>
     </aside>

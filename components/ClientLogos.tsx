@@ -1,54 +1,62 @@
 import Image from "next/image";
+import defaultData from "@/store/clients.json";
 
-const CLIENTS = [
-  { name: "TeamViewer", logo: "/images/perk/logos/teamviewer.webp" },
-  { name: "GetYourGuide", logo: "/images/perk/logos/getyourguide.webp" },
-  { name: "Nordcloud", logo: "/images/perk/logos/nordcloud.webp" },
-  { name: "Wise", logo: "/images/perk/logos/wise.webp" },
-  { name: "Fujifilm", logo: "/images/perk/logos/fujifilm.webp" },
-  { name: "Workable", logo: "/images/perk/logos/workable.webp" },
-  { name: "Nord Security", logo: "/images/perk/logos/nordsecurity.webp" },
-  { name: "Lush", logo: "/images/perk/logos/lush.webp" },
-  { name: "PrizePicks", logo: "/images/perk/logos/prizepick.webp" },
-];
+export interface ClientLogoItem {
+  name: string;
+  logo: string;
+}
 
-export function ClientLogos() {
-  const marqueeList = [...CLIENTS, ...CLIENTS, ...CLIENTS];
+export interface ClientLogosProps {
+  label?: string;
+  clients?: ClientLogoItem[];
+}
+
+const DEFAULT_CLIENTS: ClientLogoItem[] = defaultData.clients;
+
+export function ClientLogos({
+  label = defaultData.label,
+  clients = DEFAULT_CLIENTS,
+}: ClientLogosProps = {}) {
+  // 4x repetition ensures mathematical 50% symmetry for a 100% seamless, jump-free infinite marquee loop
+  const marqueeList = [...clients, ...clients, ...clients, ...clients];
 
   return (
     <section
-      aria-label="Trusted by global teams"
-      className="w-full border-y border-[#e0e0d2] bg-[#ebebe0]/50 py-5 sm:py-6 overflow-hidden"
+      aria-label={label || "Organizations we have worked with"}
+      className="relative w-full overflow-hidden border-y border-mp-border/50 bg-white py-5 sm:py-6 select-none"
     >
-      <div className="mx-auto flex max-w-[1400px] flex-col lg:flex-row items-center gap-4 lg:gap-10 px-6 sm:px-8">
-        <p className="shrink-0 text-[13px] font-medium tracking-[0.01em] text-[#14140f]/75 whitespace-nowrap">
-          Trusted by 1,000s of global teams
-        </p>
+      <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8 w-full">
+        {label && (
+          <p className="shrink-0 pl-6 sm:pl-10 lg:pl-12 2xl:pl-[calc((100vw-1440px)/2+3rem)] text-[13.5px] font-medium tracking-[0.01em] text-mp-petrol/85 whitespace-nowrap">
+            {label}
+          </p>
+        )}
 
-        {/* Seamless Marquee */}
-        <div className="relative w-full overflow-hidden">
+        {/* Full-bleed Marquee Container (extends to right edge of screen) */}
+        <div className="relative min-w-0 flex-1 w-full overflow-hidden">
           {/* Left & Right gradient fade masks */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#f5f5eb] to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-24 bg-gradient-to-r from-white via-white/80 to-transparent"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#f5f5eb] to-transparent"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-36 bg-gradient-to-l from-white via-white/80 to-transparent"
           />
 
-          <div className="mp-animate-marquee flex items-center gap-10 sm:gap-14">
+          <div className="mp-animate-marquee flex items-center gap-10 sm:gap-14 md:gap-16 py-1.5">
             {marqueeList.map((client, idx) => (
               <div
                 key={`${client.name}-${idx}`}
-                className="flex h-[32px] shrink-0 items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100"
+                className="flex h-[42px] sm:h-[48px] md:h-[52px] shrink-0 items-center justify-center cursor-pointer"
+                title={client.name}
               >
                 <Image
                   src={client.logo}
                   alt={client.name}
-                  width={130}
-                  height={32}
-                  className="h-auto max-h-[26px] w-auto max-w-[120px] object-contain"
+                  width={180}
+                  height={48}
+                  className="h-auto max-h-[34px] sm:max-h-[40px] md:max-h-[44px] w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[180px] object-contain opacity-75 grayscale transition-all duration-300 hover:scale-110 hover:opacity-100 hover:grayscale-0"
                 />
               </div>
             ))}

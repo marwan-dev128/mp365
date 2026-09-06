@@ -49,7 +49,7 @@ export function MarketingHubIndex({
         h1={h1}
         breadcrumbs={[{ name: breadcrumbName, path: breadcrumbPath }]}
       />
-      <div className="mx-auto max-w-[1240px] px-6 pt-14">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4 pt-14">
         {tool && <div className="mb-14">{tool}</div>}
         {pages.length > 0 ? (
           <section aria-labelledby="hub-list-heading">

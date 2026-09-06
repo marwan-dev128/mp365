@@ -1,12 +1,14 @@
 import { JsonLd } from "@/components/JsonLd";
 import { ClientLogos } from "@/components/ClientLogos";
-import { HeroSection } from "@/components/hero-section";
+// Import the active hero directly rather than through the barrel: the barrel also
+// re-exports HeroV3, which pulls in matter-js (~1MB) even though it is unused here.
+import { IntegrationsHero as HeroSection, type IntegrationWidgetData } from "@/components/hero-section/IntegrationsHero";
 import { PlatformShowcase } from "@/components/home/PlatformShowcase";
 import { FeatureGrid4Col } from "@/components/home/FeatureGrid4Col";
 import { SolutionCarousel } from "@/components/home/SolutionCarousel";
 import { StackedPersonaCards } from "@/components/home/StackedPersonaCards";
 import { CustomerStoriesShowcase } from "@/components/home/CustomerStoriesShowcase";
-import { WhyUsePerkCarousel } from "@/components/home/WhyUsePerkCarousel";
+import { WhyUsempCarousel } from "@/components/home/WhyUsempCarousel";
 import { HaveBetterVisibilityGrid } from "@/components/home/HaveBetterVisibilityGrid";
 import { GetExtraSupportGrid } from "@/components/home/GetExtraSupportGrid";
 import { BoostEfficiencyGrid } from "@/components/home/BoostEfficiencyGrid";
@@ -14,6 +16,8 @@ import { FlexiTravelStats } from "@/components/home/FlexiTravelStats";
 import { EditorialInsightCards } from "@/components/home/EditorialInsightCards";
 import { DarkHighlightBanner } from "@/components/home/DarkHighlightBanner";
 import { LocationPresenceMarquee } from "@/components/home/LocationPresenceMarquee";
+import integrationsData from "@/store/integrations.json";
+import clientsData from "@/store/clients.json";
 import { getSiteSettings } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { webPageSchema, ORG_ID } from "@/lib/schema";
@@ -21,9 +25,9 @@ import { webPageSchema, ORG_ID } from "@/lib/schema";
 export const revalidate = 3600;
 
 export const metadata = buildMetadata({
-  title: "The intelligent platform for travel and spend | Perk",
+  title: "Microsoft M&A Tenant Migrations & Dynamics 365 | MP365",
   description:
-    "Automate travel, expenses, and policies in one platform. Perk combines corporate cards, travel booking, expense management, and AI policy enforcement.",
+    "M&A-grade Microsoft 365 tenant migrations plus Dynamics 365 and Power Platform modernization from one senior team. 20+ years, based in Vernon, CT.",
   path: "/",
   isFullTitle: true,
 });
@@ -36,55 +40,65 @@ export default async function HomePage() {
       <JsonLd
         data={webPageSchema({
           path: "/",
-          name: "Perk — Travel and Spend Management",
-          description: "Automate travel, expenses, and policies in one platform.",
+          name: "MP365 — Microsoft Consulting and Migrations",
+          description: "M&A tenant migrations, Dynamics 365, and Power Platform delivery.",
           mainEntityId: ORG_ID,
         })}
       />
 
-      {/* 1. Exact Perk Hero with Rating Badge & Desktop Mockup */}
-      <HeroSection settings={settings} />
+      {/* 1. Hero with Microsoft ecosystem floating widgets */}
+      <HeroSection
+        title={integrationsData.title}
+        description={integrationsData.description}
+        buttonText={integrationsData.buttonText}
+        buttonLink={integrationsData.buttonLink}
+        widgets={integrationsData.widgets as unknown as IntegrationWidgetData[]}
+        settings={settings}
+      />
 
-      {/* 2. Exact Perk Client Logos Marquee */}
-      <ClientLogos />
+      {/* 2. Client logos marquee */}
+      <ClientLogos
+        label={clientsData.label}
+        clients={clientsData.clients}
+      />
 
-      {/* 3. Exact Perk Tabbed Showcase (Travel, Spend, Events + Dynamic Proof Band) */}
+      {/* 3. Tabbed showcase (service tabs + proof band) */}
       <PlatformShowcase />
 
-      {/* 4. Exact Perk 4-Column Feature Grid ($3.72M stat + Control/Visibility/Experience/Impact) */}
+      {/* 4. Four-column feature grid (20+ years figure + capability cards) */}
       <FeatureGrid4Col />
 
-      {/* 5. Exact Perk Interactive Solution Carousel (111,800* tasks handled everyday) */}
+      {/* 5. Interactive solution carousel (migration work handled for you) */}
       <SolutionCarousel />
 
-      {/* 6. Exact Perk Stacked Persona Cards (Powerful for companies, effortless for employees) */}
+      {/* 6. Stacked persona cards (IT leaders and the teams they support) */}
       <StackedPersonaCards />
 
-      {/* 7. Exact Perk Customer Stories Accordion (12,000+ real businesses, getting real work done) */}
+      {/* 7. Customer stories accordion (OTIS Elevator, Carlisle, Hunter Panels) */}
       <CustomerStoriesShowcase />
 
-      {/* 8. Exact Perk Why Use Perk Carousel (Have better visibility, Get extra support, Boost efficiency) */}
-      <WhyUsePerkCarousel />
+      {/* 8. Why MP365 carousel (visibility, support, efficiency cards) */}
+      <WhyUsempCarousel />
 
-      {/* 9. Exact Perk Have Better Visibility Grid (Flexible trips, Travel tracker, In-depth reports) */}
+      {/* 9. Visibility grid (wave planning, migration tracker, reporting) */}
       <HaveBetterVisibilityGrid />
 
-      {/* 10. Exact Perk Get Extra Support Grid (24/7 customer support, Dedicated account support, Emergency cover, Group travel) */}
+      {/* 10. Support grid (senior engineers, named lead, cutover cover, coexistence) */}
       <GetExtraSupportGrid />
 
-      {/* 11. Exact Perk Boost Efficiency Grid (HR integrations, Policies and approvals, Centralized invoicing, Events) */}
+      {/* 11. Efficiency grid (identity, governance policies, automation, enablement) */}
       <BoostEfficiencyGrid />
 
-      {/* 10. Exact Perk 3-Card Stats Section (Minimum 80% refund*, 90% compliance, 1-minute response time) */}
+      {/* 12. Three-card facts section (structural facts only — no performance claims) */}
       <FlexiTravelStats />
 
-      {/* 11. Exact Perk Editorial Insight Cards (Cart, Lightbulb, Graphic) */}
+      {/* 13. Editorial insight cards */}
       <EditorialInsightCards />
 
-      {/* 8. Exact Perk Audi Revolut F1 Team Dark Banner */}
+      {/* 14. Dark highlight banner */}
       <DarkHighlightBanner />
 
-      {/* 9. Exact Perk Global Cities Marquee & Disclaimers */}
+      {/* 15. Service-area marquee and disclaimers */}
       <LocationPresenceMarquee />
     </>
   );

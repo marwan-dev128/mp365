@@ -1,0 +1,34 @@
+{
+  "badge": "MICROSOFT SOLUTIONS PARTNER · VERNON, CT",
+  "title": "Tell us what you're working with.",
+  "subtitle": "Whether it's an M&A tenant migration on a strict Day-1 deadline, a Dynamics 365 implementation, or Power Platform governance — tell us the situation and get a senior engineer's direct response within one business day.",
+  "phoneDisplay": "(+1) 860-208-9537",
+  "phoneHref": "tel:+18602089537",
+  "email": "info@mp-365.com",
+  "emailHref": "mailto:info@mp-365.com",
+  "guarantees": [
+    {
+      "title": "1 Business Day Response",
+      "description": "Every inquiry is reviewed directly by our senior technical team within 24 hours."
+    },
+    {
+      "title": "Direct Senior Access",
+      "description": "You speak with the practicing engineers who architect and execute migrations, not junior BDRs."
+    },
+    {
+      "title": "Fixed-Scope Scoping",
+      "description": "We quote based on discovered complexity (tenants, identities, legal holds), not open-ended T&M bloat."
+    },
+    {
+      "title": "Mutual NDA Ready",
+      "description": "We are ready to execute mutual confidentiality agreements before reviewing sensitive tenant data."
+    }
+  ],
+  "topics": [
+    "M&A Tenant Migration",
+    "Dynamics 365 / Business Central",
+    "Power Platform & Governance",
+    "SharePoint Modernization",
+    "General Consultation"
+  ]
+}

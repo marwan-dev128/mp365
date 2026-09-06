@@ -1,44 +1,38 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/Container";
-import { PageHero } from "@/components/PageHero";
-import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
-import { RelatedSidebar } from "@/components/RelatedSidebar";
 import { FaqSection } from "@/components/FaqSection";
-import { ArrowUp } from "@/components/ui/Icons";
+import { ArrowUp, ArrowUpRight } from "@/components/ui/Icons";
 import { SITE_URL } from "@/lib/config";
-import { articleSchema, personSchema, webPageSchema } from "@/lib/schema";
+import { articleSchema, personSchema, webPageSchema, breadcrumbSchema } from "@/lib/schema";
 import {
   getBlogClusterCta,
-  getBlogRelatedServices,
   getRelatedBlogPosts,
   type getBlogPostBySlug,
 } from "@/lib/data";
 import { buildSections, parseBlogBody, readingTime, tocFromSections } from "@/lib/blog";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { ArticleBody } from "./ArticleBody";
-import { ArticleMeta } from "./ArticleMeta";
 import { AuthorCard } from "./AuthorCard";
-import { BlogSidebar } from "./BlogSidebar";
 import { ReadingProgress } from "./ReadingProgress";
 import { RelatedArticles } from "./RelatedArticles";
 import { SocialShare } from "./SocialShare";
 import { TableOfContents } from "./TableOfContents";
+import { SidebarCta } from "@/components/SidebarCta";
 
 type BlogPost = NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 
 /**
- * THE blog article template. Every post at /blog/[slug]/ renders through this
- * one component, so contents, reading progress, reading time, breadcrumbs,
- * structured data, share controls, the sidebar CTA and the related rail all
- * arrive automatically for any post the CMS gains — nothing here is keyed off
- * a particular slug.
- *
- * Everything displayed is derived from the BlogPost row: the table of
- * contents from the body's headings, reading time from its word count, the
- * sidebar CTA and related services from its cluster, related articles from
- * cluster plus recency. A post with no headings renders no contents; a post
- * whose cluster maps to no live service renders no service links. Nothing is
- * invented to fill a slot.
+ * mp-styled Blog Post Detail Layout.
+ * Matches mp's layout:
+ * - headerSimple: off-white header with category badge, large H1, date & reading time
+ * - Breadcrumbs bar
+ * - 12-column grid with sticky left Table of Contents sidebar
+ * - Key takeaways highlight box
+ * - Editorial typography prose
+ * - contentArticleEndTwoColumn: 2-column dark CTA banner
+ * - Related articles 3-column card grid
  */
 export async function BlogPostLayout({ post }: { post: BlogPost }) {
   const blocks = parseBlogBody(post.body);
@@ -47,16 +41,26 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
   const reading = readingTime(blocks);
   const path = `/blog/${post.slug}/`;
   const url = `${SITE_URL}${path}`;
-  const [cta, related, relatedServices] = await Promise.all([
+  const [cta, related] = await Promise.all([
     getBlogClusterCta(post.cluster),
     getRelatedBlogPosts(post.slug, 3),
-    getBlogRelatedServices(post.cluster),
   ]);
+
+  const breadcrumbs = [
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog/" },
+    { name: post.clusterLabel, path: "/blog/" },
+    { name: post.title, path },
+  ];
+
+  const dateFormatted = post.datePublished.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
   return (
     <>
-      {/* Draft posts stay reachable by URL for review but must not be
-          described to crawlers — same rule as the noindex in generateMetadata. */}
       {post.published && (
         <>
           <JsonLd
@@ -95,99 +99,229 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               ...(post.author.name.startsWith("Dr. ") ? { honorificPrefix: "Dr." } : {}),
             })}
           />
+          <JsonLd data={breadcrumbSchema(breadcrumbs)} />
         </>
       )}
 
       <ReadingProgress targetId="article-body" />
 
-      <PageHero
-        eyebrow={post.clusterLabel}
-        h1={post.title}
-        imageUrl={post.imageUrl}
-        imageAlt={post.imageAlt}
-        breadcrumbs={[
-          { name: "Blog", path: "/blog/" },
-          { name: post.title, path },
-        ]}
-      />
+      {/* mp Header Simple Section */}
+      <header className="w-full relative bg-mp-parchment border-b border-mp-border pt-14 sm:pt-20 pb-12 sm:pb-16 -mt-1">
+        <Container>
+          <div className="max-w-4xl">
+            <div className="mb-4 inline-block">
+              <span className="text-[11.5px] font-mono font-bold uppercase tracking-[0.14em] text-mp-ink bg-white border border-mp-border px-3.5 py-1 rounded-full shadow-2xs">
+                {post.clusterLabel}
+              </span>
+            </div>
 
-      <Container className="pt-10 pb-16">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
-          <div className="min-w-0">
-            <article id="article-top" className="scroll-mt-28">
-              <header className="flex flex-col gap-6 border-b border-line pb-8">
-                <ArticleMeta
-                  category={post.clusterLabel}
-                  author={post.author}
-                  datePublished={post.datePublished}
-                  dateModified={post.dateModified}
-                  reading={reading}
-                />
-                {/* The CMS excerpt used as a standfirst — the editor's own
-                    one-line summary, not a second copy of the lead paragraph
-                    and not generated. */}
-                {post.excerpt && (
-                  <p className="max-w-[640px] font-display text-[17px] font-medium leading-[1.55] text-ink sm:text-[19px]">
-                    {stripInlineMarkup(post.excerpt)}
-                  </p>
-                )}
-                <SocialShare url={url} title={post.title} />
-              </header>
+            <h1 className="text-[32px] sm:text-[44px] lg:text-[52px] font-bold text-mp-ink tracking-tight leading-[1.12] text-balance">
+              {post.title}
+            </h1>
 
-              <div className="pt-8 lg:hidden">
-                <TableOfContents items={toc} variant="mobile" />
-              </div>
-
-              {/* The reading-progress target is the prose itself, so the
-                  byline, share row and footer do not count as "read". */}
-              <div id="article-body" className="pt-9">
-                <ArticleBody sections={sections} />
-              </div>
-
-              {/* FaqSection emits the FAQPage JSON-LD bound to this page's
-                  @id, the same component every other content type uses. */}
-              {post.faqs.length > 0 && (
-                <div className="mt-14">
-                  <FaqSection faqs={post.faqs} path={path} title="Questions this raises" />
-                </div>
-              )}
-
-              <footer className="mt-12 flex flex-col gap-8 border-t border-line pt-8">
-                {relatedServices.length > 0 && (
-                  <div className="max-w-[640px]">
-                    <RelatedSidebar
-                      title="Related services"
-                      items={relatedServices.map((s) => ({
-                        name: s.name,
-                        href: `/services/${s.slug}/`,
-                      }))}
-                    />
-                  </div>
-                )}
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <SocialShare url={url} title={post.title} />
-                  <a
-                    href="#article-top"
-                    className="inline-flex items-center gap-1.5 text-[13px] font-bold text-ink-2 hover:text-azure"
-                  >
-                    <ArrowUp className="h-3.5 w-3.5" />
-                    Back to top
-                  </a>
-                </div>
-              </footer>
-            </article>
-
-            <div className="mt-8">
-              <AuthorCard author={post.author} />
+            <div className="text-[12.5px] sm:text-[13px] font-mono uppercase tracking-wider text-mp-muted mt-6 flex flex-wrap items-center gap-2.5">
+              <time dateTime={post.datePublished.toISOString()}>{dateFormatted}</time>
+              <span>•</span>
+              <time dateTime={reading.iso}>{reading.text}</time>
+              <span>•</span>
+              <span>
+                By{" "}
+                <Link
+                  href="/about/"
+                  className="font-bold text-mp-ink hover:underline"
+                >
+                  {post.author.name}
+                </Link>
+              </span>
             </div>
           </div>
+        </Container>
+      </header>
 
-          <BlogSidebar toc={toc} cta={cta} />
+      {/* Breadcrumbs Navigation */}
+      <div className="w-full border-b border-mp-border-subtle bg-white">
+        <Container className="py-3.5">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-1.5 text-[12px] font-mono text-mp-muted">
+              <li>
+                <Link href="/" className="hover:text-mp-ink hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <span className="text-mp-muted">/</span>
+              </li>
+              <li>
+                <Link href="/blog/" className="hover:text-mp-ink hover:underline">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <span className="text-mp-muted">/</span>
+              </li>
+              <li className="text-mp-ink font-semibold truncate max-w-[280px] sm:max-w-md">
+                {post.title}
+              </li>
+            </ol>
+          </nav>
+        </Container>
+      </div>
+
+      {/* Main 12-Column Layout */}
+      <Container className="pt-10 lg:pt-14 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Desktop Left Sticky Table of Contents Sidebar */}
+          <aside className="col-span-3 hidden lg:block sticky top-[110px] self-start max-h-[calc(100vh-130px)] overflow-y-auto pr-6 border-r border-mp-border">
+            <div className="flex flex-col gap-6">
+              <TableOfContents items={toc} />
+              
+              <div className="pt-4 border-t border-mp-border">
+                <SocialShare url={url} title={post.title} />
+              </div>
+
+              {cta && (
+                <div className="pt-2">
+                  <SidebarCta
+                    tag={cta.tag}
+                    title={cta.title}
+                    body={cta.body}
+                    ctaText={cta.ctaText}
+                    ctaHref={cta.ctaHref}
+                  />
+                </div>
+              )}
+            </div>
+          </aside>
+
+          {/* Article Main Column */}
+          <article id="article-top" className="col-span-12 lg:col-span-8 lg:col-start-4 min-w-0">
+            {/* Mobile Table of Contents */}
+            <div className="lg:hidden">
+              <TableOfContents items={toc} variant="mobile" />
+            </div>
+
+            {/* Key Takeaways Highlight Box */}
+            {post.excerpt && (
+              <div className="bg-mp-parchment border border-mp-border rounded-[22px] md:rounded-[26px] p-6 sm:p-10 mb-10 shadow-2xs">
+                <h2 className="text-[18px] sm:text-[20px] font-bold text-mp-ink mb-3">
+                  Key takeaways
+                </h2>
+                <div className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-mp-secondary">
+                  <p>{stripInlineMarkup(post.excerpt)}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Article Prose Content */}
+            <div id="article-body">
+              <ArticleBody sections={sections} />
+            </div>
+
+            {/* FAQ Section */}
+            {post.faqs.length > 0 && (
+              <div className="mt-14 pt-8 border-t border-mp-border">
+                <FaqSection faqs={post.faqs} path={path} title="Frequently asked questions" />
+              </div>
+            )}
+
+            {/* Author Card */}
+            <AuthorCard author={post.author} />
+
+            {/* Footer Share & Back to Top */}
+            <footer className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-mp-border pt-8">
+              <SocialShare url={url} title={post.title} />
+              <a
+                href="#article-top"
+                className="inline-flex items-center gap-1.5 text-[12.5px] font-mono font-bold uppercase tracking-wider text-mp-ink hover:text-mp-muted"
+              >
+                <ArrowUp className="h-3.5 w-3.5" />
+                Back to top
+              </a>
+            </footer>
+          </article>
         </div>
       </Container>
 
+      {/* mp 2-Column Dark CTA Banner: contentArticleEndTwoColumn */}
+      <Container className="my-8">
+        <div className="w-full relative bg-mp-ink text-white rounded-[28px] overflow-hidden p-8 sm:p-12 lg:p-14">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Image Column */}
+            <div className="col-span-full md:col-span-5">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-mp-dark-subtle">
+                <Image
+                  src="/images/mp365/case-studies/hunter-panels-dynamics-365.webp"
+                  alt="Enterprise Modernization Platform"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-mp-ink/60 via-transparent to-transparent" />
+              </div>
+            </div>
+
+            {/* Right Text Column */}
+            <div className="col-span-full md:col-span-7 flex flex-col gap-5">
+              <h2 className="text-[28px] sm:text-[36px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.15]">
+                Make business operations &amp; cloud migrations simpler
+              </h2>
+              
+              <ul className="flex flex-col gap-3 text-[15px] sm:text-[16px] text-mp-border leading-relaxed list-disc list-inside">
+                <li>
+                  <Link
+                    href="/contact/"
+                    className="font-bold text-white underline hover:no-underline hover:text-mp-mint transition-colors"
+                  >
+                    See our migration platform in action
+                  </Link>
+                  . MP365 unites tenant migration, Dynamics 365 ERP, and Power Platform automation into one cohesive delivery model.
+                </li>
+                <li>
+                  Discover our{" "}
+                  <Link
+                    href="/resources/worked-examples/"
+                    className="font-bold text-white underline hover:no-underline hover:text-mp-mint transition-colors"
+                  >
+                    worked examples
+                  </Link>
+                  ,{" "}
+                  <Link
+                    href="/case-studies/"
+                    className="font-bold text-white underline hover:no-underline hover:text-mp-mint transition-colors"
+                  >
+                    client case studies
+                  </Link>
+                  , and{" "}
+                  <Link
+                    href="/blog/"
+                    className="font-bold text-white underline hover:no-underline hover:text-mp-mint transition-colors"
+                  >
+                    blog guides
+                  </Link>{" "}
+                  for zero-downtime execution.
+                </li>
+                <li>
+                  Never miss another update. Stay in touch with our team for the latest architectural best practices and enterprise guidance.
+                </li>
+              </ul>
+
+              <div className="pt-3">
+                <Link
+                  href="/contact/"
+                  className="inline-flex items-center gap-2 rounded-full bg-mp-lime text-mp-ink px-6 py-3 text-[14px] font-mono font-bold uppercase tracking-wider hover:bg-mp-lime-hover transition-all shadow-md"
+                >
+                  <span>Talk to our team</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+
+      {/* Related Articles Rail */}
       {related.length > 0 && (
-        <Container className="pb-4">
+        <Container className="pb-16">
           <RelatedArticles
             posts={related.map((p) => {
               const t = readingTime(parseBlogBody(p.body));
@@ -199,15 +333,13 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
                 datePublished: p.datePublished,
                 readingText: t.text,
                 readingIso: t.iso,
+                imageUrl: p.imageUrl,
+                imageAlt: p.imageAlt,
               };
             })}
           />
         </Container>
       )}
-
-      {/* One closing conversion band, shared with the rest of the site, with
-          copy aimed at this article's cluster. */}
-      <CtaBand heading={cta.title} subheading={cta.body} />
     </>
   );
 }

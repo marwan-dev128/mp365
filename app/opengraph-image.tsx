@@ -21,7 +21,7 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0a1128",
+          background: "#0b3c49",
           color: "#fff",
           fontFamily: "sans-serif",
         }}
@@ -32,7 +32,7 @@ export default async function OpengraphImage() {
               width: 56,
               height: 56,
               borderRadius: 14,
-              background: "#111a35",
+              background: "#0f5061",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -41,7 +41,7 @@ export default async function OpengraphImage() {
             <svg width="34" height="34" viewBox="0 0 30 30" fill="none">
               <path
                 d="M7 20V10l4 6.5L15 10l4 6.5L23 10v10"
-                stroke="#4d8dff"
+                stroke="#5fe3c8"
                 strokeWidth="2.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -50,13 +50,13 @@ export default async function OpengraphImage() {
             </svg>
           </div>
           <div style={{ display: "flex", fontSize: 34, fontWeight: 800, letterSpacing: -0.5 }}>
-            MP<span style={{ color: "#4d8dff" }}>365</span>
+            MP<span style={{ color: "#5fe3c8" }}>365</span>
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 56, fontWeight: 800, lineHeight: 1.15, maxWidth: 900 }}>
           {stripInlineMarkup(settings.tagline)}
         </div>
-        <div style={{ display: "flex", fontSize: 26, color: "#b6c3da", marginTop: 28, maxWidth: 820 }}>
+        <div style={{ display: "flex", fontSize: 26, color: "#bcd4d6", marginTop: 28, maxWidth: 820 }}>
           Microsoft 365 migration · Dynamics 365 · Power Platform · M&amp;A tenant migration
         </div>
       </div>

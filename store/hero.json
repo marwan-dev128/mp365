@@ -1,0 +1,22 @@
+{
+  "title": "Microsoft 365 tenant migrations,\nDynamics 365 modernization",
+  "ratingBadge": {
+    "src": "/images/mp365/microsoft-solutions-partner-badge.webp",
+    "alt": "Microsoft Solutions Partner"
+  },
+  "primaryCta": {
+    "text": "Book a call",
+    "href": "/contact/"
+  },
+  "secondaryCta": {
+    "text": "Explore our services"
+  },
+  "desktopImage": {
+    "src": "/images/mp365/microsoft-365-migration-plan-desktop.webp",
+    "alt": "Migration wave plan on laptop and mobile"
+  },
+  "mobileImage": {
+    "src": "/images/mp365/microsoft-365-migration-plan-mobile.webp",
+    "alt": "Migration wave plan on mobile"
+  }
+}

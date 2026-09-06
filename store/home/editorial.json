@@ -1,0 +1,27 @@
+{
+  "title": "Let’s get specific",
+  "subtitle": "The guides, definitions, and case notes behind the work we do.",
+  "insights": [
+    {
+      "title": "What breaks in an M&A tenant migration",
+      "description": "The mistakes that push a tenant merger past its deadline, and the checks that catch each one early.",
+      "linkText": "Learn more",
+      "href": "/contact/",
+      "image": "/images/mp365/insights/ma-tenant-migration-risks-illustration.webp"
+    },
+    {
+      "title": "Your tenant migration questions, answered",
+      "description": "Plain definitions for the vocabulary a migration plan is written in, from carve-outs to retention policy.",
+      "linkText": "Browse glossary",
+      "href": "/contact/",
+      "image": "/images/mp365/insights/tenant-migration-questions-answered-illustration.webp"
+    },
+    {
+      "title": "See the work we’ve done",
+      "description": "Case studies from our work with OTIS Elevator, Carlisle Construction Materials, and Hunter Panels.",
+      "linkText": "Read the case studies",
+      "href": "/contact/",
+      "image": "/images/mp365/insights/microsoft-case-studies-illustration.webp"
+    }
+  ]
+}

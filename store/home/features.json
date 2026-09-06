@@ -1,0 +1,33 @@
+{
+  "subtitleNumber": "20",
+  "cards": [
+    {
+      "icon": "/images/mp365/icons/migration-continuity-icon.webp",
+      "alt": "Control",
+      "category": "FIXED PRICE",
+      "title": "Know the price before the work starts",
+      "description": "We scope the work, then quote a fixed price for it — you approve a number up front instead of funding open-ended hourly work."
+    },
+    {
+      "icon": "/images/mp365/icons/data-governance-shield-icon.webp",
+      "alt": "Visibility",
+      "category": "PHASING",
+      "title": "Phased, \nfunction by function",
+      "description": "Each phase is scoped, priced and approved on its own. You commit to the next one only after the last is live, instead of signing for all of it at once."
+    },
+    {
+      "icon": "/images/mp365/icons/user-adoption-icon.webp",
+      "alt": "Experience",
+      "category": "ADOPTION",
+      "title": "Trained first, supported after",
+      "description": "A pilot group trains first, then every phase trains before it goes live, not after cutover morning."
+    },
+    {
+      "icon": "/images/mp365/icons/senior-delivery-team-icon.webp",
+      "alt": "Impact",
+      "category": "ONE PARTNER",
+      "title": "One partner \nfor all of it",
+      "description": "The tenant move, the business applications that follow, and the governance around both run under one contract instead of three vendors negotiating with each other."
+    }
+  ]
+}

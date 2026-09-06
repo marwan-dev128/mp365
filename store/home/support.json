@@ -1,0 +1,46 @@
+{
+  "title": "How we run projects",
+  "subtitle": "From the first assessment to the weeks after cutover, this is the sequence every engagement follows.",
+  "cards": [
+    {
+      "id": "customer-support",
+      "variant": "lime",
+      "image": "/images/mp365/delivery/tenant-migration-assessment.webp",
+      "imageAlt": "Senior delivery team",
+      "title": "Assessment comes first",
+      "description": "Every engagement opens with an inventory of both tenants: licensing, identity conflicts, data volume, custom apps. We scope from what’s actually there, not from a template.",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    },
+    {
+      "id": "account-support",
+      "variant": "parchment",
+      "image": "/images/mp365/delivery/named-senior-engagement-team.webp",
+      "imageAlt": "Named engagement lead",
+      "title": "We map the entire estate",
+      "description": "Before wave one we know where every mailbox, Teams channel, SharePoint site and Entra ID identity lives, and what depends on what. A dependency nobody mapped breaks the cutover.",
+      "linkText": "",
+      "href": ""
+    },
+    {
+      "id": "emergency-cover",
+      "variant": "headline",
+      "image": "",
+      "imageAlt": "",
+      "title": "We work in\nwaves",
+      "description": "Waves are sequenced by business unit, so a bad night stays inside one group instead of the whole company—and every wave carries a rollback we have already tested.",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    },
+    {
+      "id": "enablement",
+      "variant": "parchment",
+      "image": "/images/mp365/delivery/post-cutover-support.webp",
+      "imageAlt": "Coexistence and enablement",
+      "title": "We stay after cutover",
+      "description": "Cutover is not the finish line. We watch mail flow, directory sync, and access, clear the issues users actually report, and leave documentation your team can run from—not a slide deck.",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    }
+  ]
+}

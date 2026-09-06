@@ -119,7 +119,7 @@ export function HeroV3({ settings }: HeroV3Props) {
 
     World.add(world, [floor, leftWall, rightWall, ceiling]);
 
-    // Create Ecosystem Physics Bodies (18px squircle radius matching Perk inner geometry)
+    // Create Ecosystem Physics Bodies (18px squircle radius matching mp inner geometry)
     const bodies: Matter.Body[] = [];
     const radius = 18;
 
@@ -231,7 +231,7 @@ export function HeroV3({ settings }: HeroV3Props) {
         ctx.translate(x, y);
         ctx.rotate(angle);
 
-        // Draw Card Flat Background Squircle (Perk flat tonal model - no drop shadow)
+        // Draw Card Flat Background Squircle (mp flat tonal model - no drop shadow)
         ctx.beginPath();
         ctx.roundRect(-halfSize, -halfSize, size, size, cornerRadius);
         ctx.fillStyle = "#FFFFFF";
@@ -278,7 +278,7 @@ export function HeroV3({ settings }: HeroV3Props) {
   }, [resetKey]);
 
   return (
-    <section className="mx-auto max-w-[1280px] px-5 sm:px-8 pt-8 sm:pt-14 pb-8">
+    <section className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4 pt-8 sm:pt-14 pb-8">
       {/* ---------------------------------------------------------------- Centered Hero Typography */}
       <div className="mx-auto max-w-4xl text-center">
         <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/90 px-4 py-1.5 text-[12px] font-medium text-navy">

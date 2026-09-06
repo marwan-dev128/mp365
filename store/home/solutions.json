@@ -1,0 +1,77 @@
+{
+  "autoplayDuration": 6500,
+  "slides": [
+    {
+      "id": "ma-tenant-migration",
+      "pill": "M&A",
+      "title": "Two tenants.\nOne Microsoft 365.",
+      "description": "Merge, split, or carve out Microsoft 365 tenants against a real TSA-exit date. Mail flow, free/busy sharing, and directory sync are live for Day-1 coexistence.",
+      "href": "/services/ma-tenant-migration/",
+      "videoSrc": "/videos/mp365/ma-tenant-migration-merge.mp4",
+      "videoPoster": "/images/mp365/posters/ma-tenant-migration-merge.webp"
+    },
+    {
+      "id": "microsoft-365-migration",
+      "pill": "M365 migration",
+      "title": "Off Google Workspace.\nOff the old Exchange.",
+      "description": "Google Workspace, on-premises Exchange, or another tenant into Microsoft 365. Mailboxes, files, PST archives, and Teams content move with delta syncs.",
+      "href": "/services/microsoft-365-migration/",
+      "videoSrc": "/videos/mp365/microsoft-365-migration-checks.mp4",
+      "videoPoster": "/images/mp365/posters/microsoft-365-migration-checks.webp"
+    },
+    {
+      "id": "dynamics-365",
+      "pill": "Dynamics 365",
+      "title": "Built around how\nyour business runs",
+      "description": "Sales, Customer Service, and Business Central configured to your quoting, service, and fulfillment steps, not the out-of-box setup.",
+      "href": "/services/dynamics-365/",
+      "videoSrc": "/videos/mp365/dynamics-365-configuration.mp4",
+      "videoPoster": "/images/mp365/posters/dynamics-365-configuration.webp"
+    },
+    {
+      "id": "power-platform",
+      "pill": "Power Platform apps",
+      "title": "Power Apps everywhere.\nNo shadow IT anywhere.",
+      "description": "Power Apps, Power Automate, and Copilot Studio built with the environment strategy, ALM, and DLP policies around them.",
+      "href": "/services/power-platform/",
+      "videoSrc": "/videos/mp365/power-platform-governance.mp4",
+      "videoPoster": "/images/mp365/posters/power-platform-governance.webp"
+    },
+    {
+      "id": "data-governance",
+      "pill": "Data governance",
+      "title": "When legal asks,\nyou have an answer.",
+      "description": "Microsoft Purview configured properly: retention labels, sensitivity labels, legal hold, and eDiscovery your counsel can rely on.",
+      "href": "/services/data-governance/",
+      "videoSrc": "/videos/mp365/microsoft-purview-data-governance.mp4",
+      "videoPoster": "/images/mp365/posters/microsoft-purview-data-governance.webp"
+    },
+    {
+      "id": "application-modernization",
+      "pill": "Azure application modernization",
+      "title": "Legacy apps.\nModern on Azure.",
+      "description": "Lift-and-shift, containerize, or re-architect on Azure, whichever the application actually needs. Then CI/CD, infrastructure as code, and monitoring.",
+      "href": "/services/application-modernization/",
+      "videoSrc": "/videos/mp365/azure-application-modernization.mp4",
+      "videoPoster": "/images/mp365/posters/azure-application-modernization.webp"
+    },
+    {
+      "id": "collaboration-enablement",
+      "pill": "Collaboration",
+      "title": "Search that finds\nthe right file",
+      "description": "Teams isn’t usually the problem — information architecture is. We fix channel sprawl, ownership, and permissions so people stop re-creating what already exists.",
+      "href": "/services/collaboration-enablement/",
+      "videoSrc": "/videos/mp365/sharepoint-enterprise-search.mp4",
+      "videoPoster": "/images/mp365/posters/sharepoint-enterprise-search.webp"
+    },
+    {
+      "id": "contract-management",
+      "pill": "Contract flow",
+      "title": "Contracts stop living\nin someone’s inbox.",
+      "description": "Email handoffs replaced by a Power Automate workflow and a SharePoint or Dynamics 365 repository. Status, approvals, and renewal dates stop being a question.",
+      "href": "/services/contract-management/",
+      "videoSrc": "/videos/mp365/contract-management-workflow.mp4",
+      "videoPoster": "/images/mp365/posters/contract-management-workflow.webp"
+    }
+  ]
+}

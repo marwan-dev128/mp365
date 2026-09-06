@@ -1,0 +1,41 @@
+{
+  "autoplayDuration": 6000,
+  "cards": [
+    {
+      "id": "support",
+      "title": "The same senior team",
+      "description": "The people who scope the work run it. No junior bench behind them, no account layer in between.",
+      "image": "/images/mp365/why/senior-microsoft-delivery-team.webp",
+      "imageType": "contain",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    },
+    {
+      "id": "efficiency",
+      "title": "Your whole estate",
+      "description": "Migration, Dynamics 365, Power Platform and data governance are one engagement, not four. What you migrate onto is what we build on next.",
+      "image": "/images/mp365/why/day-1-tsa-exit-migration-timeline.webp",
+      "imageType": "contain",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    },
+    {
+      "id": "visibility",
+      "title": "20+ years on Microsoft",
+      "description": "Two decades of Microsoft platform work, across every version of the stack our clients have run. Fewer surprises, because we have met them.",
+      "image": "/images/mp365/why/one-microsoft-partner-eight-services.webp",
+      "imageType": "contain",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    },
+    {
+      "id": "policies",
+      "title": "A US firm in Vernon, CT",
+      "description": "A United States firm, headquartered in Vernon, Connecticut. We work remotely with clients across New England and the rest of the country.",
+      "image": "/images/mp365/why/governance-approvals-workflow.webp",
+      "imageType": "contain",
+      "linkText": "Talk to us",
+      "href": "/contact/"
+    }
+  ]
+}

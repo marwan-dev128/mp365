@@ -1,0 +1,60 @@
+{
+  "eyebrow": "VERNON, CT • SERVING CLIENTS ACROSS THE UNITED STATES",
+  "row1": [
+    {
+      "name": "M&A Tenant Migration",
+      "isHQ": false,
+      "image": "/hero-section-icons/Microsoft_Entra_ID_color_icon.svg.webp"
+    },
+    {
+      "name": "Microsoft 365 Migration",
+      "isHQ": false,
+      "image": "/hero-section-icons/Microsoft_Office_SharePoint_(2025–present).svg.webp"
+    },
+    {
+      "name": "Dynamics 365",
+      "isHQ": false,
+      "image": "/hero-section-icons/image_-_2025-08-08T164136.643-removebg-preview.png"
+    },
+    {
+      "name": "Power Platform",
+      "isHQ": false,
+      "image": "/hero-section-icons/microsoft-power-platform-icons.png"
+    }
+  ],
+  "row2": [
+    {
+      "name": "Data Governance",
+      "isHQ": false,
+      "image": "/hero-section-icons/fabric.png"
+    },
+    {
+      "name": "App Modernization",
+      "isHQ": false,
+      "image": "/hero-section-icons/Microsoft_Azure.svg.webp"
+    },
+    {
+      "name": "Collaboration",
+      "isHQ": false,
+      "image": "/hero-section-icons/teams.png"
+    },
+    {
+      "name": "Contract Management",
+      "isHQ": false,
+      "image": "/hero-section-icons/powerautomate.webp"
+    }
+  ],
+  "primaryCta": {
+    "text": "Meet the team",
+    "href": "/about/"
+  },
+  "secondaryCta": {
+    "text": "Get in touch",
+    "href": "/contact/"
+  },
+  "disclaimers": [
+    "Timelines depend on scope: a pilot migration typically runs 2–4 weeks, a full tenant merger 8–16 weeks.",
+    "Scope is agreed in writing before an engagement starts, and changes to it are agreed the same way.",
+    "MP365 works from Vernon, Connecticut, and serves clients across New England and the United States remotely."
+  ]
+}

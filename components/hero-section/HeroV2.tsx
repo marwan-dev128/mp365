@@ -82,7 +82,7 @@ export function HeroV2({ settings }: HeroV2Props) {
         className="pointer-events-none absolute inset-0 -z-10 opacity-[0.03] [background-image:linear-gradient(rgba(0,16,51,0.6)_1px,transparent_1px),linear-gradient(90deg,rgba(0,16,51,0.6)_1px,transparent_1px)] [background-size:48px_48px]"
       />
 
-      <div className="relative mx-auto flex min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] max-w-[1240px] items-center justify-center">
+      <div className="relative mx-auto flex min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4 items-center justify-center">
         {/* ---------------------------------------------------------------- 3 Centered Concentric Orbit Rings */}
         <div
           aria-hidden="false"

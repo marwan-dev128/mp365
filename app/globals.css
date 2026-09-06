@@ -8,40 +8,86 @@
    ========================================================================== */
 
 :root {
-  /* Perk Electric Lime & Parchment Palette */
-  --perk-lime: #beff50;
-  --perk-lime-hover: #abf23a;
-  --perk-parchment: #f5f5eb;
-  --perk-ink: #14140f;
-  --perk-card: #ebebe0;
-  --perk-card-white: #ffffff;
-  --perk-border: #e0e0d2;
-  --perk-muted: #66665e;
+  /* ==========================================================================
+     Standardized Global Color Palette — "Petrol / Saffron / Mint on Paper"
+     Editing these variables changes colors across the entire website & all sections.
 
-  /* MP / Perk Tokens */
-  --mp-navy-dark: #14140f;
-  --mp-navy-subtle: #1e1e18;
-  --mp-navy-card: #14140f;
-  --mp-azure-primary: #beff50;
-  --mp-azure-hover: #abf23a;
-  --mp-azure-subtle: #f0f7e6;
-  --mp-cyan-accent: #beff50;
+     Role model (do not break these rules):
+       Petrol   -> structure: hero, footer, dark bands, headings
+       Petrol 2 -> the light-surface accent: links, active states, small fills
+       Saffron  -> ACTION only: primary CTA fills. Ink text on it, never on white
+       Mint     -> dark-surface accent: eyebrows, data, icons on Petrol/Ink
+       Ink      -> body text and near-black panels
+       Paper    -> page bands and cards
+     ========================================================================== */
+
+  /* --- Core brand ramp --- */
+  --mp-petrol: #0b3c49;
+  --mp-petrol-2: #0f5061;
+  --mp-petrol-deep: #082d37;
+  --mp-petrol-tint: #eaf1f3;
+
+  --mp-saffron: #f2a93b;
+  --mp-saffron-hover: #e09623;
+  --mp-saffron-tint: #fdf3e3;
+
+  --mp-mint: #5fe3c8;
+  --mp-mint-hover: #45cfb3;
+
+  /* Large branded light surfaces (footer band, feature cards). Mint, not
+     Saffron: a full-bleed Saffron block would out-shout every CTA on the
+     page and destroy the accent's scarcity. Ink text on Mint is 11.4:1. */
+  --mp-band: var(--mp-mint);
+
+  /* Legacy aliases: `lime` was the old accent name. It now resolves to the
+     Saffron CTA so existing `bg-mp-lime` call sites keep working. */
+  --mp-lime: var(--mp-saffron);
+  --mp-lime-hover: var(--mp-saffron-hover);
+
+  /* --- Neutrals (warm paper family) --- */
+  --mp-parchment: #EAE4D8;
+  --mp-ink: #12181b;
+  --mp-dark: var(--mp-petrol);
+  --mp-dark-subtle: #0f4a59;
+  --mp-card: #ece8df;
+  --mp-card-white: #ffffff;
+  --mp-border: #dcd6ca;
+  --mp-border-subtle: #ede9e0;
+  --mp-secondary: #48535b;
+  --mp-muted: #5b6670;
+
+  /* MP / mp Tokens */
+  --mp-navy-dark: var(--mp-petrol);
+  --mp-navy-subtle: var(--mp-dark-subtle);
+  --mp-navy-card: var(--mp-petrol);
+  --mp-azure-primary: var(--mp-petrol-2);
+  --mp-azure-hover: var(--mp-petrol);
+  --mp-azure-subtle: var(--mp-petrol-tint);
+  --mp-cyan-accent: var(--mp-mint);
+
+  /* Semantic action tokens */
+  --mp-action: var(--mp-saffron);
+  --mp-action-hover: var(--mp-saffron-hover);
+  --mp-action-on: var(--mp-ink);
 
   /* Canvas & neutrals */
-  --mp-surface-bg: #f5f5eb;
-  --mp-surface-light: #ebebe0;
+  --mp-surface-bg: #ffffff;
+  --mp-surface-light: var(--mp-card);
   --mp-surface-card: #ffffff;
-  --mp-surface-muted: #e6e6da;
+  --mp-surface-muted: var(--mp-card);
 
   /* Typography colors */
-  --mp-text-primary: #14140f;
-  --mp-text-secondary: #47473f;
-  --mp-text-muted: #66665e;
-  --mp-text-inverse: #14140f;
+  --mp-text-primary: var(--mp-ink);
+  --mp-text-secondary: var(--mp-secondary);
+  --mp-text-muted: var(--mp-muted);
+  --mp-text-inverse: #ffffff;
 
-  /* Structure & Shapes (Perk Geometry System) */
-  --mp-border-light: #e0e0d2;
-  --mp-border-azure: rgba(190, 255, 80, 0.5);
+  /* Status */
+  --danger: #b3261e;
+
+  /* Structure & Shapes (mp Geometry System) */
+  --mp-border-light: var(--mp-border);
+  --mp-border-azure: rgba(15, 80, 97, 0.35);
   --mp-radius-pill: 9999px;
   --mp-radius-card: 28px;
   --mp-radius-hero: 28px;
@@ -61,17 +107,49 @@
 }
 
 body {
-  background-color: var(--perk-parchment);
-  color: var(--perk-ink);
+  background-color: #ffffff;
+  color: var(--mp-ink);
 }
 
-/* The reference is a committed light-mode enterprise identity — dark navy
-   surfaces are a deliberate compositional element (hero, footer), not a
-   theme. Painting a full dark palette would invert those relationships and
-   lose the design. The page therefore commits to one look and paints every
-   surface explicitly, so it holds on any host background. */
+/* The reference is a committed light-mode enterprise identity — dark surfaces
+   are a deliberate compositional element (hero, footer, CTA banners), not a theme. */
 
 @theme inline {
+  --color-mp-petrol: var(--mp-petrol);
+  --color-mp-petrol-2: var(--mp-petrol-2);
+  --color-mp-petrol-deep: var(--mp-petrol-deep);
+  --color-mp-petrol-tint: var(--mp-petrol-tint);
+  --color-mp-saffron: var(--mp-saffron);
+  --color-mp-saffron-hover: var(--mp-saffron-hover);
+  --color-mp-saffron-tint: var(--mp-saffron-tint);
+  --color-mp-mint: var(--mp-mint);
+  --color-mp-mint-hover: var(--mp-mint-hover);
+  --color-mp-band: var(--mp-band);
+  --color-mp-lime: var(--mp-lime);
+  --color-mp-lime-hover: var(--mp-lime-hover);
+  --color-mp-parchment: var(--mp-parchment);
+  --color-mp-ink: var(--mp-ink);
+  --color-mp-dark: var(--mp-dark);
+  --color-mp-dark-subtle: var(--mp-dark-subtle);
+  --color-mp-card: var(--mp-card);
+  --color-mp-border: var(--mp-border);
+  --color-mp-border-subtle: var(--mp-border-subtle);
+  --color-mp-secondary: var(--mp-secondary);
+  --color-mp-muted: var(--mp-muted);
+
+  --color-brand-lime: var(--mp-lime);
+  --color-brand-lime-hover: var(--mp-lime-hover);
+  --color-action: var(--mp-action);
+  --color-action-hover: var(--mp-action-hover);
+  --color-action-on: var(--mp-action-on);
+  --color-brand-offwhite: var(--mp-parchment);
+  --color-brand-dark: var(--mp-dark);
+  --color-brand-ink: var(--mp-ink);
+  --color-brand-card: var(--mp-card);
+  --color-brand-border: var(--mp-border);
+  --color-brand-secondary: var(--mp-secondary);
+  --color-brand-muted: var(--mp-muted);
+
   --color-navy: var(--mp-navy-dark);
   --color-navy-subtle: var(--mp-navy-subtle);
   --color-navy-card: var(--mp-navy-card);
@@ -79,6 +157,8 @@ body {
   --color-azure-hover: var(--mp-azure-hover);
   --color-azure-subtle: var(--mp-azure-subtle);
   --color-cyan: var(--mp-cyan-accent);
+  --color-accent: var(--mp-petrol);
+  --color-accent-light: var(--mp-lime);
 
   --color-surface: var(--mp-surface-bg);
   --color-surface-light: var(--mp-surface-light);
@@ -138,13 +218,14 @@ body {
 }
 
 @layer base {
+
   /* Focus rings — azure, offset, on every interactive control. */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
   textarea:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid var(--mp-azure-primary);
+    outline: 2px solid var(--mp-petrol-2);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -160,6 +241,7 @@ body {
   transition: transform 0.25s var(--mp-spring-ease), box-shadow 0.25s var(--mp-spring-ease),
     background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
+
 .mp-press:active {
   transform: scale(0.98);
 }
@@ -175,6 +257,7 @@ body {
   background: var(--mp-surface-bg);
   border-top-left-radius: 20px;
 }
+
 .mp-breadcrumb-notch::before,
 .mp-breadcrumb-notch::after {
   content: "";
@@ -186,10 +269,12 @@ body {
   box-shadow: 6px 6px 0 6px var(--mp-surface-bg);
   pointer-events: none;
 }
+
 .mp-breadcrumb-notch::before {
   top: -20px;
   right: 0;
 }
+
 .mp-breadcrumb-notch::after {
   bottom: 0;
   left: -20px;
@@ -200,11 +285,13 @@ body {
 .mp-card-arrow {
   transition: transform 0.25s var(--mp-spring-ease), background-color 0.2s ease, color 0.2s ease;
 }
+
 .group:hover .mp-card-arrow {
   background-color: var(--mp-azure-primary);
   color: #fff;
   transform: rotate(45deg);
 }
+
 .group\/featured:hover .mp-card-arrow-featured {
   transform: rotate(45deg);
 }
@@ -223,10 +310,11 @@ body {
 .mp-prose li a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-decoration-color: rgba(0, 98, 255, 0.4);
+  text-decoration-color: rgba(15, 80, 97, 0.4);
   text-underline-offset: 3px;
   text-decoration-skip-ink: auto;
 }
+
 .mp-prose p a:hover,
 .mp-prose li a:hover {
   text-decoration-color: var(--mp-azure-primary);
@@ -245,6 +333,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -254,10 +343,13 @@ body {
   display: flex;
   width: max-content;
   animation: mp-marquee 28s linear infinite;
+  animation-play-state: running !important;
 }
 
-.mp-animate-marquee:hover {
-  animation-play-state: paused;
+.mp-animate-marquee:hover,
+*:hover>.mp-animate-marquee,
+[class*="group"]:hover .mp-animate-marquee {
+  animation-play-state: running !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -267,6 +359,7 @@ body {
   from {
     transform: rotate(var(--start-angle, 0deg));
   }
+
   to {
     transform: rotate(calc(var(--start-angle, 0deg) + 360deg));
   }
@@ -276,6 +369,7 @@ body {
   from {
     transform: rotate(var(--start-angle, 0deg));
   }
+
   to {
     transform: rotate(calc(var(--start-angle, 0deg) - 360deg));
   }
@@ -285,6 +379,7 @@ body {
   from {
     transform: translate(-50%, -50%) rotate(calc(0deg - var(--start-angle, 0deg)));
   }
+
   to {
     transform: translate(-50%, -50%) rotate(calc(-360deg - var(--start-angle, 0deg)));
   }
@@ -294,15 +389,19 @@ body {
   from {
     transform: translate(-50%, -50%) rotate(calc(0deg - var(--start-angle, 0deg)));
   }
+
   to {
     transform: translate(-50%, -50%) rotate(calc(360deg - var(--start-angle, 0deg)));
   }
 }
 
 @keyframes mp-float-badge {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-4px);
   }
@@ -316,6 +415,7 @@ body {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
@@ -323,18 +423,43 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+
   .mp-press:active {
     transform: none;
   }
+
   .group:hover .mp-card-arrow {
     transform: none;
   }
+
   .mp-animate-marquee {
     animation: none;
     overflow-x: auto;
   }
+
   .mp-float-anim {
     animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Note: `content-visibility: auto` was trialled on the below-the-fold sections and
+   reverted. These sections range from ~640px to ~2700px tall, so a single
+   `contain-intrinsic-size` placeholder left the document height badly underestimated
+   and content shifted under the scrollbar as each section resolved. Trading layout
+   shift (a Core Web Vital) for paint savings was a bad deal here. The paint cost is
+   instead handled by gating the animation loops on visibility (see hooks/useInView.ts).
+   -------------------------------------------------------------------------- */
+
+/* Long marquee tracks are the most expensive thing to raster; hint the compositor
+   so it promotes them once rather than re-rastering each frame. */
+.mp-animate-marquee {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-animate-marquee {
+    will-change: auto;
   }
 }
 
@@ -361,16 +486,16 @@ body {
 }
 
 .bg-overlay-dark-alpha05 {
-  background-color: rgba(20, 20, 15, 0.05);
+  background-color: rgba(18, 24, 27, 0.05);
 }
 
 .bg-overlay-dark-alpha10 {
-  background-color: rgba(20, 20, 15, 0.1);
+  background-color: rgba(18, 24, 27, 0.1);
 }
 
 .styled-button-with-overlay {
-  background-color: #beff50;
-  color: #14140f;
+  background-color: var(--mp-action);
+  color: var(--mp-action-on);
   display: inline-flex;
 }
 
@@ -396,4 +521,125 @@ body {
 
 .styled-button-with-overlay:active .pressed-overlay {
   opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Integration Widgets Hero Animations & Styles
+   -------------------------------------------------------------------------- */
+@keyframes mp-float-widget {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(var(--distance-x, 16px), var(--distance-y, -16px), 0);
+  }
+}
+
+.header-integrations {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--mp-parchment);
+}
+
+.integration-widgets-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.integration-widget {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  left: var(--mobile-left, var(--desktop-left));
+  top: var(--mobile-top, var(--desktop-top));
+  width: var(--mobile-width, var(--desktop-width));
+  --distance-x: var(--mobile-distance-x, var(--desktop-distance-x));
+  --distance-y: var(--mobile-distance-y, var(--desktop-distance-y));
+  animation: mp-float-widget var(--mobile-duration, var(--desktop-duration, 8s)) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .integration-widget {
+    left: var(--desktop-left);
+    top: var(--desktop-top);
+    width: var(--desktop-width);
+    --distance-x: var(--desktop-distance-x);
+    --distance-y: var(--desktop-distance-y);
+    animation: mp-float-widget var(--desktop-duration, 8s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s);
+  }
+}
+
+.integration-widget img,
+.integration-widget svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: auto;
+  border-radius: 20px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.04));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.integration-widget:hover img,
+.integration-widget:hover svg {
+  transform: scale(1.1);
+}
+
+.integration-tooltip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  transform: translateX(-50%) translateY(-2px) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  padding: 3px 9px;
+  background: rgba(18, 42, 43, 0.92);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 40;
+}
+
+.integration-widget:hover .integration-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   Lenis Smooth Scrolling (GSAP Integration)
+   -------------------------------------------------------------------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

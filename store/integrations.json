@@ -1,0 +1,250 @@
+{
+  "title": "Microsoft consulting, minus the friction.",
+  "description": "One senior team runs your M&A-grade Microsoft tenant migration, then your Dynamics 365 and Power Platform work. No systems-integrator bureaucracy.",
+  "buttonText": "Book a call",
+  "buttonLink": "/contact/",
+  "widgets": [
+    {
+      "id": "dynamics-365",
+      "name": "Dynamics 365",
+      "src": "/hero-section-icons/image_-_2025-08-08T164136.643-removebg-preview.png",
+      "width": 84,
+      "height": 84,
+      "style": {
+        "--desktop-left": "2%",
+        "--desktop-top": "6%",
+        "--desktop-width": "84px",
+        "--desktop-duration": "8s",
+        "--desktop-distance-x": "16px",
+        "--desktop-distance-y": "-18px",
+        "--mobile-left": "4%",
+        "--mobile-top": "2%",
+        "--mobile-width": "44px",
+        "--mobile-duration": "10s",
+        "--mobile-distance-x": "-22px",
+        "--mobile-distance-y": "16px",
+        "--delay": "0s"
+      }
+    },
+    {
+      "id": "copilot",
+      "name": "Microsoft Copilot",
+      "src": "/hero-section-icons/Microsoft_Copilot_Icon.svg",
+      "width": 100,
+      "height": 100,
+      "style": {
+        "--desktop-left": "4%",
+        "--desktop-top": "68%",
+        "--desktop-width": "100px",
+        "--desktop-duration": "11s",
+        "--desktop-distance-x": "-13px",
+        "--desktop-distance-y": "21px",
+        "--mobile-left": "36%",
+        "--mobile-top": "60%",
+        "--mobile-width": "50px",
+        "--mobile-duration": "7s",
+        "--mobile-distance-x": "13px",
+        "--mobile-distance-y": "-19px",
+        "--delay": "0.125s"
+      }
+    },
+    {
+      "id": "power-bi",
+      "name": "Power BI",
+      "src": "/hero-section-icons/power-bi.png",
+      "width": 82,
+      "height": 82,
+      "style": {
+        "--desktop-left": "8%",
+        "--desktop-top": "32%",
+        "--desktop-width": "82px",
+        "--desktop-duration": "7s",
+        "--desktop-distance-x": "24px",
+        "--desktop-distance-y": "14px",
+        "--mobile-left": "2%",
+        "--mobile-top": "50%",
+        "--mobile-width": "44px",
+        "--mobile-duration": "12s",
+        "--mobile-distance-x": "20px",
+        "--mobile-distance-y": "22px",
+        "--delay": "0.25s"
+      }
+    },
+    {
+      "id": "power-platform",
+      "name": "Power Platform",
+      "src": "/hero-section-icons/microsoft-power-platform-icons.png",
+      "width": 92,
+      "height": 92,
+      "style": {
+        "--desktop-left": "19%",
+        "--desktop-top": "60%",
+        "--desktop-width": "92px",
+        "--desktop-duration": "9s",
+        "--desktop-distance-x": "-24px",
+        "--desktop-distance-y": "-16px",
+        "--mobile-left": "16%",
+        "--mobile-top": "66%",
+        "--mobile-width": "46px",
+        "--mobile-duration": "8s",
+        "--mobile-distance-x": "-16px",
+        "--mobile-distance-y": "12px",
+        "--delay": "0.375s"
+      }
+    },
+    {
+      "id": "azure",
+      "name": "Microsoft Azure",
+      "src": "/hero-section-icons/Microsoft_Azure.svg.webp",
+      "width": 80,
+      "height": 80,
+      "style": {
+        "--desktop-left": "24%",
+        "--desktop-top": "8%",
+        "--desktop-width": "80px",
+        "--desktop-duration": "12s",
+        "--desktop-distance-x": "19px",
+        "--desktop-distance-y": "-23px",
+        "--mobile-left": "38%",
+        "--mobile-top": "18%",
+        "--mobile-width": "46px",
+        "--mobile-duration": "9s",
+        "--mobile-distance-x": "-12px",
+        "--mobile-distance-y": "-17px",
+        "--delay": "0.5s"
+      }
+    },
+    {
+      "id": "business-central",
+      "name": "Business Central",
+      "src": "/hero-section-icons/66433f09a327b088760628d9_business-central-logo.png",
+      "width": 88,
+      "height": 88,
+      "style": {
+        "--desktop-left": "28%",
+        "--desktop-top": "74%",
+        "--desktop-width": "88px",
+        "--desktop-duration": "6s",
+        "--desktop-distance-x": "-20px",
+        "--desktop-distance-y": "13px",
+        "--mobile-left": "56%",
+        "--mobile-top": "40%",
+        "--mobile-width": "52px",
+        "--mobile-duration": "11s",
+        "--mobile-distance-x": "23px",
+        "--mobile-distance-y": "-15px",
+        "--delay": "0.625s"
+      }
+    },
+    {
+      "id": "teams",
+      "name": "Microsoft Teams",
+      "src": "/hero-section-icons/teams.png",
+      "width": 100,
+      "height": 100,
+      "style": {
+        "--desktop-left": "74%",
+        "--desktop-top": "60%",
+        "--desktop-width": "100px",
+        "--desktop-duration": "10s",
+        "--desktop-distance-x": "15px",
+        "--desktop-distance-y": "-14px",
+        "--mobile-left": "70%",
+        "--mobile-top": "68%",
+        "--mobile-width": "50px",
+        "--mobile-duration": "6s",
+        "--mobile-distance-x": "-19px",
+        "--mobile-distance-y": "15px",
+        "--delay": "0.75s"
+      }
+    },
+    {
+      "id": "power-automate",
+      "name": "Power Automate",
+      "src": "/hero-section-icons/powerautomate.webp",
+      "width": 82,
+      "height": 82,
+      "style": {
+        "--desktop-left": "76%",
+        "--desktop-top": "12%",
+        "--desktop-width": "82px",
+        "--desktop-duration": "8s",
+        "--desktop-distance-x": "-17px",
+        "--desktop-distance-y": "24px",
+        "--mobile-left": "20%",
+        "--mobile-top": "15%",
+        "--mobile-width": "44px",
+        "--mobile-duration": "10s",
+        "--mobile-distance-x": "14px",
+        "--mobile-distance-y": "-24px",
+        "--delay": "0.875s"
+      }
+    },
+    {
+      "id": "sharepoint",
+      "name": "SharePoint",
+      "src": "/hero-section-icons/Microsoft_Office_SharePoint_(2025–present).svg.webp",
+      "width": 96,
+      "height": 96,
+      "style": {
+        "--desktop-left": "83%",
+        "--desktop-top": "74%",
+        "--desktop-width": "96px",
+        "--desktop-duration": "7s",
+        "--desktop-distance-x": "18px",
+        "--desktop-distance-y": "17px",
+        "--mobile-left": "64%",
+        "--mobile-top": "2%",
+        "--mobile-width": "46px",
+        "--mobile-duration": "7s",
+        "--mobile-distance-x": "-14px",
+        "--mobile-distance-y": "20px",
+        "--delay": "1s"
+      }
+    },
+    {
+      "id": "fabric",
+      "name": "Microsoft Fabric",
+      "src": "/hero-section-icons/fabric.png",
+      "width": 86,
+      "height": 86,
+      "style": {
+        "--desktop-left": "88%",
+        "--desktop-top": "6%",
+        "--desktop-width": "86px",
+        "--desktop-duration": "11s",
+        "--desktop-distance-x": "-15px",
+        "--desktop-distance-y": "-21px",
+        "--mobile-left": "88%",
+        "--mobile-top": "8%",
+        "--mobile-width": "44px",
+        "--mobile-duration": "9s",
+        "--mobile-distance-x": "17px",
+        "--mobile-distance-y": "13px",
+        "--delay": "1.125s"
+      }
+    },
+    {
+      "id": "entra",
+      "name": "Microsoft Entra",
+      "src": "/hero-section-icons/Microsoft_Entra_ID_color_icon.svg.webp",
+      "width": 94,
+      "height": 94,
+      "style": {
+        "--desktop-left": "93%",
+        "--desktop-top": "40%",
+        "--desktop-width": "94px",
+        "--desktop-duration": "9s",
+        "--desktop-distance-x": "22px",
+        "--desktop-distance-y": "-12px",
+        "--mobile-left": "86%",
+        "--mobile-top": "46%",
+        "--mobile-width": "48px",
+        "--mobile-duration": "12s",
+        "--mobile-distance-x": "-23px",
+        "--mobile-distance-y": "-13px",
+        "--delay": "1.25s"
+      }
+    }
+  ]
+}

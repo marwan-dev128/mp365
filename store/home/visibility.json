@@ -1,0 +1,36 @@
+{
+  "title": "Decisions by industry",
+  "subtitle": "Manufacturing, healthcare and retail each turn on a different Microsoft product decision. Get it wrong and the implementation cannot fix it.",
+  "cards": [
+    {
+      "id": "manufacturing",
+      "variant": "photo",
+      "image": "/images/mp365/industries/manufacturing-business-central.webp",
+      "imageAlt": "Manufacturing plant floor, Business Central decision",
+      "title": "Manufacturing",
+      "description": "Business Central or Supply Chain Management is settled by your production data model, not your headcount. A run that yields co-products rules Business Central out. Discrete production usually belongs on Business Central Premium, however many plants you run.",
+      "linkText": "See the industry",
+      "href": "/industries/manufacturing/"
+    },
+    {
+      "id": "healthcare",
+      "variant": "map",
+      "image": "/images/mp365/industries/healthcare-microsoft-purview.webp",
+      "imageAlt": "Healthcare setting, PHI in Microsoft 365",
+      "title": "Healthcare PHI",
+      "description": "The BAA reaches Teams, Exchange and SharePoint. It does not configure them: audit logs keep 180 days against a years-long lookback.",
+      "linkText": "See the industry",
+      "href": "/industries/healthcare/"
+    },
+    {
+      "id": "retail",
+      "variant": "headline",
+      "image": "",
+      "imageAlt": "",
+      "title": "Multi-store retail",
+      "description": "Most mid-market specialty retailers belong on Business Central rather than Dynamics 365 Commerce. Stock and sales read the same in every store, and you are not paying for a pricing engine you will not run.",
+      "linkText": "See the industry",
+      "href": "/industries/retail/"
+    }
+  ]
+}
