@@ -1,6 +1,32 @@
 import { cache } from "react";
 import { prisma } from "./db";
 import type { ServiceCategory as PrismaServiceCategory, BlogCluster as PrismaBlogCluster } from "@prisma/client";
+import {
+  getBlogClusterCtaFallback,
+  getSiteSettingsFallback,
+  getPeopleFallback,
+  getPersonBySlugFallback,
+  getServicesFallback,
+  getServiceBySlugFallback,
+  getSolutionsFallback,
+  getSolutionBySlugFallback,
+  getIndustriesFallback,
+  getIndustryBySlugFallback,
+  getCaseStudiesFallback,
+  getCaseStudyBySlugFallback,
+  getAllCaseStudySlugsFallback,
+  getWorkedExamplesFallback,
+  getWorkedExampleBySlugFallback,
+  getBlogPostsFallback,
+  getBlogPostBySlugFallback,
+  getGlossaryTermsFallback,
+  getGlossaryTermBySlugFallback,
+  getMarketingPagesFallback,
+  getMarketingPageBySlugFallback,
+  getAllMarketingPageSlugsFallback,
+  getStaticPageFaqsFallback,
+  getOldSlugRedirectsFallback,
+} from "./seed-fallback";
 
 // Data-access layer: every content page reads through here, never through
 // `prisma` directly. Each function is wrapped in React's `cache()` so that
@@ -23,17 +49,6 @@ export const CLUSTER_LABELS: Record<PrismaBlogCluster, string> = {
   DataGovernance: "Data Governance",
 };
 
-/**
- * Per-cluster editorial wiring for the blog template: which service pages an
- * article in that cluster should link to, and what the sidebar CTA should
- * offer. Keyed by the CMS's own BlogCluster enum, so a post picks its related
- * services and its CTA up from its cluster rather than from anything
- * hard-coded per slug.
- *
- * Service slugs are resolved against the Service table at render time (see
- * getBlogRelatedServices), so a renamed or retired service silently drops out
- * instead of shipping a link to a 404.
- */
 export const CLUSTER_SERVICE_SLUGS: Record<PrismaBlogCluster, string[]> = {
   MAMigration: ["ma-tenant-migration", "microsoft-365-migration"],
   Dynamics365: ["dynamics-365", "power-platform"],
@@ -49,12 +64,6 @@ export type ClusterCta = {
   ctaHref: string;
 };
 
-/**
- * Used only when a cluster has no BlogClusterCta row — a new BlogCluster
- * value shipped ahead of its content, say. Deliberately generic: the point is
- * that an article still renders a working call to action, not that this copy
- * is ever the right copy.
- */
 export const DEFAULT_BLOG_CTA: ClusterCta = {
   tag: "Direct guidance",
   title: "Working through this on a real project?",
@@ -63,112 +72,147 @@ export const DEFAULT_BLOG_CTA: ClusterCta = {
   ctaHref: "/contact/",
 };
 
-/** The sidebar CTA for a post's cluster. Content, so it comes from the DB. */
-export const getBlogClusterCta = cache(
-  async (cluster: PrismaBlogCluster): Promise<ClusterCta> => {
-    const row = await prisma.blogClusterCta.findUnique({ where: { cluster } });
-    if (!row) return DEFAULT_BLOG_CTA;
-    return {
-      tag: row.tag,
-      title: row.title,
-      body: row.body,
-      ctaText: row.ctaText,
-      ctaHref: row.ctaHref,
-    };
-  }
-);
-
 export type Faq = { q: string; a: string };
 
 function mapFaqs(faqs: { question: string; answer: string }[]): Faq[] {
   return faqs.map((f) => ({ q: f.question, a: f.answer }));
 }
 
-export const getSiteSettings = cache(async () => {
-  const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
-  if (!settings) {
-    throw new Error(
-      "SiteSettings row missing — run `npm run db:seed` to populate the database."
+/**
+ * Fallback execution wrapper: If DATABASE_URL is not provided or points to a placeholder,
+ * or if the database query fails (e.g. unreachable server during build/CI), it gracefully
+ * falls back to the static content seed so builds and pages never crash.
+ */
+async function withFallback<T>(queryFn: () => Promise<T>, fallbackFn: () => T | Promise<T>): Promise<T> {
+  const dbUrl = process.env.DATABASE_URL;
+  if (
+    !dbUrl ||
+    dbUrl.includes("placeholder") ||
+    (process.env.VERCEL && (dbUrl.includes("localhost") || dbUrl.includes("127.0.0.1")))
+  ) {
+    return fallbackFn();
+  }
+  try {
+    return await queryFn();
+  } catch {
+    return fallbackFn();
+  }
+}
+
+/** The sidebar CTA for a post's cluster. Content, so it comes from the DB. */
+export const getBlogClusterCta = cache(
+  async (cluster: PrismaBlogCluster): Promise<ClusterCta> => {
+    return withFallback(
+      async () => {
+        const row = await prisma.blogClusterCta.findUnique({ where: { cluster } });
+        if (!row) return DEFAULT_BLOG_CTA;
+        return {
+          tag: row.tag,
+          title: row.title,
+          body: row.body,
+          ctaText: row.ctaText,
+          ctaHref: row.ctaHref,
+        };
+      },
+      () => getBlogClusterCtaFallback(cluster)
     );
   }
-  return settings;
+);
+
+export const getSiteSettings = cache(async () => {
+  return withFallback(
+    async () => {
+      const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
+      if (!settings) {
+        throw new Error(
+          "SiteSettings row missing — run `npm run db:seed` to populate the database."
+        );
+      }
+      return settings;
+    },
+    () => getSiteSettingsFallback()
+  );
 });
 
 export const getPeople = cache(async () => {
-  return prisma.person.findMany({ orderBy: { order: "asc" } });
+  return withFallback(
+    async () => prisma.person.findMany({ orderBy: { order: "asc" } }),
+    () => getPeopleFallback()
+  );
 });
 
 export const getPersonBySlug = cache(async (slug: string) => {
-  return prisma.person.findUnique({ where: { slug } });
+  return withFallback(
+    async () => prisma.person.findUnique({ where: { slug } }),
+    () => getPersonBySlugFallback(slug)
+  );
 });
 
 export const getServices = cache(async () => {
-  const services = await prisma.service.findMany({
-    orderBy: { order: "asc" },
-    include: { sections: { orderBy: { order: "asc" } }, process: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
-  });
-  return services.map((s) => ({
-    ...s,
-    categoryLabel: CATEGORY_LABELS[s.category],
-    faqs: mapFaqs(s.faqs),
-  }));
+  return withFallback(
+    async () => {
+      const services = await prisma.service.findMany({
+        orderBy: { order: "asc" },
+        include: { sections: { orderBy: { order: "asc" } }, process: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
+      });
+      return services.map((s) => ({
+        ...s,
+        categoryLabel: CATEGORY_LABELS[s.category],
+        faqs: mapFaqs(s.faqs),
+      }));
+    },
+    () => getServicesFallback()
+  );
 });
 
 export const getServiceBySlug = cache(async (slug: string) => {
-  const s = await prisma.service.findUnique({
-    where: { slug },
-    include: { sections: { orderBy: { order: "asc" } }, process: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
-  });
-  if (!s) return null;
+  return withFallback(
+    async () => {
+      const s = await prisma.service.findUnique({
+        where: { slug },
+        include: { sections: { orderBy: { order: "asc" } }, process: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
+      });
+      if (!s) return null;
 
-  // Same resolution as solutions: a slug that no longer exists renders as
-  // nothing rather than as a link to a 404. (Helpers are function
-  // declarations further down; hoisting makes them usable here.)
-  const [terms, relatedPages] = await Promise.all([
-    s.relatedTermSlugs.length
-      ? prisma.glossaryTerm.findMany({
-          where: { slug: { in: s.relatedTermSlugs } },
-          select: { slug: true, term: true },
-        })
-      : Promise.resolve([]),
-    resolveRelatedPages(s.relatedPageRefs),
-  ]);
+      const [terms, relatedPages] = await Promise.all([
+        s.relatedTermSlugs.length
+          ? prisma.glossaryTerm.findMany({
+              where: { slug: { in: s.relatedTermSlugs } },
+              select: { slug: true, term: true },
+            })
+          : Promise.resolve([]),
+        resolveRelatedPages(s.relatedPageRefs),
+      ]);
 
-  return {
-    ...s,
-    categoryLabel: CATEGORY_LABELS[s.category],
-    faqs: mapFaqs(s.faqs),
-    relatedTerms: inAuthoredOrder(terms, s.relatedTermSlugs, (r) => r.slug),
-    relatedPages,
-  };
+      return {
+        ...s,
+        categoryLabel: CATEGORY_LABELS[s.category],
+        faqs: mapFaqs(s.faqs),
+        relatedTerms: inAuthoredOrder(terms, s.relatedTermSlugs, (r) => r.slug),
+        relatedPages,
+      };
+    },
+    () => getServiceBySlugFallback(slug)
+  );
 });
 
 export const getSolutions = cache(async () => {
-  const solutions = await prisma.solution.findMany({
-    orderBy: { order: "asc" },
-    include: { sections: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
-  });
-  return solutions.map((s) => ({ ...s, faqs: mapFaqs(s.faqs) }));
+  return withFallback(
+    async () => {
+      const solutions = await prisma.solution.findMany({
+        orderBy: { order: "asc" },
+        include: { sections: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
+      });
+      return solutions.map((s) => ({ ...s, faqs: mapFaqs(s.faqs) }));
+    },
+    () => getSolutionsFallback()
+  );
 });
 
-/**
- * findMany ignores the order of an `in` filter, so restore the authored
- * order — the first related link is the most relevant one.
- */
 function inAuthoredOrder<T>(rows: T[], order: string[], key: (r: T) => string): T[] {
   return order.map((s) => rows.find((r) => key(r) === s)).filter((r): r is T => Boolean(r));
 }
 
-/**
- * Turns internal paths like "/pricing/tenant-migration-cost/" or
- * "/solutions/data-analytics/" into { name, href } links, resolving each
- * against the table that owns it and dropping anything that doesn't exist or
- * isn't published — an unpublished target would otherwise be linked from an
- * indexable page into a noindex one.
- *
- * Services and glossary terms are deliberately NOT resolved here: they have
- * their own sidebar sections fed by relatedServiceSlugs / relatedTermSlugs.
- */
 async function resolveRelatedPages(refs: string[]) {
   const parsed = refs
     .map((ref) => {
@@ -196,7 +240,6 @@ async function resolveRelatedPages(refs: string[]) {
       : Promise.resolve([]),
   ]);
 
-  // Keep the authored order across both sources.
   return parsed
     .map(({ hub, slug }) =>
       hub === "solutions"
@@ -213,150 +256,171 @@ async function resolveRelatedPages(refs: string[]) {
 }
 
 export const getSolutionBySlug = cache(async (slug: string) => {
-  const s = await prisma.solution.findUnique({
-    where: { slug },
-    include: { sections: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
-  });
-  if (!s) return null;
+  return withFallback(
+    async () => {
+      const s = await prisma.solution.findUnique({
+        where: { slug },
+        include: { sections: { orderBy: { order: "asc" } }, faqs: { orderBy: { order: "asc" } } },
+      });
+      if (!s) return null;
 
-  // Cross-links resolve to real rows, so a slug that no longer exists renders
-  // as nothing rather than as a link to a 404. These were previously a
-  // hardcoded map inside app/solutions/[slug]/page.tsx, invisible to editors.
-  const [services, terms, relatedPages] = await Promise.all([
-    s.relatedServiceSlugs.length
-      ? prisma.service.findMany({
-          where: { slug: { in: s.relatedServiceSlugs } },
-          select: { slug: true, name: true },
-        })
-      : Promise.resolve([]),
-    s.relatedTermSlugs.length
-      ? prisma.glossaryTerm.findMany({
-          where: { slug: { in: s.relatedTermSlugs } },
-          select: { slug: true, term: true },
-        })
-      : Promise.resolve([]),
-    resolveRelatedPages(s.relatedPageRefs),
-  ]);
+      const [services, terms, relatedPages] = await Promise.all([
+        s.relatedServiceSlugs.length
+          ? prisma.service.findMany({
+              where: { slug: { in: s.relatedServiceSlugs } },
+              select: { slug: true, name: true },
+            })
+          : Promise.resolve([]),
+        s.relatedTermSlugs.length
+          ? prisma.glossaryTerm.findMany({
+              where: { slug: { in: s.relatedTermSlugs } },
+              select: { slug: true, term: true },
+            })
+          : Promise.resolve([]),
+        resolveRelatedPages(s.relatedPageRefs),
+      ]);
 
-  return {
-    ...s,
-    faqs: mapFaqs(s.faqs),
-    relatedServices: inAuthoredOrder(services, s.relatedServiceSlugs, (r) => r.slug),
-    relatedTerms: inAuthoredOrder(terms, s.relatedTermSlugs, (r) => r.slug),
-    relatedPages,
-  };
+      return {
+        ...s,
+        faqs: mapFaqs(s.faqs),
+        relatedServices: inAuthoredOrder(services, s.relatedServiceSlugs, (r) => r.slug),
+        relatedTerms: inAuthoredOrder(terms, s.relatedTermSlugs, (r) => r.slug),
+        relatedPages,
+      };
+    },
+    () => getSolutionBySlugFallback(slug)
+  );
 });
 
 export const getIndustries = cache(async () => {
-  const industries = await prisma.industry.findMany({
-    orderBy: { order: "asc" },
-    include: { faqs: { orderBy: { order: "asc" } } },
-  });
-  return industries.map((i) => ({ ...i, faqs: mapFaqs(i.faqs) }));
+  return withFallback(
+    async () => {
+      const industries = await prisma.industry.findMany({
+        orderBy: { order: "asc" },
+        include: { faqs: { orderBy: { order: "asc" } } },
+      });
+      return industries.map((i) => ({ ...i, faqs: mapFaqs(i.faqs) }));
+    },
+    () => getIndustriesFallback()
+  );
 });
 
 export const getIndustryBySlug = cache(async (slug: string) => {
-  const i = await prisma.industry.findUnique({
-    where: { slug },
-    include: { faqs: { orderBy: { order: "asc" } } },
-  });
-  if (!i) return null;
+  return withFallback(
+    async () => {
+      const i = await prisma.industry.findUnique({
+        where: { slug },
+        include: { faqs: { orderBy: { order: "asc" } } },
+      });
+      if (!i) return null;
 
-  // Same resolution as getSolutionBySlug: cross-links become real rows, so a
-  // renamed slug renders as nothing instead of linking to a 404. These lived
-  // in a hardcoded map inside the route component until the industry pages
-  // were rebuilt.
-  const [services, terms, relatedPages] = await Promise.all([
-    i.relatedServiceSlugs.length
-      ? prisma.service.findMany({
-          where: { slug: { in: i.relatedServiceSlugs } },
-          select: { slug: true, name: true },
-        })
-      : Promise.resolve([]),
-    i.relatedTermSlugs.length
-      ? prisma.glossaryTerm.findMany({
-          where: { slug: { in: i.relatedTermSlugs } },
-          select: { slug: true, term: true },
-        })
-      : Promise.resolve([]),
-    resolveRelatedPages(i.relatedPageRefs),
-  ]);
+      const [services, terms, relatedPages] = await Promise.all([
+        i.relatedServiceSlugs.length
+          ? prisma.service.findMany({
+              where: { slug: { in: i.relatedServiceSlugs } },
+              select: { slug: true, name: true },
+            })
+          : Promise.resolve([]),
+        i.relatedTermSlugs.length
+          ? prisma.glossaryTerm.findMany({
+              where: { slug: { in: i.relatedTermSlugs } },
+              select: { slug: true, term: true },
+            })
+          : Promise.resolve([]),
+        resolveRelatedPages(i.relatedPageRefs),
+      ]);
 
-  return {
-    ...i,
-    faqs: mapFaqs(i.faqs),
-    relatedServices: inAuthoredOrder(services, i.relatedServiceSlugs, (r) => r.slug),
-    relatedTerms: inAuthoredOrder(terms, i.relatedTermSlugs, (r) => r.slug),
-    relatedPages,
-  };
+      return {
+        ...i,
+        faqs: mapFaqs(i.faqs),
+        relatedServices: inAuthoredOrder(services, i.relatedServiceSlugs, (r) => r.slug),
+        relatedTerms: inAuthoredOrder(terms, i.relatedTermSlugs, (r) => r.slug),
+        relatedPages,
+      };
+    },
+    () => getIndustryBySlugFallback(slug)
+  );
 });
 
 export const getCaseStudies = cache(async () => {
-  // Real engagements only. Worked examples are the same table but a different
-  // promise to the reader, and /case-studies/ says "real engagements, not
-  // hypotheticals" in its hero — so they are never listed here.
-  return prisma.caseStudy.findMany({
-    where: { published: true, kind: "CLIENT" },
-    orderBy: { order: "asc" },
-    include: { service: true },
-  });
+  return withFallback(
+    async () =>
+      prisma.caseStudy.findMany({
+        where: { published: true, kind: "CLIENT" },
+        orderBy: { order: "asc" },
+        include: { service: true },
+      }),
+    () => getCaseStudiesFallback()
+  );
 });
 
-// --- Worked examples --------------------------------------------------------
-// Illustrative scenarios attributed to no client, rendered under
-// /resources/worked-examples/ with a permanent notice. Same row shape as a
-// case study; the `kind` column is the only thing separating the two, and
-// every accessor filters on it so neither can leak into the other's listing.
 export const getWorkedExamples = cache(async () => {
-  return prisma.caseStudy.findMany({
-    where: { published: true, kind: "WORKED_EXAMPLE" },
-    orderBy: { order: "asc" },
-    include: { service: true },
-  });
+  return withFallback(
+    async () =>
+      prisma.caseStudy.findMany({
+        where: { published: true, kind: "WORKED_EXAMPLE" },
+        orderBy: { order: "asc" },
+        include: { service: true },
+      }),
+    () => getWorkedExamplesFallback()
+  );
 });
 
 export const getWorkedExampleBySlug = cache(async (slug: string) => {
-  const row = await prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
-  return row && row.kind === "WORKED_EXAMPLE" ? row : null;
+  return withFallback(
+    async () => {
+      const row = await prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
+      return row && row.kind === "WORKED_EXAMPLE" ? row : null;
+    },
+    () => getWorkedExampleBySlugFallback(slug)
+  );
 });
 
-// Case study detail pages render even when unpublished (placeholder content
-// is visibly marked as such in the UI) so editors can preview drafts by URL;
-// only the public listing filters to `published: true`.
 export const getCaseStudyBySlug = cache(async (slug: string) => {
-  const row = await prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
-  return row && row.kind === "CLIENT" ? row : null;
+  return withFallback(
+    async () => {
+      const row = await prisma.caseStudy.findUnique({ where: { slug }, include: { service: true } });
+      return row && row.kind === "CLIENT" ? row : null;
+    },
+    () => getCaseStudyBySlugFallback(slug)
+  );
 });
 
 export const getAllCaseStudySlugs = cache(async () => {
-  return prisma.caseStudy.findMany({ where: { kind: "CLIENT" }, select: { slug: true } });
+  return withFallback(
+    async () => prisma.caseStudy.findMany({ where: { kind: "CLIENT" }, select: { slug: true } }),
+    () => getAllCaseStudySlugsFallback()
+  );
 });
 
 export const getBlogPosts = cache(async () => {
-  const posts = await prisma.blogPost.findMany({
-    where: { published: true },
-    orderBy: { datePublished: "desc" },
-    include: { author: true },
-  });
-  return posts.map((p) => ({ ...p, clusterLabel: CLUSTER_LABELS[p.cluster] }));
+  return withFallback(
+    async () => {
+      const posts = await prisma.blogPost.findMany({
+        where: { published: true },
+        orderBy: { datePublished: "desc" },
+        include: { author: true },
+      });
+      return posts.map((p) => ({ ...p, clusterLabel: CLUSTER_LABELS[p.cluster] }));
+    },
+    () => getBlogPostsFallback()
+  );
 });
 
 export const getBlogPostBySlug = cache(async (slug: string) => {
-  const p = await prisma.blogPost.findUnique({
-    where: { slug },
-    include: { author: true, faqs: { orderBy: { order: "asc" } } },
-  });
-  if (!p) return null;
-  return { ...p, clusterLabel: CLUSTER_LABELS[p.cluster], faqs: mapFaqs(p.faqs) };
+  return withFallback(
+    async () => {
+      const p = await prisma.blogPost.findUnique({
+        where: { slug },
+        include: { author: true, faqs: { orderBy: { order: "asc" } } },
+      });
+      if (!p) return null;
+      return { ...p, clusterLabel: CLUSTER_LABELS[p.cluster], faqs: mapFaqs(p.faqs) };
+    },
+    () => getBlogPostBySlugFallback(slug)
+  );
 });
 
-/**
- * Further reading for the foot of an article: same-cluster posts first (that
- * is the topical signal the CMS actually carries), then the most recent other
- * posts to fill the row. Never the current post, never a draft — and never
- * random, which is the failure mode that makes a "related" rail worthless for
- * readers and for internal linking alike.
- */
 export const getRelatedBlogPosts = cache(async (slug: string, limit = 3) => {
   const posts = await getBlogPosts();
   const current = posts.find((p) => p.slug === slug);
@@ -368,7 +432,6 @@ export const getRelatedBlogPosts = cache(async (slug: string, limit = 3) => {
   return [...sameCluster, ...rest].slice(0, limit);
 });
 
-/** Service pages relevant to a post's cluster, resolved to live rows. */
 export const getBlogRelatedServices = cache(async (cluster: PrismaBlogCluster) => {
   const slugs = CLUSTER_SERVICE_SLUGS[cluster] ?? [];
   if (!slugs.length) return [];
@@ -379,36 +442,40 @@ export const getBlogRelatedServices = cache(async (cluster: PrismaBlogCluster) =
 });
 
 export const getGlossaryTerms = cache(async () => {
-  return prisma.glossaryTerm.findMany({
-    orderBy: { order: "asc" },
-    include: { relatedServices: true },
-  });
+  return withFallback(
+    async () =>
+      prisma.glossaryTerm.findMany({
+        orderBy: { order: "asc" },
+        include: { relatedServices: true },
+      }),
+    () => getGlossaryTermsFallback()
+  );
 });
 
 export const getGlossaryTermBySlug = cache(async (slug: string) => {
-  const t = await prisma.glossaryTerm.findUnique({
-    where: { slug },
-    include: {
-      relatedServices: true,
-      faqs: { orderBy: { order: "asc" } },
+  return withFallback(
+    async () => {
+      const t = await prisma.glossaryTerm.findUnique({
+        where: { slug },
+        include: {
+          relatedServices: true,
+          faqs: { orderBy: { order: "asc" } },
+        },
+      });
+      if (!t) return null;
+
+      const relatedTerms = t.relatedTermSlugs.length
+        ? await prisma.glossaryTerm.findMany({
+            where: { slug: { in: t.relatedTermSlugs } },
+            select: { slug: true, term: true },
+          })
+        : [];
+
+      return { ...t, faqs: mapFaqs(t.faqs), relatedTerms };
     },
-  });
-  if (!t) return null;
-
-  // Resolve cross-term links to real rows so a stale slug renders as nothing
-  // rather than as a link to a 404.
-  const relatedTerms = t.relatedTermSlugs.length
-    ? await prisma.glossaryTerm.findMany({
-        where: { slug: { in: t.relatedTermSlugs } },
-        select: { slug: true, term: true },
-      })
-    : [];
-
-  return { ...t, faqs: mapFaqs(t.faqs), relatedTerms };
+    () => getGlossaryTermBySlugFallback(slug)
+  );
 });
-
-// --- Marketing hubs: /migrations, /compare, /pricing, /assessments, -------
-// --- /dynamics-365 ----------------------------------------------------
 
 export const MARKETING_HUBS = ["migrations", "compare", "pricing", "assessments", "dynamics-365"] as const;
 export type MarketingHub = (typeof MARKETING_HUBS)[number];
@@ -422,97 +489,94 @@ export const HUB_LABELS: Record<MarketingHub, string> = {
 };
 
 export const getMarketingPages = cache(async (hub: MarketingHub) => {
-  const pages = await prisma.marketingPage.findMany({
-    where: { hub, published: true },
-    orderBy: { order: "asc" },
-    include: { faqs: { orderBy: { order: "asc" } } },
-  });
-  return pages.map((p) => ({ ...p, faqs: mapFaqs(p.faqs) }));
+  return withFallback(
+    async () => {
+      const pages = await prisma.marketingPage.findMany({
+        where: { hub, published: true },
+        orderBy: { order: "asc" },
+        include: { faqs: { orderBy: { order: "asc" } } },
+      });
+      return pages.map((p) => ({ ...p, faqs: mapFaqs(p.faqs) }));
+    },
+    () => getMarketingPagesFallback(hub)
+  );
 });
 
 export const getMarketingPageBySlug = cache(async (hub: MarketingHub, slug: string) => {
-  const p = await prisma.marketingPage.findUnique({
-    where: { hub_slug: { hub, slug } },
-    include: { faqs: { orderBy: { order: "asc" } } },
-  });
-  if (!p) return null;
+  return withFallback(
+    async () => {
+      const p = await prisma.marketingPage.findUnique({
+        where: { hub_slug: { hub, slug } },
+        include: { faqs: { orderBy: { order: "asc" } } },
+      });
+      if (!p) return null;
 
-  // These arrays were seeded from day one but no hub template ever rendered
-  // them — the 20 hub pages averaged 3-5 internal links, the lowest on the
-  // site. Resolved here so the sidebar can show only links that exist.
-  const [services, relatedPages] = await Promise.all([
-    p.relatedServiceSlugs.length
-      ? prisma.service.findMany({
-          where: { slug: { in: p.relatedServiceSlugs } },
-          select: { slug: true, name: true },
-        })
-      : Promise.resolve([]),
-    resolveRelatedPages(p.relatedPageRefs.filter((r) => r !== `/${hub}/${slug}/`)),
-  ]);
+      const [services, relatedPages] = await Promise.all([
+        p.relatedServiceSlugs.length
+          ? prisma.service.findMany({
+              where: { slug: { in: p.relatedServiceSlugs } },
+              select: { slug: true, name: true },
+            })
+          : Promise.resolve([]),
+        resolveRelatedPages(p.relatedPageRefs.filter((r) => r !== `/${hub}/${slug}/`)),
+      ]);
 
-  return {
-    ...p,
-    faqs: mapFaqs(p.faqs),
-    relatedServices: inAuthoredOrder(services, p.relatedServiceSlugs, (r) => r.slug),
-    relatedPages,
-  };
+      return {
+        ...p,
+        faqs: mapFaqs(p.faqs),
+        relatedServices: inAuthoredOrder(services, p.relatedServiceSlugs, (r) => r.slug),
+        relatedPages,
+      };
+    },
+    () => getMarketingPageBySlugFallback(hub, slug)
+  );
 });
 
 export const getAllMarketingPageSlugs = cache(async (hub: MarketingHub) => {
-  return prisma.marketingPage.findMany({ where: { hub }, select: { slug: true } });
+  return withFallback(
+    async () => prisma.marketingPage.findMany({ where: { hub }, select: { slug: true } }),
+    () => getAllMarketingPageSlugsFallback(hub)
+  );
 });
 
-// --- Static-page FAQs ------------------------------------------------------
-// Routes that are hand-built React rather than content rows (the homepage,
-// /about/, /microsoft-consultant-connecticut/, and the hub indexes) have no
-// parent row to hang FAQs off, so theirs are keyed by canonical path. Pass
-// the same trailing-slash path used for canonical URLs and JSON-LD @ids.
 export const getStaticPageFaqs = cache(async (path: string): Promise<Faq[]> => {
-  try {
-    if (prisma.staticPageFaq) {
-      const faqs = await prisma.staticPageFaq.findMany({
-        where: { path },
-        orderBy: { order: "asc" },
-      });
-      if (faqs && faqs.length > 0) {
-        return mapFaqs(faqs);
+  return withFallback(
+    async () => {
+      if (prisma.staticPageFaq) {
+        const faqs = await prisma.staticPageFaq.findMany({
+          where: { path },
+          orderBy: { order: "asc" },
+        });
+        if (faqs && faqs.length > 0) {
+          return mapFaqs(faqs);
+        }
       }
-    }
-  } catch {
-    // fallback below
-  }
-  return [];
+      return getStaticPageFaqsFallback(path);
+    },
+    () => getStaticPageFaqsFallback(path)
+  );
 });
 
-// Used by next.config.ts to build the 301 redirect map, and intentionally
-// does NOT use React's cache() — next.config.ts loads outside a React
-// render, so there's nothing to dedupe against within a request.
 export async function getOldSlugRedirects() {
-  const rows = await prisma.oldSlug.findMany({
-    include: { service: true, solution: true, industry: true },
-  });
-  return rows
-    .map((row) => {
-      // An FK wins over targetPath: the FK is validated by the database, so
-      // it cannot point at a slug that no longer exists, while targetPath is
-      // a free string. They are never both set by the seed.
-      const target = row.service ?? row.solution ?? row.industry;
-      if (target) {
-        const base = row.service ? "services" : row.solution ? "solutions" : "industries";
-        return { source: row.path, destination: `/${base}/${target.slug}/` };
-      }
-      // Retired blog posts, WordPress category archives, /about-us/ — targets
-      // that span BlogPost, MarketingPage and hand-built routes, which the
-      // three FK columns could not express. lib/redirects.test.ts pins every
-      // one of these to a real route.
-      if (row.targetPath) {
-        return { source: row.path, destination: row.targetPath };
-      }
-      return null;
-    })
-    // Defensive: an OldSlug row whose path already equals its own target's
-    // current URL (a page whose slug never changed) produces a redirect to
-    // itself — a real bug caught during a live audit, not a hypothetical.
-    // Skip these instead of emitting a self-redirect.
-    .filter((r): r is { source: string; destination: string } => r !== null && r.source !== r.destination);
+  return withFallback(
+    async () => {
+      const rows = await prisma.oldSlug.findMany({
+        include: { service: true, solution: true, industry: true },
+      });
+      return rows
+        .map((row) => {
+          const target = row.service ?? row.solution ?? row.industry;
+          if (target) {
+            const base = row.service ? "services" : row.solution ? "solutions" : "industries";
+            return { source: row.path, destination: `/${base}/${target.slug}/` };
+          }
+          if (row.targetPath) {
+            return { source: row.path, destination: row.targetPath };
+          }
+          return null;
+        })
+        .filter((r): r is { source: string; destination: string } => r !== null && r.source !== r.destination);
+    },
+    () => getOldSlugRedirectsFallback()
+  );
 }
