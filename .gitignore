@@ -43,3 +43,5 @@ next-env.d.ts
 
 # scratch / temp
 scripts/scratch/
+perk_assets/
+GIF/
