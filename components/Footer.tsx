@@ -95,7 +95,7 @@ export function Footer({
           <div className="flex flex-wrap items-center justify-between gap-6 pb-10 border-b border-white/15">
             <div className="flex flex-wrap items-center gap-6 sm:gap-10">
               {helpSection?.title && (
-                <span className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[-0.03em] text-white">
+                <span className="font-display text-[24px] sm:text-[28px] font-extrabold tracking-[-0.03em] text-mp-mint">
                   {helpSection.title}
                 </span>
               )}
@@ -137,10 +137,10 @@ export function Footer({
               {appButton && (
                 <a
                   href={appButton.href}
-                  className="group/call inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3.5 py-1.5 text-xs font-bold text-white shadow-2xs hover:bg-white/20 transition-all duration-200"
+                  className="group/call inline-flex items-center gap-2 rounded-full bg-mp-lime px-3.5 py-1.5 text-xs font-bold text-mp-ink shadow-2xs hover:bg-mp-lime-hover transition-all duration-200"
                   aria-label={`Call Modern Partners 365 at ${appButton.label}`}
                 >
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20 text-white group-hover/call:bg-white group-hover/call:text-mp-petrol transition-colors">
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-mp-ink/10 text-mp-ink group-hover/call:bg-mp-ink group-hover/call:text-mp-lime transition-colors">
                     <svg
                       className="h-2.5 w-2.5 fill-current transition-transform duration-200 group-hover/call:rotate-12"
                       viewBox="0 0 24 24"
@@ -149,7 +149,7 @@ export function Footer({
                       <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.053 15.053 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.01A11.36 11.36 0 0 1 8.57 3.9c0-.55-.45-1-1-1H4.02c-.55 0-1 .45-1 1 0 9.39 7.63 17.02 17.02 17.02.55 0 1-.45 1-1v-3.54c0-.55-.45-1-.99-1z" />
                     </svg>
                   </span>
-                  <span className="text-white">{appButton.label}</span>
+                  <span>{appButton.label}</span>
                 </a>
               )}
 
@@ -163,7 +163,7 @@ export function Footer({
               <div key={secIdx}>
                 {sec.groups.map((group, grpIdx) => (
                   <div key={group.title} className={grpIdx > 0 ? "mt-8" : ""}>
-                    <p className="font-bold text-white mb-3 text-[14px]">
+                    <p className="font-bold text-mp-mint mb-3 text-[14px]">
                       {group.title}
                     </p>
                     <ul className="flex flex-col gap-2 text-white/80">
@@ -196,7 +196,7 @@ export function Footer({
             />
 
             {/* Seamless 2-Track Infinite Marquee Container */}
-            <div className="mp-animate-marquee flex items-center whitespace-nowrap will-change-transform">
+            <div className="mp-animate-marquee flex items-center whitespace-nowrap will-change-transform text-mp-mint">
               {[0, 1].map((half) => (
                 <div
                   key={half}
@@ -210,8 +210,8 @@ export function Footer({
                         <span
                           className={`font-display text-[48px] sm:text-[68px] md:text-[84px] lg:text-[96px] font-black tracking-[-0.04em] leading-none shrink-0 transition-all duration-300 ${
                             isOutlined
-                              ? "text-transparent [-webkit-text-stroke:1.2px_#ffffff] sm:[-webkit-text-stroke:2px_#ffffff] hover:text-white cursor-default"
-                              : "text-white hover:text-white/80 cursor-default"
+                              ? "text-transparent [-webkit-text-stroke:1.2px_var(--mp-mint)] sm:[-webkit-text-stroke:2px_var(--mp-mint)] hover:text-mp-mint cursor-default"
+                              : "text-mp-mint hover:text-mp-mint/80 cursor-default"
                           }`}
                         >
                           {marqueeText}
@@ -220,7 +220,7 @@ export function Footer({
                         {/* Aesthetic Separator Symbol */}
                         <span
                           aria-hidden="true"
-                          className="mx-5 sm:mx-8 md:mx-10 flex items-center justify-center select-none text-white/40 text-[20px] sm:text-[28px] md:text-[34px] font-light transition-transform duration-500 group-hover/marquee:rotate-45"
+                          className="mx-5 sm:mx-8 md:mx-10 flex items-center justify-center select-none text-mp-mint/40 text-[20px] sm:text-[28px] md:text-[34px] font-light transition-transform duration-500 group-hover/marquee:rotate-45"
                         >
                           ✦
                         </span>
