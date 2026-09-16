@@ -56,12 +56,12 @@ export function TableOfContents({
               href={`#${item.id}`}
               data-active={isActive ? "true" : undefined}
               aria-current={isActive ? "location" : undefined}
-              className={`block rounded-lg py-2.5 pr-3 transition-colors duration-200 text-[13.5px] leading-snug break-words ${
+              className={`block rounded-lg py-2.5 pr-3 transition-all duration-200 text-[13.5px] leading-snug break-words ${
                 item.level === 3 ? "pl-6" : "pl-3.5"
               } ${
                 isActive
-                  ? "bg-mp-parchment text-mp-ink font-bold border-l-2 border-mp-ink"
-                  : "text-mp-secondary hover:bg-mp-ink/[0.04] hover:text-mp-ink font-normal"
+                  ? "bg-mp-parchment text-mp-petrol font-bold border-l-2 border-mp-petrol translate-x-1"
+                  : "text-mp-secondary hover:bg-mp-petrol/[0.04] hover:text-mp-petrol font-normal"
               }`}
             >
               {item.label}
@@ -74,10 +74,10 @@ export function TableOfContents({
 
   if (variant === "mobile") {
     return (
-      <details className="group rounded-[20px] border border-mp-border bg-mp-parchment/80 lg:hidden mb-8">
+      <details className="group rounded-[20px] border border-mp-border bg-mp-parchment/90 backdrop-blur-sm lg:hidden mb-8">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 select-none [&::-webkit-details-marker]:hidden">
-          <span className="flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-mp-ink">
-            <ListIcon className="h-4 w-4 text-mp-ink" />
+          <span className="flex items-center gap-2 font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-mp-petrol">
+            <ListIcon className="h-4 w-4 text-mp-petrol" />
             Table of contents
             <span className="text-[11px] font-mono font-normal text-mp-muted">
               ({items.length} sections)
@@ -85,7 +85,7 @@ export function TableOfContents({
           </span>
           <span
             aria-hidden="true"
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-mp-ink transition-transform duration-300 group-open:rotate-180 border border-mp-border"
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-mp-petrol transition-transform duration-300 group-open:rotate-180 border border-mp-border"
           >
             <ChevronIcon className="h-4 w-4" />
           </span>
@@ -99,8 +99,9 @@ export function TableOfContents({
 
   return (
     <nav aria-label="Table of contents" className="w-full">
-      <div className="mb-3">
-        <p className="text-mp-ink text-[11px] font-mono uppercase tracking-[0.14em] font-bold">
+      <div className="mb-3 flex items-center justify-between">
+        <p className="text-mp-petrol text-[11px] font-mono uppercase tracking-[0.14em] font-bold flex items-center gap-1.5">
+          <ListIcon className="h-3.5 w-3.5" />
           Table of contents
         </p>
       </div>

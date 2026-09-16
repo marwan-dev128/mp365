@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import type { Person } from "@prisma/client";
 
 interface LeadershipGridProps {
@@ -10,111 +12,156 @@ const PERSON_DETAILS: Record<
     initials: string;
     focusAreas: string[];
     bio: string;
+    quote?: string;
   }
 > = {
-  "mohammed-khaliefa": {
-    initials: "MK",
-    focusAreas: [
-      "M&A Tenant Consolidations",
-      "Microsoft 365 Strategy & Scoping",
-      "Day-1 Readiness & TSA Exit",
-      "Executive Delivery Sponsorship",
-    ],
-    bio: "Over two decades directing complex Microsoft enterprise migrations and modernization programs. Specializes in building predictable, zero-downtime cutover roadmaps for high-stakes mergers, divestitures, and private equity transactions.",
-  },
   "raafat-elfouly": {
     initials: "RE",
     focusAreas: [
-      "Dynamics 365 Business Central & F&O",
-      "Power Platform Architecture & Governance",
-      "Custom Enterprise Data Integrations",
-      "Scalable Cloud Security & Identity",
+      "Dynamics 365 BC & F&O",
+      "Power Platform Governance",
+      "Custom Data Integrations",
+      "Scalable Identity",
     ],
     bio: "Ph.D. computer scientist and platform architect. Author of 50+ peer-reviewed papers and architect of 20+ commercial software products. Leads technical architecture, solution integrity, and enterprise engineering across all client engagements.",
+    quote: "Architectural rigor and automated validation ensure seamless cloud transformations without business disruption.",
   },
 };
 
 export function LeadershipGrid({ people }: LeadershipGridProps) {
+  const leader = people.find((p) => p.slug === "raafat-elfouly") || people[0];
+  const extra = (leader && PERSON_DETAILS[leader.slug]) || {
+    initials: leader ? leader.name.slice(0, 2).toUpperCase() : "RE",
+    focusAreas: ["Dynamics 365", "Power Platform", "Identity"],
+    bio: leader ? leader.credentials : "Chief Technology Officer and Platform Architect.",
+    quote: "Architectural rigor and automated validation ensure seamless cloud transformations without business disruption.",
+  };
+
+  const name = leader ? leader.name : "Dr. Raafat Elfouly";
+  const role = leader ? leader.role : "Chief Technology Officer";
+
   return (
-    <section className="w-full bg-mp-parchment py-16 sm:py-24 border-t border-mp-border">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12">
-        {/* Section Header */}
-        <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
-          <p className="text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.14em] text-mp-muted mb-3">
-            TECHNICAL LEADERSHIP
-          </p>
-          <h2 className="font-display text-[clamp(32px,4.5vw,52px)] font-bold leading-[1.08] tracking-[-0.035em] text-mp-petrol">
+    <section className="w-full relative bg-white pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-8" data-component="featureTabsShowcase">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 feature-tabs-showcase">
+        {/* Header */}
+        <div className="mx-auto max-w-4xl flex flex-col items-center text-center mb-10 sm:mb-14" data-component="platformShowcaseHeader">
+          <div className="inline-flex items-center rounded-full border border-mp-border bg-mp-parchment/80 px-3.5 py-1 text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.14em] text-mp-muted mb-4">
+            <span>TECHNICAL LEADERSHIP</span>
+          </div>
+          <h2 className="font-display text-[clamp(34px,4.8vw,56px)] font-extrabold leading-[1.08] tracking-[-0.035em] text-mp-petrol text-center">
             Engineered from the top down
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[15px] sm:text-[16px] leading-[1.6] text-mp-secondary">
+          <p className="mt-4 sm:mt-5 max-w-[620px] text-[15px] sm:text-[16px] leading-[1.55] text-mp-secondary font-normal text-center">
             Our leadership team remains directly involved in client architecture and delivery. No layers of account managers between you and the experts.
           </p>
         </div>
 
-        {/* 2-Column Executive Profiles */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {people.map((p) => {
-            const extra = PERSON_DETAILS[p.slug] || {
-              initials: p.name.slice(0, 2).toUpperCase(),
-              focusAreas: ["Microsoft 365", "Architecture & Delivery"],
-              bio: p.credentials,
-            };
-
-            return (
-              <div
-                key={p.slug}
-                className="flex flex-col justify-between rounded-[28px] sm:rounded-[36px] border border-mp-border bg-white p-8 sm:p-10 shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-4">
-                      {/* Monogram Badge */}
-                      <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-mp-petrol text-mp-mint font-display font-black text-xl sm:text-2xl shadow-xs shrink-0">
-                        {extra.initials}
-                      </div>
-                      <div>
-                        <h3 className="font-display text-[24px] sm:text-[28px] font-bold text-mp-ink leading-tight">
-                          {p.name}
-                        </h3>
-                        <p className="text-xs sm:text-[13px] font-bold uppercase tracking-[0.1em] text-mp-petrol mt-1">
-                          {p.role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="text-[14px] sm:text-[15px] leading-[1.68] text-mp-secondary font-normal mb-6">
-                    {extra.bio}
-                  </p>
-
-                  <div className="mb-6 rounded-[20px] bg-mp-parchment/60 border border-mp-border/70 p-4 sm:p-5">
-                    <p className="text-xs font-bold uppercase tracking-wider text-mp-muted mb-2">
-                      Credentials & Experience
-                    </p>
-                    <p className="text-sm font-semibold text-mp-ink">
-                      {p.credentials}
-                    </p>
-                  </div>
+        {/* Showcase Panel Card (Without tabs) */}
+        <div className="bg-[#EAE4D8] relative overflow-hidden rounded-[24px] md:rounded-[28px] p-4 md:p-0">
+          <div className="showcase-panel flex flex-col-reverse md:flex-row md:gap-10 lg:gap-[100px] md:h-[360px] lg:h-[380px] overflow-hidden">
+            {/* Left Content */}
+            <div className="flex flex-col justify-end gap-5 sm:gap-6 w-full mt-4 md:mt-0 p-4 sm:p-6 md:p-8 md:pt-8 lg:pt-10 md:w-[440px] lg:w-[460px] shrink-0">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-mp-petrol text-mp-mint font-display font-black text-lg shadow-xs shrink-0 border border-mp-petrol-deep">
+                  {extra.initials}
                 </div>
-
-                <div className="pt-6 border-t border-mp-border/70">
-                  <p className="text-xs font-bold uppercase tracking-wider text-mp-muted mb-3">
-                    Core Technical Focus
+                <div>
+                  <h3 className="font-display text-[22px] sm:text-[24px] font-extrabold text-mp-ink leading-tight">
+                    {name}
+                  </h3>
+                  <p className="text-[11.5px] sm:text-[12px] font-sono font-bold uppercase tracking-[0.1em] text-mp-petrol mt-0.5">
+                    {role}
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {extra.focusAreas.map((area, aIdx) => (
-                      <span
-                        key={aIdx}
-                        className="inline-flex items-center rounded-full bg-mp-petrol/[0.06] border border-mp-petrol/15 px-3.5 py-1 text-[12px] font-medium text-mp-petrol"
-                      >
-                        {area}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
-            );
-          })}
+
+              <p className="text-mp-secondary text-[13.5px] sm:text-[14px] lg:text-[14.5px] font-sono leading-[1.6]">
+                {extra.bio}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {extra.focusAreas.map((area, aIdx) => (
+                  <span
+                    key={aIdx}
+                    className="inline-flex items-center rounded-full bg-white/80 border border-mp-border/80 px-2.5 py-0.5 text-[11px] font-sono font-medium text-mp-petrol"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+
+              <div>
+                <Link
+                  href="/contact/"
+                  className="inline-flex items-center gap-1.5 text-[13.5px] font-medium font-sono text-mp-ink hover:text-mp-petrol group self-start"
+                >
+                  <span className="underline decoration-1 underline-offset-4 font-semibold">Book a consultation</span>
+                  <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">›</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Video Visual */}
+            <div className="mt-4 md:mt-0 flex-1 flex items-center md:items-end md:justify-end overflow-hidden h-full">
+              <video
+                src="/videos/mp365/microsoft-365-migration-console.mp4"
+                poster="/images/mp365/posters/microsoft-365-migration-console.webp"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                className="object-contain md:object-cover max-h-full w-auto md:w-full rounded-[18px] md:rounded-none md:rounded-tl-[24px] shadow-sm md:shadow-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Proof Bar Panels */}
+        <div className="proof-bar-panels bg-mp-parchment p-5 sm:p-6 md:p-8 mt-3 sm:mt-4 md:mt-5 rounded-[24px] md:rounded-[28px]">
+          <div className="proof-bar-panel flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 shrink-0">
+              <div className="flex items-center gap-6 sm:gap-8">
+                <div className="flex flex-col justify-center border-l border-solid border-mp-border pl-6 sm:pl-8">
+                  <span className="font-display text-[30px] sm:text-[34px] font-extrabold tracking-[-0.03em] text-mp-petrol leading-none whitespace-nowrap">
+                    50+
+                  </span>
+                  <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted font-sono whitespace-nowrap">
+                    peer-reviewed papers
+                  </span>
+                </div>
+                <div className="flex flex-col justify-center border-l border-solid border-mp-border pl-6 sm:pl-8">
+                  <span className="font-display text-[30px] sm:text-[34px] font-extrabold tracking-[-0.03em] text-mp-petrol leading-none whitespace-nowrap">
+                    20+
+                  </span>
+                  <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted font-sono whitespace-nowrap">
+                    software products
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 md:gap-8 flex-1 lg:border-l lg:border-mp-border lg:pl-8">
+              <div className="flex flex-col max-w-xl">
+                <p className="text-mp-ink text-[13px] sm:text-[13.5px] font-sono leading-[1.5]">
+                  &ldquo;{extra.quote}&rdquo;
+                </p>
+                <span className="text-mp-muted text-[12px] font-sono mt-1">
+                  {name} — {role}
+                </span>
+              </div>
+              <div className="shrink-0">
+                <Link
+                  href="/contact/"
+                  className="inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] font-sono font-semibold text-mp-ink hover:text-mp-petrol group whitespace-nowrap self-start md:self-center"
+                >
+                  <span className="underline decoration-1 underline-offset-4">Request scoping consultation</span>
+                  <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">›</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

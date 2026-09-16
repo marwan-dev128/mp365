@@ -16,11 +16,11 @@ export type BlogCardPost = {
 
 /**
  * mp-styled Blog Post Card.
- * Matches mp's card design:
- * - aspect-[372/204] media with rounded corners
- * - hover background overlay with smooth transition
+ * Enhanced with homepage design tokens:
+ * - aspect-[372/204] media with rounded corners & hover scale
+ * - rotating arrow badge plate (`mp-card-arrow`)
  * - uppercase mono category tag
- * - bold headline and 2-line excerpt
+ * - bold headline and excerpt
  * - date & reading time metadata
  */
 export function BlogPostCard({
@@ -38,13 +38,13 @@ export function BlogPostCard({
   });
 
   return (
-    <div className="group relative flex h-full flex-col rounded-[20px] md:rounded-[24px] transition-colors duration-200 bg-brand-card ">
+    <div className="group relative flex h-full flex-col rounded-[22px] md:rounded-[26px] border border-mp-border/80 bg-mp-parchment/60 hover:bg-mp-parchment transition-all duration-300 hover:-translate-y-1 hover:border-mp-petrol/30 hover:shadow-sm">
       <Link
         href={`/blog/${post.slug}/`}
         className="flex flex-col flex-grow gap-5 p-5 md:p-6 no-underline"
       >
         {/* Aspect ratio 372/204 image container */}
-        <div className="relative aspect-[372/204] w-full overflow-hidden rounded-[14px] md:rounded-[18px] bg-mp-parchment border border-mp-border/60">
+        <div className="relative aspect-[372/204] w-full overflow-hidden rounded-[16px] md:rounded-[20px] bg-mp-parchment border border-mp-border/60">
           {post.imageUrl ? (
             <Image
               src={post.imageUrl}
@@ -54,25 +54,30 @@ export function BlogPostCard({
               className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
             />
           ) : (
-            <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-mp-parchment via-mp-card to-mp-border p-6 overflow-hidden">
+            <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-mp-parchment via-white to-mp-border/50 p-6 overflow-hidden">
               {/* Abstract decorative geometry */}
-              <div className="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-mp-ink/5 transition-transform duration-500 group-hover:scale-125" />
-              <div className="absolute -left-6 -top-6 w-24 h-24 rounded-full bg-mp-lime/25 blur-xl" />
+              <div className="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-mp-petrol/5 transition-transform duration-500 group-hover:scale-125" />
+              <div className="absolute -left-6 -top-6 w-24 h-24 rounded-full bg-mp-mint/20 blur-xl" />
               <div className="relative z-10 flex flex-col items-center text-center gap-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-mp-muted bg-white/80 border border-mp-border px-2.5 py-1 rounded-full">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-mp-petrol bg-white border border-mp-petrol/20 px-2.5 py-1 rounded-full">
                   {post.clusterLabel}
                 </span>
-                <span className="font-display font-bold text-[13px] text-mp-ink/70 line-clamp-1 max-w-[240px]">
+                <span className="font-display font-bold text-[13px] text-mp-petrol/80 line-clamp-1 max-w-[240px]">
                   {post.title}
                 </span>
               </div>
             </div>
           )}
+
+          {/* Floating Rotate Arrow Badge */}
+          <div className="mp-card-arrow absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm text-mp-ink border border-mp-border/60 shadow-2xs font-bold text-sm">
+            ↗
+          </div>
         </div>
 
         {/* Content details */}
         <div className="flex flex-col gap-2.5 flex-1">
-          <Heading className="text-balance text-[18px] md:text-[20px] font-bold text-mp-ink tracking-tight leading-[1.3] group-hover:text-mp-ink transition-colors line-clamp-2">
+          <Heading className="text-balance text-[18px] md:text-[20px] font-bold text-mp-ink tracking-tight leading-[1.3] group-hover:text-mp-petrol transition-colors line-clamp-2">
             {post.title}
           </Heading>
           <p className="text-[14px] leading-relaxed text-mp-secondary line-clamp-2 font-normal">
@@ -82,8 +87,8 @@ export function BlogPostCard({
       </Link>
 
       {/* Category Pill & Meta */}
-      <div className="flex flex-wrap items-center justify-between gap-2 px-5 pb-5 md:px-6 md:pb-6 pt-1 ">
-        <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.1em] text-accent bg-accent-light transition-colors px-3 py-1 rounded-full">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-5 pb-5 md:px-6 md:pb-6 pt-1">
+        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.1em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full">
           {post.clusterLabel}
         </span>
         <div className="flex items-center gap-2 text-[11.5px] font-mono text-mp-muted">

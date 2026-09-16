@@ -27,7 +27,7 @@ export type BlogPost = {
   title: string;
   metaDescription: string;
   cluster: "M&A Migration" | "Dynamics 365" | "Power Platform" | "Data Governance";
-  authorSlug: "mohammed-khaliefa" | "raafat-elfouly";
+  authorSlug: "raafat-elfouly";
   datePublished: string; // ISO
   dateModified: string; // ISO
   excerpt: string;
@@ -60,7 +60,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "A realistic Microsoft 365 tenant-to-tenant migration timeline for M&A deals: what each phase actually gates, and why the domain cutover cannot be parallelised.",
     cluster: "M&A Migration",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-02-10",
     dateModified: "2026-09-02",
     excerpt:
@@ -216,7 +216,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Tenant migration cost scales with complexity, not headcount. The drivers that actually move the number: identity topology, data volume, holds, and custom workloads.",
     cluster: "M&A Migration",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-06-09",
     dateModified: "2026-09-02",
     excerpt:
@@ -348,7 +348,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "The mail moves reliably. What breaks in a cross-tenant mailbox migration is everything attached to it: profiles, delegates, rules, labels and Teams chat history.",
     cluster: "M&A Migration",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-06-23",
     dateModified: "2026-09-02",
     excerpt:
@@ -504,7 +504,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "In a divestiture you divide shared history rather than combine it. Teams makes that a governance problem first, because ownership was never modelled to be split.",
     cluster: "M&A Migration",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-08-04",
     dateModified: "2026-09-02",
     excerpt:
@@ -804,7 +804,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Microsoft has published an end date for Dynamics GP. Staying is defensible short-term; what is not defensible is treating a known date as a surprise.",
     cluster: "Dynamics 365",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-05-26",
     dateModified: "2026-09-02",
     excerpt:
@@ -1221,7 +1221,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Data migration is the easy part of a Salesforce to Dynamics 365 move. Automation rebuild, reporting rebuild and integration rework are what it actually costs.",
     cluster: "Dynamics 365",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-09-01",
     dateModified: "2026-09-02",
     excerpt:
@@ -1627,7 +1627,7 @@ export const blogPosts: BlogPost[] = [
     metaDescription:
       "Holds, retention and labels are tenant-scoped and do not follow content across a migration. In an acquisition that turns a compliance detail into a schedule risk.",
     cluster: "Data Governance",
-    authorSlug: "mohammed-khaliefa",
+    authorSlug: "raafat-elfouly",
     datePublished: "2026-05-12",
     dateModified: "2026-09-02",
     excerpt:

@@ -4,6 +4,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { DarkHighlightBanner } from "@/components/home/DarkHighlightBanner";
 import { AboutHero } from "@/components/about/AboutHero";
 import { ApproachGrid } from "@/components/about/ApproachGrid";
+import { EvolutionTimeline } from "@/components/about/EvolutionTimeline";
 import { LeadershipGrid } from "@/components/about/LeadershipGrid";
 import { OfficeLocationCard } from "@/components/about/OfficeLocationCard";
 import { personSchema, webPageSchema, ORG_ID } from "@/lib/schema";
@@ -54,7 +55,7 @@ export default async function AboutPage() {
         />
       ))}
 
-      {/* 1. Brand Hero with Microsoft solutions partner pill & 4-stat ribbon */}
+      {/* 1. Brand Hero with Microsoft solutions partner pill, command center preview & 4-stat ribbon */}
       <AboutHero />
 
       {/* 2. Kinetic Client Proof Marquee */}
@@ -63,10 +64,13 @@ export default async function AboutPage() {
       {/* 3. Core Philosophy & Value Pillars */}
       <ApproachGrid />
 
-      {/* 4. Executive Leadership Profiles */}
+      {/* 4. 20-Year Evolution & Milestones Timeline */}
+      <EvolutionTimeline />
+
+      {/* 5. Executive Leadership Profiles */}
       <LeadershipGrid people={people} />
 
-      {/* 5. Headquarters & Service Area Card */}
+      {/* 6. Headquarters & Service Operations Card */}
       <OfficeLocationCard
         address={`${settings.street}, ${settings.city}, ${settings.region} ${settings.postalCode}`}
         phone={settings.phoneDisplay}
@@ -75,7 +79,7 @@ export default async function AboutPage() {
         emailHref={`mailto:${settings.email}`}
       />
 
-      {/* 6. FAQ Section */}
+      {/* 7. FAQ Section */}
       {faqs && faqs.length > 0 && (
         <section className="w-full bg-white py-16 sm:py-24 border-t border-mp-border/50">
           <div className="mx-auto max-w-4xl px-6 sm:px-10 lg:px-12">
@@ -84,7 +88,7 @@ export default async function AboutPage() {
         </section>
       )}
 
-      {/* 7. Closing High-Contrast Dark Banner */}
+      {/* 8. Closing High-Contrast Dark Banner */}
       <DarkHighlightBanner />
     </>
   );

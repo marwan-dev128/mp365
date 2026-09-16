@@ -32,12 +32,6 @@ export const site = {
   areaServed: ["Connecticut", "New England", "United States"],
   people: [
     {
-      slug: "mohammed-khaliefa",
-      name: "Mohammed Khaliefa",
-      role: "President",
-      credentials: "20+ years leading Microsoft platform engagements",
-    },
-    {
       slug: "raafat-elfouly",
       name: "Dr. Raafat Elfouly",
       role: "Chief Technology Officer",

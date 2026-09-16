@@ -48,7 +48,7 @@ export const staticPageFaqs: StaticPageFaqGroup[] = [
       },
       {
         q: "Who leads MP365?",
-        a: "MP365 is led by Mohammed Khaliefa, President, who has over 20 years leading Microsoft platform engagements, and Dr. Raafat Elfouly, Chief Technology Officer, who holds a Ph.D., has authored more than 50 published papers, and has built over 20 software products.",
+        a: "MP365 is led by Dr. Raafat Elfouly, Chief Technology Officer, who holds a Ph.D., has authored more than 50 published papers, and has built over 20 software products.",
       },
       {
         q: "Where is MP365 based?",

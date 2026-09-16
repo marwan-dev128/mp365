@@ -360,17 +360,7 @@ export function Header({
 
           {/* Right Action Items */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Book a consultation CTA */}
-            {rightActions?.primaryCta && (
-              <Link
-                href={rightActions.primaryCta.href}
-                onClick={closeAll}
-                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-mp-lime px-5 py-2.5 text-[13.5px] font-bold text-mp-ink hover:bg-mp-lime-hover transition-colors shadow-2xs"
-              >
-                <span>{rightActions.primaryCta.label}</span>
-                <span className="text-[15px] leading-none font-semibold">›</span>
-              </Link>
-            )}
+
 
             {/* Get started button (secondary) */}
             <Link

@@ -69,14 +69,11 @@ export function ReadingProgress({ targetId }: { targetId: string }) {
 
   return (
     <div
-      // The rail is decorative reinforcement of the scrollbar, which already
-      // conveys position to assistive tech; announcing a value that changes on
-      // every frame would be pure noise. Hidden, not labelled.
       aria-hidden="true"
-      className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]"
+      className="pointer-events-none fixed inset-x-0 top-[66px] sm:top-[74px] z-40 h-1 bg-mp-border/30 backdrop-blur-xs"
     >
       <div
-        className="h-full origin-left bg-gradient-to-r from-azure to-cyan"
+        className="h-full origin-left bg-gradient-to-r from-mp-petrol via-mp-petrol-2 to-mp-lime transition-transform duration-100 ease-out shadow-[0_0_12px_rgba(20,74,75,0.6)]"
         style={{ transform: `scaleX(${progress})` }}
       />
       {/* Exposed for tests/analytics without paying for a re-rendered label. */}

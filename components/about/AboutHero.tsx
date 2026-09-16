@@ -1,7 +1,7 @@
 import Link from "next/link";
 import defaultData from "@/store/about.json";
 
-function MicrosoftLogo({ className = "h-3.5 w-3.5" }: { className?: string }) {
+function MicrosoftLogo({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect x="1" y="1" width="9" height="9" fill="#F25022" />
@@ -30,41 +30,57 @@ export function AboutHero({
   stats = defaultData.stats,
 }: AboutHeroProps = {}) {
   return (
-    <section className="relative overflow-hidden bg-white pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
-      {/* Background ambient mesh */}
+    <section className="relative overflow-hidden bg-white pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28">
+      {/* Background ambient mesh glows */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 h-[500px] w-[900px] rounded-full bg-mp-petrol/[0.04] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 h-[600px] w-[1000px] rounded-full bg-gradient-to-tr from-mp-petrol/10 via-mp-mint/15 to-transparent blur-3xl opacity-70"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-10 top-1/2 h-[350px] w-[350px] rounded-full bg-mp-saffron/10 blur-2xl opacity-60"
       />
 
       <div className="relative mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12">
         {/* Header content */}
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           {/* Eyebrow badge with Microsoft logo */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-mp-petrol/20 bg-mp-parchment px-4 py-1.5 text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.14em] text-mp-petrol shadow-2xs mb-6 sm:mb-8">
-            <MicrosoftLogo className="h-3.5 w-3.5 shrink-0" />
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-mp-petrol/20 bg-mp-parchment/90 backdrop-blur-md px-4 py-2 text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.14em] text-mp-petrol shadow-2xs mb-6 sm:mb-8 transition-transform hover:scale-[1.02]">
+            <MicrosoftLogo className="h-4 w-4 shrink-0" />
             <span>{badge}</span>
           </div>
 
-          <h1 className="font-display text-[clamp(36px,5.5vw,62px)] font-black leading-[1.05] tracking-[-0.035em] text-mp-petrol whitespace-pre-line">
+          <h1 className="font-display text-[clamp(38px,6vw,68px)] font-black leading-[1.04] tracking-[-0.035em] text-mp-petrol whitespace-pre-line text-balance">
             {title}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-[16px] sm:text-[17.5px] leading-[1.65] text-mp-secondary font-normal">
+          <p className="mx-auto mt-6 max-w-2xl text-[16.5px] sm:text-[18px] leading-[1.65] text-mp-secondary font-normal">
             {subtitle}
           </p>
 
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
+          {/* Solution Tag Chips */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
+            {["Dynamics 365", "Power Platform", "M&A Tenant Migrations", "Entra ID & Coexistence", "Zero Downtime SLA"].map((tag, idx) => (
+              <span
+                key={idx}
+                className="inline-flex items-center rounded-full bg-mp-petrol/[0.05] border border-mp-petrol/10 px-3.5 py-1 text-[12px] font-medium text-mp-petrol"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-9 sm:mt-10 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
             <Link
               href="/contact/"
-              className="inline-flex items-center gap-2 rounded-full bg-mp-lime px-7 py-3.5 text-sm font-semibold text-mp-ink hover:bg-mp-lime-hover shadow-2xs transition-colors"
+              className="inline-flex items-center gap-2.5 rounded-full bg-mp-saffron px-7 py-3.5 text-sm font-bold text-mp-ink hover:bg-mp-saffron-hover shadow-sm transition-all mp-press hover:scale-[1.02]"
             >
               <span>Book a consultation</span>
               <span className="text-base font-bold leading-none">›</span>
             </Link>
             <Link
               href="/case-studies/"
-              className="inline-flex items-center gap-2 rounded-full border border-mp-ink bg-transparent px-6 py-3.5 text-sm font-semibold text-mp-ink hover:bg-mp-petrol/[0.06] transition-colors"
+              className="inline-flex items-center gap-2.5 rounded-full border border-mp-ink bg-white/80 backdrop-blur-sm px-6 py-3.5 text-sm font-semibold text-mp-ink hover:bg-mp-petrol/[0.06] transition-all mp-press"
             >
               <span>Explore client stories</span>
               <span className="text-base font-bold leading-none">›</span>
@@ -72,29 +88,57 @@ export function AboutHero({
           </div>
         </div>
 
-        {/* 4-Stat Ribbon */}
-        {stats && stats.length > 0 && (
-          <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {stats.map((s, idx) => (
-              <div
-                key={idx}
-                className="rounded-[24px] sm:rounded-[28px] border border-mp-border bg-mp-parchment p-6 sm:p-7 text-center transition-transform duration-300 hover:-translate-y-1 shadow-2xs"
-              >
-                <div className="flex items-baseline justify-center gap-1.5">
-                  <span className="font-display text-[32px] sm:text-[40px] font-black tracking-[-0.03em] text-mp-petrol leading-none">
-                    {s.value}
-                  </span>
-                  <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-mp-ink">
-                    {s.unit}
-                  </span>
-                </div>
-                <p className="mt-3 text-[13px] sm:text-[13.5px] leading-[1.5] text-mp-secondary font-normal">
-                  {s.label}
+        {/* Command Center Interactive Preview Plate */}
+        <div className="mt-14 sm:mt-16 mx-auto max-w-5xl rounded-[28px] sm:rounded-[36px] border border-mp-border bg-mp-parchment/80 p-6 sm:p-8 backdrop-blur-md shadow-sm">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-mp-border/60">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-mp-petrol text-mp-mint font-mono font-bold text-sm">
+                MP
+              </div>
+              <div>
+                <h3 className="font-display text-base font-bold text-mp-ink">
+                  Enterprise Modernization & M&A Delivery Framework
+                </h3>
+                <p className="text-xs text-mp-muted font-mono uppercase tracking-wider">
+                  Vernon CT HQ • Senior Delivery Model • 100% In-House Architecture
                 </p>
               </div>
-            ))}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold">
+              <span className="inline-flex items-center rounded-full bg-white border border-mp-border px-3 py-1 text-mp-petrol">
+                Zero-Downtime Guarantee
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-mp-petrol text-white px-3 py-1">
+                Day-1 TSA Exit Ready
+              </span>
+            </div>
           </div>
-        )}
+
+          {/* 4-Stat Cards Ribbon */}
+          {stats && stats.length > 0 && (
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+              {stats.map((s, idx) => (
+                <div
+                  key={idx}
+                  className="group min-w-0 overflow-hidden rounded-[20px] sm:rounded-[24px] border border-mp-border/80 bg-white p-4 sm:p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-mp-petrol/30 hover:shadow-sm flex flex-col justify-between"
+                >
+                  <div className="flex flex-col items-center justify-center gap-1 min-w-0">
+                    <span className="font-display text-[26px] sm:text-[32px] lg:text-[36px] font-black tracking-[-0.03em] text-mp-petrol leading-tight group-hover:text-mp-petrol-2 transition-colors break-words max-w-full">
+                      {s.value}
+                    </span>
+                    <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-mp-ink break-words max-w-full">
+                      {s.unit}
+                    </span>
+                  </div>
+                  <p className="mt-2.5 text-[12px] sm:text-[13px] leading-[1.45] text-mp-secondary font-medium break-words text-balance">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
