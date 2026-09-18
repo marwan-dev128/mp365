@@ -51,6 +51,10 @@ export function Header({
   const headerRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const ctaRef = useRef<HTMLAnchorElement>(null);
+  const isScrolledRef = useRef(false);
   const isClosingRef = useRef(false);
 
   const phoneNumber = announcement?.phone || "(+1) 860-208-9537";
@@ -258,6 +262,97 @@ export function Header({
     };
   }, [mobileOpen]);
 
+  // Premium GSAP Scroll Animation: smoothly compacts header on scroll down without blur/glass/shadow
+  useEffect(() => {
+    const header = headerRef.current;
+    const container = navContainerRef.current;
+    const logo = logoRef.current;
+    const cta = ctaRef.current;
+    if (!header || !container) return;
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const isScrolled = currentScrollY > 20;
+
+          if (isScrolled !== isScrolledRef.current) {
+            isScrolledRef.current = isScrolled;
+
+            if (prefersReducedMotion) {
+              container.style.paddingTop = isScrolled ? "8px" : "14px";
+              container.style.paddingBottom = isScrolled ? "8px" : "14px";
+            } else {
+              const targets = [header, container, logo, cta].filter(Boolean) as gsap.TweenTarget[];
+              gsap.killTweensOf(targets);
+
+              const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.35 } });
+
+              tl.to(
+                container,
+                {
+                  paddingTop: isScrolled ? "8px" : "14px",
+                  paddingBottom: isScrolled ? "8px" : "14px",
+                },
+                0
+              );
+
+              if (logo) {
+                tl.to(
+                  logo,
+                  {
+                    scale: isScrolled ? 0.93 : 1,
+                    transformOrigin: "left center",
+                  },
+                  0
+                );
+              }
+
+              if (cta) {
+                tl.to(
+                  cta,
+                  {
+                    scale: isScrolled ? 0.95 : 1,
+                    transformOrigin: "right center",
+                  },
+                  0
+                );
+              }
+
+              tl.to(
+                header,
+                {
+                  borderBottomColor: isScrolled ? "rgba(0, 0, 0, 0.09)" : "rgba(0, 0, 0, 0.04)",
+                },
+                0
+              );
+            }
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (header) gsap.killTweensOf(header);
+      if (container) gsap.killTweensOf(container);
+      if (logo) gsap.killTweensOf(logo);
+      if (cta) gsap.killTweensOf(cta);
+    };
+  }, []);
+
   const activeGroupData = megaMenuGroups.find((g) => g.id === renderedGroup);
 
   const getCardWidthClass = (group?: MegaMenuGroup) => {
@@ -305,12 +400,16 @@ export function Header({
       {/* Main Sticky Header */}
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 bg-mp-parchment/95 backdrop-blur-md border-b border-black/[0.05]"
+        className="sticky top-0 z-50 bg-mp-parchment border-b border-black/[0.05] shadow-none"
       >
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-5 px-6 sm:px-10 lg:px-12 py-3 sm:py-3.5">
+        <div
+          ref={navContainerRef}
+          className="mx-auto flex max-w-[1440px] items-center justify-between gap-5 px-6 sm:px-10 lg:px-12 py-3.5 sm:py-4"
+        >
           <div className="flex items-center gap-7 xl:gap-10">
             {/* Logo */}
             <Link
+              ref={logoRef}
               href={logo.href}
               onClick={closeAll}
               className="flex items-start group select-none shrink-0"
@@ -364,6 +463,7 @@ export function Header({
 
             {/* Get started button (secondary) */}
             <Link
+              ref={ctaRef}
               href="/contact/"
               onClick={closeAll}
               className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-mp-petrol bg-mp-petrol px-4.5 py-2.5 text-[13.5px] font-semibold text-mp-mint hover:bg-mp-petrol-2 hover:border-mp-petrol-2 transition-colors shadow-2xs"
