@@ -70,7 +70,7 @@ export function ReadingProgress({ targetId }: { targetId: string }) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-x-0 top-[66px] sm:top-[74px] z-40 h-1 bg-mp-border/30 backdrop-blur-xs"
+      className="pointer-events-none fixed inset-x-0 top-[66px] sm:top-[60px] z-40 h-1 bg-mp-border/30 backdrop-blur-xs"
     >
       <div
         className="h-full origin-left bg-gradient-to-r from-mp-petrol via-mp-petrol-2 to-mp-lime transition-transform duration-100 ease-out shadow-[0_0_12px_rgba(20,74,75,0.6)]"
