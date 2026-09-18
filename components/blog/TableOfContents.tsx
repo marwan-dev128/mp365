@@ -60,7 +60,7 @@ export function TableOfContents({
                 item.level === 3 ? "pl-6" : "pl-3.5"
               } ${
                 isActive
-                  ? "bg-mp-parchment text-mp-petrol font-bold border-l-2 border-mp-petrol translate-x-1"
+                  ? "bg-mp-parchment text-mp-petrol font-bold"
                   : "text-mp-secondary hover:bg-mp-petrol/[0.04] hover:text-mp-petrol font-normal"
               }`}
             >

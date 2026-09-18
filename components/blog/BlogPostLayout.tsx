@@ -107,20 +107,15 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
 
       {/* Editorial Rich Header Simple Section */}
       <header className="w-full relative overflow-hidden bg-mp-parchment border-b border-mp-border pt-14 sm:pt-20 pb-12 sm:pb-16 -mt-1">
-        {/* Background mesh glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[900px] rounded-full bg-gradient-to-br from-mp-petrol/10 via-mp-mint/10 to-transparent blur-3xl opacity-70"
-        />
-
         <Container className="relative z-10">
           <div className="max-w-4xl">
-            {/* Category & Topic Badges */}
-            <div className="mb-5 flex flex-wrap items-center gap-2">
-              <span className="text-[11.5px] font-mono font-bold uppercase tracking-[0.14em] text-mp-petrol bg-white border border-mp-petrol/20 px-4 py-1 rounded-full shadow-2xs">
+            {/* Category & Topic Eyebrow */}
+            <div className="mb-5 flex flex-wrap items-center gap-2.5 text-[12px] font-mono font-bold uppercase tracking-[0.14em]">
+              <span className="text-mp-petrol">
                 {post.clusterLabel}
               </span>
-              <span className="inline-flex items-center text-[11.5px] font-mono font-bold uppercase tracking-[0.12em] text-mp-muted bg-white/70 border border-mp-border px-3 py-1 rounded-full">
+              <span className="text-mp-muted/50">•</span>
+              <span className="text-mp-muted font-medium">
                 Enterprise Architectural Guide
               </span>
             </div>
@@ -285,19 +280,11 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
                   sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-mp-petrol-deep/70 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 bg-mp-petrol-deep/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-xs font-mono font-bold text-mp-mint">
-                  MP365 Zero-Downtime Delivery Platform
-                </div>
               </div>
             </div>
 
             {/* Right Text Column */}
             <div className="col-span-full md:col-span-7 flex flex-col gap-5">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-mp-mint self-start">
-                <span>Senior Engineering Desk</span>
-              </div>
-
               <h2 className="font-display text-[28px] sm:text-[36px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.12]">
                 Make business operations &amp; cloud migrations simpler
               </h2>

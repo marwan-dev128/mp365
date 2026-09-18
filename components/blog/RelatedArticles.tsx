@@ -11,9 +11,7 @@ export function RelatedArticles({ posts }: { posts: BlogCardPost[] }) {
     <section aria-labelledby="related-articles-heading" className="border-t border-mp-border pt-14 sm:pt-16 pb-12">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="inline-flex items-center rounded-full border border-mp-border bg-mp-parchment/80 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-petrol mb-3">
-            <span>FURTHER READING</span>
-          </div>
+          <span className="sr-only">Further reading</span>
           <h2
             id="related-articles-heading"
             className="font-display text-[28px] sm:text-[34px] font-bold text-mp-petrol tracking-tight"
