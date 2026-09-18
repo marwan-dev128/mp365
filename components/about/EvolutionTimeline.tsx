@@ -129,9 +129,8 @@ export function EvolutionTimeline() {
                         {item.highlights.map((h, hIdx) => (
                           <span
                             key={hIdx}
-                            className="inline-flex items-center gap-2 rounded-full bg-mp-saffron border border-black/10 px-3.5 py-1.5 text-xs font-semibold text-black shadow-2xs"
+                            className="inline-flex items-center rounded-full bg-mp-saffron border border-black/10 px-3.5 py-1.5 text-xs font-semibold text-black shadow-2xs"
                           >
-                            <span className="h-1.5 w-1.5 rounded-full bg-black shrink-0" />
                             {h}
                           </span>
                         ))}
