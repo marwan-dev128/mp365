@@ -2,23 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import defaultData from "@/store/home/locations.json";
 
-export interface CityItem {
+export interface PlatformItem {
   name: string;
-  isHQ: boolean;
+  isHQ?: boolean;
   image: string;
 }
 
 export interface LocationPresenceMarqueeProps {
   eyebrow?: string;
-  row1?: CityItem[];
-  row2?: CityItem[];
+  row1?: PlatformItem[];
+  row2?: PlatformItem[];
   primaryCta?: { text: string; href: string };
   secondaryCta?: { text: string; href: string };
   disclaimers?: string[];
 }
 
-const DEFAULT_ROW1: CityItem[] = defaultData.row1;
-const DEFAULT_ROW2: CityItem[] = defaultData.row2;
+const DEFAULT_ROW1: PlatformItem[] = defaultData.row1;
+const DEFAULT_ROW2: PlatformItem[] = defaultData.row2;
 
 export function LocationPresenceMarquee({
   eyebrow = defaultData.eyebrow,
@@ -32,7 +32,7 @@ export function LocationPresenceMarquee({
   const marquee2 = [...row2, ...row2, ...row2];
 
   return (
-    <section className="w-full bg-white pt-16 pb-20 overflow-hidden">
+    <section className="w-full bg-white pt-16 pb-20 overflow-hidden border-t border-mp-border/40">
       {eyebrow && (
         <div className="text-center mb-10">
           <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-mp-muted">
@@ -52,15 +52,15 @@ export function LocationPresenceMarquee({
           className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent"
         />
         <div className="mp-animate-marquee flex items-center gap-14 sm:gap-18">
-          {marquee1.map((city, idx) => (
+          {marquee1.map((item, idx) => (
             <div
-              key={`r1-${city.name}-${idx}`}
+              key={`r1-${item.name}-${idx}`}
               className="flex items-center gap-4 shrink-0"
             >
-              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[22px] border border-mp-border bg-white p-4 sm:h-24 sm:w-24 sm:p-5">
+              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[22px] border border-mp-border bg-white p-4 sm:h-24 sm:w-24 sm:p-5 shadow-2xs">
                 <Image
-                  src={city.image}
-                  alt={`${city.name} — Microsoft product logo`}
+                  src={item.image}
+                  alt={`${item.name} — Microsoft product logo`}
                   width={120}
                   height={120}
                   sizes="96px"
@@ -69,13 +69,8 @@ export function LocationPresenceMarquee({
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-display text-[32px] sm:text-[46px] font-extrabold tracking-[-0.03em] text-mp-ink">
-                  {city.name}
+                  {item.name}
                 </span>
-                {city.isHQ && (
-                  <span className="rounded-full bg-mp-card border border-mp-border px-2.5 py-1 text-[11px] font-semibold text-mp-ink">
-                    Headquarter
-                  </span>
-                )}
               </div>
             </div>
           ))}
@@ -96,15 +91,15 @@ export function LocationPresenceMarquee({
           className="mp-animate-marquee flex items-center gap-14 sm:gap-18"
           style={{ animationDirection: "reverse" }}
         >
-          {marquee2.map((city, idx) => (
+          {marquee2.map((item, idx) => (
             <div
-              key={`r2-${city.name}-${idx}`}
+              key={`r2-${item.name}-${idx}`}
               className="flex items-center gap-4 shrink-0"
             >
-              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[22px] border border-mp-border bg-white p-4 sm:h-24 sm:w-24 sm:p-5">
+              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[22px] border border-mp-border bg-white p-4 sm:h-24 sm:w-24 sm:p-5 shadow-2xs">
                 <Image
-                  src={city.image}
-                  alt={`${city.name} — Microsoft product logo`}
+                  src={item.image}
+                  alt={`${item.name} — Microsoft product logo`}
                   width={120}
                   height={120}
                   sizes="96px"
@@ -113,13 +108,8 @@ export function LocationPresenceMarquee({
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-display text-[32px] sm:text-[46px] font-extrabold tracking-[-0.03em] text-mp-ink">
-                  {city.name}
+                  {item.name}
                 </span>
-                {city.isHQ && (
-                  <span className="rounded-full bg-mp-card border border-mp-border px-2.5 py-1 text-[11px] font-semibold text-mp-ink">
-                    Headquarter
-                  </span>
-                )}
               </div>
             </div>
           ))}
@@ -131,7 +121,7 @@ export function LocationPresenceMarquee({
         {primaryCta && (
           <Link
             href={primaryCta.href}
-            className="mp-press inline-flex items-center gap-1.5 rounded-full bg-mp-lime px-7 py-3.5 text-sm font-bold text-mp-ink hover:bg-mp-lime-hover transition-colors"
+            className="mp-press inline-flex items-center gap-1.5 rounded-full bg-mp-saffron px-7 py-3.5 text-sm font-bold text-mp-ink hover:bg-mp-saffron-hover shadow-sm transition-all hover:scale-[1.02]"
           >
             <span>{primaryCta.text}</span>
             <span className="text-sm font-normal">›</span>

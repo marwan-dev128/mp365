@@ -345,10 +345,10 @@
               "icon": "compass"
             },
             {
-              "label": "Executive Leadership",
-              "href": "/about/#leadership",
-              "description": "Meet CTO Dr. Raafat Elfouly and our senior engineering leadership team.",
-              "icon": "award"
+              "label": "Our Milestones & History",
+              "href": "/about/#timeline",
+              "description": "Two decades of Microsoft engineering milestones and client outcomes.",
+              "icon": "history"
             },
             {
               "label": "Vernon, CT Headquarters",

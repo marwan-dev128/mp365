@@ -335,6 +335,13 @@ async function main() {
     }
   }
 
+  // Clean up any stale Person records now that blog posts point to the current authors
+  await prisma.person.deleteMany({
+    where: {
+      slug: { notIn: site.people.map((p) => p.slug) },
+    },
+  });
+
   console.log("Seeding blog cluster CTAs…");
   for (const c of blogClusterCtas) {
     const data = {

@@ -43,7 +43,7 @@ export function AboutHero({
 
       <div className="relative mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12">
         {/* Header content */}
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-6xl text-center">
           {/* Eyebrow badge with Microsoft logo */}
           <div className="inline-flex items-center gap-2.5 rounded-full border border-mp-petrol/20 bg-mp-parchment/90 backdrop-blur-md px-4 py-2 text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.14em] text-mp-petrol shadow-2xs mb-6 sm:mb-8 transition-transform hover:scale-[1.02]">
             <MicrosoftLogo className="h-4 w-4 shrink-0" />
@@ -54,13 +54,19 @@ export function AboutHero({
             {title}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-[16.5px] sm:text-[18px] leading-[1.65] text-mp-secondary font-normal">
+          <p className="mx-auto mt-6 text-[16.5px] sm:text-[18px] leading-[1.65] text-mp-secondary font-normal">
             {subtitle}
           </p>
 
-          {/* Solution Tag Chips */}
+          {/* Identity Tag Chips */}
           <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
-            {["Dynamics 365", "Power Platform", "M&A Tenant Migrations", "Entra ID & Coexistence", "Zero Downtime SLA"].map((tag, idx) => (
+            {[
+              "Independent Solutions Partner",
+              "Principal-Led Engineering",
+              "20+ Years Platform Practice",
+              "Fixed-Scope Delivery",
+              "Direct Architect Access",
+            ].map((tag, idx) => (
               <span
                 key={idx}
                 className="inline-flex items-center rounded-full bg-mp-petrol/[0.05] border border-mp-petrol/10 px-3.5 py-1 text-[12px] font-medium text-mp-petrol"
@@ -97,10 +103,10 @@ export function AboutHero({
               </div>
               <div>
                 <h3 className="font-display text-base font-bold text-mp-ink">
-                  Enterprise Modernization & M&A Delivery Framework
+                  Modern Partners 365 Practice Profile
                 </h3>
                 <p className="text-xs text-mp-muted font-mono uppercase tracking-wider">
-                  Vernon CT HQ • Senior Delivery Model • 100% In-House Architecture
+                  Principal-Led Engineering • 100% In-House Architecture • High-Stakes Delivery
                 </p>
               </div>
             </div>

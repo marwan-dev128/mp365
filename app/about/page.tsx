@@ -3,13 +3,13 @@ import { ClientLogos } from "@/components/ClientLogos";
 import { FaqSection } from "@/components/FaqSection";
 import { DarkHighlightBanner } from "@/components/home/DarkHighlightBanner";
 import { AboutHero } from "@/components/about/AboutHero";
+import { WhoWeAre } from "@/components/about/WhoWeAre";
 import { ApproachGrid } from "@/components/about/ApproachGrid";
 import { EvolutionTimeline } from "@/components/about/EvolutionTimeline";
-import { LeadershipGrid } from "@/components/about/LeadershipGrid";
 import { OfficeLocationCard } from "@/components/about/OfficeLocationCard";
-import { personSchema, webPageSchema, ORG_ID } from "@/lib/schema";
+import { webPageSchema, ORG_ID } from "@/lib/schema";
 import { buildMetadata } from "@/lib/metadata";
-import { getSiteSettings, getPeople, getStaticPageFaqs } from "@/lib/data";
+import { getSiteSettings, getStaticPageFaqs } from "@/lib/data";
 import clientsData from "@/store/clients.json";
 
 export const revalidate = 3600;
@@ -23,9 +23,8 @@ export const metadata = buildMetadata({
 });
 
 export default async function AboutPage() {
-  const [settings, people, faqs] = await Promise.all([
+  const [settings, faqs] = await Promise.all([
     getSiteSettings(),
-    getPeople(),
     getStaticPageFaqs("/about/"),
   ]);
 
@@ -40,37 +39,23 @@ export default async function AboutPage() {
           mainEntityId: ORG_ID,
         })}
       />
-      {people.map((p) => (
-        <JsonLd
-          key={p.slug}
-          data={personSchema({
-            slug: p.slug,
-            name: p.name,
-            jobTitle: p.role,
-            description: p.credentials,
-            ...(p.name.startsWith("Dr. ")
-              ? { honorificPrefix: "Dr.", name: p.name.replace(/^Dr\.\s+/, "") }
-              : {}),
-          })}
-        />
-      ))}
 
-      {/* 1. Brand Hero with Microsoft solutions partner pill, command center preview & 4-stat ribbon */}
+      {/* 1. Brand Hero with who we are identity & 4-stat ribbon */}
       <AboutHero />
 
-      {/* 2. Kinetic Client Proof Marquee */}
+      {/* 2. Who We Are - Dedicated company identity, mission & core pillars */}
+      <WhoWeAre />
+
+      {/* 3. Kinetic Client Proof Marquee */}
       <ClientLogos label={clientsData.label} clients={clientsData.clients} />
 
-      {/* 3. Core Philosophy & Value Pillars */}
+      {/* 4. Core Philosophy & Value Pillars */}
       <ApproachGrid />
 
       {/* 4. 20-Year Evolution & Milestones Timeline */}
       <EvolutionTimeline />
 
-      {/* 5. Executive Leadership Profiles */}
-      <LeadershipGrid people={people} />
-
-      {/* 6. Headquarters & Service Operations Card */}
+      {/* 5. Headquarters & Service Operations Card */}
       <OfficeLocationCard
         address={`${settings.street}, ${settings.city}, ${settings.region} ${settings.postalCode}`}
         phone={settings.phoneDisplay}

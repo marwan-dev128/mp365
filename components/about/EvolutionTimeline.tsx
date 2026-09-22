@@ -18,7 +18,7 @@ const MILESTONES: MilestoneItem[] = [
     badge: "FOUNDATION",
     title: "Early Enterprise Exchange & SharePoint Cutovers",
     description:
-      "Founded in Vernon, CT with a focus on high-reliability Microsoft infrastructure cutovers for regional healthcare and manufacturing enterprises.",
+      "Founded with a core focus on high-reliability Microsoft infrastructure cutovers for regional healthcare and manufacturing enterprises.",
     highlights: ["First 50+ server migrations", "100% on-time cutover record", "Custom script automation"],
     image: "/images/services/microsoft-365-migration.jpg",
     linkText: "Learn about our migration history",
@@ -52,7 +52,7 @@ const MILESTONES: MilestoneItem[] = [
     title: "Dynamics 365 & Power Platform Delivery Integration",
     description:
       "Expanded senior engineering teams to unify tenant migration with Dynamics 365 Business Central ERP and enterprise Power Platform governance.",
-    highlights: ["Ph.D.-led solution architecture", "20+ commercial product integrations", "Automated compliance checklists"],
+    highlights: ["Principal-led solution architecture", "20+ commercial product integrations", "Automated compliance checklists"],
     image: "/images/mp365/case-studies/hunter-panels-dynamics-365.webp",
     linkText: "Read how Hunter Panels deployed D365",
     href: "/case-studies/hunter-panels/",

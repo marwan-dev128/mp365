@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { BlogPostLayout } from "@/components/blog/BlogPostLayout";
 import { getBlogPosts, getBlogPostBySlug } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
+import { BRAND_NAME } from "@/lib/config";
 
 export const revalidate = 3600;
 
@@ -35,7 +36,7 @@ export async function generateMetadata({
     article: {
       publishedTime: post.datePublished.toISOString(),
       modifiedTime: post.dateModified.toISOString(),
-      authors: [post.author.name],
+      authors: [BRAND_NAME],
       section: post.clusterLabel,
     },
     // The article's own hero becomes its social card. A post without one

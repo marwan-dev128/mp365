@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Vibrant Saffron Brand Canvas -->
+  <rect width="512" height="512" rx="120" ry="120" fill="#F2A93B" />
+  
+  <!-- Bold Graphic Silhouette: M-Wave into P-Stem with Kinetic Dot -->
+  <path d="M 360 110 C 378 110 392 126 388 144 L 358 206 L 412 206 C 438 206 450 236 432 254 L 208 424 C 188 440 162 422 172 398 L 202 332 L 146 332 C 120 332 108 302 126 284 L 332 124 C 340 115 350 110 360 110 Z" fill="#12181B" />
+  
+  <!-- Floating Anchor Dot -->
+  <circle cx="264" cy="434" r="22" fill="#12181B" />
+</svg>

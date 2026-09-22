@@ -1,12 +1,24 @@
+import { Fragment } from "react";
 import { RichText } from "@/components/RichText";
 import { Check } from "@/components/ui/Icons";
 import { stripInlineMarkup } from "@/lib/richtext";
 import type { BlogSection } from "@/lib/blog";
+import { getCtaInsertionIndex, type InContentCta as InContentCtaType } from "@/lib/blog-cta";
+import { InContentCta } from "./InContentCta";
 
 /**
- * Renders the CMS body blocks as the article's prose with mp's editorial styling.
+ * Renders the CMS body blocks as the article's prose with mp's editorial styling,
+ * with smart, contextual in-content CTA insertion at the optimal editorial point.
  */
-export function ArticleBody({ sections }: { sections: BlogSection[] }) {
+export function ArticleBody({
+  sections,
+  inContentCta,
+}: {
+  sections: BlogSection[];
+  inContentCta?: InContentCtaType | null;
+}) {
+  const insertionIndex = inContentCta ? getCtaInsertionIndex(sections) : -1;
+
   return (
     <div className="flex flex-col gap-10">
       {sections.map((section, i) => {
@@ -15,11 +27,11 @@ export function ArticleBody({ sections }: { sections: BlogSection[] }) {
         const Wrapper = section.headingId ? "section" : "div";
 
         return (
-          <Wrapper
-            key={section.headingId ?? `block-${i}`}
-            {...(section.headingId ? { "aria-labelledby": section.headingId } : {})}
-            className={i > 0 && section.heading ? "pt-6" : undefined}
-          >
+          <Fragment key={section.headingId ?? `block-${i}`}>
+            <Wrapper
+              {...(section.headingId ? { "aria-labelledby": section.headingId } : {})}
+              className={i > 0 && section.heading ? "pt-6" : undefined}
+            >
             {section.heading && section.headingId && (
               <Heading
                 id={section.headingId}
@@ -44,8 +56,13 @@ export function ArticleBody({ sections }: { sections: BlogSection[] }) {
 
             <BlockContent section={section} isLead={isLead} />
           </Wrapper>
-        );
-      })}
+
+          {i === insertionIndex && inContentCta && (
+            <InContentCta cta={inContentCta} />
+          )}
+        </Fragment>
+      );
+    })}
     </div>
   );
 }

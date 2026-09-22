@@ -32,11 +32,11 @@ export const site = {
   areaServed: ["Connecticut", "New England", "United States"],
   people: [
     {
-      slug: "raafat-elfouly",
-      name: "Dr. Raafat Elfouly",
-      role: "Chief Technology Officer",
+      slug: "mp365-team",
+      name: "MP365 Team",
+      role: "Enterprise Solutions Architects",
       credentials:
-        "Ph.D.; author of 50+ published papers; built 20+ software products",
+        "Microsoft Solutions Partner with 20+ years of enterprise engineering experience",
     },
   ],
 } as const;

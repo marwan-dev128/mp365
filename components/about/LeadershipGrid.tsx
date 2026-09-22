@@ -15,30 +15,30 @@ const PERSON_DETAILS: Record<
     quote?: string;
   }
 > = {
-  "raafat-elfouly": {
-    initials: "RE",
+  "mp365-team": {
+    initials: "MP",
     focusAreas: [
       "Dynamics 365 BC & F&O",
       "Power Platform Governance",
       "Custom Data Integrations",
       "Scalable Identity",
     ],
-    bio: "Ph.D. computer scientist and platform architect. Author of 50+ peer-reviewed papers and architect of 20+ commercial software products. Leads technical architecture, solution integrity, and enterprise engineering across all client engagements.",
+    bio: "Principal architects and enterprise engineers leading technical architecture, solution integrity, and enterprise engineering across all client engagements.",
     quote: "Architectural rigor and automated validation ensure seamless cloud transformations without business disruption.",
   },
 };
 
 export function LeadershipGrid({ people }: LeadershipGridProps) {
-  const leader = people.find((p) => p.slug === "raafat-elfouly") || people[0];
+  const leader = people.find((p) => p.slug === "mp365-team") || people[0];
   const extra = (leader && PERSON_DETAILS[leader.slug]) || {
-    initials: leader ? leader.name.slice(0, 2).toUpperCase() : "RE",
+    initials: "MP",
     focusAreas: ["Dynamics 365", "Power Platform", "Identity"],
-    bio: leader ? leader.credentials : "Chief Technology Officer and Platform Architect.",
+    bio: leader ? leader.credentials : "Enterprise Solutions Architects.",
     quote: "Architectural rigor and automated validation ensure seamless cloud transformations without business disruption.",
   };
 
-  const name = leader ? leader.name : "Dr. Raafat Elfouly";
-  const role = leader ? leader.role : "Chief Technology Officer";
+  const name = leader ? leader.name : "MP365 Engineering Team";
+  const role = leader ? leader.role : "Enterprise Solutions Architects";
 
   return (
     <section className="w-full relative bg-white pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-8" data-component="featureTabsShowcase">

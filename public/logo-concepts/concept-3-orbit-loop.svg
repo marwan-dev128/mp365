@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Background Canvas: Petrol Deep (#082D37) -->
+  <rect width="512" height="512" rx="128" ry="128" fill="#0B3C49" />
+  
+  <!-- Endless 365 Orbit Flow forming M & P -->
+  <g fill="none" stroke="#F2A93B" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Continuous architectural ribbon -->
+    <path d="M 132 356 V 212 C 132 164 176 132 220 156 L 256 188 L 292 156 C 336 132 380 164 380 212 V 356" />
+    <path d="M 256 196 V 356" stroke="#5FE3C8" />
+  </g>
+  <!-- Zero-Downtime Migration Node -->
+  <circle cx="256" cy="384" r="26" fill="#F2A93B" />
+</svg>

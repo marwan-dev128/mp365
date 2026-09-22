@@ -1,7 +1,35 @@
 {
-  "badge": "MICROSOFT SOLUTIONS PARTNER · VERNON, CT",
-  "title": "Senior Microsoft delivery.\n20+ years. Zero bureaucracy.",
-  "subtitle": "Mid-market and enterprise organizations need senior, hands-on Microsoft expertise without the multi-month discovery cycles and rotating account managers of global systems integrators.",
+  "badge": "ABOUT MODERN PARTNERS 365",
+  "title": "We are Modern Partners 365.\nSenior Microsoft delivery, minus the friction.",
+  "subtitle": "Modern Partners 365 (MP365) is an independent Microsoft solutions consulting partner. For over 20 years, we have helped mid-market and enterprise organizations execute complex tenant migrations, Dynamics 365 implementations, and cloud governance — led directly by principal architects, with zero consulting bureaucracy.",
+  "whoWeAre": {
+    "badge": "WHO WE ARE",
+    "title": "An engineering-first Microsoft partner built for high-stakes enterprise delivery",
+    "lead": "Modern Partners 365 was founded on a simple premise: enterprise organizations deserve direct access to the specialists who actually configure the tenant, write the code, and run the cutover.",
+    "story": [
+      "Traditional systems integrators pitch with senior executives and staff engagements with rotating junior analysts learning on the client's invoice. At Modern Partners 365, we deliberately dismantled that model. Every client works directly with seasoned platform architects who bring two decades of hands-on technical discipline.",
+      "We partner with mid-market and enterprise organizations across North America facing high-stakes Microsoft challenges. Our engagements concentrate on the technical domains where precision is paramount: tenant-to-tenant M&A cutovers under strict regulatory and TSA deadlines, enterprise Dynamics 365 and Power Platform modernization, and Microsoft Purview data governance."
+    ],
+    "quote": "“We measure our success not by billable hours or headcount, but by whether your teams can log in and work seamlessly on Day 1.”",
+    "quoteLabel": "Modern Partners 365 Architectural Principle",
+    "pillars": [
+      {
+        "tag": "WHO WE ARE",
+        "title": "Principal-Led Architecture",
+        "desc": "No junior staffing and no account management layers. The architects who scope your technical roadmap are the ones who execute it."
+      },
+      {
+        "tag": "HOW WE OPERATE",
+        "title": "Engineering Over Bureaucracy",
+        "desc": "We replace multi-month generic discovery cycles with rapid architectural audits, proven automation tooling, and fixed-scope certainty."
+      },
+      {
+        "tag": "WHAT WE DELIVER",
+        "title": "Tested Day-1 Predictability",
+        "desc": "Every cutover, migration, and deployment is engineered backward from operational deadlines, with validated coexistence and tested rollback plans."
+      }
+    ]
+  },
   "stats": [
     {
       "value": "20+",
@@ -19,9 +47,9 @@
       "label": "Built backward from TSA exit deadlines"
     },
     {
-      "value": "Vernon, CT",
-      "unit": "Headquarters",
-      "label": "Serving Connecticut, New England & National"
+      "value": "Fixed-Fee",
+      "unit": "Scope Certainty",
+      "label": "Clear deliverables with zero surprise billing"
     }
   ],
   "philosophy": {

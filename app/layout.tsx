@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { LocationPresenceMarquee } from "@/components/home/LocationPresenceMarquee";
 import { JsonLd } from "@/components/JsonLd";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
@@ -98,6 +99,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main id="main-content" tabIndex={-1} className="flex-1 scroll-mt-24 outline-none">
           {children}
         </main>
+        <LocationPresenceMarquee />
         <Footer services={services} settings={settings} />
       </body>
     </html>

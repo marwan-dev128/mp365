@@ -15,7 +15,6 @@ import { BoostEfficiencyGrid } from "@/components/home/BoostEfficiencyGrid";
 import { FlexiTravelStats } from "@/components/home/FlexiTravelStats";
 import { EditorialInsightCards } from "@/components/home/EditorialInsightCards";
 import { DarkHighlightBanner } from "@/components/home/DarkHighlightBanner";
-import { LocationPresenceMarquee } from "@/components/home/LocationPresenceMarquee";
 import integrationsData from "@/store/integrations.json";
 import clientsData from "@/store/clients.json";
 import { getSiteSettings } from "@/lib/data";
@@ -97,9 +96,6 @@ export default async function HomePage() {
 
       {/* 14. Dark highlight banner */}
       <DarkHighlightBanner />
-
-      {/* 15. Service-area marquee and disclaimers */}
-      <LocationPresenceMarquee />
     </>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "eyebrow": "VERNON, CT • SERVING CLIENTS ACROSS THE UNITED STATES",
+  "eyebrow": "MICROSOFT CLOUD ECOSYSTEM • SERVING CLIENTS NATIONWIDE",
   "row1": [
     {
       "name": "M&A Tenant Migration",
@@ -45,7 +45,7 @@
     }
   ],
   "primaryCta": {
-    "text": "Meet the team",
+    "text": "About Modern Partners 365",
     "href": "/about/"
   },
   "secondaryCta": {
@@ -55,6 +55,6 @@
   "disclaimers": [
     "Timelines depend on scope: a pilot migration typically runs 2–4 weeks, a full tenant merger 8–16 weeks.",
     "Scope is agreed in writing before an engagement starts, and changes to it are agreed the same way.",
-    "MP365 works from Vernon, Connecticut, and serves clients across New England and the United States remotely."
+    "MP365 serves clients across New England and nationwide with remote-first principal engineering and on-site cutover support."
   ]
 }

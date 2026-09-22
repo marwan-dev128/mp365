@@ -47,8 +47,8 @@ export const staticPageFaqs: StaticPageFaqGroup[] = [
         a: "Judge partners on three things: whether they have done your specific project before (a tenant migration and an ERP implementation are different disciplines), who will actually be on your project rather than who is in the pitch, and whether they will tell you when something is a bad idea. Certifications and partner tiers indicate scale, not fit — the more useful question is which named people will do the work.",
       },
       {
-        q: "Who leads MP365?",
-        a: "MP365 is led by Dr. Raafat Elfouly, Chief Technology Officer, who holds a Ph.D., has authored more than 50 published papers, and has built over 20 software products.",
+        q: "Who delivers MP365 engagements?",
+        a: "Every engagement is led directly by principal Microsoft platform architects with 20+ years of enterprise engineering experience. We operate without junior staffing, handoffs, or layers of account management.",
       },
       {
         q: "Where is MP365 based?",

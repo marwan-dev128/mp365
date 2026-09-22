@@ -4,8 +4,8 @@ import { Container } from "@/components/Container";
 import { JsonLd } from "@/components/JsonLd";
 import { FaqSection } from "@/components/FaqSection";
 import { ArrowUp, ArrowUpRight } from "@/components/ui/Icons";
-import { SITE_URL } from "@/lib/config";
-import { articleSchema, personSchema, webPageSchema, breadcrumbSchema } from "@/lib/schema";
+import { SITE_URL, BRAND_NAME } from "@/lib/config";
+import { articleSchema, webPageSchema, breadcrumbSchema } from "@/lib/schema";
 import {
   getBlogClusterCta,
   getRelatedBlogPosts,
@@ -14,12 +14,12 @@ import {
 import { buildSections, parseBlogBody, readingTime, tocFromSections } from "@/lib/blog";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { ArticleBody } from "./ArticleBody";
-import { AuthorCard } from "./AuthorCard";
 import { ReadingProgress } from "./ReadingProgress";
 import { RelatedArticles } from "./RelatedArticles";
 import { SocialShare } from "./SocialShare";
 import { TableOfContents } from "./TableOfContents";
 import { SidebarCta } from "@/components/SidebarCta";
+import { getPostInContentCta } from "@/lib/blog-cta";
 
 type BlogPost = NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 
@@ -59,6 +59,8 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
     day: "numeric",
   });
 
+  const inContentCta = getPostInContentCta(post);
+
   return (
     <>
       {post.published && (
@@ -81,22 +83,12 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               path,
               datePublished: post.datePublished.toISOString(),
               dateModified: post.dateModified.toISOString(),
-              authorName: post.author.name,
-              authorSlug: post.author.slug,
+              authorName: BRAND_NAME,
               articleSection: post.clusterLabel,
               wordCount: reading.words,
               timeRequired: reading.iso,
               isPartOfPath: "/blog/",
               ...(post.imageUrl ? { imagePath: post.imageUrl } : {}),
-            })}
-          />
-          <JsonLd
-            data={personSchema({
-              slug: post.author.slug,
-              name: post.author.name.replace(/^Dr\.\s+/, ""),
-              jobTitle: post.author.role,
-              description: post.author.credentials,
-              ...(post.author.name.startsWith("Dr. ") ? { honorificPrefix: "Dr." } : {}),
             })}
           />
           <JsonLd data={breadcrumbSchema(breadcrumbs)} />
@@ -124,7 +116,7 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               {post.title}
             </h1>
 
-            {/* Author & Reading Time Metadata */}
+            {/* Reading Time Metadata */}
             <div className="text-[13px] sm:text-[14px] text-mp-secondary mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3 font-medium">
               <time dateTime={post.datePublished.toISOString()} className="font-semibold text-mp-ink">
                 {dateFormatted}
@@ -133,17 +125,6 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               <time dateTime={reading.iso} className="font-semibold text-mp-petrol">
                 {reading.text}
               </time>
-              <span className="text-mp-muted">•</span>
-              <div className="flex items-center gap-1.5">
-                <span className="text-mp-muted">By</span>
-                <Link
-                  href="/about/"
-                  className="font-bold text-mp-ink hover:text-mp-petrol hover:underline"
-                >
-                  {post.author.name}
-                </Link>
-                <span className="text-mp-muted">({post.author.role})</span>
-              </div>
             </div>
           </div>
         </Container>
@@ -211,9 +192,9 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               </div>
             )}
 
-            {/* Article Prose Content */}
+            {/* Article Prose Content with In-Content CTA */}
             <div id="article-body">
-              <ArticleBody sections={sections} />
+              <ArticleBody sections={sections} inContentCta={inContentCta} />
             </div>
 
             {/* FAQ Section */}
@@ -233,9 +214,6 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
                 ctaHref={cta?.ctaHref || "/contact/"}
               />
             </div>
-
-            {/* Author Card */}
-            <AuthorCard author={post.author} />
 
             {/* Footer Share & Back to Top */}
             <footer className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-mp-border pt-8">

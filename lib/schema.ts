@@ -67,8 +67,14 @@ export function organizationSchema(settings: SiteSettings, people: PersonRow[]) 
     // Only emitted when non-empty — an empty sameAs array is noise, and the
     // Partner Center / Clutch / G2 URLs are still outstanding from the client.
     ...(settings.sameAs.length ? { sameAs: settings.sameAs } : {}),
-    // Reference by @id rather than inlining a second copy of each Person.
-    employee: people.map((p) => ({ "@id": personId(p.slug) })),
+    // Reference individual team members only when defined
+    ...(people.some((p) => p.slug !== "mp365-team")
+      ? {
+          employee: people
+            .filter((p) => p.slug !== "mp365-team")
+            .map((p) => ({ "@id": personId(p.slug) })),
+        }
+      : {}),
   };
 }
 

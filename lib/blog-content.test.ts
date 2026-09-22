@@ -185,7 +185,7 @@ test("illustrative examples are labelled as illustrative", () => {
 
 test("cluster labels and authors are ones the site actually has", () => {
   const CLUSTERS = new Set(["M&A Migration", "Dynamics 365", "Power Platform", "Data Governance"]);
-  const AUTHORS = new Set(["raafat-elfouly"]);
+  const AUTHORS = new Set(["mp365-team"]);
   for (const p of blogPosts) {
     assert.ok(CLUSTERS.has(p.cluster), `${p.slug}: unknown cluster "${p.cluster}"`);
     assert.ok(AUTHORS.has(p.authorSlug), `${p.slug}: unknown author "${p.authorSlug}"`);
