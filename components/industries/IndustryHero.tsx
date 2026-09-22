@@ -24,104 +24,68 @@ const RIGHT_COLUMN_WIDGETS = [
     id: "dynamics-365",
     name: "Dynamics 365",
     src: "/hero-section-icons/image_-_2025-08-08T164136.643-removebg-preview.png",
-    width: 80,
-    height: 80,
-    style: {
-      "--desktop-left": "12%",
-      "--desktop-top": "8%",
-      "--desktop-width": "76px",
-      "--desktop-duration": "8s",
-      "--desktop-distance-x": "14px",
-      "--desktop-distance-y": "-16px",
-      "--delay": "0s",
-    } as React.CSSProperties,
+    width: 68,
+    height: 68,
+    left: "0%",
+    top: "30%",
+    rotation: "-6deg",
   },
   {
     id: "copilot",
     name: "Microsoft Copilot",
     src: "/hero-section-icons/Microsoft_Copilot_Icon.svg",
-    width: 90,
-    height: 90,
-    style: {
-      "--desktop-left": "62%",
-      "--desktop-top": "6%",
-      "--desktop-width": "84px",
-      "--desktop-duration": "10s",
-      "--desktop-distance-x": "-12px",
-      "--desktop-distance-y": "18px",
-      "--delay": "0.2s",
-    } as React.CSSProperties,
+    width: 78,
+    height: 78,
+    left: "19%",
+    top: "6%",
+    rotation: "4deg",
   },
   {
     id: "business-central",
     name: "Business Central",
     src: "/hero-section-icons/66433f09a327b088760628d9_business-central-logo.png",
-    width: 78,
-    height: 78,
-    style: {
-      "--desktop-left": "38%",
-      "--desktop-top": "38%",
-      "--desktop-width": "80px",
-      "--desktop-duration": "7.5s",
-      "--desktop-distance-x": "10px",
-      "--desktop-distance-y": "-12px",
-      "--delay": "0.4s",
-    } as React.CSSProperties,
-  },
-  {
-    id: "power-bi",
-    name: "Power BI",
-    src: "/hero-section-icons/power-bi.png",
     width: 74,
     height: 74,
-    style: {
-      "--desktop-left": "8%",
-      "--desktop-top": "58%",
-      "--desktop-width": "70px",
-      "--desktop-duration": "9s",
-      "--desktop-distance-x": "-14px",
-      "--desktop-distance-y": "14px",
-      "--delay": "0.15s",
-    } as React.CSSProperties,
+    left: "38%",
+    top: "40%",
+    rotation: "-4deg",
   },
   {
     id: "azure",
     name: "Microsoft Azure",
     src: "/hero-section-icons/Microsoft_Azure.svg.webp",
-    width: 76,
-    height: 76,
-    style: {
-      "--desktop-left": "66%",
-      "--desktop-top": "54%",
-      "--desktop-width": "74px",
-      "--desktop-duration": "8.5s",
-      "--desktop-distance-x": "12px",
-      "--desktop-distance-y": "-14px",
-      "--delay": "0.3s",
-    } as React.CSSProperties,
+    width: 70,
+    height: 70,
+    left: "57%",
+    top: "8%",
+    rotation: "6deg",
   },
   {
     id: "power-platform",
     name: "Power Platform",
     src: "/hero-section-icons/microsoft-power-platform-icons.png",
-    width: 70,
-    height: 70,
-    style: {
-      "--desktop-left": "36%",
-      "--desktop-top": "76%",
-      "--desktop-width": "68px",
-      "--desktop-duration": "9.5s",
-      "--desktop-distance-x": "-10px",
-      "--desktop-distance-y": "10px",
-      "--delay": "0.5s",
-    } as React.CSSProperties,
+    width: 66,
+    height: 66,
+    left: "75%",
+    top: "42%",
+    rotation: "-6deg",
+  },
+  {
+    id: "power-bi",
+    name: "Power BI",
+    src: "/hero-section-icons/power-bi.png",
+    width: 68,
+    height: 68,
+    left: "91%",
+    top: "16%",
+    rotation: "4deg",
   },
 ];
 
 /**
  * Single Industry Page Hero section matching the exact aesthetic of the Blog Post Hero:
  * - Full-width parchment header with category eyebrow, H1, and metadata strip
- * - Floating Microsoft ecosystem widgets professionally nested in the right open area
+ * - Static Microsoft ecosystem widgets absolutely positioned in a horizontal composition on the right
  * - Full-width white breadcrumbs bar directly underneath
  * - Quick Overview card and proof metrics / CTA actions
  */
@@ -150,9 +114,9 @@ export function IndustryHero({
         data-testid="industryHero"
       >
         <Container className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="relative flex items-center justify-between min-h-[200px] lg:min-h-[240px]">
             {/* Left Column: Eyebrow, H1 & Practice Metadata */}
-            <div className="lg:col-span-7 xl:col-span-7 max-w-3xl">
+            <div className="w-full lg:max-w-[56%] xl:max-w-[60%] relative z-10">
               {/* Category & Topic Eyebrow */}
               <div className="mb-4 sm:mb-5 flex flex-wrap items-center gap-2 sm:gap-2.5 text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.14em]">
                 <span className="inline-flex items-center gap-1.5 text-mp-petrol">
@@ -166,7 +130,7 @@ export function IndustryHero({
               </div>
 
               {/* Main Heading */}
-              <h1 className="font-display text-[32px] sm:text-[44px] lg:text-[52px] font-bold text-mp-ink tracking-tight leading-[1.08] text-balance">
+              <h1 className="font-display text-[32px] sm:text-[44px] lg:text-[50px] font-bold text-mp-ink tracking-tight leading-[1.08] text-balance">
                 {h1 || `Microsoft solutions for ${industryName}`}
               </h1>
 
@@ -187,24 +151,29 @@ export function IndustryHero({
               </div>
             </div>
 
-            {/* Right Column: Floating Ecosystem Widgets in the Open Area */}
+            {/* Right: Absolute Static Horizontal Ecosystem Icons Cluster */}
             <div
-              className="hidden lg:flex lg:col-span-5 xl:col-span-5 relative h-[360px] lg:h-[400px] w-full items-center justify-center overflow-hidden"
+              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[460px] xl:w-[520px] h-[170px] pointer-events-none select-none z-10"
               aria-hidden="true"
             >
-              {/* Subtle ambient blur wash */}
+              {/* Subtle ambient blur wash behind horizontal cluster */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.06] blur-3xl"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[140px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.04] blur-2xl"
               />
 
-              {/* Floating Widgets */}
+              {/* Static Icons positioned horizontally with subtle natural stagger */}
               <div className="relative w-full h-full">
                 {RIGHT_COLUMN_WIDGETS.map((widget, idx) => (
                   <div
                     key={widget.id}
-                    className="integration-widget group"
-                    style={widget.style}
+                    className="group absolute pointer-events-auto transition-transform duration-200 hover:scale-110 hover:z-20 cursor-pointer"
+                    style={{
+                      left: widget.left,
+                      top: widget.top,
+                      width: `${widget.width}px`,
+                      transform: `rotate(${widget.rotation})`,
+                    }}
                     title={widget.name}
                   >
                     <Image
@@ -212,12 +181,14 @@ export function IndustryHero({
                       alt={widget.name}
                       width={widget.width}
                       height={widget.height}
-                      sizes="95px"
+                      sizes="90px"
                       loading={idx < 3 ? "eager" : "lazy"}
                       fetchPriority="low"
-                      className="w-full h-auto object-contain cursor-pointer"
+                      className="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.07)]"
                     />
-                    <span className="integration-tooltip">{widget.name}</span>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block whitespace-nowrap rounded-md bg-mp-ink/90 px-2 py-0.5 text-[11px] font-medium text-white shadow-md z-30 pointer-events-none">
+                      {widget.name}
+                    </span>
                   </div>
                 ))}
               </div>
