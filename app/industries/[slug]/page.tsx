@@ -32,7 +32,6 @@ import { getBlogPosts, getIndustries, getIndustryBySlug, getPeople, getSiteSetti
 import { guidesForIndustry } from "@/lib/industry-links";
 import { IndustryGuides } from "@/components/industries/IndustryGuides";
 import { buildMetadata } from "@/lib/metadata";
-import { stripInlineMarkup } from "@/lib/richtext";
 import { serviceSchema, webPageSchema, howToSchema, personId } from "@/lib/schema";
 import { parseBlocks, stepsFromBlocks } from "@/lib/marketing-blocks";
 import { SITE_URL } from "@/lib/config";
@@ -58,7 +57,7 @@ export async function generateMetadata({
     path: `/industries/${industry.slug}/`,
     // Per-industry social card (./opengraph-image.tsx) instead of the site
     // default, so a LinkedIn share says which industry it is about.
-    imagePath: `/industries/${industry.slug}/opengraph-image`,
+    imagePath: `/industries/${industry.slug}/opengraph-image/`,
   });
 }
 
@@ -77,11 +76,7 @@ export default async function IndustryPage({
   ]);
   if (!industry) notFound();
 
-  const guides = guidesForIndustry(posts, industry.slug).map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    excerpt: stripInlineMarkup(p.excerpt),
-  }));
+  const guides = guidesForIndustry(posts, industry.slug);
   const pageTitle = industry.h1 || `Microsoft solutions for ${industry.name}`;
   const reviewer = industry.reviewerSlug
     ? people.find((p) => p.slug === industry.reviewerSlug)

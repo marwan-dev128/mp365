@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "@/components/ui/Icons";
+import { stripInlineMarkup } from "@/lib/richtext";
 
 /**
  * The spoke articles that link to this industry page, linked back. Hub and
@@ -32,7 +33,7 @@ export function IndustryGuides({
               className="group flex w-full flex-col gap-2 rounded-[22px] border border-mp-border bg-white p-6 transition-colors hover:border-mp-petrol/40"
             >
               <span className="font-display text-[16.5px] font-bold leading-snug text-mp-petrol">{g.title}</span>
-              <span className="text-[14px] leading-relaxed text-mp-secondary">{g.excerpt}</span>
+              <span className="text-[14px] leading-relaxed text-mp-secondary">{stripInlineMarkup(g.excerpt)}</span>
               <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-[13px] font-bold text-mp-petrol">
                 Read the guide
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
