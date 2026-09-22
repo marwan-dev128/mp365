@@ -33,7 +33,7 @@ export function SocialShare({
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <span className="mr-1 text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-muted">
+      <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.14em] text-mp-muted">
         Share
       </span>
       {targets.map(({ name, href, Icon }) => (

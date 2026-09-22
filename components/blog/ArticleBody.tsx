@@ -47,7 +47,7 @@ export function ArticleBody({
                 <a
                   href={`#${section.headingId}`}
                   aria-label={`Link to section: ${stripInlineMarkup(section.heading)}`}
-                  className="text-[0.7em] font-mono font-bold text-mp-muted opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus-visible:opacity-100 hover:text-mp-petrol"
+                  className="text-[0.7em] font-bold text-mp-muted opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus-visible:opacity-100 hover:text-mp-petrol"
                 >
                   <span aria-hidden="true">#</span>
                 </a>
@@ -116,7 +116,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
             >
               <span
                 aria-hidden="true"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-mp-petrol font-mono text-[14px] font-bold tabular-nums text-mp-mint shadow-2xs"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-mp-petrol text-[14px] font-bold tabular-nums text-mp-mint shadow-2xs"
               >
                 0{j + 1}
               </span>
@@ -150,7 +150,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
                     <th
                       key={h || `col-${j}`}
                       scope="col"
-                      className="whitespace-nowrap px-5 py-4 text-left font-mono text-[11.5px] font-bold uppercase tracking-[0.12em] text-mp-mint"
+                      className="whitespace-nowrap px-5 py-4 text-left text-[11.5px] font-bold uppercase tracking-[0.12em] text-mp-mint"
                     >
                       {h}
                     </th>

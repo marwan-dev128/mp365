@@ -276,6 +276,16 @@ model Industry {
   ctaHeading          String?
   ctaSubheading       String?  @db.Text
   sidebarCta          Json?
+  /**
+   * The on-page H1. Null falls back to "Microsoft solutions for <name>".
+   * Written to match the search intent the metaTitle targets, so the title
+   * the SERP shows and the heading the page opens with say the same thing.
+   */
+  h1                  String?
+  /** When a person last fact-checked the page. Shown on the page and emitted as lastReviewed. */
+  reviewedAt          DateTime?
+  /** Person.slug of the named reviewer. Null renders the date without a byline. */
+  reviewerSlug        String?
 
   faqs     Faq[]
   oldSlugs OldSlug[]

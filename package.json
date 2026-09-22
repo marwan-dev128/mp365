@@ -11,6 +11,7 @@
     "lint": "eslint",
     "test": "tsx --test lib/**/*.test.ts",
     "generate:llms": "tsx scripts/generate-llms-full.ts",
+    "indexnow": "tsx scripts/indexnow.ts",
     "db:up": "docker compose up -d",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",

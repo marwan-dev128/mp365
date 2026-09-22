@@ -10,10 +10,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { ProductFitSelector } from "@/components/ProductFitSelector";
 import { TimelineEstimator } from "@/components/TimelineEstimator";
 import { RelatedSidebar } from "@/components/RelatedSidebar";
+import { industriesForService } from "@/lib/industry-links";
 import { SidebarCta } from "@/components/SidebarCta";
 import { ArrowUpRight } from "@/components/ui/Icons";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
-import { getServices, getServiceBySlug, getSiteSettings } from "@/lib/data";
+import { getIndustries, getServices, getServiceBySlug, getSiteSettings } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceSchema, howToSchema, webPageSchema } from "@/lib/schema";
 import { parseBlocks } from "@/lib/marketing-blocks";
@@ -47,10 +48,11 @@ export default async function ServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [service, allServices, settings] = await Promise.all([
+  const [service, allServices, settings, allIndustries] = await Promise.all([
     getServiceBySlug(slug),
     getServices(),
     getSiteSettings(),
+    getIndustries(),
   ]);
   if (!service) notFound();
 
@@ -166,6 +168,10 @@ export default async function ServicePage({
             {service.relatedPages.length > 0 && (
               <RelatedSidebar title="Go deeper" items={service.relatedPages} />
             )}
+            <RelatedSidebar
+              title="Industries we do this for"
+              items={industriesForService(allIndustries, service.slug)}
+            />
             {service.relatedTerms.length > 0 && (
               <RelatedSidebar
                 title="Related terms"

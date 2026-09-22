@@ -13,17 +13,24 @@ export function StickyConsultBar({ label = "Talk to a senior engineer" }: { labe
   const [formVisible, setFormVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.6);
+    const onScroll = () => setPastHero(window.scrollY > 850);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const form = document.getElementById(CONSULT_ANCHOR);
-    const io = form
-      ? new IntersectionObserver(([entry]) => setFormVisible(entry.isIntersecting), {
-          threshold: 0.15,
-        })
+    const footer = document.querySelector("footer");
+    const io = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver(
+          (entries) => {
+            const anyVisible = entries.some((e) => e.isIntersecting);
+            setFormVisible(anyVisible);
+          },
+          { threshold: 0.05 }
+        )
       : null;
+
     if (form && io) io.observe(form);
+    if (footer && io) io.observe(footer);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -36,14 +43,14 @@ export function StickyConsultBar({ label = "Talk to a senior engineer" }: { labe
   return (
     <div
       aria-hidden={!show}
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-navy/95 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/15 bg-mp-petrol px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-transform duration-300 lg:hidden ${
         show ? "translate-y-0" : "translate-y-full"
       }`}
     >
       <a
         href={`#${CONSULT_ANCHOR}`}
         tabIndex={show ? 0 : -1}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-mp-lime px-5 py-3 text-sm font-bold text-mp-ink"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-mp-saffron px-5 py-3 text-sm font-bold text-mp-ink transition-colors hover:bg-mp-saffron-hover"
       >
         {label} <span aria-hidden="true">›</span>
       </a>

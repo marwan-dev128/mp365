@@ -115,6 +115,10 @@ export function webPageSchema(params: {
   mainEntityId?: string;
   dateModified?: string;
   datePublished?: string;
+  /** ISO date a person last fact-checked the page. */
+  lastReviewed?: string;
+  /** Person @id of the reviewer (see personId). */
+  reviewedById?: string;
 }) {
   const url = `${SITE_URL}${params.path}`;
   return {
@@ -130,6 +134,8 @@ export function webPageSchema(params: {
     ...(params.mainEntityId ? { mainEntity: { "@id": params.mainEntityId } } : {}),
     ...(params.datePublished ? { datePublished: params.datePublished } : {}),
     ...(params.dateModified ? { dateModified: params.dateModified } : {}),
+    ...(params.lastReviewed ? { lastReviewed: params.lastReviewed } : {}),
+    ...(params.reviewedById ? { reviewedBy: { "@id": params.reviewedById } } : {}),
     // The homepage renders no breadcrumb, so referencing one would dangle.
     ...(params.path === "/" ? {} : { breadcrumb: { "@id": `${url}#breadcrumb` } }),
   };

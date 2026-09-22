@@ -4,3 +4,7 @@ export { IndustryLeadForm } from "./IndustryLeadForm";
 export { IndustryToolSlot, toolCtaLabel } from "./IndustryToolSlot";
 export { IndustrySubSectors } from "./IndustrySubSectors";
 export { StickyConsultBar } from "./StickyConsultBar";
+export { IndustryRelatedResources } from "./IndustryRelatedResources";
+export { IndustryHero } from "./IndustryHero";
+export { IndustryServicesCarousel } from "./IndustryServicesCarousel";
+export { IndustryTermsCarousel } from "./IndustryTermsCarousel";

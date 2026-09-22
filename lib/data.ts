@@ -318,13 +318,24 @@ export const getIndustryBySlug = cache(async (slug: string) => {
         i.relatedServiceSlugs.length
           ? prisma.service.findMany({
               where: { slug: { in: i.relatedServiceSlugs } },
-              select: { slug: true, name: true },
+              select: {
+                slug: true,
+                name: true,
+                shortName: true,
+                metaDescription: true,
+                imageUrl: true,
+              },
             })
           : Promise.resolve([]),
         i.relatedTermSlugs.length
           ? prisma.glossaryTerm.findMany({
               where: { slug: { in: i.relatedTermSlugs } },
-              select: { slug: true, term: true },
+              select: {
+                slug: true,
+                term: true,
+                shortDefinition: true,
+                primaryServiceSlug: true,
+              },
             })
           : Promise.resolve([]),
         resolveRelatedPages(i.relatedPageRefs),

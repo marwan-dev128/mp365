@@ -47,7 +47,7 @@ export function WhoWeAre({
           {/* Left Column: Narrative Story & Pull Quote */}
           <div className="lg:col-span-7 flex flex-col justify-between rounded-[24px] sm:rounded-[28px] border border-mp-border/80 bg-white p-6 sm:p-8 md:p-10 shadow-xs">
             <div className="space-y-5">
-              <div className="inline-flex items-center gap-2 text-[11.5px] font-mono font-bold uppercase tracking-wider text-mp-petrol">
+              <div className="inline-flex items-center gap-2 text-[11.5px] font-bold uppercase tracking-wider text-mp-petrol">
                 <span className="h-2 w-2 rounded-full bg-mp-mint" />
                 <span>Our Story & Purpose</span>
               </div>
@@ -69,7 +69,7 @@ export function WhoWeAre({
               <p className="relative z-10 text-[14.5px] sm:text-[15.5px] font-medium leading-[1.65] text-mp-ink italic">
                 {quote}
               </p>
-              <div className="relative z-10 mt-3 flex items-center gap-2 text-[12px] font-mono font-bold text-mp-petrol uppercase tracking-wider">
+              <div className="relative z-10 mt-3 flex items-center gap-2 text-[12px] font-bold text-mp-petrol uppercase tracking-wider">
                 <span>— {quoteLabel}</span>
               </div>
             </div>
@@ -83,10 +83,10 @@ export function WhoWeAre({
                 className="flex-1 flex flex-col justify-center rounded-[22px] sm:rounded-[24px] border border-mp-border/80 bg-white p-6 sm:p-7 transition-all hover:border-mp-petrol/40 hover:shadow-xs group"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-petrol bg-mp-parchment px-2.5 py-0.5 rounded-full border border-mp-border/60">
+                  <span className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol bg-mp-parchment px-2.5 py-0.5 rounded-full border border-mp-border/60">
                     {pillar.tag}
                   </span>
-                  <span className="text-xs font-mono font-semibold text-mp-muted group-hover:text-mp-petrol transition-colors">
+                  <span className="text-xs font-semibold text-mp-muted group-hover:text-mp-petrol transition-colors">
                     0{idx + 1}
                   </span>
                 </div>
@@ -101,10 +101,10 @@ export function WhoWeAre({
 
             {/* Quick Action Link */}
             <div className="rounded-[20px] border border-dashed border-mp-border p-4 sm:p-5 text-center bg-mp-parchment/30">
-              <span className="text-xs font-mono text-mp-muted mr-2">Need direct architect scoping?</span>
+              <span className="text-xs text-mp-muted mr-2">Need direct architect scoping?</span>
               <Link
                 href="/contact/"
-                className="inline-flex items-center gap-1 text-xs font-mono font-bold text-mp-petrol hover:underline"
+                className="inline-flex items-center gap-1 text-xs font-bold text-mp-petrol hover:underline"
               >
                 <span>Speak with an architect</span>
                 <span>›</span>

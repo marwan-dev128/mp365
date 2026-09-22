@@ -8,9 +8,10 @@ import { FaqSection } from "@/components/FaqSection";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedSidebar } from "@/components/RelatedSidebar";
+import { industriesForPage } from "@/lib/industry-links";
 import { ArrowUpRight } from "@/components/ui/Icons";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
-import { getSolutions, getSolutionBySlug, getSiteSettings } from "@/lib/data";
+import { getIndustries, getSolutions, getSolutionBySlug, getSiteSettings } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceSchema, webPageSchema, howToSchema } from "@/lib/schema";
 import { parseBlocks, stepsFromBlocks } from "@/lib/marketing-blocks";
@@ -44,7 +45,11 @@ export default async function SolutionPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [solution, settings] = await Promise.all([getSolutionBySlug(slug), getSiteSettings()]);
+  const [solution, settings, allIndustries] = await Promise.all([
+    getSolutionBySlug(slug),
+    getSiteSettings(),
+    getIndustries(),
+  ]);
   if (!solution) notFound();
 
   const path = `/solutions/${solution.slug}/`;
@@ -135,6 +140,12 @@ export default async function SolutionPage({
             )}
             {solution.relatedPages.length > 0 && (
               <RelatedSidebar title="Go deeper" items={solution.relatedPages} />
+            )}
+            {solution && (
+              <RelatedSidebar
+                title="Industries we do this for"
+                items={industriesForPage(allIndustries, `/solutions/${solution.slug}/`)}
+              />
             )}
             {solution.relatedTerms.length > 0 && (
               <RelatedSidebar

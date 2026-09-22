@@ -102,7 +102,7 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
         <Container className="relative z-10">
           <div className="max-w-4xl">
             {/* Category & Topic Eyebrow */}
-            <div className="mb-5 flex flex-wrap items-center gap-2.5 text-[12px] font-mono font-bold uppercase tracking-[0.14em]">
+            <div className="mb-5 flex flex-wrap items-center gap-2.5 text-[12px] font-bold uppercase tracking-[0.14em]">
               <span className="text-mp-petrol">
                 {post.clusterLabel}
               </span>
@@ -134,7 +134,7 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
       <div className="w-full border-b border-mp-border-subtle bg-white">
         <Container className="py-3.5">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 text-[12px] font-mono text-mp-muted">
+            <ol className="flex flex-wrap items-center gap-1.5 text-[12px] text-mp-muted">
               <li>
                 <Link href="/" className="hover:text-mp-ink hover:underline">
                   Home
@@ -220,7 +220,7 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
               <SocialShare url={url} title={post.title} />
               <a
                 href="#article-top"
-                className="inline-flex items-center gap-1.5 text-[12.5px] font-mono font-bold uppercase tracking-wider text-mp-ink hover:text-mp-petrol transition-colors"
+                className="inline-flex items-center gap-1.5 text-[12.5px] font-bold uppercase tracking-wider text-mp-ink hover:text-mp-petrol transition-colors"
               >
                 <ArrowUp className="h-3.5 w-3.5" />
                 Back to top

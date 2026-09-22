@@ -42,13 +42,13 @@ export function CostEstimator() {
         Illustrative, industry-typical ranges — not a quote. See the disclaimer below.
       </p>
 
-      <div className="flex gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6">
         <button
           type="button"
           onClick={() => setProject("tenant-migration")}
           data-active={project === "tenant-migration"}
           aria-pressed={project === "tenant-migration"}
-          className="rounded-md border border-line px-4 py-2 text-sm font-semibold text-ink-2 hover:border-azure transition-colors data-[active=true]:border-azure data-[active=true]:bg-azure-subtle data-[active=true]:text-azure"
+          className="flex-1 sm:flex-initial min-w-[140px] text-center rounded-md border border-line px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-ink-2 hover:border-azure transition-colors data-[active=true]:border-azure data-[active=true]:bg-azure-subtle data-[active=true]:text-azure"
         >
           M365 tenant migration
         </button>
@@ -57,7 +57,7 @@ export function CostEstimator() {
           onClick={() => setProject("business-central")}
           data-active={project === "business-central"}
           aria-pressed={project === "business-central"}
-          className="rounded-md border border-line px-4 py-2 text-sm font-semibold text-ink-2 hover:border-azure transition-colors data-[active=true]:border-azure data-[active=true]:bg-azure-subtle data-[active=true]:text-azure"
+          className="flex-1 sm:flex-initial min-w-[140px] text-center rounded-md border border-line px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-ink-2 hover:border-azure transition-colors data-[active=true]:border-azure data-[active=true]:bg-azure-subtle data-[active=true]:text-azure"
         >
           Business Central
         </button>

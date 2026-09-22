@@ -69,13 +69,13 @@ export function LeadershipGrid({ people }: LeadershipGridProps) {
                   <h3 className="font-display text-[22px] sm:text-[24px] font-extrabold text-mp-ink leading-tight">
                     {name}
                   </h3>
-                  <p className="text-[11.5px] sm:text-[12px] font-sono font-bold uppercase tracking-[0.1em] text-mp-petrol mt-0.5">
+                  <p className="text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.1em] text-mp-petrol mt-0.5">
                     {role}
                   </p>
                 </div>
               </div>
 
-              <p className="text-mp-secondary text-[13.5px] sm:text-[14px] lg:text-[14.5px] font-sono leading-[1.6]">
+              <p className="text-mp-secondary text-[13.5px] sm:text-[14px] lg:text-[14.5px] leading-[1.6]">
                 {extra.bio}
               </p>
 
@@ -83,7 +83,7 @@ export function LeadershipGrid({ people }: LeadershipGridProps) {
                 {extra.focusAreas.map((area, aIdx) => (
                   <span
                     key={aIdx}
-                    className="inline-flex items-center rounded-full bg-white/80 border border-mp-border/80 px-2.5 py-0.5 text-[11px] font-sono font-medium text-mp-petrol"
+                    className="inline-flex items-center rounded-full bg-white/80 border border-mp-border/80 px-2.5 py-0.5 text-[11px] font-medium text-mp-petrol"
                   >
                     {area}
                   </span>
@@ -93,7 +93,7 @@ export function LeadershipGrid({ people }: LeadershipGridProps) {
               <div>
                 <Link
                   href="/contact/"
-                  className="inline-flex items-center gap-1.5 text-[13.5px] font-medium font-sono text-mp-ink hover:text-mp-petrol group self-start"
+                  className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-mp-ink hover:text-mp-petrol group self-start"
                 >
                   <span className="underline decoration-1 underline-offset-4 font-semibold">Book a consultation</span>
                   <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">›</span>
@@ -127,7 +127,7 @@ export function LeadershipGrid({ people }: LeadershipGridProps) {
                   <span className="font-display text-[30px] sm:text-[34px] font-extrabold tracking-[-0.03em] text-mp-petrol leading-none whitespace-nowrap">
                     50+
                   </span>
-                  <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted font-sono whitespace-nowrap">
+                  <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted whitespace-nowrap">
                     peer-reviewed papers
                   </span>
                 </div>
@@ -135,7 +135,7 @@ export function LeadershipGrid({ people }: LeadershipGridProps) {
                   <span className="font-display text-[30px] sm:text-[34px] font-extrabold tracking-[-0.03em] text-mp-petrol leading-none whitespace-nowrap">
                     20+
                   </span>
-                  <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted font-sono whitespace-nowrap">
+                  <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted whitespace-nowrap">
                     software products
                   </span>
                 </div>
@@ -144,17 +144,17 @@ export function LeadershipGrid({ people }: LeadershipGridProps) {
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 md:gap-8 flex-1 lg:border-l lg:border-mp-border lg:pl-8">
               <div className="flex flex-col max-w-xl">
-                <p className="text-mp-ink text-[13px] sm:text-[13.5px] font-sono leading-[1.5]">
+                <p className="text-mp-ink text-[13px] sm:text-[13.5px] leading-[1.5]">
                   &ldquo;{extra.quote}&rdquo;
                 </p>
-                <span className="text-mp-muted text-[12px] font-sono mt-1">
+                <span className="text-mp-muted text-[12px] mt-1">
                   {name} — {role}
                 </span>
               </div>
               <div className="shrink-0">
                 <Link
                   href="/contact/"
-                  className="inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] font-sono font-semibold text-mp-ink hover:text-mp-petrol group whitespace-nowrap self-start md:self-center"
+                  className="inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] font-semibold text-mp-ink hover:text-mp-petrol group whitespace-nowrap self-start md:self-center"
                 >
                   <span className="underline decoration-1 underline-offset-4">Request scoping consultation</span>
                   <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">›</span>

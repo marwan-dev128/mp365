@@ -5,8 +5,10 @@ import { PageHero } from "@/components/PageHero";
 import { FaqSection } from "@/components/FaqSection";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
+import { IndustryLinkStrip } from "@/components/IndustryLinkStrip";
+import { industriesForPage } from "@/lib/industry-links";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
-import { getAllMarketingPageSlugs, getMarketingPageBySlug, getSiteSettings } from "@/lib/data";
+import { getAllMarketingPageSlugs, getMarketingPageBySlug, getSiteSettings, getIndustries } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceSchema, webPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/config";
@@ -46,6 +48,7 @@ export default async function AssessmentDetailPage({
     getSiteSettings(),
   ]);
   if (!page) notFound();
+  const industryLinks = industriesForPage(await getIndustries(), `/assessments/${page.slug}/`);
 
   const blocks = parseBlocks(page.sections);
 
@@ -93,6 +96,7 @@ export default async function AssessmentDetailPage({
         )}
         <MarketingPageBody blocks={blocks} />
         <div className="mt-10">
+          <IndustryLinkStrip items={industryLinks} />
           <FaqSection faqs={page.faqs} path={`/assessments/${page.slug}/`} />
         </div>
       </Container>

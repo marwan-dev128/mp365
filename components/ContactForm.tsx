@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { trackLead } from "@/lib/analytics";
 import { useFormStatus } from "react-dom";
 import { submitContact, type ContactState } from "@/app/contact/actions";
 
@@ -42,6 +43,11 @@ export function ContactForm({ email }: { email: string }) {
   const [state, formAction] = useActionState<ContactState, FormData>(submitContact, {
     status: "idle",
   });
+
+  useEffect(() => {
+    if (state.status === "success") trackLead({ form: "contact", topic: selectedTopic });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.status]);
 
   if (state.status === "success") {
     return (

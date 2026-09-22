@@ -23,6 +23,9 @@ function industryConversionFields(ind: Industry) {
     ctaHeading: ind.ctaHeading ?? null,
     ctaSubheading: ind.ctaSubheading ?? null,
     sidebarCta: ind.sidebarCta ?? Prisma.JsonNull,
+    h1: ind.h1 ?? null,
+    reviewedAt: ind.reviewedAt ? new Date(ind.reviewedAt) : null,
+    reviewerSlug: ind.reviewerSlug ?? null,
   };
 }
 import { caseStudies } from "./seed-data/case-studies";

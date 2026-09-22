@@ -74,7 +74,7 @@ export function InContentCta({ cta }: { cta: InContentCtaType }) {
 
       <div className="relative z-10 flex flex-col items-start">
         {/* Eyebrow Badge with Contextual Icon */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-mp-petrol/20 bg-white/90 px-3 py-1 text-[11px] font-mono font-bold tracking-[0.12em] uppercase text-mp-petrol shadow-2xs">
+        <div className="inline-flex items-center gap-2 rounded-full border border-mp-petrol/20 bg-white/90 px-3 py-1 text-[11px] font-bold tracking-[0.12em] uppercase text-mp-petrol shadow-2xs">
           <CtaIcon type={cta.iconType} />
           <span>{cta.badge}</span>
         </div>
@@ -102,7 +102,7 @@ export function InContentCta({ cta }: { cta: InContentCtaType }) {
           {cta.secondaryHref && cta.secondaryText && (
             <Link
               href={cta.secondaryHref}
-              className="text-[12.5px] sm:text-[13px] font-mono font-medium text-mp-muted hover:text-mp-ink underline underline-offset-4 decoration-mp-border hover:decoration-mp-ink transition-colors"
+              className="text-[12.5px] sm:text-[13px] font-medium text-mp-muted hover:text-mp-ink underline underline-offset-4 decoration-mp-border hover:decoration-mp-ink transition-colors"
             >
               {cta.secondaryText}
             </Link>

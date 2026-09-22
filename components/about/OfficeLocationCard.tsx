@@ -58,7 +58,7 @@ export function OfficeLocationCard({
                 <span className="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-mp-petrol border border-mp-border shadow-2xs">
                   North America Nationwide
                 </span>
-                <span className="inline-flex items-center rounded-full bg-mp-petrol text-mp-mint px-3.5 py-1.5 text-xs font-mono font-bold shadow-2xs">
+                <span className="inline-flex items-center rounded-full bg-mp-petrol text-mp-mint px-3.5 py-1.5 text-xs font-bold shadow-2xs">
                   &lt; 15-Min Scoping SLA
                 </span>
               </div>
@@ -67,14 +67,14 @@ export function OfficeLocationCard({
             {/* Right Card / Contact Details */}
             <div className="lg:col-span-5">
               <div className="rounded-[24px] sm:rounded-[28px] bg-white border border-mp-border p-6 sm:p-8 shadow-xs hover:border-mp-petrol/30 transition-all">
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-mp-muted mb-5 flex items-center justify-between">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-mp-muted mb-5 flex items-center justify-between">
                   <span>Direct Office Information</span>
                   <span className="text-[10px] bg-mp-parchment text-mp-petrol px-2 py-0.5 rounded-md font-bold">EST / UTC-5</span>
                 </h3>
 
                 <dl className="space-y-4 text-sm">
                   <div>
-                    <dt className="text-[11px] font-mono font-bold uppercase tracking-wider text-mp-muted">
+                    <dt className="text-[11px] font-bold uppercase tracking-wider text-mp-muted">
                       Headquarters
                     </dt>
                     <dd className="mt-1 font-semibold text-mp-ink leading-relaxed">
@@ -83,7 +83,7 @@ export function OfficeLocationCard({
                   </div>
 
                   <div className="pt-3 border-t border-mp-border/60">
-                    <dt className="text-[11px] font-mono font-bold uppercase tracking-wider text-mp-muted">
+                    <dt className="text-[11px] font-bold uppercase tracking-wider text-mp-muted">
                       Direct Telephone
                     </dt>
                     <dd className="mt-1">
@@ -98,7 +98,7 @@ export function OfficeLocationCard({
                   </div>
 
                   <div className="pt-3 border-t border-mp-border/60">
-                    <dt className="text-[11px] font-mono font-bold uppercase tracking-wider text-mp-muted">
+                    <dt className="text-[11px] font-bold uppercase tracking-wider text-mp-muted">
                       Senior Engineering Desk
                     </dt>
                     <dd className="mt-1">

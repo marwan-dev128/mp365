@@ -56,7 +56,7 @@ export default async function BlogPage() {
       <section className="w-full relative bg-mp-parchment border-b border-mp-border pt-16 sm:pt-20 pb-14 sm:pb-18">
         <Container>
           <div className="max-w-3xl">
-            <p className="text-[12px] font-mono font-bold uppercase tracking-[0.18em] text-mp-muted mb-3">
+            <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-mp-muted mb-3">
               INSIGHTS &amp; GUIDES
             </p>
             <h1 className="text-[36px] sm:text-[48px] lg:text-[56px] font-bold text-mp-ink tracking-tight leading-[1.08]">

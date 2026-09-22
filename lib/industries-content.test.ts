@@ -215,3 +215,12 @@ test("industry slugs are unique and every industry has a hero image", () => {
     );
   }
 });
+
+test("every industry opens with an intent-matched H1 and a review date", () => {
+  for (const i of industries) {
+    assert.ok(i.h1, `${i.slug}: no h1, so the page falls back to the generic "Microsoft solutions for" heading`);
+    assert.ok(i.h1!.length <= 75, `${i.slug}: h1 is ${i.h1!.length} chars, want <= 75`);
+    assert.ok(!hasMarkup(i.h1!), `${i.slug}: markup in h1`);
+    assert.ok(i.reviewedAt && /^\d{4}-\d{2}-\d{2}$/.test(i.reviewedAt), `${i.slug}: reviewedAt must be an ISO date`);
+  }
+});

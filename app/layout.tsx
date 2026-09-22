@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { LocationPresenceMarquee } from "@/components/home/LocationPresenceMarquee";
 import { JsonLd } from "@/components/JsonLd";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { Analytics } from "@/components/Analytics";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { getSiteSettings, getPeople, getServices, getSolutions, getIndustries } from "@/lib/data";
 import { BRAND_NAME, SITE_URL } from "@/lib/config";
@@ -50,6 +51,14 @@ export async function generateMetadata(): Promise<Metadata> {
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     },
     manifest: "/site.webmanifest",
+    // Search-console ownership tags, emitted only when configured. Bing
+    // matters beyond Bing: ChatGPT search and Copilot answer from its index.
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+      other: process.env.BING_SITE_VERIFICATION
+        ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+        : undefined,
+    },
   };
 }
 
@@ -101,6 +110,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </main>
         <LocationPresenceMarquee />
         <Footer services={services} settings={settings} />
+        <Analytics />
       </body>
     </html>
   );

@@ -82,7 +82,7 @@ export function ApproachGrid({
 
                   {/* Category Tag Pill */}
                   <div className="mb-3">
-                    <span className="inline-block text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full shadow-2xs">
+                    <span className="inline-block text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full shadow-2xs">
                       {card.tag}
                     </span>
                   </div>

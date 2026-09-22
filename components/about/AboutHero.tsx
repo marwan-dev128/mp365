@@ -98,20 +98,20 @@ export function AboutHero({
         <div className="mt-14 sm:mt-16 mx-auto max-w-5xl rounded-[28px] sm:rounded-[36px] border border-mp-border bg-mp-parchment/80 p-6 sm:p-8 backdrop-blur-md shadow-sm">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-mp-border/60">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-mp-petrol text-mp-mint font-mono font-bold text-sm">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-mp-petrol text-mp-mint font-bold text-sm">
                 MP
               </div>
               <div>
                 <h3 className="font-display text-base font-bold text-mp-ink">
                   Modern Partners 365 Practice Profile
                 </h3>
-                <p className="text-xs text-mp-muted font-mono uppercase tracking-wider">
+                <p className="text-xs text-mp-muted uppercase tracking-wider">
                   Principal-Led Engineering • 100% In-House Architecture • High-Stakes Delivery
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
               <span className="inline-flex items-center rounded-full bg-white border border-mp-border px-3 py-1 text-mp-petrol">
                 Zero-Downtime Guarantee
               </span>

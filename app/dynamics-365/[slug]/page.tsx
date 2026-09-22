@@ -6,9 +6,11 @@ import { PageHero } from "@/components/PageHero";
 import { FaqSection } from "@/components/FaqSection";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
+import { IndustryLinkStrip } from "@/components/IndustryLinkStrip";
+import { industriesForPage } from "@/lib/industry-links";
 import { ArrowUpRight } from "@/components/ui/Icons";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
-import { getAllMarketingPageSlugs, getMarketingPageBySlug, getSiteSettings } from "@/lib/data";
+import { getAllMarketingPageSlugs, getMarketingPageBySlug, getSiteSettings, getIndustries } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceSchema, webPageSchema } from "@/lib/schema";
 import { SITE_URL } from "@/lib/config";
@@ -48,6 +50,7 @@ export default async function DynamicsProductPage({
     getSiteSettings(),
   ]);
   if (!page) notFound();
+  const industryLinks = industriesForPage(await getIndustries(), `/dynamics-365/${page.slug}/`);
 
   const blocks = parseBlocks(page.sections);
 
@@ -99,6 +102,7 @@ export default async function DynamicsProductPage({
             )}
             <MarketingPageBody blocks={blocks} />
             <div className="mt-10">
+              <IndustryLinkStrip items={industryLinks} />
               <FaqSection faqs={page.faqs} path={`/dynamics-365/${page.slug}/`} />
             </div>
           </div>

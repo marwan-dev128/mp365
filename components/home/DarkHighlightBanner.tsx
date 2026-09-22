@@ -25,9 +25,9 @@ export function DarkHighlightBanner({
   const cleanBadge = badge?.replace(/^\+\s*/, "");
 
   return (
-    <section className="w-full bg-white py-8 sm:py-12">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4">
-        <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-mp-petrol p-10 sm:p-14 lg:p-20 text-center text-white min-h-[440px] flex flex-col items-center justify-center">
+    <section data-cta-band="true" className="w-full bg-white py-6 sm:py-12">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 py-2 sm:py-4">
+        <div className="relative overflow-hidden rounded-[20px] sm:rounded-[32px] bg-mp-petrol p-6 sm:p-14 lg:p-20 text-center text-white min-h-[320px] sm:min-h-[440px] flex flex-col items-center justify-center">
           {/* Background image */}
           {bgImage && (
             <div className="absolute inset-0 z-0">
@@ -47,15 +47,15 @@ export function DarkHighlightBanner({
           <div className="relative z-10 mx-auto max-w-5xl flex flex-col items-center">
             {/* Pill Badge */}
             {cleanBadge && (
-              <div className="inline-flex items-center gap-2 rounded-full border border-mp-mint/40 bg-mp-petrol/55 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-mp-mint backdrop-blur-xs">
-                <MicrosoftLogo className="h-3.5 w-3.5" />
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-mp-mint/40 bg-mp-petrol/55 px-3 sm:px-4 py-1 sm:py-1.5 text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-mp-mint backdrop-blur-xs">
+                <MicrosoftLogo className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                 <span>{cleanBadge}</span>
               </div>
             )}
 
             {/* Headline */}
             {headline && (
-              <h2 className="mt-6 sm:mt-8 font-display text-[clamp(28px,3.8vw,48px)] font-bold leading-[1.14] tracking-[-0.03em] text-white max-w-4xl whitespace-pre-line text-center">
+              <h2 className="mt-5 sm:mt-8 font-display text-[clamp(24px,5.5vw,48px)] font-bold leading-[1.14] tracking-[-0.03em] text-white max-w-4xl whitespace-pre-line text-center">
                 {headline}
               </h2>
             )}

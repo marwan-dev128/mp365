@@ -5,8 +5,10 @@ import { PageHero } from "@/components/PageHero";
 import { FaqSection } from "@/components/FaqSection";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
+import { IndustryLinkStrip } from "@/components/IndustryLinkStrip";
+import { industriesForPage } from "@/lib/industry-links";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
-import { getAllMarketingPageSlugs, getMarketingPageBySlug } from "@/lib/data";
+import { getAllMarketingPageSlugs, getMarketingPageBySlug, getIndustries } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { howToSchema, webPageSchema } from "@/lib/schema";
 import { parseBlocks, stepsFromBlocks } from "@/lib/marketing-blocks";
@@ -42,6 +44,7 @@ export default async function MigrationDetailPage({
   const { slug } = await params;
   const page = await getMarketingPageBySlug("migrations", slug);
   if (!page) notFound();
+  const industryLinks = industriesForPage(await getIndustries(), `/migrations/${page.slug}/`);
 
   const blocks = parseBlocks(page.sections);
   const steps = stepsFromBlocks(blocks);
@@ -86,6 +89,7 @@ export default async function MigrationDetailPage({
         )}
         <MarketingPageBody blocks={blocks} />
         <div className="mt-10">
+          <IndustryLinkStrip items={industryLinks} />
           <FaqSection faqs={page.faqs} path={`/migrations/${page.slug}/`} />
         </div>
       </Container>

@@ -14,7 +14,7 @@ export function MarketingPageBody({ blocks }: { blocks: MarketingBlock[] }) {
 }
 
 function BlockHeading({ children }: { children: React.ReactNode }) {
-  return <h2 className="mb-5 font-display text-[26px] font-extrabold text-navy">{children}</h2>;
+  return <h2 className="mb-4 sm:mb-5 font-display text-[22px] sm:text-[26px] font-extrabold text-navy leading-[1.2]">{children}</h2>;
 }
 
 function MarketingBlockView({ block }: { block: MarketingBlock }) {
@@ -25,7 +25,7 @@ function MarketingBlockView({ block }: { block: MarketingBlock }) {
           {block.heading && <BlockHeading>{block.heading}</BlockHeading>}
           <div className="flex flex-col gap-4">
             {block.paragraphs.map((p, i) => (
-              <p key={i} className="max-w-[68ch] text-[15.5px] leading-[1.75] text-ink-2">
+              <p key={i} className="text-[15.5px] leading-[1.75] text-ink-2">
                 <RichText text={p} />
               </p>
             ))}
@@ -41,7 +41,7 @@ function MarketingBlockView({ block }: { block: MarketingBlock }) {
             {block.items.map((item, i) => (
               <li
                 key={i}
-                className="flex max-w-[66ch] gap-3 text-[15px] leading-[1.7] text-ink-2"
+                className="flex gap-3 text-[15px] leading-[1.7] text-ink-2"
               >
                 <Check className="mt-1 h-4 w-4 shrink-0 text-azure" />
                 <span>
@@ -61,11 +61,11 @@ function MarketingBlockView({ block }: { block: MarketingBlock }) {
             {block.steps.map((step, i) => (
               <li
                 key={step.name}
-                className="flex gap-4 rounded-[var(--mp-radius-card)] border border-line bg-surface-light p-5"
+                className="flex gap-3.5 sm:gap-4 rounded-[var(--mp-radius-card)] border border-line bg-surface-light p-4 sm:p-5"
               >
                 <span
                   aria-hidden="true"
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--mp-radius-badge)] bg-azure font-display text-sm font-bold tabular-nums text-white"
+                  className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-[var(--mp-radius-badge)] bg-azure font-display text-xs sm:text-sm font-bold tabular-nums text-white"
                 >
                   {i + 1}
                 </span>
@@ -73,7 +73,7 @@ function MarketingBlockView({ block }: { block: MarketingBlock }) {
                   <p className="font-display text-[15px] font-bold text-navy">
                   <RichText text={step.name} />
                 </p>
-                  <p className="mt-1 max-w-[60ch] text-[14px] leading-[1.65] text-ink-2">
+                  <p className="mt-1 text-[14px] leading-[1.65] text-ink-2">
                     <RichText text={step.description} />
                   </p>
                 </div>
@@ -91,6 +91,10 @@ function MarketingBlockView({ block }: { block: MarketingBlock }) {
       return (
         <div>
           {block.heading && <BlockHeading>{block.heading}</BlockHeading>}
+          <div className="mb-2 flex items-center justify-end gap-1.5 text-[11px] font-medium text-mp-muted sm:hidden">
+            <span>Scroll horizontally</span>
+            <span aria-hidden="true">→</span>
+          </div>
           {/* tabIndex makes a horizontally-scrollable region keyboard-scrollable;
               role="group" + a name stop it being an unlabelled tab stop. */}
           <div
@@ -170,7 +174,7 @@ function MarketingBlockView({ block }: { block: MarketingBlock }) {
             ))}
           </dl>
           {block.disclaimer && (
-            <p className="mt-5 max-w-[68ch] rounded-[var(--mp-radius-card)] border border-line bg-surface-light p-5 text-[12.5px] leading-[1.7] text-muted">
+            <p className="mt-5 rounded-[var(--mp-radius-card)] border border-line bg-surface-light p-5 text-[12.5px] leading-[1.7] text-muted">
               <RichText text={block.disclaimer} />
             </p>
           )}

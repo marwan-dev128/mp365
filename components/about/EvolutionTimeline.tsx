@@ -103,7 +103,7 @@ export function EvolutionTimeline() {
                 <span className="font-display text-2xl sm:text-3xl font-black text-mp-petrol tracking-tight">
                   {item.year}
                 </span>
-                <span className="inline-block text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full shadow-2xs">
+                <span className="inline-block text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full shadow-2xs">
                   {item.badge}
                 </span>
               </div>
@@ -122,7 +122,7 @@ export function EvolutionTimeline() {
 
                     {/* Highlights Badges */}
                     <div className="mt-6 pt-4 border-t border-mp-border/60">
-                      <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-mp-muted mb-3">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-mp-muted mb-3">
                         Key Engineering Highlights
                       </p>
                       <div className="flex flex-wrap gap-2">

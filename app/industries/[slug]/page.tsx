@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
 import { RichText } from "@/components/RichText";
-import { PageHero } from "@/components/PageHero";
 import { FaqSection } from "@/components/FaqSection";
 import { CtaBand } from "@/components/CtaBand";
-import { RelatedSidebar } from "@/components/RelatedSidebar";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
 import { JsonLd } from "@/components/JsonLd";
 import { SidebarCta } from "@/components/SidebarCta";
 import {
+  IndustryHero,
   IndustryHeroActions,
   IndustryLeadForm,
+  IndustryRelatedResources,
+  IndustryServicesCarousel,
   IndustrySubSectors,
+  IndustryTermsCarousel,
   IndustryToolSlot,
   IndustryTriggerCards,
   StickyConsultBar,
@@ -26,9 +28,12 @@ import {
   parseTool,
   parseTriggers,
 } from "@/lib/industry-conversion";
-import { getIndustries, getIndustryBySlug, getSiteSettings } from "@/lib/data";
+import { getBlogPosts, getIndustries, getIndustryBySlug, getPeople, getSiteSettings } from "@/lib/data";
+import { guidesForIndustry } from "@/lib/industry-links";
+import { IndustryGuides } from "@/components/industries/IndustryGuides";
 import { buildMetadata } from "@/lib/metadata";
-import { serviceSchema, webPageSchema, howToSchema } from "@/lib/schema";
+import { stripInlineMarkup } from "@/lib/richtext";
+import { serviceSchema, webPageSchema, howToSchema, personId } from "@/lib/schema";
 import { parseBlocks, stepsFromBlocks } from "@/lib/marketing-blocks";
 import { SITE_URL } from "@/lib/config";
 
@@ -51,6 +56,9 @@ export async function generateMetadata({
     title: industry.metaTitle,
     description: industry.metaDescription,
     path: `/industries/${industry.slug}/`,
+    // Per-industry social card (./opengraph-image.tsx) instead of the site
+    // default, so a LinkedIn share says which industry it is about.
+    imagePath: `/industries/${industry.slug}/opengraph-image`,
   });
 }
 
@@ -60,12 +68,25 @@ export default async function IndustryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [industry, settings, allIndustries] = await Promise.all([
+  const [industry, settings, allIndustries, people, posts] = await Promise.all([
     getIndustryBySlug(slug),
     getSiteSettings(),
     getIndustries(),
+    getPeople(),
+    getBlogPosts(),
   ]);
   if (!industry) notFound();
+
+  const guides = guidesForIndustry(posts, industry.slug).map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: stripInlineMarkup(p.excerpt),
+  }));
+  const pageTitle = industry.h1 || `Microsoft solutions for ${industry.name}`;
+  const reviewer = industry.reviewerSlug
+    ? people.find((p) => p.slug === industry.reviewerSlug)
+    : undefined;
+  const reviewedIso = industry.reviewedAt?.toISOString().slice(0, 10);
 
   const path = `/industries/${industry.slug}/`;
   const blocks = parseBlocks(industry.blocks);
@@ -90,10 +111,14 @@ export default async function IndustryPage({
       <JsonLd
         data={webPageSchema({
           path,
-          name: `Microsoft solutions for ${industry.name}`,
+          name: pageTitle,
           description: industry.metaDescription,
           mainEntityId: `${SITE_URL}${path}#service`,
-          dateModified: industry.updatedAt.toISOString(),
+          // The review date, not updatedAt: every re-seed touches updatedAt,
+          // so it would claim a freshness the content does not have.
+          dateModified: reviewedIso ?? industry.updatedAt.toISOString(),
+          lastReviewed: reviewedIso,
+          reviewedById: reviewer ? personId(reviewer.slug) : undefined,
         })}
       />
       <JsonLd
@@ -117,38 +142,49 @@ export default async function IndustryPage({
           })}
         />
       )}
-      <PageHero
-        eyebrow="Industry"
-        h1={`Microsoft solutions for ${industry.name}`}
+      <IndustryHero
+        industryName={industry.name}
+        h1={industry.h1}
+        industrySlug={industry.slug}
         answerQuestion={industry.heroQuestion}
         answerText={industry.heroAnswer}
-        breadcrumbs={[
-          { name: "Industries", path: "/industries/" },
-          { name: industry.name, path: `/industries/${industry.slug}/` },
-        ]}
         imageUrl={industry.imageUrl}
       >
         <IndustryHeroActions metrics={metrics} toolLabel={toolCtaLabel(tool, industry.name)} />
-      </PageHero>
+      </IndustryHero>
       <Container className="pt-14">
         <div className="grid gap-14 lg:grid-cols-[1fr_280px]">
           <div className="flex flex-col gap-10 min-w-0">
+            {reviewedIso && (
+              <p className="text-[12.5px] text-mp-muted">
+                Last reviewed{" "}
+                <time dateTime={reviewedIso}>
+                  {new Date(`${reviewedIso}T12:00:00Z`).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>
+                {reviewer ? ` by ${reviewer.name}, ${reviewer.role}` : " against Microsoft and regulator documentation"}
+              </p>
+            )}
             <div className="flex flex-col gap-4">
               {industry.intro.map((p, i) => (
-                <p key={i} className="max-w-[68ch] text-[15.5px] leading-[1.75] text-ink-2">
+                <p key={i} className="text-[15.5px] leading-[1.75] text-ink-2">
                   <RichText text={p} />
                 </p>
               ))}
             </div>
             <IndustryTriggerCards industryName={industry.name} triggers={triggers} />
             <div>
-              <h2 className="mb-5 font-display text-[26px] font-extrabold text-navy">
+              <h2 className="mb-5 font-display text-[26px] font-extrabold text-mp-petrol">
                 Common challenges in {industry.name.toLowerCase()}
               </h2>
-              <ul className="flex flex-col gap-2.5">
+              <ul className="flex flex-col gap-3">
                 {industry.challenges.map((c) => (
-                  <li key={c} className="flex gap-3 text-ink-2 leading-relaxed max-w-[62ch]">
-                    <span className="text-azure font-bold flex-none">—</span>
+                  <li key={c} className="flex items-start gap-3 text-mp-secondary leading-relaxed">
+                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-mp-mint/25 text-mp-petrol mt-0.5 text-xs font-bold">✓</span>
                     <RichText text={c} />
                   </li>
                 ))}
@@ -178,6 +214,11 @@ export default async function IndustryPage({
                   : null
               }
             />
+            <IndustryGuides industryName={industry.name} guides={guides} />
+            <IndustryRelatedResources
+              industryName={industry.name}
+              pages={industry.relatedPages}
+            />
             <FaqSection faqs={industry.faqs} path={path} />
           </div>
           <aside className="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
@@ -190,30 +231,17 @@ export default async function IndustryPage({
                 ctaHref={`#${CONSULT_ANCHOR}`}
               />
             )}
-            {industry.relatedServices.length > 0 && (
-              <RelatedSidebar
-                title="Related services"
-                items={industry.relatedServices.map((s) => ({
-                  name: s.name,
-                  href: `/services/${s.slug}/`,
-                }))}
-              />
-            )}
-            {industry.relatedPages.length > 0 && (
-              <RelatedSidebar title="Go deeper" items={industry.relatedPages} />
-            )}
-            {industry.relatedTerms.length > 0 && (
-              <RelatedSidebar
-                title="Related terms"
-                items={industry.relatedTerms.map((t) => ({
-                  name: t.term,
-                  href: `/resources/glossary/${t.slug}/`,
-                }))}
-              />
-            )}
           </aside>
         </div>
       </Container>
+      <IndustryServicesCarousel
+        services={industry.relatedServices}
+        industryName={industry.name}
+      />
+      <IndustryTermsCarousel
+        terms={industry.relatedTerms}
+        industryName={industry.name}
+      />
       <CtaBand
         heading={industry.ctaHeading ?? undefined}
         subheading={industry.ctaSubheading ?? undefined}

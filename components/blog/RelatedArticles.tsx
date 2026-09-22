@@ -21,7 +21,7 @@ export function RelatedArticles({ posts }: { posts: BlogCardPost[] }) {
         </div>
         <Link
           href="/blog/"
-          className="text-[13px] font-mono font-bold uppercase tracking-wider text-mp-petrol hover:text-mp-petrol-2 hover:underline transition-colors inline-flex items-center gap-1"
+          className="text-[13px] font-bold uppercase tracking-wider text-mp-petrol hover:text-mp-petrol-2 hover:underline transition-colors inline-flex items-center gap-1"
         >
           <span>View all articles</span>
           <span className="text-base font-bold">→</span>

@@ -18,7 +18,7 @@ import {
   type ClusterCta,
   type Faq,
 } from "./data";
-import { ServiceCategory, BlogCluster, CaseStudyKind } from "@prisma/client";
+import { ServiceCategory, BlogCluster, CaseStudyKind, type Service } from "@prisma/client";
 
 const CATEGORY_MAP: Record<string, ServiceCategory> = {
   Migration: ServiceCategory.Migration,
@@ -265,6 +265,9 @@ export function getIndustriesFallback() {
     ctaHeading: ind.ctaHeading ?? null,
     ctaSubheading: ind.ctaSubheading ?? null,
     sidebarCta: ind.sidebarCta ?? null,
+    h1: ind.h1 ?? null,
+    reviewedAt: ind.reviewedAt ? new Date(ind.reviewedAt) : null,
+    reviewerSlug: ind.reviewerSlug ?? null,
     faqs: (ind.faqs ?? []).map((f) => ({ q: f.q, a: f.a })),
     createdAt: new Date("2026-01-01"),
     updatedAt: new Date("2026-01-01"),
@@ -284,7 +287,12 @@ export function getIndustryBySlugFallback(slug: string) {
   const terms = ind.relatedTermSlugs.length
     ? glossaryTerms
         .filter((t) => ind.relatedTermSlugs.includes(t.slug))
-        .map((t) => ({ slug: t.slug, term: t.term }))
+        .map((t) => ({
+          slug: t.slug,
+          term: t.term,
+          shortDefinition: t.shortDefinition,
+          primaryServiceSlug: t.relatedServiceSlugs?.[0] ?? null,
+        }))
     : [];
 
   const relatedPages = resolveRelatedPagesFallback(ind.relatedPageRefs);
@@ -321,7 +329,7 @@ export function getCaseStudiesFallback() {
       published: c.published ?? false,
       order: i,
       serviceId: c.serviceSlug,
-      service: null as any,
+      service: null as Service | null,
       createdAt: new Date("2026-01-01"),
       updatedAt: new Date("2026-01-01"),
     }));
@@ -352,7 +360,7 @@ export function getCaseStudyBySlugFallback(slug: string) {
     published: c.published ?? false,
     order: 0,
     serviceId: c.serviceSlug,
-    service: (srv as any) ?? null,
+    service: (srv as unknown as Service) ?? null,
     createdAt: new Date("2026-01-01"),
     updatedAt: new Date("2026-01-01"),
   };
@@ -378,7 +386,7 @@ export function getWorkedExamplesFallback() {
       published: true,
       order: i,
       serviceId: w.serviceSlug,
-      service: null as any,
+      service: null as Service | null,
       createdAt: new Date("2026-01-01"),
       updatedAt: new Date("2026-01-01"),
     }));
@@ -405,7 +413,7 @@ export function getWorkedExampleBySlugFallback(slug: string) {
     published: true,
     order: 0,
     serviceId: w.serviceSlug,
-    service: (srv as any) ?? null,
+    service: (srv as unknown as Service) ?? null,
     createdAt: new Date("2026-01-01"),
     updatedAt: new Date("2026-01-01"),
   };

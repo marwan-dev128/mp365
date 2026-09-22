@@ -1,14 +1,16 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitContact, type ContactState } from "@/app/contact/actions";
 import type { IndustryReadinessQuestion } from "@/lib/industry-conversion";
+import { track, trackLead } from "@/lib/analytics";
+import { BookingLink } from "@/components/BookingLink";
 
 type Answer = "yes" | "no" | null;
 
 const INPUT_CLASS =
-  "w-full rounded-[14px] border border-mp-border bg-white px-4 py-3 text-[14.5px] text-mp-ink placeholder:text-mp-muted/60 focus:border-mp-petrol focus:ring-2 focus:ring-mp-petrol/10 outline-hidden";
+  "w-full rounded-[14px] border border-mp-border bg-white px-4 py-3 text-[16px] sm:text-[14.5px] text-mp-ink placeholder:text-mp-muted/60 focus:border-mp-petrol focus:ring-2 focus:ring-mp-petrol/10 outline-hidden";
 
 function verdictFor(yes: number, total: number) {
   if (yes === 0)
@@ -36,7 +38,7 @@ function SendButton() {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex cursor-pointer items-center justify-center rounded-full bg-mp-lime px-6 py-3 text-sm font-bold text-mp-ink transition-colors hover:bg-mp-lime-hover disabled:opacity-60"
+      className="inline-flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-full bg-mp-lime px-6 py-3 text-sm font-bold text-mp-ink transition-colors hover:bg-mp-lime-hover disabled:opacity-60"
     >
       {pending ? "Sending…" : "Send me this with next steps"}
     </button>
@@ -81,6 +83,18 @@ export function IndustryReadinessCheck({
     [answers, questions, risks.length, title, verdict.label]
   );
 
+  // Completion is the micro-conversion worth watching: a visitor who scores
+  // themselves and does not send the result is the form's biggest leak.
+  useEffect(() => {
+    if (complete) track("readiness_complete", { industry: industrySlug, score: risks.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [complete]);
+  useEffect(() => {
+    if (state.status === "success")
+      trackLead({ form: "readiness", industry: industrySlug, score: risks.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.status]);
+
   const set = (i: number, a: Answer) =>
     setAnswers((prev) => prev.map((p, j) => (j === i ? a : p)));
 
@@ -96,7 +110,7 @@ export function IndustryReadinessCheck({
       <h2 id={`${id}-heading`} className="mb-1 font-display text-[24px] font-extrabold text-navy">
         {title}
       </h2>
-      <p className="mb-6 max-w-[60ch] text-sm text-ink-2">
+      <p className="mb-6 text-sm text-ink-2">
         Five questions. Your result shows on this page straight away, and nothing is sent unless
         you ask for it.
       </p>
@@ -154,10 +168,13 @@ export function IndustryReadinessCheck({
             </div>
 
             {state.status === "success" ? (
-              <p role="status" className="text-sm font-semibold text-mp-petrol">
-                Sent. A senior engineer will reply with what they would fix first, within one
-                business day.
-              </p>
+              <div className="flex flex-col gap-3">
+                <p role="status" className="text-sm font-semibold text-mp-petrol">
+                  Sent. A senior engineer will reply with what they would fix first, within one
+                  business day.
+                </p>
+                <BookingLink source="readiness_sent" industry={industrySlug} variant="text" label="Want to go through it live? Book 20 minutes" />
+              </div>
             ) : (
               <form action={formAction} className="relative flex flex-col gap-3">
                 <p className="text-sm font-semibold text-navy">

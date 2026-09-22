@@ -46,6 +46,12 @@ export type Industry = {
   ctaHeading?: string;
   ctaSubheading?: string;
   sidebarCta?: IndustrySidebarCta;
+  /** On-page H1, matched to the metaTitle's search intent. <= 75 chars. */
+  h1?: string;
+  /** ISO date the content was last fact-checked. */
+  reviewedAt?: string;
+  /** Person.slug of the named reviewer, once one is assigned. */
+  reviewerSlug?: string;
 };
 
 export type IndustryProofMetric = { value: string; label: string };
@@ -208,7 +214,7 @@ const coreIndustries: Industry[] = [
         "heading": "The support clock is now a contract condition, not an IT preference",
         "paragraphs": [
           "AX 2012 R3 mainstream support ended in October 2021 and extended support ended on 11 January 2023, so it receives no security patches today. GP 2016 and 2016 R2 extended support ended on 14 July 2026, so those versions are already unpatched. GP 2018 and NAV 2018 both run to 11 January 2028. Microsoft has stated that Dynamics GP support ends 31 December 2029, with security updates available if needed until 30 April 2031.",
-          "For anyone in the defence supply chain the clock is sharper. The CMMC acquisition rule took effect on 10 November 2025, making CMMC a pre-award condition on new DoD contracts, with Level 2 certification requirements phasing into new and renewing contracts from twelve months after that date. An unpatchable ERP holding controlled unclassified information becomes a reason to lose an award rather than an audit finding, and cyber-insurance renewals ask a version of the same question.",
+          "For anyone in the defence supply chain the clock is sharper. The CMMC acquisition rule took effect on 10 November 2025, establishing CMMC as a pre-award condition on new DoD contracts under Phase 1 (Level 1 and Level 2 self-assessments). While DoD suspended the transition to Phase 2 in July 2026 pending task force review, SPRS scores, DFARS 7012 and NIST SP 800-171 compliance remain fully mandatory. An unpatchable ERP holding controlled unclassified information becomes a reason to lose an award rather than an audit finding, and cyber-insurance renewals ask a version of the same question.",
           "The route out depends on where you start: [GP to Business Central](/migrations/dynamics-gp-to-business-central/), [NAV to Business Central](/migrations/dynamics-nav-to-business-central/), or [AX to Dynamics 365](/migrations/dynamics-ax-to-dynamics-365/)."
         ]
       },
@@ -721,6 +727,51 @@ const coreIndustries: Industry[] = [
   }
 ];
 
+// H1 and review date per page. The H1 carries the same intent as the
+// metaTitle; reviewedAt is the date the page's specifics were last checked
+// against primary sources (the three original pages: their last content
+// commit; the six added pages: their fact-check pass).
+const PAGE_META: Record<string, Pick<Industry, "h1" | "reviewedAt" | "reviewerSlug">> = {
+  manufacturing: {
+    h1: "Business Central or Supply Chain Management for Manufacturers",
+    reviewedAt: "2026-09-01",
+  },
+  "logistics-supply-chain": {
+    h1: "Business Central for 3PL, Freight and Distribution",
+    reviewedAt: "2026-09-22",
+  },
+  "energy-utilities": {
+    h1: "Microsoft 365 for Energy and Utilities: BCSI, CIP and OT Separation",
+    reviewedAt: "2026-09-22",
+  },
+  "construction-engineering": {
+    h1: "Business Central and Dynamics 365 for Construction and Engineering",
+    reviewedAt: "2026-09-22",
+  },
+  "financial-services": {
+    h1: "Microsoft 365 for Credit Unions and Community Banks",
+    reviewedAt: "2026-09-22",
+  },
+  "federal-contractors": {
+    h1: "CMMC Level 2 and GCC High for Defense Contractors",
+    reviewedAt: "2026-09-22",
+  },
+  "medical-devices": {
+    h1: "Business Central and Microsoft 365 for Medical Device Manufacturers",
+    reviewedAt: "2026-09-22",
+  },
+  healthcare: {
+    h1: "Microsoft 365 HIPAA Configuration for Healthcare Organizations",
+    reviewedAt: "2026-09-01",
+  },
+  retail: {
+    h1: "Microsoft 365 and Dynamics 365 for Multi-Store Retailers",
+    reviewedAt: "2026-09-01",
+  },
+};
+
+const withMeta = (i: Industry): Industry => ({ ...i, ...PAGE_META[i.slug] });
+
 // Display order across the hub grid, mega menu and sitemap.
 export const industries: Industry[] = [
   withConversion(coreIndustries, "manufacturing"),
@@ -732,7 +783,7 @@ export const industries: Industry[] = [
   medicalDevices,
   withConversion(coreIndustries, "healthcare"),
   withConversion(coreIndustries, "retail"),
-];
+].map(withMeta);
 
 function withConversion(list: Industry[], slug: string): Industry {
   const base = list.find((i) => i.slug === slug);

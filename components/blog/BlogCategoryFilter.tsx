@@ -39,7 +39,7 @@ export function BlogCategoryFilter({
                 key={category}
                 type="button"
                 onClick={() => setSelectedCategory(category)}
-                className={`cursor-pointer text-[12px] font-mono font-semibold uppercase tracking-[0.08em] px-4 py-2 rounded-full transition-all duration-200 ${
+                className={`cursor-pointer text-[12px] font-semibold uppercase tracking-[0.08em] px-4 py-2 rounded-full transition-all duration-200 ${
                   isActive
                     ? "bg-mp-ink text-white shadow-xs"
                     : "bg-white text-mp-secondary border border-mp-border hover:border-mp-ink hover:text-mp-ink"
@@ -91,7 +91,7 @@ export function BlogCategoryFilter({
               setSelectedCategory("All");
               setSearchQuery("");
             }}
-            className="mt-4 text-[12px] font-mono font-bold uppercase tracking-wider bg-mp-ink text-white px-5 py-2.5 rounded-full hover:bg-black transition-colors"
+            className="mt-4 text-[12px] font-bold uppercase tracking-wider bg-mp-ink text-white px-5 py-2.5 rounded-full hover:bg-black transition-colors"
           >
             Reset filters
           </button>
@@ -100,7 +100,7 @@ export function BlogCategoryFilter({
 
       {/* Results counter */}
       <div className="text-center pt-8 border-t border-mp-border-subtle">
-        <p className="text-[12px] font-mono text-mp-muted uppercase tracking-wider">
+        <p className="text-[12px] text-mp-muted uppercase tracking-wider">
           Showing {filteredPosts.length} of {posts.length} articles
         </p>
       </div>

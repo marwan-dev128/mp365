@@ -517,7 +517,7 @@ export function Header({
                   >
                     {activeGroupData.columns.map((col) => (
                       <div key={col.title} className="flex flex-col">
-                        <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04]">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04]">
                           {col.title}
                         </span>
                         <div className="flex flex-col gap-1">
@@ -567,7 +567,7 @@ export function Header({
                         )}
                         <div className="relative z-10 flex flex-col items-start">
                           {activeGroupData.featureCard.tag && (
-                            <span className="inline-flex items-center gap-1.5 rounded-full border border-mp-mint/40 bg-mp-petrol/60 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.14em] text-mp-mint backdrop-blur-xs">
+                            <span className="inline-flex items-center gap-1.5 rounded-full border border-mp-mint/40 bg-mp-petrol/60 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-mp-mint backdrop-blur-xs">
                               <MicrosoftLogo className="h-3 w-3" />
                               <span>{activeGroupData.featureCard.tag}</span>
                             </span>

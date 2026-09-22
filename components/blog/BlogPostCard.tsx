@@ -59,7 +59,7 @@ export function BlogPostCard({
               <div className="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-mp-petrol/5 transition-transform duration-500 group-hover:scale-125" />
               <div className="absolute -left-6 -top-6 w-24 h-24 rounded-full bg-mp-mint/20 blur-xl" />
               <div className="relative z-10 flex flex-col items-center text-center gap-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-mp-petrol bg-white border border-mp-petrol/20 px-2.5 py-1 rounded-full">
+                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-mp-petrol bg-white border border-mp-petrol/20 px-2.5 py-1 rounded-full">
                   {post.clusterLabel}
                 </span>
                 <span className="font-display font-bold text-[13px] text-mp-petrol/80 line-clamp-1 max-w-[240px]">
@@ -88,10 +88,10 @@ export function BlogPostCard({
 
       {/* Category Pill & Meta */}
       <div className="flex flex-wrap items-center justify-between gap-2 px-5 pb-5 md:px-6 md:pb-6 pt-1">
-        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.1em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full">
+        <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-mp-petrol bg-white border border-mp-petrol/20 px-3 py-1 rounded-full">
           {post.clusterLabel}
         </span>
-        <div className="flex items-center gap-2 text-[11.5px] font-mono text-mp-muted">
+        <div className="flex items-center gap-2 text-[11.5px] text-mp-muted">
           <time dateTime={post.datePublished.toISOString()}>{dateStr}</time>
           {post.readingText && (
             <>

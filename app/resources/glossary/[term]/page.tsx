@@ -9,7 +9,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { FaqSection } from "@/components/FaqSection";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
 import { RelatedSidebar } from "@/components/RelatedSidebar";
-import { getGlossaryTerms, getGlossaryTermBySlug } from "@/lib/data";
+import { industriesForTerm } from "@/lib/industry-links";
+import { getGlossaryTerms, getGlossaryTermBySlug, getIndustries } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { definedTermSchema, webPageSchema } from "@/lib/schema";
 import { parseBlocks } from "@/lib/marketing-blocks";
@@ -128,6 +129,10 @@ export default async function GlossaryTermPage({
                 }))}
               />
             )}
+            <RelatedSidebar
+              title="Where it comes up"
+              items={industriesForTerm(await getIndustries(), term.slug)}
+            />
             {term.relatedServices.length > 0 && (
               <RelatedSidebar
                 title="Related services"

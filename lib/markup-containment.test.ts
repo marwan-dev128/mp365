@@ -147,13 +147,24 @@ test("buildMetadata flattens markup in every text field it emits", () => {
 // spans newlines joins two unrelated quotes and sweeps up the TypeScript
 // between them — including JSDoc `/** … */`, which then reads as unclosed
 // emphasis. Excluding \n keeps each match to one real string.
+/**
+ * Every .ts file under seed-data, including the per-industry and per-article
+ * subfolders, as paths relative to `dir`. A flat readdir silently skipped the
+ * subfolders, so their copy went unchecked.
+ */
+function seedFiles(dir: string): string[] {
+  return (readdirSync(dir, { recursive: true }) as string[])
+    .map((f) => f.split("\\").join("/"))
+    .filter((f) => f.endsWith(".ts"));
+}
+
 function seededStrings(src: string): string[] {
   return (src.match(/"(?:[^"\\\n]|\\.){20,}"/g) ?? []).map((raw) => raw.slice(1, -1));
 }
 
 test("every seed-data file parses cleanly — no unclosed or unsupported markup", () => {
   const dir = join(process.cwd(), "prisma/seed-data");
-  const files = readdirSync(dir).filter((f) => f.endsWith(".ts"));
+  const files = seedFiles(dir);
   assert.ok(files.length >= 5, "expected the seed-data directory to be populated");
 
   const bad: string[] = [];
@@ -175,7 +186,7 @@ test("every seed-data file parses cleanly — no unclosed or unsupported markup"
 test("seeded internal links point at paths, not bare slugs or external URLs", () => {
   const dir = join(process.cwd(), "prisma/seed-data");
   const bad: string[] = [];
-  for (const file of readdirSync(dir).filter((f) => f.endsWith(".ts"))) {
+  for (const file of seedFiles(dir)) {
     const src = seededStrings(readFileSync(join(dir, file), "utf8")).join("\n");
     for (const m of src.matchAll(/\[[^\]]+\]\(([^)]*)\)/g)) {
       const href = m[1];
@@ -234,7 +245,7 @@ test("fields the renderer prints raw contain no inline markup", () => {
   };
 
   const dir = join(process.cwd(), "prisma/seed-data");
-  for (const file of readdirSync(dir).filter((f) => f.endsWith(".ts"))) {
+  for (const file of seedFiles(dir)) {
     const src = readFileSync(join(dir, file), "utf8");
 
     // Field-name-scoped scan: only the keys whose renderers print raw. Reading

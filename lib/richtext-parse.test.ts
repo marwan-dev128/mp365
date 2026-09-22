@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { stripInlineMarkup } from "./richtext";
 
@@ -42,7 +42,14 @@ test("a link nested inside bold is flattened, not left as raw syntax", () => {
 });
 
 test("every seeded blog string is fully parseable — no leftover raw markup", () => {
-  const src = readFileSync(join(process.cwd(), "prisma/seed-data/blog.ts"), "utf8");
+  // blog.ts plus the per-article spoke files it imports from ./blog/.
+  const blogDir = join(process.cwd(), "prisma/seed-data/blog");
+  const src = [
+    readFileSync(join(process.cwd(), "prisma/seed-data/blog.ts"), "utf8"),
+    ...readdirSync(blogDir)
+      .filter((f) => f.endsWith(".ts"))
+      .map((f) => readFileSync(join(blogDir, f), "utf8")),
+  ].join("\n");
   // Pull every double-quoted string in the seed file; good enough to catch
   // authored copy carrying syntax the renderer cannot handle.
   const strings = src.match(/"(?:[^"\\]|\\.){20,}"/g) ?? [];

@@ -6,7 +6,9 @@ import { FaqSection } from "@/components/FaqSection";
 import { CtaBand } from "@/components/CtaBand";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
 import { JsonLd } from "@/components/JsonLd";
-import { getAllMarketingPageSlugs, getMarketingPageBySlug } from "@/lib/data";
+import { IndustryLinkStrip } from "@/components/IndustryLinkStrip";
+import { industriesForPage } from "@/lib/industry-links";
+import { getAllMarketingPageSlugs, getMarketingPageBySlug, getIndustries } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { webPageSchema } from "@/lib/schema";
 import { parseBlocks } from "@/lib/marketing-blocks";
@@ -42,6 +44,7 @@ export default async function PricingDetailPage({
   const { slug } = await params;
   const page = await getMarketingPageBySlug("pricing", slug);
   if (!page) notFound();
+  const industryLinks = industriesForPage(await getIndustries(), `/pricing/${page.slug}/`);
 
   const blocks = parseBlocks(page.sections);
 
@@ -84,6 +87,7 @@ export default async function PricingDetailPage({
         )}
         <MarketingPageBody blocks={blocks} />
         <div className="mt-10">
+          <IndustryLinkStrip items={industryLinks} />
           <FaqSection faqs={page.faqs} path={`/pricing/${page.slug}/`} />
         </div>
       </Container>

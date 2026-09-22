@@ -1,5 +1,11 @@
 import type { Faq } from "./services";
 import type { MarketingBlock } from "../../lib/marketing-blocks";
+// Industry spoke articles live one per file under ./blog/ so they can be
+// written and fact-checked independently; each links to its industry hub.
+import { post as gccVsGccHigh } from "./blog/gcc-vs-gcc-high-for-cmmc";
+import { post as commercialToGccHigh } from "./blog/commercial-to-gcc-high-migration";
+import { post as ncuaIncidentRule } from "./blog/ncua-cyber-incident-notification-microsoft-365";
+import { post as creditUnionMerger } from "./blog/credit-union-merger-microsoft-365";
 
 // Blog content.
 //
@@ -1767,4 +1773,8 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  gccVsGccHigh,
+  commercialToGccHigh,
+  ncuaIncidentRule,
+  creditUnionMerger,
 ];

@@ -5,6 +5,9 @@ import { services } from "../prisma/seed-data/services";
 import { solutions } from "../prisma/seed-data/solutions";
 import { glossaryTerms } from "../prisma/seed-data/glossary";
 import { marketingPages } from "../prisma/seed-data/marketing-pages";
+import { industries } from "../prisma/seed-data/industries";
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
 import { countWords, parseBlogBody } from "./blog";
 import { inlineTokenPattern, stripInlineMarkup } from "./richtext";
 
@@ -28,7 +31,6 @@ const STATIC_PAGES = new Set([
   "/", "/about/", "/contact/", "/services/", "/solutions/", "/industries/",
   "/case-studies/", "/blog/", "/resources/", "/resources/glossary/",
   "/microsoft-consultant-connecticut/",
-  "/industries/manufacturing/", "/industries/healthcare/", "/industries/retail/",
 ]);
 
 const linkTargets = new Set<string>([
@@ -37,6 +39,7 @@ const linkTargets = new Set<string>([
   ...[...SERVICE_SLUGS].map((s) => `/services/${s}/`),
   ...[...SOLUTION_SLUGS].map((s) => `/solutions/${s}/`),
   ...[...TERM_SLUGS].map((s) => `/resources/glossary/${s}/`),
+  ...industries.map((i) => `/industries/${i.slug}/`),
   // Cross-linking between articles is the point of a cluster, so posts are
   // valid targets for each other.
   ...blogPosts.map((p) => `/blog/${p.slug}/`),
@@ -159,6 +162,7 @@ test("no fabricated authority: no invented ratings, clients, or prices", () => {
     // MP365 holds no published partner designation or attestation.
     [/\bMicrosoft (Solutions )?Partner\b.*\b(designation|tier|gold|silver)\b/i, "partner tier claim"],
     [/\bMP365 is (SOC ?2|ISO ?27001|HITRUST|FedRAMP|HIPAA)[- ]?(certified|compliant|attested)/i, "attestation claim"],
+    [/\bMP365\b[^.]{0,60}\b(NCUA|FedRAMP|CMMC|C3PAO|RPO)[- ]?(certified|authori[sz]ed|accredited|registered)\b/i, "credential claim"],
   ];
   for (const p of blogPosts) {
     const blob = JSON.stringify(p);
@@ -205,4 +209,19 @@ test("slugs are unique and stable", () => {
     seen.add(p.slug);
   }
   assert.equal(seen.size, blogPosts.length);
+});
+
+test("every industry spoke article is registered and links back to an industry hub", () => {
+  // Articles under prisma/seed-data/blog/ exist to feed an industry page. One
+  // that is not registered never ships; one that stops linking to its hub has
+  // lost the reason it was written.
+  const spokeSlugs = readdirSync(join(process.cwd(), "prisma/seed-data/blog"))
+    .filter((f) => f.endsWith(".ts"))
+    .map((f) => f.replace(/\.ts$/, ""));
+  for (const slug of spokeSlugs) {
+    const p = blogPosts.find((x) => x.slug === slug);
+    assert.ok(p, `${slug}: file exists under blog/ but is not registered in blogPosts`);
+    const links = [...JSON.stringify(p).matchAll(inlineTokenPattern())].map((m) => m[2]);
+    assert.ok(links.some((h) => h?.startsWith("/industries/")), `${slug}: no link to an industry page`);
+  }
 });

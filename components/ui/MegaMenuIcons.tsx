@@ -1,7 +1,5 @@
 import React from "react";
 
-type IconProps = { className?: string };
-
 const base = "shrink-0";
 
 export function MegaMenuIcon({ name, className = "h-4 w-4" }: { name?: string; className?: string }) {

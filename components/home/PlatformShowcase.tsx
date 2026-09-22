@@ -77,7 +77,7 @@ export function PlatformShowcase({
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveTab(t.id)}
-                  className={`relative rounded-full px-5 py-2 text-[13px] sm:text-[13.5px] transition-all duration-200 cursor-pointer font-sono ${
+                  className={`relative rounded-full px-5 py-2 text-[13px] sm:text-[13.5px] transition-all duration-200 cursor-pointer ${
                     isActive
                       ? "bg-mp-lime text-mp-ink font-bold shadow-2xs"
                       : "text-mp-ink font-medium hover:text-mp-petrol hover:bg-mp-petrol/[0.06]"
@@ -93,14 +93,14 @@ export function PlatformShowcase({
           <div className="showcase-panel flex flex-col-reverse md:flex-row md:gap-10 lg:gap-[100px] md:h-[360px] lg:h-[380px] overflow-hidden">
             {/* Left Description Column */}
             <div className="flex flex-col justify-end gap-6 w-full mt-4 md:mt-0 p-4 sm:p-6 md:p-8 md:pt-[100px] lg:pt-[110px] md:w-[440px] lg:w-[460px] shrink-0">
-              <p className="text-mp-secondary text-[13.5px] sm:text-[14px] lg:text-[14.5px] font-sono leading-[1.6]">
+              <p className="text-mp-secondary text-[13.5px] sm:text-[14px] lg:text-[14.5px] leading-[1.6]">
                 {tab.description}
               </p>
 
               <div>
                 <Link
                   href={tab.linkHref}
-                  className="inline-flex items-center gap-1.5 text-[13.5px] font-medium font-sono text-mp-ink hover:text-mp-petrol group self-start"
+                  className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-mp-ink hover:text-mp-petrol group self-start"
                 >
                   <span className="underline decoration-1 underline-offset-4 font-semibold">{tab.linkText}</span>
                   <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">›</span>
@@ -158,7 +158,7 @@ export function PlatformShowcase({
                     <span className="font-display text-[30px] sm:text-[34px] font-extrabold tracking-[-0.03em] text-mp-petrol leading-none whitespace-nowrap">
                       {metric.value}
                     </span>
-                    <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted font-sono whitespace-nowrap">
+                    <span className="mt-1 text-[11.5px] sm:text-[12px] text-mp-muted whitespace-nowrap">
                       {metric.label}
                     </span>
                   </div>
@@ -169,10 +169,10 @@ export function PlatformShowcase({
             {/* Right: Quote & View Case Study Link */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 md:gap-8 flex-1 lg:border-l lg:border-mp-border lg:pl-8">
               <div className="flex flex-col max-w-xl">
-                <p className="text-mp-ink text-[13px] sm:text-[13.5px] font-sono leading-[1.5]">
+                <p className="text-mp-ink text-[13px] sm:text-[13.5px] leading-[1.5]">
                   {tab.proof.quote}
                 </p>
-                <span className="text-mp-muted text-[12px] font-sono mt-1">
+                <span className="text-mp-muted text-[12px] mt-1">
                   {tab.proof.author}
                 </span>
               </div>
@@ -180,7 +180,7 @@ export function PlatformShowcase({
               <div className="shrink-0">
                 <Link
                   href={tab.proof.caseStudyHref}
-                  className="inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] font-sono font-semibold text-mp-ink hover:text-mp-petrol group whitespace-nowrap self-start md:self-center"
+                  className="inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] font-semibold text-mp-ink hover:text-mp-petrol group whitespace-nowrap self-start md:self-center"
                 >
                   <span className="underline decoration-1 underline-offset-4">View case study</span>
                   <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">›</span>
