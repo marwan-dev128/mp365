@@ -41,8 +41,8 @@ export function HaveBetterVisibilityGrid({
           )}
         </div>
 
-        {/* ------------------------------------------------ 3-Card Grid */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch">
+        {/* ------------------------------------------------ Industry Cards Grid */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch">
           {cards.map((card) => {
             if (card.variant === "photo") {
               return (
@@ -55,7 +55,7 @@ export function HaveBetterVisibilityGrid({
                     alt={card.imageAlt || card.title}
                     fill
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-                    sizes="(min-width: 1024px) 380px, (min-width: 768px) 33vw, 100vw"
+                    sizes="(min-width: 1280px) 420px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-mp-petrol/90 via-mp-petrol/50 to-transparent z-[1]" />
 
@@ -151,6 +151,16 @@ export function HaveBetterVisibilityGrid({
               </div>
             );
           })}
+        </div>
+        {/* ------------------------------------------------ All Industries Link */}
+        <div className="mt-12 sm:mt-16 text-center">
+          <Link
+            href="/industries/"
+            className="inline-flex items-center gap-2 rounded-full border border-mp-border bg-mp-parchment px-6 py-3 text-[14px] font-semibold text-mp-ink transition-all hover:bg-mp-petrol hover:text-white hover:border-mp-petrol shadow-xs"
+          >
+            <span>Explore all 9 industry guides & interactive tools</span>
+            <span className="text-base">→</span>
+          </Link>
         </div>
       </div>
     </section>

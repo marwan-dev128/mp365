@@ -8,3 +8,6 @@ export { IndustryRelatedResources } from "./IndustryRelatedResources";
 export { IndustryHero } from "./IndustryHero";
 export { IndustryServicesCarousel } from "./IndustryServicesCarousel";
 export { IndustryTermsCarousel } from "./IndustryTermsCarousel";
+export { IndustriesHubHero } from "./IndustriesHubHero";
+export { IndustriesHubFilterGrid } from "./IndustriesHubFilterGrid";
+export { IndustryArchitecturePatterns } from "./IndustryArchitecturePatterns";

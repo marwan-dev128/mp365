@@ -1,6 +1,6 @@
 {
   "title": "Decisions by industry",
-  "subtitle": "Manufacturing, healthcare and retail each turn on a different Microsoft product decision. Get it wrong and the implementation cannot fix it.",
+  "subtitle": "Every sector turns on a specific Microsoft architectural decision. Get it wrong and the implementation cannot fix it.",
   "cards": [
     {
       "id": "manufacturing",
@@ -8,29 +8,89 @@
       "image": "/images/mp365/industries/manufacturing-business-central.webp",
       "imageAlt": "Manufacturing plant floor, Business Central decision",
       "title": "Manufacturing",
-      "description": "Business Central or Supply Chain Management is settled by your production data model, not your headcount. A run that yields co-products rules Business Central out. Discrete production usually belongs on Business Central Premium, however many plants you run.",
+      "description": "Business Central or Supply Chain Management is settled by your production data model, not your headcount. Discrete production belongs on Business Central Premium; process co-products require SCM.",
       "linkText": "See the industry",
       "href": "/industries/manufacturing/"
     },
     {
       "id": "healthcare",
-      "variant": "map",
+      "variant": "photo",
       "image": "/images/mp365/industries/healthcare-microsoft-purview.webp",
       "imageAlt": "Healthcare setting, PHI in Microsoft 365",
       "title": "Healthcare PHI",
-      "description": "The BAA reaches Teams, Exchange and SharePoint. It does not configure them: audit logs keep 180 days against a years-long lookback.",
+      "description": "The BAA reaches Teams, Exchange, and SharePoint, but does not configure them: audit logs keep 180 days by default against a years-long lookback, requiring active Purview governance.",
       "linkText": "See the industry",
       "href": "/industries/healthcare/"
     },
     {
       "id": "retail",
-      "variant": "headline",
-      "image": "",
-      "imageAlt": "",
-      "title": "Multi-store retail",
-      "description": "Most mid-market specialty retailers belong on Business Central rather than Dynamics 365 Commerce. Stock and sales read the same in every store, and you are not paying for a pricing engine you will not run.",
+      "variant": "photo",
+      "image": "/images/mp365/industries/retail-power-bi-reporting.webp",
+      "imageAlt": "Retail warehouse inventory management with barcode scanner",
+      "title": "Multi-Store Retail",
+      "description": "Most mid-market specialty retailers belong on Business Central rather than Dynamics 365 Commerce. Unified stock and POS visibility without paying for an enterprise pricing engine you won't use.",
       "linkText": "See the industry",
       "href": "/industries/retail/"
+    },
+    {
+      "id": "financial-services",
+      "variant": "photo",
+      "image": "/images/mp365/industries/financial-services-compliance.webp",
+      "imageAlt": "Financial trading desk with dual monitors and market data",
+      "title": "Financial Services & Credit Unions",
+      "description": "NCUA Part 748 and GLBA compliance is a configuration state, not a licence. DLP for member NPI, 72-hour incident readiness, and audit retention proved to examiners.",
+      "linkText": "See the industry",
+      "href": "/industries/financial-services/"
+    },
+    {
+      "id": "federal-contractors",
+      "variant": "photo",
+      "image": "/images/mp365/industries/federal-contractors-cmmc.webp",
+      "imageAlt": "Aerospace engineer testing defense equipment with rugged laptop",
+      "title": "Federal & Defense Contractors",
+      "description": "Do you need GCC High or Commercial Microsoft 365 for CMMC Level 2? Scope from where CUI actually lands in your supply chain before committing to government cloud licensing.",
+      "linkText": "See the industry",
+      "href": "/industries/federal-contractors/"
+    },
+    {
+      "id": "medical-devices",
+      "variant": "photo",
+      "image": "/images/mp365/industries/medical-devices-validation.webp",
+      "imageAlt": "Medical device cleanroom quality testing and calibration",
+      "title": "Medical Devices",
+      "description": "Validating Business Central for FDA 21 CFR Part 11 and ISO 13485 QMSR. Treating computer systems validation as a continuous update process rather than a one-time freeze.",
+      "linkText": "See the industry",
+      "href": "/industries/medical-devices/"
+    },
+    {
+      "id": "energy-utilities",
+      "variant": "photo",
+      "image": "/images/mp365/industries/energy-utilities-cip.webp",
+      "imageAlt": "Electric utility control center grid monitoring dashboard",
+      "title": "Energy & Utilities",
+      "description": "Keep BES Cyber Systems off Microsoft 365 while governing BCSI and CEII under CIP-011 and CIP-004. Clear identity separation and field storm workflows for line crews.",
+      "linkText": "See the industry",
+      "href": "/industries/energy-utilities/"
+    },
+    {
+      "id": "logistics-supply-chain",
+      "variant": "photo",
+      "image": "/images/mp365/industries/logistics-supply-chain-wms.webp",
+      "imageAlt": "Logistics distribution warehouse manager checking tablet inventory",
+      "title": "Logistics & Supply Chain",
+      "description": "Can Business Central run a 3PL, freight, or distribution operation without a separate WMS? Bin-level tracking, EDI carrier feeds, and customer billing models compared.",
+      "linkText": "See the industry",
+      "href": "/industries/logistics-supply-chain/"
+    },
+    {
+      "id": "construction-engineering",
+      "variant": "photo",
+      "image": "/images/mp365/industries/construction-engineering-erp.webp",
+      "imageAlt": "Construction engineers on jobsite reviewing BIM model on rugged tablet",
+      "title": "Construction & Engineering",
+      "description": "Business Central Projects versus construction-native ERPs. How job costing, WIP calculation, AIA pay applications, and field jobsite SharePoint governance fit together.",
+      "linkText": "See the industry",
+      "href": "/industries/construction-engineering/"
     }
   ]
 }
