@@ -1,5 +1,4 @@
 import { MarketingHubIndex } from "@/components/marketing/HubIndex";
-import { CostEstimator } from "@/components/CostEstimator";
 import { getMarketingPages, getStaticPageFaqs } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -27,7 +26,6 @@ export default async function PricingHubPage() {
       pages={pages}
       hub="pricing"
       faqs={faqs}
-      tool={<CostEstimator />}
     />
   );
 }

@@ -1,4 +1,3 @@
-import { CostEstimator } from "@/components/CostEstimator";
 import { TimelineEstimator } from "@/components/TimelineEstimator";
 import { TOOL_ANCHOR, type IndustryReadinessQuestion, type IndustryTool } from "@/lib/industry-conversion";
 import { IndustryReadinessCheck } from "./IndustryReadinessCheck";
@@ -8,10 +7,11 @@ export function toolCtaLabel(tool: IndustryTool | null, industryName: string): s
   switch (tool) {
     case "readiness":
       return `Run the ${industryName.toLowerCase()} check`;
-    case "cost":
-      return "Estimate the cost range";
     case "timeline":
       return "Estimate the timeline";
+    case "cost":
+      // Pricing tools removed per design direction until pricing model is finalized
+      return null;
     default:
       return null;
   }
@@ -41,12 +41,13 @@ export function IndustryToolSlot({
       />
     );
   }
-  if (tool === "cost" || tool === "timeline") {
+  if (tool === "timeline") {
     return (
       <div id={TOOL_ANCHOR} className="scroll-mt-28">
-        {tool === "cost" ? <CostEstimator /> : <TimelineEstimator />}
+        <TimelineEstimator />
       </div>
     );
   }
+  // "cost" tool is removed
   return null;
 }
