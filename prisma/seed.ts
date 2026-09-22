@@ -3,12 +3,28 @@
 // nothing in app/ or lib/ imports them anymore; the DB is the runtime
 // source of truth). Safe to re-run: every model is upserted by its slug.
 import "dotenv/config";
-import { ServiceCategory, BlogCluster, CaseStudyKind } from "@prisma/client";
+import { Prisma, ServiceCategory, BlogCluster, CaseStudyKind } from "@prisma/client";
 import { prisma } from "../lib/db";
 import { site } from "./seed-data/site";
 import { services } from "./seed-data/services";
 import { solutions } from "./seed-data/solutions";
-import { industries } from "./seed-data/industries";
+import { industries, type Industry } from "./seed-data/industries";
+
+/** Conversion-layer columns, identical in the create and update branches. */
+function industryConversionFields(ind: Industry) {
+  return {
+    proofMetrics: ind.proofMetrics ?? [],
+    triggers: ind.triggers ?? [],
+    subSectors: ind.subSectors ?? [],
+    relatedIndustrySlug: ind.relatedIndustrySlug ?? null,
+    tool: ind.tool ?? null,
+    readinessQuestions: ind.readinessQuestions ?? [],
+    formTopics: ind.formTopics ?? [],
+    ctaHeading: ind.ctaHeading ?? null,
+    ctaSubheading: ind.ctaSubheading ?? null,
+    sidebarCta: ind.sidebarCta ?? Prisma.JsonNull,
+  };
+}
 import { caseStudies } from "./seed-data/case-studies";
 import { workedExamples } from "./seed-data/worked-examples";
 import { blogPosts } from "./seed-data/blog";
@@ -235,6 +251,7 @@ async function main() {
         relatedServiceSlugs: ind.relatedServiceSlugs ?? [],
         relatedTermSlugs: ind.relatedTermSlugs ?? [],
         relatedPageRefs: ind.relatedPageRefs ?? [],
+        ...industryConversionFields(ind),
       },
       update: {
         name: ind.name,
@@ -250,6 +267,7 @@ async function main() {
         relatedServiceSlugs: ind.relatedServiceSlugs ?? [],
         relatedTermSlugs: ind.relatedTermSlugs ?? [],
         relatedPageRefs: ind.relatedPageRefs ?? [],
+        ...industryConversionFields(ind),
       },
     });
 

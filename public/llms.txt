@@ -25,6 +25,12 @@ Key facts: Legal name Modern Partners 365. Headquartered at 59 Winding Brook Tra
 ## Industries
 
 - [Manufacturing](https://mp-365.com/industries/manufacturing/)
+- [Logistics & Supply Chain](https://mp-365.com/industries/logistics-supply-chain/)
+- [Energy & Utilities](https://mp-365.com/industries/energy-utilities/)
+- [Construction & Engineering](https://mp-365.com/industries/construction-engineering/)
+- [Financial Services & Credit Unions](https://mp-365.com/industries/financial-services/)
+- [Federal & Defense Contractors](https://mp-365.com/industries/federal-contractors/)
+- [Medical Devices](https://mp-365.com/industries/medical-devices/)
 - [Healthcare](https://mp-365.com/industries/healthcare/)
 - [Retail](https://mp-365.com/industries/retail/)
 

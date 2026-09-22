@@ -12,7 +12,20 @@ export type ContactState =
 // verification is that the person replies.
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-const LIMITS = { name: 120, email: 254, company: 200, message: 5000 } as const;
+const LIMITS = {
+  name: 120,
+  email: 254,
+  company: 200,
+  message: 5000,
+  industry: 64,
+  topic: 160,
+  sourcePath: 300,
+} as const;
+
+// Only canonical site paths and slugs are stored; anything else is dropped
+// rather than trusted, since these arrive from hidden inputs the client controls.
+const SITE_PATH = /^\/[a-z0-9\-/]*\/$/;
+const SLUG = /^[a-z0-9-]+$/;
 
 function clean(value: FormDataEntryValue | null, max: number): string {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
@@ -32,7 +45,15 @@ export async function submitContact(
   const name = clean(formData.get("name"), LIMITS.name);
   const email = clean(formData.get("email"), LIMITS.email);
   const company = clean(formData.get("company"), LIMITS.company);
-  const message = clean(formData.get("message"), LIMITS.message);
+  const rawMessage = clean(formData.get("message"), LIMITS.message);
+  const topic = clean(formData.get("topic"), LIMITS.topic);
+  const industryRaw = clean(formData.get("industry"), LIMITS.industry);
+  const sourcePathRaw = clean(formData.get("sourcePath"), LIMITS.sourcePath);
+  const industry = SLUG.test(industryRaw) ? industryRaw : "";
+  const sourcePath = SITE_PATH.test(sourcePathRaw) ? sourcePathRaw : "";
+  // Industry forms make the free-text box optional: the topic select already
+  // says what the enquiry is about, and every extra required field costs leads.
+  const message = rawMessage || (topic ? `Topic: ${topic}` : "");
 
   const fieldErrors: Record<string, string> = {};
   if (!name) fieldErrors.name = "Please tell us your name.";
@@ -47,7 +68,15 @@ export async function submitContact(
   let submissionId: string;
   try {
     const saved = await prisma.contactSubmission.create({
-      data: { name, email, company: company || null, message },
+      data: {
+        name,
+        email,
+        company: company || null,
+        message,
+        industry: industry || null,
+        topic: topic || null,
+        sourcePath: sourcePath || null,
+      },
       select: { id: true },
     });
     submissionId = saved.id;
@@ -70,7 +99,17 @@ export async function submitContact(
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          text: `New MP365 enquiry from ${name}${company ? ` (${company})` : ""} <${email}>\n\n${message}`,
+          text: [
+            `New MP365 enquiry from ${name}${company ? ` (${company})` : ""} <${email}>`,
+            ...(industry ? [`Industry: ${industry}`] : []),
+            ...(topic ? [`Topic: ${topic}`] : []),
+            ...(sourcePath ? [`Page: ${sourcePath}`] : []),
+            "",
+            message,
+          ].join("\n"),
+          industry: industry || null,
+          topic: topic || null,
+          sourcePath: sourcePath || null,
           submissionId,
         }),
         signal: AbortSignal.timeout(8000),

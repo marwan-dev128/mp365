@@ -194,6 +194,30 @@ A: A financial management implementation replaces spreadsheet-patched accounting
 Q: Should a mid-market manufacturer implement Business Central or Dynamics 365 Supply Chain Management?
 A: The deciding factor is your production data model, not your headcount. Business Central models production as BOMs and routings and has no formula concept, so any manufacturer whose batch yields co-products or by-products is ruled out on data model alone. Discrete manufacturers, however complex, usually belong on Business Central Premium, and Supply Chain Management is over-buying at roughly twice the list price per user.
 
+### Logistics & Supply Chain
+Q: Can Business Central run a 3PL, freight or distribution operation without a separate WMS or TMS?
+A: For a distributor running its own warehouses, usually yes. Business Central Essentials includes bins, zones, directed put-away and pick, and warehouse receipts and shipments. For a 3PL it usually does not on its own: standard Business Central has no inventory owner concept, no storage or activity-based client billing, and no EDI translator. Those gaps are closed by a 3PL vertical built on Business Central or by Supply Chain Management, not by custom code.
+
+### Energy & Utilities
+Q: How do energy and utility organizations keep OT and IT separated when they standardise on Microsoft 365?
+A: Keep Microsoft 365 as corporate IT and keep BES Cyber Systems off it entirely. The separation that matters is drawn in identity and data, not only in the network: separate privileged accounts and Conditional Access for OT-adjacent staff, and BES Cyber System Information identified, labelled and access-managed under CIP-011-3 and CIP-004-7 wherever it lands in SharePoint or Teams. Low-impact-only entities carry far lighter obligations than most vendors imply.
+
+### Construction & Engineering
+Q: Should a contractor or engineering firm run job costing in Business Central, Project Operations, or a construction-specific ERP?
+A: It depends on how you bill and how you pay people. Business Central Projects handles project tasks, budgets against actuals and five WIP methods well, and suits engineering firms and specialty contractors billing on time and materials or milestones. It has no native AIA pay applications, retainage or US payroll. A union, prevailing-wage general contractor usually needs extensions or a construction-native ERP instead.
+
+### Financial Services & Credit Unions
+Q: Is Microsoft 365 compliant for a credit union or community bank under NCUA and GLBA?
+A: Microsoft 365 can hold member and customer nonpublic personal information, and Microsoft documents its controls against GLBA and FFIEC guidance. No licence makes an institution compliant. The Interagency Guidelines and NCUA Part 748 require a written, board-approved information security program with access controls, encryption and monitoring. That is a configuration and evidence state you build in the tenant, then prove to an examiner.
+
+### Federal & Defense Contractors
+Q: Do we need GCC High for CMMC Level 2, or is commercial Microsoft 365 configured properly enough?
+A: If you hold export-controlled data, plan on GCC High. Microsoft positions commercial Microsoft 365 for CMMC Level 1 and GCC High for Levels 2 and 3, and states GCC is not suitable for CUI Specified such as ITAR data. Configuration cannot turn a commercial tenant into GCC High: it is a separate environment with its own identity, so getting there is a tenant-to-tenant migration.
+
+### Medical Devices
+Q: Can Business Central or Dynamics 365 be validated for FDA 21 CFR Part 11 and the QMSR?
+A: Yes, but validation is always your job, not Microsoft's. Microsoft states that no certification exists for Part 11 and that customers building FDA-regulated applications are responsible for meeting FDA requirements. Business Central gives you lot and serial traceability and, since 2026 release wave 1, quality inspections, but no built-in electronic signature. Supply Chain Management has one. A small device maker with little ERP history is often better served by a specialist validated ERP.
+
 ### Healthcare
 Q: Is Microsoft 365 HIPAA compliant?
 A: Microsoft 365 can hold PHI. The HIPAA Business Associate Agreement reaches Exchange Online, SharePoint Online, Teams, OneDrive, Entra ID, the Microsoft Purview portal and Microsoft 365 Copilot, and it applies by default through the Data Protection Addendum. Microsoft's own answer to whether that agreement makes an organization compliant is no. Compliance is a configuration and documentation state you have to build, and then evidence.

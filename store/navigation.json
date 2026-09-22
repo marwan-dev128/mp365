@@ -216,38 +216,79 @@
       "id": "industries",
       "label": "Industries",
       "href": "/industries/",
-      "width": "compact",
+      "width": "medium",
       "columns": [
         {
-          "title": "Target Sectors",
+          "title": "Operations & Industrial",
           "items": [
             {
-              "label": "Manufacturing & Supply Chain",
+              "label": "Manufacturing",
               "href": "/industries/manufacturing/",
-              "description": "Shop-floor ERP continuity, plant cutovers & operational telemetry.",
+              "description": "Business Central or Supply Chain, MES limits and plant cutovers.",
               "icon": "factory"
             },
             {
-              "label": "Healthcare & Life Sciences",
-              "href": "/industries/healthcare/",
-              "description": "HIPAA compliance, PHI security across Teams & strict governance.",
-              "icon": "healthcare"
+              "label": "Logistics & Supply Chain",
+              "href": "/industries/logistics-supply-chain/",
+              "description": "3PL billing, multi-client inventory, EDI and scanning.",
+              "icon": "truck"
+            },
+            {
+              "label": "Energy & Utilities",
+              "href": "/industries/energy-utilities/",
+              "description": "BCSI in Microsoft 365, OT and IT separation, field crews.",
+              "icon": "bolt"
+            },
+            {
+              "label": "Construction & Engineering",
+              "href": "/industries/construction-engineering/",
+              "description": "Job costing, project sites and external sharing control.",
+              "icon": "hardhat"
             },
             {
               "label": "Retail & Distribution",
               "href": "/industries/retail/",
-              "description": "Multi-location inventory tracking, POS & seasonal licensing.",
+              "description": "Multi-store inventory, POS and seasonal licensing.",
               "icon": "store"
+            }
+          ]
+        },
+        {
+          "title": "Regulated",
+          "items": [
+            {
+              "label": "Federal & Defense Contractors",
+              "href": "/industries/federal-contractors/",
+              "description": "CMMC Level 2, CUI and the GCC High decision.",
+              "icon": "shield"
+            },
+            {
+              "label": "Financial Services & Credit Unions",
+              "href": "/industries/financial-services/",
+              "description": "NCUA and GLBA evidence, member NPI, mergers.",
+              "icon": "bank"
+            },
+            {
+              "label": "Medical Devices",
+              "href": "/industries/medical-devices/",
+              "description": "QMSR, Part 11 and validated Business Central.",
+              "icon": "device"
+            },
+            {
+              "label": "Healthcare",
+              "href": "/industries/healthcare/",
+              "description": "HIPAA configuration, audit retention and Copilot.",
+              "icon": "healthcare"
             }
           ]
         }
       ],
       "featureCard": {
-        "tag": "Featured Client",
-        "title": "Carlisle Construction",
-        "description": "Multi-plant cloud modernization uniting 15 facilities into Microsoft 365.",
-        "href": "/case-studies/carlisle-construction/",
-        "ctaText": "Read Story",
+        "tag": "Industries",
+        "title": "Find the decisions that matter in your sector",
+        "description": "Nine industry guides, each with a two-minute check or estimator.",
+        "href": "/industries/",
+        "ctaText": "Browse industries",
         "bgImage": "/images/mp365/case-studies/carlisle-construction-microsoft-365.webp"
       },
       "bottomLinks": [

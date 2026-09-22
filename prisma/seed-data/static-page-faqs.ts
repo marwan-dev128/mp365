@@ -78,15 +78,19 @@ export const staticPageFaqs: StaticPageFaqGroup[] = [
     faqs: [
       {
         q: "Why does the industry matter if the technology is the same?",
-        a: "The platform is the same; the constraints around it are not. A manufacturer's Dynamics 365 decision turns on production complexity and multi-site inventory, a healthcare organization's turns on where PHI is allowed to live and what has to be logged, and a retailer's turns on whether the point-of-sale system stays. The Microsoft products overlap heavily — what changes is which decisions are load-bearing, and which failure modes are expensive.",
+        a: "The platform is the same; the constraints around it are not. A manufacturer's Dynamics 365 decision turns on production complexity, a defence contractor's turns on which Microsoft cloud may hold CUI, a credit union's and a healthcare organization's turn on what has to be retained and evidenced, and a retailer's turns on whether the point-of-sale system stays. The Microsoft products overlap heavily — what changes is which decisions are load-bearing, and which failure modes are expensive.",
       },
       {
         q: "What if our industry isn't listed here?",
-        a: "These three are where MP365 has the deepest operational pattern library, not the limit of the work. Distribution, professional services, construction, and nonprofit organizations run on the same Microsoft 365, Dynamics 365, and Power Platform building blocks. [Tell us what you're working with](/contact/) and we will say plainly whether the pattern transfers.",
+        a: "The nine industries here are where MP365 has written down its decision patterns, not the limit of the work. Professional services, higher education, and nonprofit organizations run on the same Microsoft 365, Dynamics 365, and Power Platform building blocks. [Tell us what you're working with](/contact/) and we will say plainly whether the pattern transfers.",
       },
       {
         q: "Do you build industry-specific software, or configure Microsoft products?",
         a: "Configure, extend, and integrate — not build vertical software. Most mid-market industry requirements are met by configuring [Dynamics 365](/services/dynamics-365/) correctly, adding [Power Platform](/services/power-platform/) where a process has no product, and integrating the systems that already work. Industry-specific ISV add-ons are evaluated on their merits; sometimes buying one is the right answer and we will say so.",
+      },
+      {
+        q: "Which industry page should a defence supplier or a medical device maker start from?",
+        a: "Start from the constraint that can stop the business, not the product you make. A precision manufacturer holding CUI should read [federal and defense contractors](/industries/federal-contractors/) before [manufacturing](/industries/manufacturing/), because the cloud decision comes before the ERP decision. A device maker should start with [medical devices](/industries/medical-devices/), because validation shapes every configuration choice that follows.",
       },
     ],
   },

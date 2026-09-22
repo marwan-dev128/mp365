@@ -38,6 +38,30 @@
               "href": "/industries/manufacturing/"
             },
             {
+              "label": "Logistics & supply chain",
+              "href": "/industries/logistics-supply-chain/"
+            },
+            {
+              "label": "Energy & utilities",
+              "href": "/industries/energy-utilities/"
+            },
+            {
+              "label": "Construction & engineering",
+              "href": "/industries/construction-engineering/"
+            },
+            {
+              "label": "Financial services",
+              "href": "/industries/financial-services/"
+            },
+            {
+              "label": "Defense contractors",
+              "href": "/industries/federal-contractors/"
+            },
+            {
+              "label": "Medical devices",
+              "href": "/industries/medical-devices/"
+            },
+            {
               "label": "Healthcare",
               "href": "/industries/healthcare/"
             },

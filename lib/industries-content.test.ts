@@ -1,5 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { industries } from "../prisma/seed-data/industries";
 import { solutions } from "../prisma/seed-data/solutions";
 import { glossaryTerms } from "../prisma/seed-data/glossary";
@@ -150,6 +152,10 @@ test("no fabricated authority", () => {
     // because compliance buyers read it as a warranty.
     /\bMicrosoft (Solutions )?Partner\b.*\b(designation|tier|gold|silver)\b/i,
     /\bMP365 is (SOC ?2|ISO ?27001|HITRUST|FedRAMP|HIPAA)[- ]?(certified|compliant|attested)/i,
+    // The regulated-industry pages must never read as MP365 being an assessor
+    // or holding the credential the buyer is shopping for.
+    /\bMP365\b[^.]{0,60}\b(NCUA|FedRAMP|CMMC|C3PAO|RPO)[- ]?(certified|authori[sz]ed|accredited|registered)\b/i,
+    /\b(Blue Buffalo|Intellinet|Post University|Spyglass)\b/,
   ];
   for (const i of industries) {
     const blob = JSON.stringify(i);
@@ -169,5 +175,43 @@ test("each industry links out to the services that do the work", () => {
       .map((m) => m[2])
       .filter(Boolean);
     assert.ok(links.length >= 6, `${i.slug}: only ${links.length} inline links in the body, want >= 6`);
+  }
+});
+
+test("every industry carries the full conversion layer", () => {
+  const TOOLS = new Set(["timeline", "cost", "readiness"]);
+  for (const i of industries) {
+    assert.ok((i.proofMetrics?.length ?? 0) >= 3, `${i.slug}: want >= 3 proofMetrics`);
+    assert.ok((i.triggers?.length ?? 0) >= 3, `${i.slug}: want >= 3 triggers`);
+    assert.ok((i.subSectors?.length ?? 0) >= 4, `${i.slug}: want >= 4 subSectors`);
+    assert.ok((i.formTopics?.length ?? 0) >= 3, `${i.slug}: want >= 3 formTopics`);
+    assert.ok(i.tool && TOOLS.has(i.tool), `${i.slug}: tool must be timeline, cost or readiness`);
+    if (i.tool === "readiness") {
+      assert.equal(i.readinessQuestions?.length, 5, `${i.slug}: readiness check needs exactly 5 questions`);
+    }
+    assert.ok(i.ctaHeading && i.ctaSubheading && i.sidebarCta, `${i.slug}: missing CTA copy`);
+    for (const t of i.triggers ?? []) {
+      assert.ok(i.formTopics?.includes(t.topic), `${i.slug}: trigger topic "${t.topic}" is not a form option`);
+    }
+    if (i.relatedIndustrySlug) {
+      assert.ok(INDUSTRY_SLUGS.has(i.relatedIndustrySlug), `${i.slug}: relatedIndustrySlug does not exist`);
+      assert.notEqual(i.relatedIndustrySlug, i.slug, `${i.slug}: relatedIndustrySlug points at itself`);
+    }
+    // Conversion copy renders as plain text, never through RichText.
+    const plain = JSON.stringify([
+      i.proofMetrics, i.triggers, i.subSectors, i.formTopics,
+      i.readinessQuestions, i.ctaHeading, i.ctaSubheading, i.sidebarCta,
+    ]);
+    assert.ok(!hasMarkup(plain), `${i.slug}: inline markup in conversion copy`);
+  }
+});
+
+test("industry slugs are unique and every industry has a hero image", () => {
+  assert.equal(INDUSTRY_SLUGS.size, industries.length, "duplicate industry slug");
+  for (const i of industries) {
+    assert.ok(
+      existsSync(join(process.cwd(), "public", "images", "industries", `${i.slug}.jpg`)),
+      `${i.slug}: missing public/images/industries/${i.slug}.jpg`
+    );
   }
 });

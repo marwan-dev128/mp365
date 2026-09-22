@@ -260,6 +260,23 @@ model Industry {
   /** Full paths to marketing hub pages, e.g. "/pricing/dynamics-365-licensing/". */
   relatedPageRefs     String[] @default([])
 
+  /**
+   * Conversion layer. Typed in prisma/seed-data/industries.ts
+   * (IndustryProofMetric, IndustryTrigger, IndustryReadinessQuestion,
+   * IndustrySidebarCta) and rendered by app/industries/[slug]/page.tsx.
+   */
+  proofMetrics        Json     @default("[]")
+  triggers            Json     @default("[]")
+  subSectors          String[] @default([])
+  relatedIndustrySlug String?
+  /** "timeline" | "cost" | "readiness" */
+  tool                String?
+  readinessQuestions  Json     @default("[]")
+  formTopics          String[] @default([])
+  ctaHeading          String?
+  ctaSubheading       String?  @db.Text
+  sidebarCta          Json?
+
   faqs     Faq[]
   oldSlugs OldSlug[]
 
@@ -473,11 +490,18 @@ model ContactSubmission {
   email     String
   company   String?
   message   String   @db.Text
+  /** Industry slug when submitted from an /industries/ page. */
+  industry  String?
+  /** The topic / trigger the visitor picked in the form. */
+  topic     String?
+  /** Canonical path of the page the form was submitted from. */
+  sourcePath String?
   /** Set when the webhook forward succeeded; null means still un-forwarded. */
   forwardedAt DateTime?
   createdAt DateTime @default(now())
 
   @@index([createdAt])
+  @@index([industry])
 }
 
 // ---------------------------------------------------------------------------

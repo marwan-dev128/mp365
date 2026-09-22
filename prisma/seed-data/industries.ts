@@ -1,5 +1,12 @@
 import type { Faq } from "./services";
 import type { MarketingBlock } from "../../lib/marketing-blocks";
+import { coreConversion } from "./industries/core-conversion";
+import { industry as logistics } from "./industries/logistics-supply-chain";
+import { industry as energy } from "./industries/energy-utilities";
+import { industry as construction } from "./industries/construction-engineering";
+import { industry as financialServices } from "./industries/financial-services";
+import { industry as federalContractors } from "./industries/federal-contractors";
+import { industry as medicalDevices } from "./industries/medical-devices";
 
 export type Industry = {
   slug: string;
@@ -20,14 +27,44 @@ export type Industry = {
   relatedTermSlugs?: string[];
   /** Full marketing-hub paths, e.g. "/pricing/dynamics-365-licensing/". */
   relatedPageRefs?: string[];
+
+  // ---- Conversion layer (rendered by app/industries/[slug]/page.tsx) ----
+  /** 3-4 proof metrics. Firm-level facts only; never client names or certifications. */
+  proofMetrics?: IndustryProofMetric[];
+  /** 3-4 trigger events ("you are here if..."). `topic` pre-selects the lead form. */
+  triggers?: IndustryTrigger[];
+  /** 4-6 sub-sectors served, plain text. */
+  subSectors?: string[];
+  /** Slug of the closest sibling industry, linked from the sub-sector strip. */
+  relatedIndustrySlug?: string;
+  /** Which interactive tool the page carries. */
+  tool?: IndustryTool;
+  /** Exactly 5 when tool === "readiness". */
+  readinessQuestions?: IndustryReadinessQuestion[];
+  /** Options for the lead form's "what triggered this" select; 3-5 items. */
+  formTopics?: string[];
+  ctaHeading?: string;
+  ctaSubheading?: string;
+  sidebarCta?: IndustrySidebarCta;
 };
+
+export type IndustryProofMetric = { value: string; label: string };
+export type IndustryTrigger = { title: string; body: string; topic: string };
+export type IndustryTool = "timeline" | "cost" | "readiness";
+export type IndustryReadinessQuestion = {
+  /** Phrased so that "yes" is the risky answer. */
+  q: string;
+  /** One sentence shown when the visitor answers yes. */
+  riskIfYes: string;
+};
+export type IndustrySidebarCta = { tag: string; title: string; body: string; ctaText: string };
 
 // Data is JSON-shaped so it can be regenerated wholesale rather than
 // hand-merged — the same treatment solutions.ts gets. Every factual specific
 // below was checked by an independent adversarial fact-check pass; anything
 // two checkers could not agree on was removed rather than published.
 
-export const industries: Industry[] = [
+const coreIndustries: Industry[] = [
   {
     "slug": "manufacturing",
     "oldSlugs": [
@@ -683,6 +720,25 @@ export const industries: Industry[] = [
     ]
   }
 ];
+
+// Display order across the hub grid, mega menu and sitemap.
+export const industries: Industry[] = [
+  withConversion(coreIndustries, "manufacturing"),
+  logistics,
+  energy,
+  construction,
+  financialServices,
+  federalContractors,
+  medicalDevices,
+  withConversion(coreIndustries, "healthcare"),
+  withConversion(coreIndustries, "retail"),
+];
+
+function withConversion(list: Industry[], slug: string): Industry {
+  const base = list.find((i) => i.slug === slug);
+  if (!base) throw new Error(`industries.ts: no core industry "${slug}"`);
+  return { ...base, ...coreConversion[slug] };
+}
 
 export function getIndustryBySlug(slug: string) {
   return industries.find((i) => i.slug === slug);

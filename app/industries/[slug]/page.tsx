@@ -8,6 +8,24 @@ import { CtaBand } from "@/components/CtaBand";
 import { RelatedSidebar } from "@/components/RelatedSidebar";
 import { MarketingPageBody } from "@/components/marketing/PageBody";
 import { JsonLd } from "@/components/JsonLd";
+import { SidebarCta } from "@/components/SidebarCta";
+import {
+  IndustryHeroActions,
+  IndustryLeadForm,
+  IndustrySubSectors,
+  IndustryToolSlot,
+  IndustryTriggerCards,
+  StickyConsultBar,
+  toolCtaLabel,
+} from "@/components/industries";
+import {
+  CONSULT_ANCHOR,
+  parseProofMetrics,
+  parseReadinessQuestions,
+  parseSidebarCta,
+  parseTool,
+  parseTriggers,
+} from "@/lib/industry-conversion";
 import { getIndustries, getIndustryBySlug, getSiteSettings } from "@/lib/data";
 import { buildMetadata } from "@/lib/metadata";
 import { serviceSchema, webPageSchema, howToSchema } from "@/lib/schema";
@@ -42,15 +60,30 @@ export default async function IndustryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [industry, settings] = await Promise.all([
+  const [industry, settings, allIndustries] = await Promise.all([
     getIndustryBySlug(slug),
     getSiteSettings(),
+    getIndustries(),
   ]);
   if (!industry) notFound();
 
   const path = `/industries/${industry.slug}/`;
   const blocks = parseBlocks(industry.blocks);
   const steps = stepsFromBlocks(blocks);
+
+  const tool = parseTool(industry.tool);
+  const metrics = parseProofMetrics(industry.proofMetrics);
+  const triggers = parseTriggers(industry.triggers);
+  const readinessQuestions = parseReadinessQuestions(industry.readinessQuestions);
+  const sidebarCta = parseSidebarCta(industry.sidebarCta);
+  const relatedIndustry = allIndustries.find(
+    (i) => i.slug === industry.relatedIndustrySlug && i.slug !== industry.slug
+  );
+  // Topics offered by the lead form; trigger topics are always included so a
+  // trigger card can never preselect an option that is missing.
+  const formTopics = [
+    ...new Set([...industry.formTopics, ...triggers.map((t) => t.topic)]),
+  ];
 
   return (
     <>
@@ -93,7 +126,10 @@ export default async function IndustryPage({
           { name: "Industries", path: "/industries/" },
           { name: industry.name, path: `/industries/${industry.slug}/` },
         ]}
-      />
+        imageUrl={industry.imageUrl}
+      >
+        <IndustryHeroActions metrics={metrics} toolLabel={toolCtaLabel(tool, industry.name)} />
+      </PageHero>
       <Container className="pt-14">
         <div className="grid gap-14 lg:grid-cols-[1fr_280px]">
           <div className="flex flex-col gap-10 min-w-0">
@@ -104,6 +140,7 @@ export default async function IndustryPage({
                 </p>
               ))}
             </div>
+            <IndustryTriggerCards industryName={industry.name} triggers={triggers} />
             <div>
               <h2 className="mb-5 font-display text-[26px] font-extrabold text-navy">
                 Common challenges in {industry.name.toLowerCase()}
@@ -117,10 +154,42 @@ export default async function IndustryPage({
                 ))}
               </ul>
             </div>
+            <IndustryLeadForm
+              industrySlug={industry.slug}
+              industryName={industry.name}
+              topics={formTopics}
+              sourcePath={path}
+              email={settings.email}
+              phone={settings.phoneDisplay}
+            />
             {blocks.length > 0 && <MarketingPageBody blocks={blocks} />}
+            <IndustryToolSlot
+              tool={tool}
+              industryName={industry.name}
+              industrySlug={industry.slug}
+              sourcePath={path}
+              questions={readinessQuestions}
+            />
+            <IndustrySubSectors
+              subSectors={industry.subSectors}
+              related={
+                relatedIndustry
+                  ? { name: relatedIndustry.name, href: `/industries/${relatedIndustry.slug}/` }
+                  : null
+              }
+            />
             <FaqSection faqs={industry.faqs} path={path} />
           </div>
           <aside className="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
+            {sidebarCta && (
+              <SidebarCta
+                tag={sidebarCta.tag}
+                title={sidebarCta.title}
+                body={sidebarCta.body}
+                ctaText={sidebarCta.ctaText}
+                ctaHref={`#${CONSULT_ANCHOR}`}
+              />
+            )}
             {industry.relatedServices.length > 0 && (
               <RelatedSidebar
                 title="Related services"
@@ -145,7 +214,13 @@ export default async function IndustryPage({
           </aside>
         </div>
       </Container>
-      <CtaBand />
+      <CtaBand
+        heading={industry.ctaHeading ?? undefined}
+        subheading={industry.ctaSubheading ?? undefined}
+        ctaText="Talk to a senior engineer"
+        ctaHref={`#${CONSULT_ANCHOR}`}
+      />
+      <StickyConsultBar />
     </>
   );
 }
