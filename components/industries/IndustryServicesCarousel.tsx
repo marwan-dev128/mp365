@@ -57,6 +57,9 @@ export function IndustryServicesCarousel({
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
+  // Track paused progress percent to resume smoothly after card unhover
+  const pausedProgressRef = useRef(0);
+
   // Performance: pause progress loop when scrolled off-screen
   const { ref: viewRef, inView } = useInView<HTMLElement>();
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -85,6 +88,7 @@ export function IndustryServicesCarousel({
     (targetVirtual: number) => {
       if (isAnimatingRef.current || TOTAL_CARDS === 0) return;
       isAnimatingRef.current = true;
+      pausedProgressRef.current = 0;
       setProgress(0);
       setEnableTransition(true);
       setVirtualIndex(targetVirtual);
@@ -115,15 +119,18 @@ export function IndustryServicesCarousel({
   );
 
   const handlePrev = useCallback(() => {
+    pausedProgressRef.current = 0;
     navigateToVirtual(virtualIndex - 1);
   }, [navigateToVirtual, virtualIndex]);
 
   const handleNext = useCallback(() => {
+    pausedProgressRef.current = 0;
     navigateToVirtual(virtualIndex + 1);
   }, [navigateToVirtual, virtualIndex]);
 
   const handleSelectDot = useCallback(
     (dotIdx: number) => {
+      pausedProgressRef.current = 0;
       const diff = dotIdx - realIndex;
       navigateToVirtual(virtualIndex + diff);
     },
@@ -137,19 +144,22 @@ export function IndustryServicesCarousel({
     let animFrameId: number;
     let startTimestamp: number | null = null;
     const duration = autoplayDuration;
+    const initialElapsed = (pausedProgressRef.current / 100) * duration;
 
     const tick = (now: number) => {
       if (startTimestamp === null) {
-        startTimestamp = now;
+        startTimestamp = now - initialElapsed;
       }
 
       const elapsed = now - startTimestamp;
       const currentPct = Math.min((elapsed / duration) * 100, 100);
       setProgress(currentPct);
+      pausedProgressRef.current = currentPct;
 
       if (elapsed < duration) {
         animFrameId = requestAnimationFrame(tick);
       } else {
+        pausedProgressRef.current = 0;
         handleNext();
       }
     };
@@ -202,9 +212,7 @@ export function IndustryServicesCarousel({
     <section
       ref={viewRef}
       aria-label={`Related services for ${industryName}`}
-      className="w-full bg-[#FAF8F5] py-16 sm:py-24 border-y border-mp-border/60 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      className="w-full bg-white py-16 sm:py-24 border-y border-mp-border/60 overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -245,6 +253,8 @@ export function IndustryServicesCarousel({
                 <div
                   key={`${card.cloneSet}-${card.id}-${displayIdx}`}
                   onClick={() => navigateToVirtual(displayIdx)}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
                   style={{ width: `${cardWidth}px` }}
                   className={`group shrink-0 rounded-[28px] sm:rounded-[32px] p-6 sm:p-7 flex flex-col justify-between min-h-[480px] sm:min-h-[510px] cursor-pointer transition-all duration-600 ease-[cubic-bezier(0.25,1,0.35,1)] will-change-[transform,opacity] ${
                     isActive
