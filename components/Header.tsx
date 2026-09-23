@@ -412,12 +412,17 @@ export function Header({
               ref={logoRef}
               href={logo.href}
               onClick={closeAll}
-              className="flex items-start group select-none shrink-0"
+              className="flex items-center group select-none shrink-0"
+              aria-label="MP365 — Dynamics, Automation, Solutions"
             >
-              <span className="font-display text-[27px] sm:text-[29px] font-bold tracking-[-0.03em] text-mp-ink leading-none">
-                {logo.text}
-              </span>
-             
+              <Image
+                src="/mp365-logo.png"
+                alt="MP365 — Dynamics, Automation, Solutions"
+                width={140}
+                height={43}
+                priority
+                className="h-[34px] sm:h-[38px] w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop Navigation Triggers */}
