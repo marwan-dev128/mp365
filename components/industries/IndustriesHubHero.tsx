@@ -38,58 +38,56 @@ export function IndustriesHubHero({
     <>
       <JsonLd data={breadcrumbSchema(breadcrumbs)} />
 
-      {/* Curved hero banner matching the exact max-width and padding of the page content */}
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-8 lg:px-12 pt-3 sm:pt-4">
+      {/* Full-width hero banner without container padding */}
+      <section
+        id="industries-hub-hero-banner"
+        className="header-integrations relative w-full flex min-h-[300px] sm:min-h-[400px] md:min-h-[460px] items-center justify-center overflow-hidden border-b border-mp-border bg-mp-parchment -mt-1"
+        data-testid="industriesHubHero"
+      >
+        {/* Subtle petrol wash: matches Home Page IntegrationsHero tone */}
         <div
-          id="industries-hub-hero-banner"
-          className="header-integrations relative flex min-h-[280px] sm:min-h-[400px] md:min-h-[460px] items-center justify-center overflow-hidden rounded-[20px] sm:rounded-[var(--mp-radius-hero)] border border-mp-border bg-mp-parchment"
-          data-testid="industriesHubHero"
-        >
-          {/* Subtle petrol wash: matches Home Page IntegrationsHero tone */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.04] blur-3xl"
-          />
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.04] blur-3xl"
+        />
 
-          {/* Floating Microsoft Ecosystem Widgets Layer - Hidden on mobile (< sm) */}
-          <div className="integration-widgets-container hidden sm:block" aria-hidden="true">
-            {widgets.map((widget, idx) => (
-              <div
-                key={widget.id}
-                className="integration-widget group"
-                style={widget.style}
-                title={widget.name}
-              >
-                <Image
-                  src={widget.src}
-                  alt={widget.name}
-                  width={widget.width}
-                  height={widget.height}
-                  sizes="(max-width: 768px) 45px, 95px"
-                  loading={idx < 3 ? "eager" : "lazy"}
-                  fetchPriority="low"
-                  className="w-full h-auto object-contain cursor-pointer"
-                />
-                <span className="integration-tooltip">{widget.name}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Centered Content */}
-          <div className="relative z-10 px-4 sm:px-6 text-center max-w-[900px] mx-auto py-10 sm:py-14 md:py-16">
-            <p className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-mp-petrol/15 bg-mp-mint/25 px-3.5 sm:px-4 py-1 sm:py-1.5 font-display text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-mp-petrol">
-              <MicrosoftLogo className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-              Microsoft Solutions Partner
-            </p>
-            <h1 className="font-display text-[clamp(28px,6vw,56px)] font-extrabold leading-[1.12] sm:leading-[1.08] tracking-[-0.03em] text-mp-petrol">
-              {h1}
-            </h1>
-          </div>
-
-          {/* Notched Breadcrumbs Plate in bottom-right corner */}
-          <Breadcrumbs items={breadcrumbs} />
+        {/* Floating Microsoft Ecosystem Widgets Layer - Hidden on mobile (< sm) */}
+        <div className="integration-widgets-container hidden sm:block" aria-hidden="true">
+          {widgets.map((widget, idx) => (
+            <div
+              key={widget.id}
+              className="integration-widget group"
+              style={widget.style}
+              title={widget.name}
+            >
+              <Image
+                src={widget.src}
+                alt={widget.name}
+                width={widget.width}
+                height={widget.height}
+                sizes="(max-width: 768px) 45px, 95px"
+                loading={idx < 3 ? "eager" : "lazy"}
+                fetchPriority="low"
+                className="w-full h-auto object-contain cursor-pointer"
+              />
+              <span className="integration-tooltip">{widget.name}</span>
+            </div>
+          ))}
         </div>
-      </div>
+
+        {/* Centered Content */}
+        <div className="relative z-10 px-4 sm:px-6 text-center max-w-[920px] mx-auto py-14 sm:py-18 md:py-22">
+          <p className="mb-3 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-mp-petrol/15 bg-mp-mint/25 px-3.5 sm:px-4 py-1 sm:py-1.5 font-display text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-mp-petrol">
+            <MicrosoftLogo className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+            Microsoft Solutions Partner
+          </p>
+          <h1 className="font-display text-[clamp(28px,5vw,52px)] font-extrabold leading-[1.12] sm:leading-[1.08] tracking-[-0.03em] text-mp-petrol text-balance">
+            {h1}
+          </h1>
+        </div>
+
+        {/* Symmetrical Centered Notched Breadcrumbs Plate in bottom center */}
+        <Breadcrumbs items={breadcrumbs} variant="center-notch" />
+      </section>
 
       {/* Mobile Breadcrumbs Bar */}
       <Breadcrumbs items={breadcrumbs} variant="bar" />

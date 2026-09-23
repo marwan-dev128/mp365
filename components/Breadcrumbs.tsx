@@ -24,7 +24,7 @@ export function Breadcrumbs({
   variant = "notch",
 }: {
   items: Crumb[];
-  variant?: "notch" | "bar";
+  variant?: "notch" | "bar" | "center-notch";
 }) {
   if (!items.length) return null;
 
@@ -73,6 +73,44 @@ export function Breadcrumbs({
       >
         {list}
       </nav>
+    );
+  }
+
+  if (variant === "center-notch") {
+    return (
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 hidden sm:flex items-end select-none">
+        {/* Left Inverted Concave Corner Wing */}
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          className="text-white shrink-0 -mr-[0.5px]"
+          aria-hidden="true"
+        >
+          <path d="M0 20 A 20 20 0 0 0 20 0 V 20 H 0 Z" fill="currentColor" />
+        </svg>
+
+        {/* Centered White Plate */}
+        <nav
+          aria-label="Breadcrumb"
+          className="bg-white px-6 py-2.5 rounded-t-[20px] shadow-[0_-2px_10px_rgba(0,0,0,0.02)]"
+        >
+          {list}
+        </nav>
+
+        {/* Right Inverted Concave Corner Wing */}
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          className="text-white shrink-0 -ml-[0.5px]"
+          aria-hidden="true"
+        >
+          <path d="M0 0 A 20 20 0 0 0 20 20 H 0 V 0 Z" fill="currentColor" />
+        </svg>
+      </div>
     );
   }
 
