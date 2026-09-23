@@ -43,18 +43,6 @@ const INDUSTRY_CLUSTERS: Record<string, "Operations & Industrial" | "Regulated &
   healthcare: "Regulated & Compliance",
 };
 
-const TOOL_BADGES: Record<string, string> = {
-  manufacturing: "Readiness Check",
-  "logistics-supply-chain": "Readiness Check",
-  "energy-utilities": "Readiness Check",
-  "construction-engineering": "Cost Estimator",
-  retail: "Readiness Check",
-  "federal-contractors": "CMMC Check",
-  "financial-services": "NCUA Check",
-  "medical-devices": "QMSR Check",
-  healthcare: "Purview Check",
-};
-
 type FilterCategory = "all" | "operations" | "regulated";
 
 export function IndustriesHubFilterGrid({ industries }: { industries: IndustryItem[] }) {
@@ -152,7 +140,6 @@ export function IndustriesHubFilterGrid({ industries }: { industries: IndustryIt
           const imageSrc =
             INDUSTRY_IMAGES[ind.slug] || ind.imageUrl || `/images/industries/${ind.slug}.jpg`;
           const cluster = INDUSTRY_CLUSTERS[ind.slug] || "Industry Practice";
-          const toolBadge = TOOL_BADGES[ind.slug];
 
           return (
             <article
@@ -168,29 +155,14 @@ export function IndustriesHubFilterGrid({ industries }: { industries: IndustryIt
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
                   sizes="(min-width: 1280px) 420px, (min-width: 768px) 50vw, 100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-mp-petrol/60 via-transparent to-black/15 z-[1]" />
-
-                {/* Floating Sector Cluster Badge */}
-                <div className="absolute top-3.5 left-3.5 z-[2]">
-                  <span className="inline-flex items-center rounded-full bg-white/95 backdrop-blur-xs px-3 py-1 text-[11px] font-bold text-mp-petrol shadow-2xs border border-white/60">
-                    {cluster}
-                  </span>
-                </div>
-
-                {/* Floating Interactive Tool Badge */}
-                {toolBadge && (
-                  <div className="absolute top-3.5 right-3.5 z-[2]">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-mp-lime/95 backdrop-blur-xs px-2.5 py-1 text-[10.5px] font-bold text-mp-ink shadow-2xs">
-                      <span>⚡</span>
-                      <span>{toolBadge}</span>
-                    </span>
-                  </div>
-                )}
               </div>
 
               {/* Card Content */}
               <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
                 <div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-mp-teal block mb-1.5">
+                    {cluster}
+                  </span>
                   <Link href={`/industries/${ind.slug}/`} className="group/link block">
                     <h3 className="font-display text-[21px] sm:text-[23px] font-bold text-mp-ink group-hover/link:text-mp-teal transition-colors leading-tight">
                       {ind.name}
