@@ -139,75 +139,37 @@ export function IndustriesHubFilterGrid({ industries }: { industries: IndustryIt
         {filteredIndustries.map((ind) => {
           const imageSrc =
             INDUSTRY_IMAGES[ind.slug] || ind.imageUrl || `/images/industries/${ind.slug}.jpg`;
-          const cluster = INDUSTRY_CLUSTERS[ind.slug] || "Industry Practice";
 
           return (
             <article
               key={ind.slug}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] sm:rounded-[28px] border border-mp-border bg-white shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-mp-teal/40"
+              className="group relative flex flex-col justify-end overflow-hidden rounded-[28px] p-7 sm:p-8 min-h-[480px] sm:min-h-[520px] transition-transform duration-200 hover:-translate-y-1"
             >
-              {/* Card Image at Top */}
-              <div className="relative aspect-[16/10] sm:aspect-[16/10.5] w-full overflow-hidden bg-mp-parchment">
-                <Image
-                  src={imageSrc}
-                  alt={ind.name}
-                  fill
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
-                  sizes="(min-width: 1280px) 420px, (min-width: 768px) 50vw, 100vw"
-                />
-              </div>
+              <Image
+                src={imageSrc}
+                alt={ind.name}
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                sizes="(min-width: 1280px) 440px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-mp-petrol/95 via-mp-petrol/55 to-transparent z-[1]" />
 
-              {/* Card Content */}
-              <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-mp-teal block mb-1.5">
-                    {cluster}
-                  </span>
-                  <Link href={`/industries/${ind.slug}/`} className="group/link block">
-                    <h3 className="font-display text-[21px] sm:text-[23px] font-bold text-mp-ink group-hover/link:text-mp-teal transition-colors leading-tight">
-                      {ind.name}
-                    </h3>
-                  </Link>
-
-                  <p className="mt-2.5 text-[13.5px] sm:text-[14px] leading-[1.6] text-mp-secondary line-clamp-3">
-                    <RichText text={ind.heroQuestion || ind.metaDescription} />
-                  </p>
-
-                  {/* Sub-sectors Served Chips */}
-                  {ind.subSectors && ind.subSectors.length > 0 && (
-                    <div className="mt-5 pt-4 border-t border-mp-border/60">
-                      <span className="text-[10.5px] font-bold uppercase tracking-wider text-mp-muted block mb-2">
-                        Sub-Sectors Covered:
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {ind.subSectors.slice(0, 3).map((sub, idx) => (
-                          <span
-                            key={idx}
-                            className="inline-block rounded-md bg-mp-parchment px-2.5 py-1 text-[11.5px] font-medium text-mp-ink"
-                          >
-                            {sub}
-                          </span>
-                        ))}
-                        {ind.subSectors.length > 3 && (
-                          <span className="inline-block rounded-md bg-mp-parchment/60 px-2 py-1 text-[11px] font-medium text-mp-muted">
-                            +{ind.subSectors.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Footer Link */}
-                <div className="mt-6 pt-4 border-t border-mp-border flex items-center justify-between">
-                  <Link
-                    href={`/industries/${ind.slug}/`}
-                    className="inline-flex items-center gap-1.5 text-[13px] font-bold text-mp-petrol group-hover:text-mp-teal transition-colors"
-                  >
-                    <span>View industry guide & decision matrix</span>
-                    <span className="text-xs transition-transform duration-200 group-hover:translate-x-1">›</span>
-                  </Link>
-                </div>
+              <div className="relative z-[2] flex flex-col justify-end">
+                <Link href={`/industries/${ind.slug}/`} className="block">
+                  <h3 className="font-display text-[22px] sm:text-[24px] font-bold text-white leading-tight">
+                    {ind.name}
+                  </h3>
+                </Link>
+                <p className="mt-2.5 text-[13px] sm:text-[13.5px] leading-[1.55] text-white/90">
+                  <RichText text={ind.heroQuestion || ind.metaDescription} />
+                </p>
+                <Link
+                  href={`/industries/${ind.slug}/`}
+                  className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-white/50 bg-mp-petrol/45 backdrop-blur-sm px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-white/20 self-start"
+                >
+                  <span>Explore industry guide</span>
+                  <span className="text-xs">›</span>
+                </Link>
               </div>
             </article>
           );
