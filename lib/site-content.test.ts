@@ -2,11 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { PAGE_CONTENT } from "../content/pages";
 import { estimate, ESTIMATOR_QUESTIONS } from "../content/estimator";
+import { LIVE_BLOG_POSTS, PAGE_REDIRECTS, PATTERN_REDIRECTS, UNCHANGED_PATHS } from "../content/redirects";
 import footer from "../store/footer.json";
 import navigation from "../store/navigation.json";
 import { inlineTokenPattern } from "./richtext";
 import { pageLinks, validatePage } from "./site-content-rules";
 import { isLivePath, LIVE_PAGES, LIVE_PATHS, SITE } from "./site-data";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 // The plan's page-level checklist, run on every published page. The rules live
 // in lib/site-content-rules.ts so scripts/check-page.ts shares them.
@@ -93,4 +96,30 @@ test("the estimator gives a tier and a model for every path through it, with no 
   assert.equal(estimate({ ...lowest, style: "As needed" }).model.label, "Ad hoc");
   assert.deepEqual(estimate(lowest).drivers, []);
   assert.ok(!/[$£€]\s?\d/.test(JSON.stringify(ESTIMATOR_QUESTIONS)), "the estimator never quotes a price");
+});
+
+test("redirects land on live pages, with no chains or loops", () => {
+  const sources = new Set(PAGE_REDIRECTS.map((r) => r.source));
+  assert.equal(sources.size, PAGE_REDIRECTS.length, "a source is listed twice");
+  for (const r of [...PAGE_REDIRECTS, ...PATTERN_REDIRECTS]) {
+    assert.ok(LIVE_PATHS.has(r.destination), `${r.source} goes to ${r.destination}, which is not live`);
+    assert.ok(r.source.endsWith("/"), `${r.source} needs a trailing slash`);
+    assert.ok(!sources.has(r.destination), `${r.source} chains through ${r.destination}`);
+    assert.ok(!LIVE_PATHS.has(r.source), `${r.source} is a live page, so a redirect would hide it`);
+  }
+});
+
+test("every live-site URL is unchanged, redirected, or a post waiting to be imported", () => {
+  for (const p of UNCHANGED_PATHS) assert.ok(LIVE_PATHS.has(p), `${p} is listed as unchanged but is not live`);
+  const posts = new Set(LIVE_BLOG_POSTS);
+  for (const r of PAGE_REDIRECTS) {
+    assert.ok(!posts.has(r.source.replace(/^\/blog\/|\/$/g, "")), `${r.source} would hide a blog post`);
+  }
+});
+
+test("the readable redirect plan lists every redirect", () => {
+  const doc = readFileSync(join(process.cwd(), "content/REDIRECT-PLAN.md"), "utf8");
+  for (const r of [...PAGE_REDIRECTS, ...PATTERN_REDIRECTS]) {
+    assert.ok(doc.includes(`\`${r.source}\``), `REDIRECT-PLAN.md is missing ${r.source}`);
+  }
 });

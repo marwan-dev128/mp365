@@ -33,7 +33,7 @@ The check applies the plan's rules: keyword placement, FAQ count and length, hea
 - **Facts:** only what is in Appendix D of the plan. No founding date, years of experience, reviewer line, timelines, or unconfirmed offers.
 - **Schema:** `Organization`, `WebSite` and `BreadcrumbList` only. No `FAQPage`, `Review` or `AggregateRating`.
 - **Links:** every menu link is a real `<a href>` in the server-rendered HTML. `components/Header.tsx` renders them in a hidden list because the menu panel only mounts on hover.
-- **Redirects:** add them as `OldSlug` rows with a `targetPath`. Do not invent them; they come from the redirect plan.
+- **Redirects:** the plan for the live site is in `content/redirects.ts`, with the readable version in `content/REDIRECT-PLAN.md`. Keep the two in step.
 
 ## Getting started
 
@@ -61,5 +61,5 @@ Tokens and primitives are in `app/globals.css`. Base element styles stay inside 
 
 - Set the env vars in `.env.example`: analytics IDs, search console verification, booking URL and `CONTACT_WEBHOOK_URL`. Without the webhook, enquiries only sit in the `ContactSubmission` table.
 - Point `DATABASE_URL` at production Postgres, then run `npm run db:deploy` and `npm run db:seed`.
-- Import the blog posts and load the redirect plan.
+- Import the blog posts. Their URLs do not change, so each returns 404 until it is imported.
 - Work through `content/TODO.md`.

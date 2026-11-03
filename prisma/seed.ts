@@ -107,8 +107,8 @@ async function main() {
     });
   }
 
-  // The old redirects pointed at pages that no longer exist. The redirect plan
-  // for the live site's URLs will repopulate this table.
+  // The old redirects pointed at pages that no longer exist. The current plan
+  // lives in content/redirects.ts; this table is only for later additions.
   console.log("Clearing old redirects…");
   await prisma.oldSlug.deleteMany({});
 

@@ -4,7 +4,7 @@ Facts the published pages leave out until the client confirms them. Pages are wr
 
 ## Client decisions needed
 
-- **Redirect plan:** the live site's URL list comes from Joe, then Omar builds the redirect plan. Add the redirects as `OldSlug` rows with a `targetPath`. The old redirects were cleared because they pointed at deleted pages.
+- **Redirect plan:** built from the live site in `content/redirects.ts`, for Omar to review in `content/REDIRECT-PLAN.md`. Joe can confirm nothing is missing, especially old URLs that still get traffic but are not in the sitemaps.
 - **Engagement models:** Dedicated hours per week (40+ or 15+). `/pricing/` says "Agreed during scoping" for now.
 - **Response times:** urgent issues, 4 to 8 hours or 0 to 4 hours. Not stated anywhere.
 - **Offers:** discovery calls under 2 hours not billed, and 8 hours at no charge on one problem. Not stated anywhere.

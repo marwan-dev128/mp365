@@ -142,8 +142,8 @@ export const getRelatedBlogPosts = cache(async (slug: string, limit = 3) => {
 });
 
 /**
- * 301 redirects, read from the OldSlug table. Empty until the redirect plan for
- * the live site's URLs arrives; add rows with a `targetPath` to activate them.
+ * Extra 301 redirects from the OldSlug table, on top of content/redirects.ts.
+ * Add rows with a `targetPath` to activate them.
  */
 export async function getOldSlugRedirects() {
   return withFallback(
