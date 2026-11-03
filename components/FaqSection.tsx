@@ -1,5 +1,3 @@
-import { JsonLd } from "./JsonLd";
-import { faqSchema } from "@/lib/schema";
 import type { Faq } from "@/lib/data";
 import { SectionTag } from "./ui/SectionTag";
 import { RichText } from "./RichText";
@@ -7,18 +5,14 @@ import { ChevronDown } from "./ui/Icons";
 
 export function FaqSection({
   faqs,
-  title = "Frequently asked questions",
-  path,
+  title = "Frequently Asked Questions",
 }: {
   faqs: Faq[];
   title?: string;
-  /** Page path — binds the FAQPage node to this page's WebPage via @id. */
-  path?: string;
 }) {
   if (!faqs.length) return null;
   return (
     <section aria-labelledby="faq-heading" className="pt-4">
-      <JsonLd data={faqSchema(faqs, path)} />
       <SectionTag>FAQ</SectionTag>
       <h2 id="faq-heading" className="mb-10 font-display text-[clamp(26px,3.2vw,36px)] font-extrabold tracking-[-0.03em] text-navy">
         {title}

@@ -59,7 +59,7 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
     day: "numeric",
   });
 
-  const inContentCta = getPostInContentCta(post);
+  const inContentCta = getPostInContentCta();
 
   return (
     <>
@@ -200,7 +200,7 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
             {/* FAQ Section */}
             {post.faqs.length > 0 && (
               <div className="mt-14 pt-8 border-t border-mp-border">
-                <FaqSection faqs={post.faqs} path={path} title="Frequently asked questions" />
+                <FaqSection faqs={post.faqs} />
               </div>
             )}
 
@@ -273,33 +273,33 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
                     href="/contact/"
                     className="font-bold text-mp-mint underline hover:no-underline hover:text-white transition-colors"
                   >
-                    See our migration platform in action
+                    Talk to MP-365 about your project
                   </Link>
-                  . MP365 unites tenant migration, Dynamics 365 ERP, and Power Platform automation into one cohesive delivery model.
+                  . MP-365 is a focused team of Microsoft specialists for Dynamics 365, Microsoft 365 and Copilot.
                 </li>
                 <li>
-                  Discover our{" "}
+                  See{" "}
                   <Link
-                    href="/resources/worked-examples/"
+                    href="/clients/"
                     className="font-bold text-mp-mint underline hover:no-underline hover:text-white transition-colors"
                   >
-                    worked examples
+                    client results
                   </Link>
                   ,{" "}
                   <Link
-                    href="/case-studies/"
+                    href="/services/"
                     className="font-bold text-mp-mint underline hover:no-underline hover:text-white transition-colors"
                   >
-                    client case studies
+                    all services
                   </Link>
-                  , and{" "}
+                  , and more{" "}
                   <Link
                     href="/blog/"
                     className="font-bold text-mp-mint underline hover:no-underline hover:text-white transition-colors"
                   >
                     blog guides
-                  </Link>{" "}
-                  for zero-downtime execution.
+                  </Link>
+                  .
                 </li>
                 <li>
                   Never miss another update. Stay in touch with our team for the latest architectural best practices and enterprise guidance.

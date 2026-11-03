@@ -1,21 +1,18 @@
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { getBlogPosts } from "@/lib/data";
-import { buildMetadata } from "@/lib/metadata";
-import { collectionPageSchema } from "@/lib/schema";
+import { planMetadata } from "@/lib/metadata";
+import { getSitePage } from "@/lib/site-data";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
 import { parseBlogBody, readingTime } from "@/lib/blog";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { BlogCategoryFilter } from "@/components/blog/BlogCategoryFilter";
 
 export const revalidate = 3600;
 
-export const metadata = buildMetadata({
-  title: "Blog — Insights & Guides for Modern Enterprise Operations",
-  description:
-    "Practical guides on Microsoft 365 M&A migration, Dynamics 365, Power Platform governance, and cloud data architecture from the MP365 team.",
-  path: "/blog/",
-});
+export const metadata = planMetadata("/blog/");
 
 export default async function BlogPage() {
   const blogPosts = await getBlogPosts();
@@ -42,12 +39,12 @@ export default async function BlogPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema(getSitePage("/blog/").breadcrumbs)} />
       <JsonLd
         data={collectionPageSchema({
           path: "/blog/",
-          name: "MP365 Blog",
-          description:
-            "Practical guides on Microsoft 365 M&A migration, Dynamics 365, Power Platform governance, and cloud data architecture from the MP365 team.",
+          name: getSitePage("/blog/").h1,
+          description: getSitePage("/blog/").meta_description,
           items: blogPosts.map((p) => ({ name: p.title, path: `/blog/${p.slug}/` })),
         })}
       />
@@ -56,15 +53,24 @@ export default async function BlogPage() {
       <section className="w-full relative bg-mp-parchment border-b border-mp-border pt-16 sm:pt-20 pb-14 sm:pb-18">
         <Container>
           <div className="max-w-3xl">
+            <nav aria-label="Breadcrumb" className="mb-5 text-[12px] font-medium text-mp-muted">
+              <Link href="/" className="hover:text-mp-ink hover:underline">
+                Home
+              </Link>
+              <span aria-hidden="true"> / </span>
+              <span aria-current="page" className="font-semibold text-mp-ink">
+                Blog
+              </span>
+            </nav>
             <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-mp-muted mb-3">
               INSIGHTS &amp; GUIDES
             </p>
             <h1 className="text-[36px] sm:text-[48px] lg:text-[56px] font-bold text-mp-ink tracking-tight leading-[1.08]">
-              MP365 Blog
+              {getSitePage("/blog/").h1}
             </h1>
             <p className="text-[16px] sm:text-[18px] text-mp-secondary leading-relaxed mt-4">
-              Practical guides, real-world case studies, and engineering strategies for
-              cloud migrations, ERP modernizations, and scalable digital operations.
+              Practical guides on Dynamics 365, Microsoft 365, Copilot and SharePoint from the
+              MP-365 team, written for mid-size and enterprise teams.
             </p>
           </div>
         </Container>

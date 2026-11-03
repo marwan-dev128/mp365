@@ -3,7 +3,9 @@ import { Check } from "@/components/ui/Icons";
 import { stripInlineMarkup } from "@/lib/richtext";
 import type { MarketingBlock } from "@/lib/marketing-blocks";
 
-export function MarketingPageBody({ blocks }: { blocks: MarketingBlock[] }) {
+type Block = MarketingBlock & { level?: 2 | 3 };
+
+export function MarketingPageBody({ blocks }: { blocks: Block[] }) {
   return (
     <div className="flex flex-col gap-12">
       {blocks.map((block, i) => (
@@ -13,11 +15,16 @@ export function MarketingPageBody({ blocks }: { blocks: MarketingBlock[] }) {
   );
 }
 
-function BlockHeading({ children }: { children: React.ReactNode }) {
+function MainHeading({ children }: { children: React.ReactNode }) {
   return <h2 className="mb-4 sm:mb-5 font-display text-[22px] sm:text-[26px] font-extrabold text-navy leading-[1.2]">{children}</h2>;
 }
 
-function MarketingBlockView({ block }: { block: MarketingBlock }) {
+function SubHeading({ children }: { children: React.ReactNode }) {
+  return <h3 className="mb-4 font-display text-[20px] font-bold text-navy">{children}</h3>;
+}
+
+function MarketingBlockView({ block }: { block: Block }) {
+  const BlockHeading = block.level === 3 ? SubHeading : MainHeading;
   switch (block.type) {
     case "prose":
       return (

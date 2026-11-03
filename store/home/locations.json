@@ -1,8 +1,8 @@
 {
-  "eyebrow": "MICROSOFT CLOUD ECOSYSTEM • SERVING CLIENTS NATIONWIDE",
+  "eyebrow": "MICROSOFT SERVICES FROM MP-365",
   "row1": [
     {
-      "name": "M&A Tenant Migration",
+      "name": "Tenant Migration",
       "isHQ": false,
       "image": "/hero-section-icons/Microsoft_Entra_ID_color_icon.svg.webp"
     },
@@ -34,12 +34,12 @@
       "image": "/hero-section-icons/Microsoft_Azure.svg.webp"
     },
     {
-      "name": "Collaboration",
+      "name": "SharePoint",
       "isHQ": false,
       "image": "/hero-section-icons/teams.png"
     },
     {
-      "name": "Contract Management",
+      "name": "Copilot",
       "isHQ": false,
       "image": "/hero-section-icons/powerautomate.webp"
     }
@@ -53,8 +53,7 @@
     "href": "/contact/"
   },
   "disclaimers": [
-    "Timelines depend on scope: a pilot migration typically runs 2–4 weeks, a full tenant merger 8–16 weeks.",
     "Scope is agreed in writing before an engagement starts, and changes to it are agreed the same way.",
-    "MP365 serves clients across New England and nationwide with remote-first principal engineering and on-site cutover support."
+    "MP-365 works with mid-size and enterprise companies across the United States."
   ]
 }

@@ -37,10 +37,10 @@ export function personId(slug: string) {
 export function organizationSchema(settings: SiteSettings, people: PersonRow[]) {
   return {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Organization",
     "@id": ORG_ID,
     name: settings.brandName,
-    legalName: settings.legalName,
+    alternateName: settings.legalName,
     url: `${SITE_URL}/`,
     // The official brand lockup — the same asset the visible header renders,
     // so the logo Google associates with the entity matches what users see.
@@ -57,11 +57,6 @@ export function organizationSchema(settings: SiteSettings, people: PersonRow[]) 
       addressRegion: settings.region,
       postalCode: settings.postalCode,
       addressCountry: settings.country,
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: settings.latitude,
-      longitude: settings.longitude,
     },
     areaServed: settings.areaServed,
     // Only emitted when non-empty — an empty sameAs array is noise, and the
@@ -196,79 +191,8 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-export function faqSchema(faqs: { q: string; a: string }[], path?: string) {
-  if (!faqs.length) return null;
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    ...(path ? { "@id": `${SITE_URL}${path}#faq` } : {}),
-    ...(path ? { isPartOf: { "@id": `${SITE_URL}${path}#webpage` } } : {}),
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: plain(f.q),
-      acceptedAnswer: {
-        "@type": "Answer",
-        // Flattened: the rendered page shows a link, so the structured data
-        // must show that link's text — not its markdown source.
-        text: plain(f.a),
-      },
-    })),
-  };
-}
 
-export function serviceSchema(params: {
-  name: string;
-  description: string;
-  path: string;
-  serviceType: string;
-  areaServed: string[];
-  category?: string;
-  audience?: string;
-  serviceOutput?: string;
-}) {
-  const url = `${SITE_URL}${params.path}`;
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${url}#service`,
-    name: plain(params.name),
-    description: plain(params.description),
-    url,
-    serviceType: plain(params.serviceType),
-    provider: { "@id": ORG_ID },
-    areaServed: params.areaServed,
-    mainEntityOfPage: { "@id": `${url}#webpage` },
-    ...(params.category ? { category: plain(params.category) } : {}),
-    ...(params.audience
-      ? { audience: { "@type": "Audience", audienceType: plain(params.audience) } }
-      : {}),
-    ...(params.serviceOutput ? { serviceOutput: plain(params.serviceOutput) } : {}),
-  };
-}
 
-export function howToSchema(params: {
-  name: string;
-  description: string;
-  steps: { name: string; description: string }[];
-  path?: string;
-}) {
-  if (!params.steps.length) return null;
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    ...(params.path ? { "@id": `${SITE_URL}${params.path}#howto` } : {}),
-    name: plain(params.name),
-    description: plain(params.description),
-    // Step text is authored with the same inline markup as the visible body;
-    // JSON-LD must carry the plain sentence, not a literal "[label](/path)".
-    step: params.steps.map((s, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: stripInlineMarkup(s.name),
-      text: stripInlineMarkup(s.description),
-    })),
-  };
-}
 
 export function articleSchema(params: {
   headline: string;
@@ -342,64 +266,5 @@ export function articleSchema(params: {
   };
 }
 
-export function personSchema(params: {
-  slug: string;
-  name: string;
-  jobTitle: string;
-  description: string;
-  /** Optional honorific, e.g. "Dr." — rendered separately from `name`. */
-  honorificPrefix?: string;
-  knowsAbout?: string[];
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": personId(params.slug),
-    name: plain(params.name),
-    jobTitle: plain(params.jobTitle),
-    description: plain(params.description),
-    url: `${SITE_URL}/about/`,
-    worksFor: { "@id": ORG_ID },
-    ...(params.honorificPrefix ? { honorificPrefix: params.honorificPrefix } : {}),
-    ...(params.knowsAbout?.length ? { knowsAbout: params.knowsAbout } : {}),
-  };
-}
 
-/** The glossary itself — gives DefinedTerm.inDefinedTermSet something real to resolve to. */
-export function definedTermSetSchema(params: {
-  terms: { name: string; slug: string }[];
-}) {
-  const url = `${SITE_URL}/resources/glossary/`;
-  return {
-    "@context": "https://schema.org",
-    "@type": "DefinedTermSet",
-    "@id": `${url}#termset`,
-    url,
-    name: "MP365 Microsoft 365 & Dynamics 365 Glossary",
-    inLanguage: "en",
-    publisher: { "@id": ORG_ID },
-    hasDefinedTerm: params.terms.map((t) => ({
-      "@id": `${SITE_URL}/resources/glossary/${t.slug}/#term`,
-    })),
-  };
-}
 
-export function definedTermSchema(params: {
-  slug: string;
-  name: string;
-  description: string;
-  /** Rendered on-page under "Also called:", so safe to declare here too. */
-  aliases?: string[];
-}) {
-  const url = `${SITE_URL}/resources/glossary/${params.slug}/`;
-  return {
-    "@context": "https://schema.org",
-    "@type": "DefinedTerm",
-    "@id": `${url}#term`,
-    name: plain(params.name),
-    description: plain(params.description),
-    url,
-    ...(params.aliases?.length ? { alternateName: params.aliases.map(plain) } : {}),
-    inDefinedTermSet: { "@id": `${SITE_URL}/resources/glossary/#termset` },
-  };
-}

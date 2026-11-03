@@ -1,5 +1,5 @@
 {
-  "badge": "MICROSOFT SOLUTIONS PARTNER · VERNON, CT",
+  "badge": "MICROSOFT SOLUTIONS PARTNER",
   "title": "Tell us what you're working with.",
   "subtitle": "Whether it's an M&A tenant migration on a strict Day-1 deadline, a Dynamics 365 implementation, or Power Platform governance — tell us the situation and get a senior engineer's direct response within one business day.",
   "phoneDisplay": "(+1) 860-208-9537",
@@ -8,27 +8,30 @@
   "emailHref": "mailto:info@mp-365.com",
   "guarantees": [
     {
-      "title": "1 Business Day Response",
-      "description": "Every inquiry is reviewed directly by our senior technical team within 24 hours."
+      "title": "Direct specialist access",
+      "description": "You speak with the Microsoft specialists who do the work, not layers of management."
     },
     {
-      "title": "Direct Senior Access",
-      "description": "You speak with the practicing engineers who architect and execute migrations, not junior BDRs."
+      "title": "Fast starts",
+      "description": "MP-365 gets access and starts working, with no long planning phases."
     },
     {
-      "title": "Fixed-Scope Scoping",
-      "description": "We quote based on discovered complexity (tenants, identities, legal holds), not open-ended T&M bloat."
+      "title": "Honest scoping",
+      "description": "MP-365 tells you what is included, what is not, and when another option fits better."
     },
     {
-      "title": "Mutual NDA Ready",
-      "description": "We are ready to execute mutual confidentiality agreements before reviewing sensitive tenant data."
+      "title": "Clear hand-off",
+      "description": "Your team gets the documentation and training to own what was built."
     }
   ],
   "topics": [
-    "M&A Tenant Migration",
-    "Dynamics 365 / Business Central",
-    "Power Platform & Governance",
-    "SharePoint Modernization",
-    "General Consultation"
+    "Dynamics 365 CRM",
+    "SharePoint and intranets",
+    "Microsoft Copilot",
+    "Power Platform",
+    "Microsoft 365 or tenant migration",
+    "Data governance",
+    "Application modernization",
+    "Something else"
   ]
 }

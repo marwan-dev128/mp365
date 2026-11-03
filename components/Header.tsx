@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect, useCallback } from "react";
-import type { SiteSettings } from "@prisma/client";
 import { gsap } from "gsap";
 import { MicrosoftLogo, ChevronDown, Menu, Close, Phone } from "@/components/ui/Icons";
 import { MegaMenuIcon } from "@/components/ui/MegaMenuIcons";
@@ -24,22 +23,14 @@ export interface HeaderProps {
     login?: { label: string; href: string };
     primaryCta?: { label: string; href: string };
   };
-  services?: { slug: string; shortName: string }[];
-  solutions?: { slug: string; name: string }[];
-  industries?: { slug: string; name: string }[];
-  settings?: Partial<SiteSettings>;
 }
 
 export function Header({
   announcement = defaultNav.announcement,
   logo = defaultNav.logo,
-  navLinks: _navLinks = defaultNav.navLinks,
+  navLinks = defaultNav.navLinks,
   megaMenuGroups = (defaultNav as { megaMenuGroups?: MegaMenuGroup[] }).megaMenuGroups || [],
   rightActions = defaultNav.rightActions,
-  services: _services,
-  solutions: _solutions,
-  industries: _industries,
-  settings: _settings,
 }: HeaderProps = {}) {
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [renderedGroup, setRenderedGroup] = useState<string | null>(null);
@@ -413,11 +404,11 @@ export function Header({
               href={logo.href}
               onClick={closeAll}
               className="flex items-center group select-none shrink-0"
-              aria-label="MP365 — Dynamics, Automation, Solutions"
+              aria-label="MP-365 home"
             >
               <Image
                 src="/mp365-logo.png"
-                alt="MP365 — Dynamics, Automation, Solutions"
+                alt="MP-365"
                 width={140}
                 height={43}
                 priority
@@ -459,21 +450,57 @@ export function Header({
                   </div>
                 );
               })}
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-full px-3.5 py-2 text-[14px] font-semibold tracking-tight text-mp-ink transition-all duration-200 hover:bg-black/[0.04] hover:text-mp-petrol"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
+
+          {/* The menu panel only mounts on hover, so its links are not in the
+              server-rendered HTML. Search engines and AI crawlers read that
+              HTML, so every menu link also renders here, in plain anchors. */}
+          <nav aria-hidden="true" className="hidden">
+            {megaMenuGroups.map((group) => (
+              <div key={group.id}>
+                <a href={group.href} tabIndex={-1}>
+                  {group.label}
+                </a>
+                {group.columns.map((col) => (
+                  <div key={col.title}>
+                    {col.href && (
+                      <a href={col.href} tabIndex={-1}>
+                        {col.title}
+                      </a>
+                    )}
+                    {col.items.map((item) => (
+                      <a key={item.href} href={item.href} tabIndex={-1}>
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </nav>
 
           {/* Right Action Items */}
           <div className="flex items-center gap-3 sm:gap-4">
 
 
-            {/* Get started button (secondary) */}
+            {/* Contact button (secondary) */}
             <Link
               ref={ctaRef}
               href="/contact/"
               onClick={closeAll}
               className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-mp-petrol bg-mp-petrol px-4.5 py-2.5 text-[13.5px] font-semibold text-mp-mint hover:bg-mp-petrol-2 hover:border-mp-petrol-2 transition-colors shadow-2xs"
             >
-              <span>Get started</span>
+              <span>Contact</span>
               <span className="text-[15px] leading-none font-semibold">›</span>
             </Link>
 
@@ -517,29 +544,39 @@ export function Header({
                         ? "grid-cols-1 max-w-md gap-x-8"
                         : activeGroupData.columns.length === 2
                         ? "grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-14"
-                        : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8"
+                        : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6"
                     }`}
                   >
                     {activeGroupData.columns.map((col) => (
                       <div key={col.title} className="flex flex-col">
-                        <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04]">
-                          {col.title}
-                        </span>
+                        {col.href ? (
+                          <Link
+                            href={col.href}
+                            onClick={closeAll}
+                            className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04] hover:bg-mp-petrol hover:text-white transition-colors"
+                          >
+                            {col.title}
+                          </Link>
+                        ) : (
+                          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04]">
+                            {col.title}
+                          </span>
+                        )}
                         <div className="flex flex-col gap-1">
                           {col.items.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
                               onClick={closeAll}
-                              className="mega-menu-item group/item -mx-2.5 flex items-start gap-3.5 rounded-2xl p-2.5 hover:bg-mp-parchment/80 hover:shadow-2xs transition-all duration-200"
+                              className="mega-menu-item group/item -mx-2.5 flex items-start gap-2.5 rounded-xl p-1.5 hover:bg-mp-parchment/80 transition-all duration-200"
                             >
                               {/* Squircle Icon Badge */}
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white border border-black/[0.06] text-mp-petrol group-hover/item:bg-mp-petrol group-hover/item:text-mp-mint group-hover/item:border-mp-petrol group-hover/item:scale-105 transition-all duration-200 shadow-2xs">
-                                <MegaMenuIcon name={item.icon} className="h-4.5 w-4.5" />
+                              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white border border-black/[0.06] text-mp-petrol group-hover/item:bg-mp-petrol group-hover/item:text-mp-mint group-hover/item:border-mp-petrol transition-all duration-200 shadow-2xs">
+                                <MegaMenuIcon name={item.icon} className="h-3.5 w-3.5" />
                               </div>
                               {/* Item Text */}
                               <div className="flex flex-col flex-1 min-w-0 pt-0.5">
-                                <span className="text-[13.5px] font-bold text-mp-ink group-hover/item:text-mp-petrol transition-colors">
+                                <span className="text-[13px] font-semibold leading-snug text-mp-ink group-hover/item:text-mp-petrol transition-colors">
                                   {item.label}
                                 </span>
                                 {item.description && (
@@ -628,9 +665,13 @@ export function Header({
                       <div className="flex flex-col gap-3 pl-2 pr-1 pt-2 pb-3">
                         {group.columns.map((col) => (
                           <div key={col.title} className="flex flex-col gap-1.5 pt-1">
-                            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-mp-secondary/70">
+                            <Link
+                              href={col.href ?? group.href}
+                              onClick={closeAll}
+                              className="text-[11px] font-bold uppercase tracking-[0.12em] text-mp-petrol"
+                            >
                               {col.title}
-                            </span>
+                            </Link>
                             {col.items.map((item) => (
                               <Link
                                 key={item.href}
@@ -668,6 +709,16 @@ export function Header({
                   </div>
                 );
               })}
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeAll}
+                  className="border-b border-black/[0.06] py-4 text-[15.5px] font-bold text-mp-ink"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
             {/* Mobile Footer CTAs */}
@@ -684,7 +735,7 @@ export function Header({
                 onClick={closeAll}
                 className="flex items-center justify-center gap-1.5 rounded-full bg-mp-lime py-3 text-[13.5px] font-bold text-mp-ink hover:bg-mp-lime-hover transition-colors shadow-2xs"
               >
-                <span>Book a consultation</span>
+                <span>Book a discovery call</span>
                 <span className="text-sm font-semibold">›</span>
               </Link>
             </div>

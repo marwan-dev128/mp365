@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 /**
- * The official MP365 brand lockup.
+ * The official MP-365 brand lockup.
  *
  * The artwork already contains the "MP 365 / INTEGRATED DIGITAL SERVICES"
  * wordmark, so no text is rendered alongside it — a second wordmark would

@@ -7,12 +7,7 @@ import { buildMetadata } from "./metadata";
 import {
   webPageSchema,
   collectionPageSchema,
-  serviceSchema,
-  howToSchema,
   articleSchema,
-  personSchema,
-  definedTermSchema,
-  faqSchema,
   breadcrumbSchema,
 } from "./schema";
 
@@ -90,22 +85,6 @@ test("no JSON-LD builder publishes raw inline markup", () => {
       description: MARKED,
       items: [{ name: MARKED, path: "/x/y/" }],
     }),
-    service: serviceSchema({
-      name: MARKED,
-      description: MARKED,
-      path: "/x/",
-      serviceType: MARKED,
-      areaServed: ["CT"],
-      category: MARKED,
-      audience: MARKED,
-      serviceOutput: MARKED,
-    }),
-    howTo: howToSchema({
-      name: MARKED,
-      description: MARKED,
-      steps: [{ name: MARKED, description: MARKED }],
-      path: "/x/",
-    }),
     article: articleSchema({
       headline: MARKED,
       description: MARKED,
@@ -115,9 +94,6 @@ test("no JSON-LD builder publishes raw inline markup", () => {
       authorName: "A",
       articleSection: MARKED,
     }),
-    person: personSchema({ slug: "a", name: MARKED, jobTitle: MARKED, description: MARKED }),
-    definedTerm: definedTermSchema({ slug: "a", name: MARKED, description: MARKED, aliases: [MARKED] }),
-    faq: faqSchema([{ q: MARKED, a: MARKED }], "/x/"),
     breadcrumb: breadcrumbSchema([{ name: MARKED, path: "/x/" }]),
   };
 
@@ -148,9 +124,7 @@ test("buildMetadata flattens markup in every text field it emits", () => {
 // between them — including JSDoc `/** … */`, which then reads as unclosed
 // emphasis. Excluding \n keeps each match to one real string.
 /**
- * Every .ts file under seed-data, including the per-industry and per-article
- * subfolders, as paths relative to `dir`. A flat readdir silently skipped the
- * subfolders, so their copy went unchecked.
+ * Every .ts file under `dir`, recursively, as paths relative to it.
  */
 function seedFiles(dir: string): string[] {
   return (readdirSync(dir, { recursive: true }) as string[])
@@ -162,10 +136,10 @@ function seededStrings(src: string): string[] {
   return (src.match(/"(?:[^"\\\n]|\\.){20,}"/g) ?? []).map((raw) => raw.slice(1, -1));
 }
 
-test("every seed-data file parses cleanly — no unclosed or unsupported markup", () => {
-  const dir = join(process.cwd(), "prisma/seed-data");
+test("every content page parses cleanly — no unclosed or unsupported markup", () => {
+  const dir = join(process.cwd(), "content/pages");
   const files = seedFiles(dir);
-  assert.ok(files.length >= 5, "expected the seed-data directory to be populated");
+  assert.ok(files.length >= 5, "expected content/pages to be populated");
 
   const bad: string[] = [];
   for (const file of files) {
@@ -183,8 +157,8 @@ test("every seed-data file parses cleanly — no unclosed or unsupported markup"
   assert.deepEqual(bad, [], `seeded copy the renderer cannot handle:\n${bad.join("\n")}`);
 });
 
-test("seeded internal links point at paths, not bare slugs or external URLs", () => {
-  const dir = join(process.cwd(), "prisma/seed-data");
+test("internal links in page copy point at paths, not bare slugs or external URLs", () => {
+  const dir = join(process.cwd(), "content/pages");
   const bad: string[] = [];
   for (const file of seedFiles(dir)) {
     const src = seededStrings(readFileSync(join(dir, file), "utf8")).join("\n");
@@ -244,7 +218,7 @@ test("fields the renderer prints raw contain no inline markup", () => {
     if (text && hasMarkup(text)) raw.push(`${where}: ${text.slice(0, 60)}…`);
   };
 
-  const dir = join(process.cwd(), "prisma/seed-data");
+  const dir = join(process.cwd(), "content/pages");
   for (const file of seedFiles(dir)) {
     const src = readFileSync(join(dir, file), "utf8");
 

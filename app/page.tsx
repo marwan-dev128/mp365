@@ -1,101 +1,59 @@
-import { JsonLd } from "@/components/JsonLd";
 import { ClientLogos } from "@/components/ClientLogos";
-// Import the active hero directly rather than through the barrel: the barrel also
-// re-exports HeroV3, which pulls in matter-js (~1MB) even though it is unused here.
 import { IntegrationsHero as HeroSection, type IntegrationWidgetData } from "@/components/hero-section/IntegrationsHero";
-import { PlatformShowcase } from "@/components/home/PlatformShowcase";
-import { FeatureGrid4Col } from "@/components/home/FeatureGrid4Col";
-import { SolutionCarousel } from "@/components/home/SolutionCarousel";
-import { StackedPersonaCards } from "@/components/home/StackedPersonaCards";
+import { Container } from "@/components/Container";
+import { FaqSection } from "@/components/FaqSection";
+import { RichText } from "@/components/RichText";
 import { CustomerStoriesShowcase } from "@/components/home/CustomerStoriesShowcase";
-import { WhyUsempCarousel } from "@/components/home/WhyUsempCarousel";
-import { HaveBetterVisibilityGrid } from "@/components/home/HaveBetterVisibilityGrid";
-import { GetExtraSupportGrid } from "@/components/home/GetExtraSupportGrid";
-import { BoostEfficiencyGrid } from "@/components/home/BoostEfficiencyGrid";
-import { FlexiTravelStats } from "@/components/home/FlexiTravelStats";
-import { EditorialInsightCards } from "@/components/home/EditorialInsightCards";
 import { DarkHighlightBanner } from "@/components/home/DarkHighlightBanner";
-import integrationsData from "@/store/integrations.json";
+import { MarketingPageBody } from "@/components/marketing/PageBody";
+import { CategoryGrid } from "@/components/site/CategoryGrid";
+import { getPageContent } from "@/content/pages";
+import { planMetadata } from "@/lib/metadata";
+import { stripInlineMarkup } from "@/lib/richtext";
+import { getSitePage } from "@/lib/site-data";
 import clientsData from "@/store/clients.json";
-import { getSiteSettings } from "@/lib/data";
-import { buildMetadata } from "@/lib/metadata";
-import { webPageSchema, ORG_ID } from "@/lib/schema";
+import integrationsData from "@/store/integrations.json";
 
-export const revalidate = 3600;
+export const metadata = planMetadata("/");
 
-export const metadata = buildMetadata({
-  title: "Microsoft M&A Tenant Migrations & Dynamics 365 | MP365",
-  description:
-    "M&A-grade Microsoft 365 tenant migrations plus Dynamics 365 and Power Platform modernization from one senior team. 20+ years, based in Vernon, CT.",
-  path: "/",
-  isFullTitle: true,
-});
-
-export default async function HomePage() {
-  const settings = await getSiteSettings();
+export default function HomePage() {
+  const plan = getSitePage("/");
+  const content = getPageContent("/");
 
   return (
     <>
-      <JsonLd
-        data={webPageSchema({
-          path: "/",
-          name: "MP365 — Microsoft Consulting and Migrations",
-          description: "M&A tenant migrations, Dynamics 365, and Power Platform delivery.",
-          mainEntityId: ORG_ID,
-        })}
-      />
-
-      {/* 1. Hero with Microsoft ecosystem floating widgets */}
       <HeroSection
-        title={integrationsData.title}
-        description={integrationsData.description}
-        buttonText={integrationsData.buttonText}
-        buttonLink={integrationsData.buttonLink}
+        title={plan.h1}
+        description={stripInlineMarkup(content.intro)}
+        buttonText={stripInlineMarkup(content.cta.text)}
+        buttonLink="/contact/"
         widgets={integrationsData.widgets as unknown as IntegrationWidgetData[]}
-        settings={settings}
       />
 
-      {/* 2. Client logos marquee */}
-      <ClientLogos
-        label={clientsData.label}
-        clients={clientsData.clients}
-      />
+      <ClientLogos label={clientsData.label} clients={clientsData.clients} />
 
-      {/* 3. Tabbed showcase (service tabs + proof band) */}
-      <PlatformShowcase />
+      <Container className="py-14 sm:py-20">
+        <CategoryGrid />
+      </Container>
 
-      {/* 4. Four-column feature grid (20+ years figure + capability cards) */}
-      <FeatureGrid4Col />
-
-      {/* 5. Interactive solution carousel (migration work handled for you) */}
-      <SolutionCarousel />
-
-      {/* 6. Stacked persona cards (IT leaders and the teams they support) */}
-      <StackedPersonaCards />
-
-      {/* 7. Customer stories accordion (OTIS Elevator, Carlisle, Hunter Panels) */}
       <CustomerStoriesShowcase />
 
-      {/* 8. Why MP365 carousel (visibility, support, efficiency cards) */}
-      <WhyUsempCarousel />
+      <Container className="py-14 sm:py-20">
+        <div className="mx-auto flex max-w-4xl flex-col gap-12">
+          <MarketingPageBody blocks={content.blocks} />
+          <FaqSection faqs={content.faqs} />
+          <p className="text-[15.5px] leading-[1.75] text-ink-2">
+            <RichText text={content.closing} />
+          </p>
+        </div>
+      </Container>
 
-      {/* 9. Visibility grid (wave planning, migration tracker, reporting) */}
-      <HaveBetterVisibilityGrid />
-
-      {/* 10. Support grid (senior engineers, named lead, cutover cover, coexistence) */}
-      <GetExtraSupportGrid />
-
-      {/* 11. Efficiency grid (identity, governance policies, automation, enablement) */}
-      <BoostEfficiencyGrid />
-
-      {/* 12. Three-card facts section (structural facts only — no performance claims) */}
-      <FlexiTravelStats />
-
-      {/* 13. Editorial insight cards */}
-      <EditorialInsightCards />
-
-      {/* 14. Dark highlight banner */}
-      <DarkHighlightBanner />
+      <DarkHighlightBanner
+        headline={stripInlineMarkup(content.cta.heading)}
+        subheading={stripInlineMarkup(content.cta.body)}
+        ctaText={stripInlineMarkup(content.cta.text)}
+        ctaHref="/contact/"
+      />
     </>
   );
 }

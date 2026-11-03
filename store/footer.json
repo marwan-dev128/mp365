@@ -3,16 +3,16 @@
     "title": "How can we help?",
     "links": [
       {
-        "label": "Book a consultation",
+        "label": "Book a discovery call",
         "href": "/contact/"
       },
       {
-        "label": "Assessments",
-        "href": "/assessments/"
+        "label": "See pricing",
+        "href": "/pricing/"
       },
       {
-        "label": "Glossary",
-        "href": "/resources/glossary/"
+        "label": "See client results",
+        "href": "/clients/"
       }
     ]
   },
@@ -31,80 +31,52 @@
     {
       "groups": [
         {
-          "title": "Industries",
-          "links": [
-            {
-              "label": "Manufacturing",
-              "href": "/industries/manufacturing/"
-            },
-            {
-              "label": "Logistics & supply chain",
-              "href": "/industries/logistics-supply-chain/"
-            },
-            {
-              "label": "Energy & utilities",
-              "href": "/industries/energy-utilities/"
-            },
-            {
-              "label": "Construction & engineering",
-              "href": "/industries/construction-engineering/"
-            },
-            {
-              "label": "Financial services",
-              "href": "/industries/financial-services/"
-            },
-            {
-              "label": "Defense contractors",
-              "href": "/industries/federal-contractors/"
-            },
-            {
-              "label": "Medical devices",
-              "href": "/industries/medical-devices/"
-            },
-            {
-              "label": "Healthcare",
-              "href": "/industries/healthcare/"
-            },
-            {
-              "label": "Retail",
-              "href": "/industries/retail/"
-            }
-          ]
-        },
-        {
           "title": "Services",
           "links": [
             {
-              "label": "M&A tenant migration",
-              "href": "/services/ma-tenant-migration/"
+              "label": "All services",
+              "href": "/services/"
             },
             {
-              "label": "Microsoft 365 migration",
-              "href": "/services/microsoft-365-migration/"
+              "label": "Dynamics 365 CRM Consultation",
+              "href": "/services/dynamics-365-crm/"
             },
             {
-              "label": "Dynamics 365 consulting",
-              "href": "/services/dynamics-365/"
+              "label": "SharePoint & Intranets",
+              "href": "/services/sharepoint/"
+            },
+            {
+              "label": "Microsoft Copilot & AI",
+              "href": "/services/copilot/"
             },
             {
               "label": "Power Platform",
               "href": "/services/power-platform/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "title": "More services",
+          "links": [
+            {
+              "label": "Microsoft 365 Migration",
+              "href": "/services/microsoft-365-migration/"
             },
             {
-              "label": "Data governance",
+              "label": "M&A Tenant Migration",
+              "href": "/services/tenant-to-tenant-migration/"
+            },
+            {
+              "label": "Data Governance",
               "href": "/services/data-governance/"
             },
             {
-              "label": "Application modernization",
+              "label": "Application Modernization & DevOps",
               "href": "/services/application-modernization/"
-            },
-            {
-              "label": "Collaboration enablement",
-              "href": "/services/collaboration-enablement/"
-            },
-            {
-              "label": "Contract management",
-              "href": "/services/contract-management/"
             }
           ]
         }
@@ -113,167 +85,23 @@
     {
       "groups": [
         {
-          "title": "Dynamics 365",
+          "title": "Company",
           "links": [
             {
-              "label": "Dynamics 365 overview",
-              "href": "/dynamics-365/"
+              "label": "Clients",
+              "href": "/clients/"
             },
             {
-              "label": "Sales",
-              "href": "/dynamics-365/sales/"
-            },
-            {
-              "label": "Customer Service",
-              "href": "/dynamics-365/customer-service/"
-            },
-            {
-              "label": "Finance",
-              "href": "/dynamics-365/finance/"
-            },
-            {
-              "label": "Supply Chain Management",
-              "href": "/dynamics-365/supply-chain/"
-            },
-            {
-              "label": "Business Central",
-              "href": "/dynamics-365/business-central/"
-            },
-            {
-              "label": "Field Service",
-              "href": "/dynamics-365/field-service/"
-            },
-            {
-              "label": "Migrations",
-              "href": "/migrations/"
-            },
-            {
-              "label": "Dynamics GP to Business Central",
-              "href": "/migrations/dynamics-gp-to-business-central/"
-            },
-            {
-              "label": "Dynamics NAV to Business Central",
-              "href": "/migrations/dynamics-nav-to-business-central/"
-            },
-            {
-              "label": "Dynamics AX to Dynamics 365",
-              "href": "/migrations/dynamics-ax-to-dynamics-365/"
-            },
-            {
-              "label": "Salesforce to Dynamics 365",
-              "href": "/migrations/salesforce-to-dynamics-365/"
-            },
-            {
-              "label": "Solutions",
-              "href": "/solutions/"
-            },
-            {
-              "label": "SharePoint & intranet",
-              "href": "/solutions/sharepoint-intranet/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groups": [
-        {
-          "title": "Resources",
-          "links": [
-            {
-              "label": "Resource hub",
-              "href": "/resources/"
-            },
-            {
-              "label": "Microsoft glossary",
-              "href": "/resources/glossary/"
-            },
-            {
-              "label": "Worked examples",
-              "href": "/resources/worked-examples/"
+              "label": "Pricing",
+              "href": "/pricing/"
             },
             {
               "label": "Blog",
               "href": "/blog/"
             },
             {
-              "label": "Case studies",
-              "href": "/case-studies/"
-            }
-          ]
-        },
-        {
-          "title": "Compare",
-          "links": [
-            {
-              "label": "Business Central vs F&O",
-              "href": "/compare/business-central-vs-finance-operations/"
-            },
-            {
-              "label": "Dynamics 365 vs Salesforce",
-              "href": "/compare/dynamics-365-vs-salesforce/"
-            },
-            {
-              "label": "Business Central vs NetSuite",
-              "href": "/compare/business-central-vs-netsuite/"
-            },
-            {
-              "label": "Power Apps vs custom code",
-              "href": "/compare/power-apps-vs-custom-development/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groups": [
-        {
-          "title": "Pricing & assessments",
-          "links": [
-            {
-              "label": "Tenant migration cost",
-              "href": "/pricing/tenant-migration-cost/"
-            },
-            {
-              "label": "Business Central cost",
-              "href": "/pricing/business-central-implementation-cost/"
-            },
-            {
-              "label": "Dynamics 365 licensing",
-              "href": "/pricing/dynamics-365-licensing/"
-            },
-            {
-              "label": "Tenant migration assessment",
-              "href": "/assessments/tenant-migration/"
-            },
-            {
-              "label": "Power Platform health check",
-              "href": "/assessments/power-platform-health-check/"
-            }
-          ]
-        },
-        {
-          "title": "About",
-          "links": [
-            {
-              "label": "About MP365",
+              "label": "About",
               "href": "/about/"
-            },
-            {
-              "label": "Data analytics",
-              "href": "/solutions/data-analytics/"
-            },
-            {
-              "label": "CRM deployment",
-              "href": "/solutions/crm-deployment/"
-            },
-            {
-              "label": "Financial management",
-              "href": "/solutions/financial-management/"
-            },
-            {
-              "label": "Microsoft consultant in CT",
-              "href": "/microsoft-consultant-connecticut/"
             },
             {
               "label": "Contact",
@@ -285,7 +113,7 @@
     }
   ],
   "legal": {
-    "brand": "mp365",
+    "brand": "MP-365",
     "badge": "+",
     "copyright": "© 2026 Modern Partners 365",
     "columns": [
@@ -295,22 +123,18 @@
           "href": "/services/"
         },
         {
-          "label": "Solutions",
-          "href": "/solutions/"
-        },
-        {
-          "label": "Industries",
-          "href": "/industries/"
+          "label": "Clients",
+          "href": "/clients/"
         }
       ],
       [
         {
-          "label": "Case studies",
-          "href": "/case-studies/"
+          "label": "Pricing",
+          "href": "/pricing/"
         },
         {
-          "label": "Resources",
-          "href": "/resources/"
+          "label": "Blog",
+          "href": "/blog/"
         }
       ],
       [
@@ -324,6 +148,6 @@
         }
       ]
     ],
-    "disclaimer": "MP365 is the trading name of Modern Partners 365, a Microsoft consulting partner based at 59 Winding Brook Trail, Vernon, CT 06066, United States. Reach us on (+1) 860-208-9537 or info@mp-365.com. We serve clients across Connecticut, New England and the wider United States. Microsoft, Microsoft 365, Dynamics 365, Power Platform, Azure and Copilot are trademarks of the Microsoft group of companies."
+    "disclaimer": "MP-365 is the trading name of Modern Partners 365, a Microsoft Solutions Partner based at 59 Winding Brook Trail, Vernon, CT 06066, United States. Reach us on (+1) 860-208-9537 or info@mp-365.com. Microsoft, Microsoft 365, Dynamics 365, Power Platform, SharePoint, Azure and Copilot are trademarks of the Microsoft group of companies."
   }
 }

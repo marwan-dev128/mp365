@@ -11,10 +11,10 @@ export interface CtaBandProps {
 }
 
 export function CtaBand({
-  badge = "MP365 - MICROSOFT SOLUTIONS PARTNER - VERNON, CT",
+  badge = "MP-365 - MICROSOFT SOLUTIONS PARTNER",
   heading = "Ready to talk about your Microsoft environment?",
-  subheading = "Tell us what you're working with — migration, Dynamics 365, or Power Platform — and we'll respond with next steps, not a sales script.",
-  ctaText = "Get a free consultation",
+  subheading = "Tell us what you are working on and MP-365 will respond with next steps, not a sales script.",
+  ctaText = "Book a discovery call",
   ctaHref = "/contact/",
   bgImage,
   bgAlt,

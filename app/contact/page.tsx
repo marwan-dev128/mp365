@@ -1,42 +1,36 @@
-import { JsonLd } from "@/components/JsonLd";
 import { ClientLogos } from "@/components/ClientLogos";
-import { DarkHighlightBanner } from "@/components/home/DarkHighlightBanner";
-import { ContactHero } from "@/components/contact/ContactHero";
+import { Container } from "@/components/Container";
+import { FaqSection } from "@/components/FaqSection";
+import { JsonLd } from "@/components/JsonLd";
+import { RichText } from "@/components/RichText";
 import { ConsultationHub } from "@/components/contact/ConsultationHub";
-import { buildMetadata } from "@/lib/metadata";
+import { ContactHero } from "@/components/contact/ContactHero";
+import { MarketingPageBody } from "@/components/marketing/PageBody";
+import { getPageContent } from "@/content/pages";
 import { getSiteSettings } from "@/lib/data";
-import { webPageSchema, ORG_ID } from "@/lib/schema";
+import { planMetadata } from "@/lib/metadata";
+import { stripInlineMarkup } from "@/lib/richtext";
+import { ORG_ID, breadcrumbSchema } from "@/lib/schema";
+import { getSitePage } from "@/lib/site-data";
 import clientsData from "@/store/clients.json";
 
-export const revalidate = 3600;
+const PATH = "/contact/";
 
-export const metadata = buildMetadata({
-  title: "Contact MP365 — Senior Microsoft Consulting",
-  description:
-    "Get in touch with MP365 for direct senior Microsoft consulting — Microsoft 365 M&A tenant migration, Dynamics 365, and Power Platform.",
-  path: "/contact/",
-  isFullTitle: true,
-});
+export const metadata = planMetadata(PATH);
 
 export default async function ContactPage() {
   const settings = await getSiteSettings();
+  const plan = getSitePage(PATH);
+  const content = getPageContent(PATH);
+  const address = `${settings.street}, ${settings.city}, ${settings.region} ${settings.postalCode}`;
 
   return (
     <>
-      <JsonLd
-        data={webPageSchema({
-          type: "ContactPage",
-          path: "/contact/",
-          name: `Contact ${settings.brandName}`,
-          description:
-            "Get in touch with MP365 for direct senior Microsoft consulting — Microsoft 365 M&A tenant migration, Dynamics 365, and Power Platform.",
-          mainEntityId: ORG_ID,
-        })}
-      />
+      <JsonLd data={breadcrumbSchema(plan.breadcrumbs)} />
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "ProfessionalService",
+          "@type": "Organization",
           "@id": ORG_ID,
           contactPoint: [
             {
@@ -51,26 +45,32 @@ export default async function ContactPage() {
         }}
       />
 
-      {/* 1. Dedicated Contact Hero with Microsoft Partner Badge & Direct Dial Button */}
       <ContactHero
+        title={plan.h1}
+        subtitle={stripInlineMarkup(content.intro)}
         phoneDisplay={settings.phoneDisplay}
         phoneHref={`tel:${settings.phone}`}
       />
 
-      {/* 2. Kinetic Client Proof Marquee */}
       <ClientLogos label={clientsData.label} clients={clientsData.clients} />
 
-      {/* 3. Two-Column Consultation Hub (Direct Access & Guarantees + Modernized Form) */}
       <ConsultationHub
         phoneDisplay={settings.phoneDisplay}
         phoneHref={`tel:${settings.phone}`}
         email={settings.email}
         emailHref={`mailto:${settings.email}`}
-        address={`${settings.street}, ${settings.city}, ${settings.region} ${settings.postalCode}`}
+        address={address}
       />
 
-      {/* 4. High-Contrast Closing Banner */}
-      <DarkHighlightBanner />
+      <Container className="py-14 sm:py-20">
+        <div className="mx-auto flex max-w-4xl flex-col gap-12">
+          <MarketingPageBody blocks={content.blocks} />
+          <FaqSection faqs={content.faqs} />
+          <p className="text-[15.5px] leading-[1.75] text-ink-2">
+            <RichText text={content.closing} />
+          </p>
+        </div>
+      </Container>
     </>
   );
 }

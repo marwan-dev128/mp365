@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Analytics } from "@/components/Analytics";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
-import { getSiteSettings, getPeople, getServices, getSolutions, getIndustries } from "@/lib/data";
+import { getSiteSettings, getPeople } from "@/lib/data";
 import { BRAND_NAME, SITE_URL } from "@/lib/config";
 import { stripInlineMarkup } from "@/lib/richtext";
 
@@ -63,17 +63,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [settings, people, services, solutions, industries] = await Promise.all([
-    getSiteSettings(),
-    getPeople(),
-    getServices(),
-    getSolutions(),
-    getIndustries(),
-  ]);
+  const [settings, people] = await Promise.all([getSiteSettings(), getPeople()]);
 
   return (
     <html
-      lang="en"
+      lang="en-US"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
       className={`${jakarta.variable} ${inter.variable} h-full`}
@@ -104,12 +98,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         >
           Skip to main content
         </a>
-        <Header services={services} solutions={solutions} industries={industries} settings={settings} />
+        <Header />
         <main id="main-content" tabIndex={-1} className="flex-1 scroll-mt-24 outline-none">
           {children}
         </main>
         <LocationPresenceMarquee />
-        <Footer services={services} settings={settings} />
+        <Footer />
         <Analytics />
       </body>
     </html>

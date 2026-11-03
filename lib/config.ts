@@ -12,4 +12,4 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mp-365.com
   ""
 );
 
-export const BRAND_NAME = "MP365";
+export const BRAND_NAME = "MP-365";

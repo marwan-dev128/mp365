@@ -1,68 +1,64 @@
-# MP365 (Modern Partners 365)
+# MP-365
 
-> MP365 is a Microsoft consulting partner based in Vernon, Connecticut, specializing in Microsoft 365 M&A tenant migration, Dynamics 365, Power Platform, and data governance for mid-market and enterprise organizations. Founded on 20+ years of Microsoft platform experience, MP365 positions itself against large systems integrators by delivering senior expertise without a multi-month discovery cycle.
-
-Key facts: Legal name Modern Partners 365. Headquartered at 59 Winding Brook Trail, Vernon, CT 06066. Phone +1 (860) 208-9537. Email info@mp-365.com. Serves Connecticut, New England, and clients nationwide. Delivery: Principal-led Microsoft platform architects with 20+ years of enterprise engineering experience.
+> MP-365 (Modern Partners 365) is a Microsoft Solutions Partner that helps mid-size and enterprise companies get more out of Dynamics 365, Microsoft 365 and Copilot.
 
 ## Services
 
-- [M&A Tenant Migration](https://mp-365.com/services/ma-tenant-migration/): Tenant-to-tenant Microsoft 365 migration for mergers, acquisitions, and divestitures.
-- [Microsoft 365 Migration](https://mp-365.com/services/microsoft-365-migration/): Fully managed migration from Google Workspace, on-prem Exchange, or another cloud into Microsoft 365.
-- [Dynamics 365 Consulting](https://mp-365.com/services/dynamics-365/): CRM and ERP implementation — Sales, Customer Service, Business Central, Finance & Operations.
-- [Power Platform Solutions](https://mp-365.com/services/power-platform/): Power Apps, Power Automate, Power BI, and Copilot Studio, with governance built in.
-- [Data Governance](https://mp-365.com/services/data-governance/): Microsoft Purview-based retention, classification, and access governance.
-- [Application Modernization](https://mp-365.com/services/application-modernization/): Legacy application migration and re-architecture on Azure.
-- [Collaboration Enablement](https://mp-365.com/services/collaboration-enablement/): SharePoint, Teams, and enterprise search restructuring.
-- [Contract Management Enablement](https://mp-365.com/services/contract-management/): Automated contract workflows replacing email-based tracking.
-
-## Solutions
-
-- [SharePoint & Intranet](https://mp-365.com/solutions/sharepoint-intranet/)
-- [Data Analytics](https://mp-365.com/solutions/data-analytics/)
-- [Automated CRM Deployment](https://mp-365.com/solutions/crm-deployment/)
-- [Financial Management](https://mp-365.com/solutions/financial-management/)
-
-## Industries
-
-- [Manufacturing](https://mp-365.com/industries/manufacturing/)
-- [Logistics & Supply Chain](https://mp-365.com/industries/logistics-supply-chain/)
-- [Energy & Utilities](https://mp-365.com/industries/energy-utilities/)
-- [Construction & Engineering](https://mp-365.com/industries/construction-engineering/)
-- [Financial Services & Credit Unions](https://mp-365.com/industries/financial-services/)
-- [Federal & Defense Contractors](https://mp-365.com/industries/federal-contractors/)
-- [Medical Devices](https://mp-365.com/industries/medical-devices/)
-- [Healthcare](https://mp-365.com/industries/healthcare/)
-- [Retail](https://mp-365.com/industries/retail/)
-
-## Migrations
-
-- [Dynamics GP to Business Central](https://mp-365.com/migrations/dynamics-gp-to-business-central/)
-- [Salesforce to Dynamics 365](https://mp-365.com/migrations/salesforce-to-dynamics-365/)
-
-## Compare
-
-- [Business Central vs. Finance & Operations](https://mp-365.com/compare/business-central-vs-finance-operations/)
-- [Dynamics 365 vs. Salesforce](https://mp-365.com/compare/dynamics-365-vs-salesforce/)
-
-## Pricing
-
-- [Microsoft 365 Tenant Migration Cost](https://mp-365.com/pricing/tenant-migration-cost/)
-- [Business Central Implementation Cost](https://mp-365.com/pricing/business-central-implementation-cost/)
-
-## Assessments
-
-- [Microsoft 365 Tenant Migration Assessment](https://mp-365.com/assessments/tenant-migration/)
-- [Power Platform Health Check](https://mp-365.com/assessments/power-platform-health-check/)
+- [All services](https://mp-365.com/services/)
+- [Dynamics 365 CRM Consultation](https://mp-365.com/services/dynamics-365-crm/)
+  - [Dynamics 365 Sales](https://mp-365.com/services/dynamics-365-crm/sales/)
+  - [Dynamics 365 Customer Service](https://mp-365.com/services/dynamics-365-crm/customer-service/)
+  - [Dynamics 365 Customer Insights](https://mp-365.com/services/dynamics-365-crm/customer-insights/)
+  - [Lead Management & Attribution](https://mp-365.com/services/dynamics-365-crm/lead-management/)
+  - [Dynamics 365 Security Roles & Access Audit](https://mp-365.com/services/dynamics-365-crm/security-roles-audit/)
+  - [Dynamics 365 Integration Services](https://mp-365.com/services/dynamics-365-crm/integration-services/)
+- [SharePoint & Intranets](https://mp-365.com/services/sharepoint/)
+  - [SharePoint Intranet Development](https://mp-365.com/services/sharepoint/intranet-development/)
+  - [SharePoint Server Upgrade & Migration](https://mp-365.com/services/sharepoint/migration/)
+  - [File Share to SharePoint Migration](https://mp-365.com/services/sharepoint/file-share-migration/)
+  - [SharePoint Supplier & Partner Portals](https://mp-365.com/services/sharepoint/supplier-partner-portals/)
+  - [SharePoint Search & Information Architecture](https://mp-365.com/services/sharepoint/information-architecture/)
+- [Microsoft Copilot & AI](https://mp-365.com/services/copilot/)
+  - [Microsoft 365 Copilot Readiness](https://mp-365.com/services/copilot/readiness/)
+  - [Dynamics 365 Sales Agents](https://mp-365.com/services/copilot/sales-agents/)
+  - [Custom Copilot Agent Development](https://mp-365.com/services/copilot/custom-agents/)
+  - [Copilot Cowork](https://mp-365.com/services/copilot/cowork/)
+  - [AI Data Governance Audit](https://mp-365.com/services/copilot/ai-data-governance-audit/)
+- [Power Platform](https://mp-365.com/services/power-platform/)
+  - [Power Apps Development](https://mp-365.com/services/power-platform/power-apps/)
+  - [Power Pages Portal Development](https://mp-365.com/services/power-platform/power-pages/)
+  - [Power Automate Workflow Automation](https://mp-365.com/services/power-platform/power-automate/)
+  - [Power BI Consulting & Dashboards](https://mp-365.com/services/power-platform/power-bi/)
+- [Microsoft 365 Migration](https://mp-365.com/services/microsoft-365-migration/)
+  - [Exchange to Microsoft 365 Migration](https://mp-365.com/services/microsoft-365-migration/exchange-online-migration/)
+  - [OneDrive Migration](https://mp-365.com/services/microsoft-365-migration/onedrive-migration/)
+- [M&A Tenant Migration](https://mp-365.com/services/tenant-to-tenant-migration/)
+  - [Cross-Tenant Mailbox, Teams & File Migration](https://mp-365.com/services/tenant-to-tenant-migration/mailbox-teams-files/)
+  - [Tenant Coexistence & Domain Cutover](https://mp-365.com/services/tenant-to-tenant-migration/coexistence/)
+- [Data Governance](https://mp-365.com/services/data-governance/)
+  - [Microsoft Purview & Permission Models](https://mp-365.com/services/data-governance/microsoft-purview/)
+  - [Data Quality Management](https://mp-365.com/services/data-governance/data-quality-management/)
+- [Application Modernization & DevOps](https://mp-365.com/services/application-modernization/)
+  - [Legacy Application Migration](https://mp-365.com/services/application-modernization/legacy-migration/)
+  - [DevOps & Release Automation](https://mp-365.com/services/application-modernization/devops-release-automation/)
 
 ## Company
 
-- [About](https://mp-365.com/about/)
-- [Connecticut](https://mp-365.com/microsoft-consultant-connecticut/)
-- [Case Studies](https://mp-365.com/case-studies/)
-- [Blog](https://mp-365.com/blog/)
-- [Glossary](https://mp-365.com/resources/glossary/)
+- [Clients](https://mp-365.com/clients/)
+- [Pricing](https://mp-365.com/pricing/)
+- [About Us](https://mp-365.com/about/)
 - [Contact](https://mp-365.com/contact/)
+- [Blog](https://mp-365.com/blog/)
 
-## Optional
+## Not offered
 
-- [Full site content (llms-full.txt)](https://mp-365.com/llms-full.txt): flattened plain-text version of all pages above, for models that fetch a single file instead of crawling links.
+- ERP implementation (Business Central, Finance and Operations, Supply Chain, Field Service)
+- Azure infrastructure
+- cybersecurity and identity management
+- Microsoft licence resale or CSP
+- managed services or help desk
+- standalone AI consulting
+- custom software development
+- Google Workspace migration
+- Dynamics 365 Contact Center
+- formal process improvement practice

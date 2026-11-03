@@ -103,7 +103,7 @@ export function CustomerStoriesShowcase({
                       <span className="text-sm">›</span>
                     </Link>
                     <Link
-                      href="/case-studies/"
+                      href="/clients/"
                       onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1 text-[13.5px] font-medium text-white/90 hover:text-white underline underline-offset-4 transition-opacity"
                     >

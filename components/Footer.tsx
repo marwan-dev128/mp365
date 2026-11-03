@@ -29,8 +29,6 @@ export interface FooterProps {
     columns: { label: string; href: string }[][];
     disclaimer: string;
   };
-  services?: unknown;
-  settings?: unknown;
 }
 
 export function Footer({
@@ -40,8 +38,6 @@ export function Footer({
   marqueeText = defaultFooter.marqueeText,
   navigationSections = defaultFooter.navigationSections,
   legal = defaultFooter.legal,
-  services: _services,
-  settings: _settings,
 }: FooterProps = {}) {
   const renderSocialIcon = (name: string) => {
     switch (name.toLowerCase()) {

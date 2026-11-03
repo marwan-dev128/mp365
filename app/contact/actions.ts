@@ -100,7 +100,7 @@ export async function submitContact(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           text: [
-            `New MP365 enquiry from ${name}${company ? ` (${company})` : ""} <${email}>`,
+            `New MP-365 enquiry from ${name}${company ? ` (${company})` : ""} <${email}>`,
             ...(industry ? [`Industry: ${industry}`] : []),
             ...(topic ? [`Topic: ${topic}`] : []),
             ...(sourcePath ? [`Page: ${sourcePath}`] : []),

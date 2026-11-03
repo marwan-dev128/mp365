@@ -4,16 +4,13 @@ import { useActionState, useEffect, useState } from "react";
 import { trackLead } from "@/lib/analytics";
 import { useFormStatus } from "react-dom";
 import { submitContact, type ContactState } from "@/app/contact/actions";
+import { ESTIMATOR_SUMMARY_KEY } from "@/content/estimator";
+import contactData from "@/store/contact.json";
 
 const INPUT_CLASS =
   "w-full rounded-[14px] border border-mp-border bg-white px-4 py-3.5 text-[14.5px] text-mp-ink transition-all placeholder:text-mp-muted/60 focus:border-mp-petrol focus:ring-2 focus:ring-mp-petrol/10 outline-hidden";
 
-const TOPICS = [
-  "M&A Tenant Migration",
-  "Dynamics 365 / Business Central",
-  "Power Platform & Governance",
-  "General Consultation",
-];
+const TOPICS = contactData.topics;
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -23,7 +20,7 @@ function SubmitButton() {
       disabled={pending}
       className="inline-flex items-center justify-center gap-2 rounded-full bg-mp-lime px-8 py-3.5 text-sm font-bold text-mp-ink hover:bg-mp-lime-hover shadow-2xs transition-colors disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer w-full sm:w-auto self-start"
     >
-      <span>{pending ? "Sending inquiry…" : "Send consultation request"}</span>
+      <span>{pending ? "Sending…" : "Send message"}</span>
       <span className="text-base font-bold leading-none">›</span>
     </button>
   );
@@ -44,6 +41,18 @@ export function ContactForm({ email }: { email: string }) {
     status: "idle",
   });
 
+  // A visitor arriving from the Pricing estimator brings their answers along.
+  const [summary, setSummary] = useState("");
+  useEffect(() => {
+    try {
+      const saved = window.sessionStorage.getItem(ESTIMATOR_SUMMARY_KEY);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- sessionStorage only exists after hydration
+      if (saved) setSummary(saved);
+    } catch {
+      // Storage can be blocked; the form still works without the summary.
+    }
+  }, []);
+
   useEffect(() => {
     if (state.status === "success") trackLead({ form: "contact", topic: selectedTopic });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,10 +71,10 @@ export function ContactForm({ email }: { email: string }) {
           Inquiry received
         </h3>
         <p className="text-[14.5px] sm:text-[15px] leading-[1.65] text-mp-secondary">
-          A practicing senior engineer from our Vernon, CT team will review your situation and respond within one business day.
+          A Microsoft specialist from MP-365 will review your situation and reply with next steps.
         </p>
         <div className="mt-2 pt-4 border-t border-mp-border text-sm text-mp-secondary">
-          Urgent M&amp;A deadline? Email{" "}
+          Working to a hard date? Email{" "}
           <a href={`mailto:${email}`} className="font-bold text-mp-petrol underline hover:opacity-80">
             {email}
           </a>{" "}
@@ -73,7 +82,7 @@ export function ContactForm({ email }: { email: string }) {
           <a href="tel:+18602089537" className="font-bold text-mp-petrol underline hover:opacity-80">
             (+1) 860-208-9537
           </a>{" "}
-          for immediate escalation.
+         .
         </div>
       </div>
     );
@@ -83,16 +92,16 @@ export function ContactForm({ email }: { email: string }) {
 
   return (
     <form
-      aria-label="Contact MP365"
+      aria-label="Contact MP-365"
       action={formAction}
       className="flex flex-col gap-5 rounded-[28px] sm:rounded-[32px] border border-mp-border bg-white p-7 sm:p-9 shadow-xs"
     >
       <div>
         <h3 className="font-display text-[20px] sm:text-[23px] font-bold text-mp-ink">
-          Request Scoping Consultation
+          Request a discovery call
         </h3>
         <p className="text-xs sm:text-sm text-mp-secondary mt-1">
-          Direct review by a senior engineer. Zero sales pressure.
+          Read by a Microsoft specialist, not a sales rep.
         </p>
       </div>
 
@@ -193,10 +202,12 @@ export function ContactForm({ email }: { email: string }) {
           name="message"
           rows={4}
           required
+          key={summary}
+          defaultValue={summary}
           placeholder={
             selectedTopic
-              ? `Tell us about your ${selectedTopic.toLowerCase()} requirements, timeline, and seat counts...`
-              : "Tell us about your timeline, tenant architecture, migration scope, or challenges..."
+              ? `Tell us about your ${selectedTopic} goal, timeline and number of users...`
+              : "Tell us about your goal, your timeline and the systems involved..."
           }
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? "message-error" : undefined}
@@ -204,6 +215,9 @@ export function ContactForm({ email }: { email: string }) {
         />
         <FieldError id="message-error" message={errors.message} />
       </div>
+
+      <input type="hidden" name="topic" value={selectedTopic} />
+      <input type="hidden" name="sourcePath" value="/contact/" />
 
       {/* Hidden honeypot for bot filtering */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
@@ -214,7 +228,7 @@ export function ContactForm({ email }: { email: string }) {
       <div className="mt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
         <SubmitButton />
         <p className="text-xs text-mp-muted text-center sm:text-right">
-          Protected by NDA · 1 business day SLA
+          We never share your details.
         </p>
       </div>
     </form>

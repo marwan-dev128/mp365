@@ -41,14 +41,13 @@ test("a link nested inside bold is flattened, not left as raw syntax", () => {
   assert.deepEqual(unparsedMarkup(nested), []);
 });
 
-test("every seeded blog string is fully parseable — no leftover raw markup", () => {
-  // blog.ts plus the per-article spoke files it imports from ./blog/.
-  const blogDir = join(process.cwd(), "prisma/seed-data/blog");
+test("every string in page copy and blog posts is fully parseable, with no leftover raw markup", () => {
+  const dir = join(process.cwd(), "content/pages");
   const src = [
     readFileSync(join(process.cwd(), "prisma/seed-data/blog.ts"), "utf8"),
-    ...readdirSync(blogDir)
+    ...readdirSync(dir)
       .filter((f) => f.endsWith(".ts"))
-      .map((f) => readFileSync(join(blogDir, f), "utf8")),
+      .map((f) => readFileSync(join(dir, f), "utf8")),
   ].join("\n");
   // Pull every double-quoted string in the seed file; good enough to catch
   // authored copy carrying syntax the renderer cannot handle.

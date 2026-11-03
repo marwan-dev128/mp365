@@ -3,13 +3,13 @@
 // (Google, Bing, ChatGPT, Perplexity, Copilot) sees identical entity data.
 
 export const site = {
-  brandName: "MP365",
+  brandName: "MP-365",
   legalName: "Modern Partners 365",
-  tagline: "Microsoft consulting, minus the friction",
+  tagline: "Dynamics 365 and Microsoft 365 consulting that gets used",
   description:
-    "MP365 (Modern Partners 365) is a Microsoft consulting partner specializing in Microsoft 365 M&A tenant migration, Dynamics 365, Power Platform, and data governance for mid-market and enterprise organizations.",
+    "MP-365 (Modern Partners 365) is a Microsoft Solutions Partner that helps mid-size and enterprise companies get more out of Dynamics 365, Microsoft 365 and Copilot.",
   url: "https://mp-365.com",
-  foundedYear: "2005", // ~20+ years in market per site copy; confirm exact year with client
+  foundedYear: "", // The client asked us not to publish a founding date.
   phone: "+1-860-208-9537",
   phoneDisplay: "(+1) 860-208-9537",
   email: "info@mp-365.com",
@@ -26,17 +26,16 @@ export const site = {
   },
   sameAs: [
     "https://www.linkedin.com/company/mp-365/",
-    // TODO: add Microsoft Partner Center / AppSource profile URL
-    // TODO: add Clutch / G2 profile URLs once claimed
+    "https://appsource.microsoft.com/en-US/marketplace/partner-dir/263f1063-d5d7-4d25-ac90-7b75e302003c/overview",
   ],
   areaServed: ["Connecticut", "New England", "United States"],
   people: [
     {
       slug: "mp365-team",
-      name: "MP365 Team",
-      role: "Enterprise Solutions Architects",
+      name: "MP-365 Team",
+      role: "Microsoft Specialists",
       credentials:
-        "Microsoft Solutions Partner with 20+ years of enterprise engineering experience",
+        "A focused team of Microsoft specialists at a Microsoft Solutions Partner",
     },
   ],
 } as const;

@@ -21,7 +21,7 @@ export const blogClusterCtas: BlogClusterCtaSeed[] = [
   {
     cluster: "M&A Migration",
     tag: "Migration guidance",
-    title: "Working to a Day-1 or TSA-exit date?",
+    title: "Working to a deal date?",
     body: "Tell us the deal timeline and we will tell you whether the migration plan fits it.",
     ctaText: "Talk to a migration lead",
   },

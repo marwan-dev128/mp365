@@ -12,10 +12,10 @@ import { ArrowUpRight } from "./ui/Icons";
  * converts worse than a sidebar with one.
  */
 export function SidebarCta({
-  tag = "Migration guidance",
-  title = "Working to a Day-1 or TSA-exit date?",
-  body = "Tell us the deal timeline and we will tell you whether the migration plan fits it.",
-  ctaText = "Talk to a migration lead",
+  tag = "Next step",
+  title = "Talk to MP-365 about your project",
+  body = "Tell us what you are working on and we will tell you what we would do first.",
+  ctaText = "Book a discovery call",
   ctaHref = "/contact/",
 }: {
   tag?: string;

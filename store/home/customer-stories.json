@@ -7,8 +7,8 @@
       "logoText": "HUNTER",
       "logoImage": "/images/mp365/case-studies/hunter-panels-logo.webp",
       "bgImage": "/images/mp365/case-studies/hunter-panels-dynamics-365.webp",
-      "title": "How Hunter Panels put Dynamics 365 to work",
-      "href": "/case-studies/hunter-panels/"
+      "title": "How Hunter Panels aligned Dynamics CRM with the business and cut manual work",
+      "href": "/clients/"
     },
     {
       "id": "carlisle",
@@ -16,8 +16,8 @@
       "logoText": "CARLISLE CCM",
       "logoImage": "/images/mp365/case-studies/carlisle-construction-logo.webp",
       "bgImage": "/images/mp365/case-studies/carlisle-construction-microsoft-365.webp",
-      "title": "How Carlisle Construction Materials restructured its Microsoft 365 environment",
-      "href": "/case-studies/carlisle-construction/"
+      "title": "How Carlisle Construction stabilized Dynamics and SharePoint operations within a week",
+      "href": "/clients/"
     },
     {
       "id": "otis-elevator",
@@ -25,8 +25,8 @@
       "logoText": "OTIS",
       "logoImage": "/images/mp365/industries/manufacturing-label.webp",
       "bgImage": "/images/mp365/industries/manufacturing-business-central.webp",
-      "title": "How OTIS Elevator modernized legacy applications on the Microsoft cloud",
-      "href": "/case-studies/otis-elevator/"
+      "title": "How OTIS Elevator cut Dynamics deployments from 13 hours to 4",
+      "href": "/clients/"
     }
   ]
 }

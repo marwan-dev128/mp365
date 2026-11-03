@@ -3,26 +3,36 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 
 export const metadata: Metadata = {
-  title: { absolute: "Page Not Found | MP365" },
+  title: { absolute: "Page Not Found | MP-365" },
   robots: { index: false, follow: true },
 };
 
+const LINKS = [
+  { href: "/services/", label: "Services" },
+  { href: "/clients/", label: "Clients" },
+  { href: "/pricing/", label: "Pricing" },
+  { href: "/contact/", label: "Contact" },
+];
+
 export default function NotFound() {
   return (
-    <Container className="py-24 sm:py-32 text-center">
-      <p className="text-sm font-bold text-azure uppercase tracking-wide mb-3">404</p>
-      <h1 className="text-3xl font-extrabold text-ink mb-4">We couldn&rsquo;t find that page</h1>
-      <p className="text-ink-2 mb-8 max-w-md mx-auto">
-        The page may have moved as part of our recent rebrand. Try the services overview or head back home.
+    <Container className="py-24 text-center sm:py-32">
+      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-azure">404</p>
+      <h1 className="mb-4 text-3xl font-extrabold text-ink">We could not find that page</h1>
+      <p className="mx-auto mb-8 max-w-md text-ink-2">
+        The page may have moved. These are good places to continue.
       </p>
-      <div className="flex justify-center gap-3">
-        <Link href="/" className="rounded-md bg-azure px-5 py-2.5 text-sm font-bold text-white hover:bg-azure-hover transition-colors">
-          Go home
-        </Link>
-        <Link href="/services/" className="rounded-md border border-line px-5 py-2.5 text-sm font-bold text-ink hover:bg-surface-card transition-colors">
-          View services
-        </Link>
-      </div>
+      <nav aria-label="Suggested pages" className="flex flex-wrap justify-center gap-3">
+        {LINKS.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className="rounded-md border border-line px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-surface-card"
+          >
+            {l.label}
+          </Link>
+        ))}
+      </nav>
     </Container>
   );
 }

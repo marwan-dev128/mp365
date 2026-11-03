@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import defaultData from "@/store/contact.json";
 
@@ -34,10 +33,10 @@ export function ConsultationHub({
                 DIRECT CONTACT
               </span>
               <h2 className="font-display text-[24px] sm:text-[28px] font-bold text-mp-ink leading-tight">
-                Speak directly with senior engineers
+                Speak directly with Microsoft specialists
               </h2>
               <p className="mt-3 text-[14px] sm:text-[14.5px] leading-[1.65] text-mp-secondary">
-                No intermediate sales representatives. You will talk directly to platform architects who have led hundreds of tenant migrations and Dynamics 365 implementations.
+                MP-365 is a focused team of specialists, not a large firm with layers of management. You talk directly to the people who do the work.
               </p>
 
               <div className="mt-6 pt-6 border-t border-mp-border/80 flex flex-col gap-4 text-sm">

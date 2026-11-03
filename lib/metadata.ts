@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE_URL, BRAND_NAME } from "./config";
 import { stripInlineMarkup } from "./richtext";
+import { getSitePage } from "./site-data";
 
 // `title` is always resolved to an absolute string here (never left to the
 // root layout's title.template) so every page controls its exact <title>
@@ -58,7 +59,8 @@ export function buildMetadata(params: {
     ...(params.noindex ? { robots: { index: false, follow: false } } : {}),
     ...(params.article ? { authors: params.article.authors.map((name) => ({ name })) } : {}),
     openGraph: {
-      title: fullTitle,
+      // og:title drops the brand suffix; siteName already carries it.
+      title: fullTitle.replace(/ \| MP-365$/, ""),
       description,
       url,
       siteName: BRAND_NAME,
@@ -87,4 +89,15 @@ export function buildMetadata(params: {
       images: [ogImage],
     },
   };
+}
+
+/** Title, description and canonical for a page in content/site-data.json. */
+export function planMetadata(path: string): Metadata {
+  const page = getSitePage(path);
+  return buildMetadata({
+    title: page.title_tag,
+    description: page.meta_description,
+    path,
+    isFullTitle: true,
+  });
 }
