@@ -5,12 +5,13 @@ import { Container } from "@/components/Container";
 import { CtaBand } from "@/components/CtaBand";
 import { FaqSection } from "@/components/FaqSection";
 import { RichText } from "@/components/RichText";
-import { ArrowUpRight } from "@/components/ui/Icons";
 import { MegaMenuIcon } from "@/components/ui/MegaMenuIcons";
+import { imageForPath } from "@/lib/page-visuals";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { CATEGORY_PAGES, childrenOf, getSitePage } from "@/lib/site-data";
 import navigation from "@/store/navigation.json";
 import { RichBlocks } from "./RichBlocks";
+import { ServiceSlider } from "./ServiceSlider";
 import { SiteHero } from "./SiteHero";
 import { StickyConsultBar } from "./StickyConsultBar";
 
@@ -22,29 +23,32 @@ const SERVICE_COLUMNS: { href?: string; icon?: string; description?: string }[] 
 const navColumn = (href: string) => SERVICE_COLUMNS.find((c) => c.href === href);
 
 const GLANCE = [
-  ["bestFor", "Best for"],
-  ["includes", "Includes"],
-  ["notIncluded", "Not included"],
-  ["typicalTimeline", "Typical timeline"],
-  ["howItStarts", "How it starts"],
+  ["bestFor", "Best for", "users"],
+  ["includes", "Includes", "clipboard-check"],
+  ["notIncluded", "Not included", "shield"],
+  ["typicalTimeline", "Typical timeline", "calendar"],
+  ["howItStarts", "How it starts", "compass"],
 ] as const;
 
 /** Service pages: the same labels on every page, as a band of cards. */
 function AtAGlance({ data }: { data: NonNullable<PageContent["atAGlance"]> }) {
   const rows = GLANCE.filter(([key]) => data[key]);
   return (
-    <section aria-label="At a glance" className="w-full bg-white pb-4 pt-10 sm:pt-12">
+    <section aria-label="At a glance" className="w-full bg-white pb-4 pt-10 sm:pt-14">
       <Container>
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {rows.map(([key, label]) => (
+          {rows.map(([key, label, icon]) => (
             <div
               key={key}
-              className={`rounded-[22px] p-6 ${
-                key === "notIncluded" ? "border-2 border-dashed border-mp-border bg-white" : "bg-mp-parchment"
+              className={`rounded-[22px] p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-7 md:rounded-[28px] ${
+                key === "bestFor" ? "bg-mp-band" : "bg-mp-parchment"
               }`}
             >
-              <dt className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol-2">{label}</dt>
-              <dd className="text-[14.5px] leading-[1.6] text-mp-ink">
+              <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol-2">
+                <MegaMenuIcon name={icon} className="mb-5 h-6 w-6 text-mp-petrol" />
+                {label}
+              </dt>
+              <dd className="mt-2.5 text-[14px] leading-[1.6] text-mp-ink/80">
                 <RichText text={data[key] as string} />
               </dd>
             </div>
@@ -55,42 +59,25 @@ function AtAGlance({ data }: { data: NonNullable<PageContent["atAGlance"]> }) {
   );
 }
 
-function ServiceTile({ href, name, description, icon }: { href: string; name: string; description?: string; icon?: string }) {
-  return (
-    <Link
-      href={href}
-      className="group flex h-full items-start gap-4 rounded-[22px] border border-mp-border bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-mp-petrol/30 sm:p-6"
-    >
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-mp-parchment text-mp-petrol transition-colors group-hover:bg-mp-petrol group-hover:text-mp-mint">
-        <MegaMenuIcon name={icon} className="h-5 w-5" />
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block font-display text-[16.5px] font-bold leading-snug text-mp-ink group-hover:text-mp-petrol">{name}</span>
-        {description && <span className="mt-1.5 block text-[13.5px] leading-[1.55] text-mp-secondary">{description}</span>}
-      </span>
-      <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-mp-petrol/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-    </Link>
-  );
+/** Photo cards for a set of child pages, using the menu's one-line descriptions. */
+function sliderCards(pages: { path: string; name: string }[]) {
+  return pages.map((p) => ({
+    href: p.path,
+    name: p.name,
+    description: navItem(p.path)?.description,
+    image: imageForPath(p.path),
+  }));
 }
 
-/** Category pages open with their services as tiles, so they route first. */
+/** Category pages open with their services, so they route first. */
 function ChildServices({ path }: { path: string }) {
-  const kids = childrenOf(path);
+  const parent = getSitePage(path);
   return (
-    <section className="w-full bg-mp-parchment/55 py-12 sm:py-16">
-      <Container>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {kids.map((k) => {
-            const nav = navItem(k.path);
-            return (
-              <li key={k.path}>
-                <ServiceTile href={k.path} name={k.name} description={nav?.description} icon={nav?.icon} />
-              </li>
-            );
-          })}
-        </ul>
-      </Container>
-    </section>
+    <ServiceSlider
+      heading={`Services in ${parent.name}`}
+      label={`${parent.name} services`}
+      cards={sliderCards(childrenOf(path))}
+    />
   );
 }
 
@@ -136,32 +123,18 @@ function AreaPanels() {
   );
 }
 
-/** Service pages end by offering the rest of their area. */
+/** Service and solution pages end by offering the rest of their area. */
 function MoreInArea({ path, parentPath }: { path: string; parentPath: string }) {
   const parent = getSitePage(parentPath);
   const others = childrenOf(parentPath).filter((p) => p.path !== path);
   if (!others.length) return null;
   return (
-    <section className="w-full bg-mp-parchment/55 py-12 sm:py-16">
-      <Container>
-        <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
-          <p className="font-display text-[26px] font-bold tracking-[-0.025em] text-mp-petrol sm:text-[32px]">More in {parent.name}</p>
-          <Link href={parent.path} className="text-[13.5px] font-bold text-mp-petrol underline underline-offset-4">
-            See the {parent.name} overview
-          </Link>
-        </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {others.map((k) => {
-            const nav = navItem(k.path);
-            return (
-              <li key={k.path}>
-                <ServiceTile href={k.path} name={k.name} description={nav?.description} icon={nav?.icon} />
-              </li>
-            );
-          })}
-        </ul>
-      </Container>
-    </section>
+    <ServiceSlider
+      heading={`More in ${parent.name}`}
+      label={`More in ${parent.name}`}
+      action={{ href: parent.path, text: `See the ${parent.name} overview` }}
+      cards={sliderCards(others)}
+    />
   );
 }
 
@@ -199,7 +172,7 @@ export function ContentPage({
       {isCategory && <ChildServices path={content.path} />}
       {isOverview && <AreaPanels />}
       {beforeBlocks}
-      <RichBlocks blocks={content.blocks} />
+      <RichBlocks blocks={content.blocks} path={content.path} />
       {afterBlocks && (
         <section className="w-full bg-white py-10 sm:py-14">
           <Container>{afterBlocks}</Container>

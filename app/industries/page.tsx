@@ -59,9 +59,8 @@ export default function IndustriesPage() {
           items={items}
         />
       </Container>
-      <RichBlocks blocks={content.blocks} startTone="parchment" />
+      <RichBlocks blocks={content.blocks} path={PATH} />
       <HubPatterns
-        eyebrow="Across every industry"
         title="What stays the same in all nine"
         subtitle="The vocabulary changes between industries. These three foundations do not."
         patterns={INDUSTRY_PATTERNS}

@@ -390,7 +390,7 @@ export function Header({
       {/* Main Sticky Header */}
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 bg-mp-parchment border-b border-black/[0.05] shadow-none"
+        className="sticky top-0 z-50 bg-mp-parchment shadow-none"
       >
         <div
           ref={navContainerRef}
@@ -567,11 +567,6 @@ export function Header({
                             <MegaMenuIcon name={col.icon} className="h-4 w-4" />
                           </span>
                           <span className="min-w-0 flex-1 text-[13.5px] font-bold leading-snug">{col.title}</span>
-                          <span
-                            className={`text-[11px] font-semibold tabular-nums ${isActive ? "text-white/60" : "text-mp-secondary/60"}`}
-                          >
-                            {col.items.length}
-                          </span>
                         </Link>
                       );
                     })}

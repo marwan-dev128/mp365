@@ -36,11 +36,6 @@ export function ContactHero({
 }: ContactHeroProps = {}) {
   return (
     <section className="relative overflow-hidden bg-white pt-12 pb-14 sm:pt-16 sm:pb-18 lg:pt-20 lg:pb-20">
-      {/* Background ambient mesh */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/3 h-[500px] w-[900px] rounded-full bg-mp-petrol/[0.04] blur-3xl"
-      />
 
       <div className="relative mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 text-center">
         {/* Eyebrow badge with Microsoft logo */}

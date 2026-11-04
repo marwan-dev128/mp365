@@ -1,9 +1,8 @@
-import React from "react";
 import Link from "next/link";
-import { Check, ArrowUpRight } from "@/components/ui/Icons";
+import { HomeCard, lookForIndex } from "@/components/site/HomeCard";
+import { pickIllustrations } from "@/lib/page-visuals";
 
 export type Pattern = {
-  step: string;
   title: string;
   subtitle: string;
   body: string;
@@ -11,70 +10,47 @@ export type Pattern = {
   linkHref: string;
 };
 
+/** Three foundations or stages on the overview pages, in Home's mixed cards. */
 export function HubPatterns({
-  eyebrow,
   title,
   subtitle,
   patterns,
 }: {
-  eyebrow: string;
   title: string;
   subtitle: string;
   patterns: Pattern[];
 }) {
+  const images = pickIllustrations(patterns.map((p) => p.title));
   return (
-    <section className="w-full bg-mp-parchment/60 py-16 sm:py-20 border-y border-mp-border">
+    <section className="w-full bg-white py-12 sm:py-16">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12">
-        <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
-          <span className="text-[12px] sm:text-[12.5px] font-bold uppercase tracking-[0.14em] text-mp-teal block mb-2">
-            {eyebrow}
-          </span>
-          <h2 className="font-display text-[30px] sm:text-[40px] lg:text-[48px] font-extrabold tracking-[-0.03em] text-mp-petrol leading-tight">
+        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+          <h2 className="font-display text-[clamp(30px,4.2vw,52px)] font-bold leading-[1.08] tracking-[-0.035em] text-mp-petrol">
             {title}
           </h2>
-          <p className="mt-4 text-[15px] sm:text-[16px] text-mp-secondary leading-relaxed">
-            {subtitle}
-          </p>
+          <p className="mx-auto mt-4 max-w-xl text-[15px] leading-[1.6] text-mp-secondary sm:text-[16px]">{subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          {patterns.map((pattern) => (
-            <div
-              key={pattern.step}
-              className="group flex flex-col justify-between rounded-[24px] sm:rounded-[28px] bg-white p-7 sm:p-8 border border-mp-border shadow-2xs transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <span className="font-display text-[26px] sm:text-[30px] font-extrabold text-mp-mint leading-none">
-                    {pattern.step}
-                  </span>
-                  <div className="flex size-9 items-center justify-center rounded-full bg-mp-petrol/5 text-mp-petrol">
-                    <Check className="h-4 w-4" />
-                  </div>
-                </div>
-
-                <span className="text-[11.5px] font-bold uppercase tracking-wider text-mp-teal block mb-1">
-                  {pattern.subtitle}
-                </span>
-                <h3 className="font-display text-[20px] sm:text-[22px] font-bold text-mp-ink leading-snug">
-                  {pattern.title}
-                </h3>
-
-                <p className="mt-3.5 text-[13.5px] sm:text-[14px] leading-[1.65] text-mp-secondary">
-                  {pattern.body}
-                </p>
-              </div>
-
-              <div className="mt-8 pt-5 border-t border-mp-border">
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3">
+          {patterns.map((pattern, i) => (
+            <HomeCard
+              key={pattern.title}
+              look={lookForIndex(i)}
+              image={images[i]}
+              eyebrow={pattern.subtitle}
+              title={pattern.title}
+              footer={
                 <Link
                   href={pattern.linkHref}
-                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-mp-petrol hover:text-mp-teal transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-mp-ink/25 px-5 py-2 text-[13px] font-medium text-mp-ink transition-colors hover:bg-mp-petrol/[0.06]"
                 >
                   <span>{pattern.linkText}</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  <span aria-hidden="true" className="text-xs">›</span>
                 </Link>
-              </div>
-            </div>
+              }
+            >
+              {pattern.body}
+            </HomeCard>
           ))}
         </div>
       </div>

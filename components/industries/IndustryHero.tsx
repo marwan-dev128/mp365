@@ -154,11 +154,6 @@ export function IndustryHero({
               className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[460px] xl:w-[520px] h-[170px] pointer-events-none select-none z-10"
               aria-hidden="true"
             >
-              {/* Subtle ambient blur wash behind horizontal cluster */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[140px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.04] blur-2xl"
-              />
 
               {/* Static Icons positioned horizontally with subtle natural stagger */}
               <div className="relative w-full h-full">

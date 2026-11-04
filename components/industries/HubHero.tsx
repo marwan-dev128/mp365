@@ -177,14 +177,9 @@ export function HubHero({
       {/* Full-width hero banner matching homepage IntegrationsHero height & presence */}
       <section
         id="hub-hero-banner"
-        className="header-integrations relative w-full flex min-h-[320px] sm:min-h-[560px] md:min-h-[620px] items-center justify-center overflow-hidden border-b border-mp-border bg-mp-parchment py-16 sm:py-20 md:py-24 -mt-1"
+        className="header-integrations relative w-full flex min-h-[240px] sm:min-h-[340px] md:min-h-[380px] items-center justify-center overflow-hidden border-b border-mp-border bg-mp-parchment py-10 sm:py-12 -mt-1"
         data-testid="hubHero"
       >
-        {/* Subtle petrol wash: matches Home Page IntegrationsHero tone */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[560px] w-[860px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.05] blur-3xl"
-        />
 
         {/* Floating Microsoft Ecosystem Widgets Layer - Matching Homepage Hero Distribution */}
         <div className="integration-widgets-container hidden sm:block" aria-hidden="true">
@@ -216,7 +211,7 @@ export function HubHero({
         </div>
 
         {/* Centered Content with clear text visibility */}
-        <div className="relative z-10 px-5 sm:px-8 text-center max-w-[720px] mx-auto py-10 sm:py-14">
+        <div className="relative z-10 px-5 sm:px-8 text-center max-w-[720px] mx-auto pb-6">
           <p className="mb-4 sm:mb-5 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-mp-petrol/15 bg-mp-mint/25 px-3.5 sm:px-4 py-1.5 font-display text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-mp-petrol">
             <MicrosoftLogo className="h-3.5 w-3.5" />
             Microsoft Solutions Partner

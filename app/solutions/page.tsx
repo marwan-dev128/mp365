@@ -59,9 +59,8 @@ export default function SolutionsPage() {
           items={items}
         />
       </Container>
-      <RichBlocks blocks={content.blocks} startTone="parchment" />
+      <RichBlocks blocks={content.blocks} path={PATH} />
       <HubPatterns
-        eyebrow="How a solution runs"
         title="The same three stages, whatever the problem"
         subtitle="Each project gets something real in front of your team early, and ends with you owning the result."
         patterns={SOLUTION_PATTERNS}

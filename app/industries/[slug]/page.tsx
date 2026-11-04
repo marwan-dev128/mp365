@@ -91,7 +91,7 @@ export default async function IndustryPage({ params }: Params) {
       <Container className="py-12 sm:py-16">
         <IndustryTriggerCards industryName={plan.name} triggers={triggers} />
       </Container>
-      <RichBlocks blocks={content.blocks} startTone="parchment" />
+      <RichBlocks blocks={content.blocks} path={path} />
       <Container className="py-10 sm:py-14">
         <IndustryLeadForm
           industrySlug={slug}

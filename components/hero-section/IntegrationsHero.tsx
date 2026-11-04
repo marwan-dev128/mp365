@@ -42,11 +42,6 @@ export function IntegrationsHero({
       data-testid="headerIntegrations"
     >
       {/* ------------------------------------------------ Center Content */}
-      {/* Petrol wash: keeps the paper ground from reading as flat off-white. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[560px] w-[860px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.05] blur-3xl"
-      />
 
       <div className="text-balance relative text-center mx-auto max-w-[960px] z-[10] px-5 py-4 sm:py-8">
         {eyebrow && (
