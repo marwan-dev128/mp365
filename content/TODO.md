@@ -34,5 +34,7 @@ Facts the published pages leave out until the client confirms them. Pages are wr
 ## Planned later
 
 - Import the existing blog posts into `prisma/seed-data/blog.ts`, then add their internal links.
-- Solutions, Industries and How We Work stay in `content/site-data.json` with no route. Add them when the client wants them, and restore their links from each page's `internal_links`.
+- How We Work stays in `content/site-data.json` with no route. Add it when the client wants it, and restore its links from each page's `internal_links`.
+- **Solutions and Industries proof gaps:** no named client result exists for logistics, energy and utilities, financial services, medical devices, retail or M&A deals. Those pages use anonymized stories or results from another industry, and say so. Real examples would make them stronger.
+- **ERP on the service pages:** Solutions and Industries never mention ERP. Service pages, Home and About still mention connecting the CRM to ERP systems, as integration only, following the plan. Confirm with the client whether that wording should stay.
 - Two or three more pages the client has mentioned.

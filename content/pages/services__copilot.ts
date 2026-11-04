@@ -160,10 +160,6 @@ export const page: PageContent = {
       q: "Who is Copilot consulting for, and who is it not for?",
       a: "It suits mid-size and enterprise companies that already use Microsoft 365 or Dynamics 365 and want a structured rollout. It is a poor fit for companies without Microsoft 365, for those wanting a non-Microsoft AI build, or for a single user who only needs to switch Copilot on.",
     },
-    {
-      q: "Does MP-365 train staff to use Copilot?",
-      a: "Yes. Training is part of the rollout, and it is role based. Sales users learn different prompts from finance or operations users. MP-365 uses examples from your own processes, and it documents the settings it configured so your IT team can maintain them afterward.",
-    },
   ],
   closing:
     "Microsoft Copilot consulting works best when the data comes first and the agents come second. Pick the service that matches your situation from the table above, or talk through your setup with MP-365 and we will recommend a starting point.",

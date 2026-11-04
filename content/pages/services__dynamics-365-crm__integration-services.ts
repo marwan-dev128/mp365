@@ -214,17 +214,9 @@ export const page: PageContent = {
       q: "Can Dynamics 365 integrate with SharePoint?",
       a: "Yes. Microsoft Learn describes server-based SharePoint integration that shows documents in the CRM record while storing them in SharePoint. Users sign in once and can run SharePoint actions from the command bar. MP-365 plans libraries, folders and permissions before turning the feature on.",
     },
-    {
-      q: "Can MP-365 connect Dynamics 365 to an ERP that is not from Microsoft?",
-      a: "Often, yes, if the ERP offers an API, database access or file exchange. MP-365 reviews what the other system exposes before promising a design. The work stays an integration, so the ERP's own setup, data and processes remain with your ERP partner.",
-    },
-    {
-      q: "What happens when the two systems disagree about a record?",
-      a: "A rule decides it. During design, MP-365 names a system of record for each data type, such as the ERP for prices and the CRM for contacts. When both change, the rule says which wins, and the log shows what was overwritten so someone can review it.",
-    },
   ],
   closing:
-    "Dynamics 365 integration services pay off when staff stop re-keying data and the numbers match across systems. MP-365 builds each connection with logging, alerts and a clear owner, so problems surface early.",
+    "Dynamics 365 integration services pay off when staff stop re-keying data and the numbers match across systems. MP-365 builds each connection with logging, alerts and a clear owner, so problems surface early. For the business view of this work, read about [CRM and systems integration](/solutions/crm-systems-integration/).",
   cta: {
     heading: "Talk to MP-365 about connecting your systems",
     body: "List the systems that should share data with Dynamics 365. MP-365 will tell you which connection to build first.",

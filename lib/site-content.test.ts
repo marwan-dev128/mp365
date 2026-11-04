@@ -8,7 +8,7 @@ import navigation from "../store/navigation.json";
 import { inlineTokenPattern } from "./richtext";
 import { pageLinks, validatePage } from "./site-content-rules";
 import { isLivePath, LIVE_PAGES, LIVE_PATHS, SITE } from "./site-data";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 // The plan's page-level checklist, run on every published page. The rules live
@@ -121,5 +121,38 @@ test("the readable redirect plan lists every redirect", () => {
   const doc = readFileSync(join(process.cwd(), "content/REDIRECT-PLAN.md"), "utf8");
   for (const r of [...PAGE_REDIRECTS, ...PATTERN_REDIRECTS]) {
     assert.ok(doc.includes(`\`${r.source}\``), `REDIRECT-PLAN.md is missing ${r.source}`);
+  }
+});
+
+test("home page sections link only to live pages and carry no unconfirmed claims", () => {
+  const dir = join(process.cwd(), "store/home");
+  const bad: string[] = [];
+  for (const file of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    const raw = readFileSync(join(dir, file), "utf8");
+    for (const m of raw.matchAll(/"(?:href|ctaHref|linkHref|caseStudyHref)":\s*"(\/[^"]*)"/g)) {
+      if (!LIVE_PATHS.has(m[1])) bad.push(`${file}: links to ${m[1]}`);
+    }
+    const text = raw.replace(/"[^"]*\.(?:webp|mp4|png|jpg|svg)"/g, '""');
+    const banned = /\bMP365\b|\b20\+|\bsince 20\d\d|\bBusiness Central\b|\bGoogle Workspace\b|\bfixed price\b|\b\d+(?:[-\u2013 ]\d+)? ?weeks?\b|\bTSA\b|\bone business day\b/i;
+    const hit = text.match(banned);
+    if (hit) bad.push(`${file}: "${hit[0]}"`);
+  }
+  assert.deepEqual(bad, []);
+});
+
+test("Solutions, Industries and their designs never mention ERP", () => {
+  const erp = /\bERPs?\b|Business Central|Finance and Operations|Dynamics GP|NetSuite|\bSAP\b/;
+  // The whole menu: industry pages reuse its descriptions on their service cards.
+  assert.ok(!erp.test(JSON.stringify(navigation)), "the menu mentions ERP");
+  for (const p of LIVE_PAGES.filter((x) => x.path.startsWith("/solutions/") || x.path.startsWith("/industries/"))) {
+    assert.ok(!erp.test(`${p.title_tag} ${p.meta_description} ${p.h1}`), `${p.path}: ERP in metadata`);
+    assert.ok(
+      !p.question_keywords_starter.some((q) => erp.test(q)),
+      `${p.path}: ERP in a starter question`,
+    );
+  }
+  const dir = join(process.cwd(), "components/industries");
+  for (const f of readdirSync(dir)) {
+    assert.ok(!erp.test(readFileSync(join(dir, f), "utf8")), `components/industries/${f} mentions ERP`);
   }
 });

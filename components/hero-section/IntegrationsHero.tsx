@@ -38,7 +38,7 @@ export function IntegrationsHero({
 }: IntegrationsHeroProps = {}) {
   return (
     <section
-      className="header-integrations relative w-full bg-mp-parchment overflow-hidden min-h-[480px] sm:min-h-[560px] md:min-h-[620px] flex items-center justify-center py-16 sm:py-20 md:py-28"
+      className="header-integrations relative w-full bg-mp-parchment overflow-hidden min-h-[480px] sm:min-h-[560px] md:min-h-[620px] flex items-center justify-center pt-24 pb-28 md:py-28"
       data-testid="headerIntegrations"
     >
       {/* ------------------------------------------------ Center Content */}
@@ -48,7 +48,7 @@ export function IntegrationsHero({
         className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[560px] w-[860px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-mp-petrol/[0.05] blur-3xl"
       />
 
-      <div className="text-balance relative text-center mx-auto max-w-[860px] z-[10] px-5 py-4 sm:py-8">
+      <div className="text-balance relative text-center mx-auto max-w-[960px] z-[10] px-5 py-4 sm:py-8">
         {eyebrow && (
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-mp-petrol/15 bg-mp-mint/25 px-4 py-1.5 font-display text-[11.5px] font-bold uppercase tracking-[0.16em] text-mp-petrol">
             <MicrosoftLogo className="h-3.5 w-3.5" />
@@ -60,7 +60,7 @@ export function IntegrationsHero({
         </h1>
 
         <div className="pt-6 sm:pt-8">
-          <p className="text-mp-secondary text-[15px] sm:text-[17px] md:text-[18px] leading-[1.6] max-w-[640px] mx-auto font-normal">
+          <p className="text-mp-secondary text-[15px] sm:text-[17px] md:text-[18px] leading-[1.6] max-w-[760px] mx-auto font-normal">
             {description}
           </p>
         </div>

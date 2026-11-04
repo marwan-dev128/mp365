@@ -1,0 +1,77 @@
+{
+  "autoplayDuration": 6500,
+  "slides": [
+    {
+      "id": "dynamics-365-crm",
+      "pill": "Dynamics 365 CRM",
+      "title": "Built around how\nyour team sells and serves",
+      "description": "Dynamics 365 Sales, Customer Service and Customer Insights, plus integrations that connect the CRM to ERP and other systems.",
+      "href": "/services/dynamics-365-crm/",
+      "videoSrc": "/videos/mp365/dynamics-365-configuration.mp4",
+      "videoPoster": "/images/mp365/posters/dynamics-365-configuration.webp"
+    },
+    {
+      "id": "sharepoint",
+      "pill": "SharePoint & Intranets",
+      "title": "Files people\ncan actually find.",
+      "description": "Intranets, SharePoint Server upgrades, file share moves and portals for suppliers and partners.",
+      "href": "/services/sharepoint/",
+      "videoSrc": "/videos/mp365/sharepoint-enterprise-search.mp4",
+      "videoPoster": "/images/mp365/posters/sharepoint-enterprise-search.webp"
+    },
+    {
+      "id": "copilot",
+      "pill": "Microsoft Copilot & AI",
+      "title": "Copilot your data\nis ready for.",
+      "description": "Copilot readiness, rollout and custom Copilot agents built with Microsoft tools.",
+      "href": "/services/copilot/",
+      "videoSrc": "/videos/mp365/dynamics-365-power-platform-build.mp4",
+      "videoPoster": "/images/mp365/posters/dynamics-365-power-platform-build.webp"
+    },
+    {
+      "id": "power-platform",
+      "pill": "Power Platform",
+      "title": "Less manual work.\nLive numbers.",
+      "description": "Power Apps, Power Pages, Power Automate and Power BI built on the Microsoft data you already have.",
+      "href": "/services/power-platform/",
+      "videoSrc": "/videos/mp365/power-platform-governance.mp4",
+      "videoPoster": "/images/mp365/posters/power-platform-governance.webp"
+    },
+    {
+      "id": "microsoft-365-migration",
+      "pill": "Microsoft 365 Migration",
+      "title": "Off the old Exchange.\nInto Microsoft 365.",
+      "description": "Exchange and OneDrive moves into Microsoft 365, planned to keep your users working.",
+      "href": "/services/microsoft-365-migration/",
+      "videoSrc": "/videos/mp365/microsoft-365-migration-checks.mp4",
+      "videoPoster": "/images/mp365/posters/microsoft-365-migration-checks.webp"
+    },
+    {
+      "id": "tenant-migration",
+      "pill": "M&A Tenant Migration",
+      "title": "Two tenants.\nOne Microsoft 365.",
+      "description": "Tenant to tenant migration for mergers, acquisitions and divestitures: email, files, Teams and accounts.",
+      "href": "/services/tenant-to-tenant-migration/",
+      "videoSrc": "/videos/mp365/ma-tenant-migration-merge.mp4",
+      "videoPoster": "/images/mp365/posters/ma-tenant-migration-merge.webp"
+    },
+    {
+      "id": "data-governance",
+      "pill": "Data Governance",
+      "title": "People see only\nwhat they should.",
+      "description": "Permission models, Microsoft Purview and CRM data quality.",
+      "href": "/services/data-governance/",
+      "videoSrc": "/videos/mp365/microsoft-purview-data-governance.mp4",
+      "videoPoster": "/images/mp365/posters/microsoft-purview-data-governance.webp"
+    },
+    {
+      "id": "application-modernization",
+      "pill": "App Modernization & DevOps",
+      "title": "Legacy apps.\nModern on Azure.",
+      "description": "Moving legacy applications to Azure and automating releases for Dynamics 365 and Power Platform.",
+      "href": "/services/application-modernization/",
+      "videoSrc": "/videos/mp365/azure-application-modernization.mp4",
+      "videoPoster": "/images/mp365/posters/azure-application-modernization.webp"
+    }
+  ]
+}

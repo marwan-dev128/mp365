@@ -221,13 +221,9 @@ export const page: PageContent = {
       q: "Is Power Automate secure for business data?",
       a: "Flows run under controls your administrators set. Power Platform data policies limit which connectors flows may use, and flows use connections with defined permissions. MP-365 reviews connectors and ownership before building, but it does not provide cybersecurity services.",
     },
-    {
-      q: "Can Copilot build flows for us?",
-      a: "Copilot can draft a cloud flow from a plain-English description in Power Automate's new designer. The draft still needs review for correct triggers, permissions, error handling and cost. MP-365 uses Copilot to speed up drafting, then tests and hardens each flow before production.",
-    },
   ],
   closing:
-    "Power Automate consulting pays back fastest when it starts with one process people already complain about. MP-365 can map that process, build the first flow on your Microsoft systems and show you what to automate next.",
+    "Power Automate consulting pays back fastest when it starts with one process people already complain about. MP-365 can map that process, build the first flow on your Microsoft systems and show you what to automate next. For one common use, read about [contract management automation](/solutions/contract-management-automation/).",
   cta: {
     heading: "Talk to MP-365 about automating your first process",
     body: "Name the task your team repeats the most. We will tell you whether a flow fits and how a first version would work.",

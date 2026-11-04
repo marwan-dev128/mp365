@@ -7550,12 +7550,12 @@
       "secondary_keywords": [],
       "question_keywords_starter": [
         "How do you connect a CRM to marketing automation?",
-        "How do you sync a CRM and an ERP?",
+        "How do you sync a CRM with other business systems?",
         "How do you avoid dropped records in an integration?"
       ],
       "faq_plan": "Yes. Build to 10 real questions (starter set shown).",
       "title_tag": "CRM and Marketing Systems Integration | MP-365",
-      "meta_description": "Connect your CRM to marketing, ERP and third-party tools through secure APIs so leads and orders arrive without dropped records. Plan your integration.",
+      "meta_description": "Connect your CRM to marketing, service and third-party tools through secure APIs so leads and orders arrive without dropped records. Plan your integration.",
       "h1": "CRM and Marketing Systems Integration",
       "naming_note": "",
       "keywords_reserved_for_blog_do_not_target": [],
@@ -7694,11 +7694,11 @@
       "question_keywords_starter": [
         "What should a manufacturer look for in a CRM?",
         "How does Dynamics 365 handle quotes and RFQs?",
-        "Can a CRM connect to a manufacturing ERP?"
+        "Can a CRM connect to other manufacturing systems?"
       ],
       "faq_plan": "Yes. Build to 10 real questions (starter set shown).",
       "title_tag": "CRM for Manufacturing on Dynamics 365 | MP-365",
-      "meta_description": "CRM for manufacturing companies on Dynamics 365: quotes, distributor accounts, pipeline reporting and ERP connections. Talk to MP-365 about manufacturing.",
+      "meta_description": "CRM for manufacturing companies on Dynamics 365: quotes, distributor accounts, pipeline reporting and system links. Talk to MP-365 about manufacturing.",
       "h1": "CRM for Manufacturing on Dynamics 365",
       "naming_note": "",
       "keywords_reserved_for_blog_do_not_target": [],

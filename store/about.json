@@ -1,4 +1,81 @@
 {
+  "badge": "ABOUT MODERN PARTNERS 365",
+  "title": "About MP-365 (Modern Partners 365)",
+  "subtitle": "MP-365 (Modern Partners 365) is a Microsoft Solutions Partner and a focused team of specialists. It helps mid-size and enterprise companies get more out of Dynamics 365, Microsoft 365 and Copilot.",
+  "whoWeAre": {
+    "badge": "WHO WE ARE",
+    "title": "A small, senior team, not a large consulting firm",
+    "lead": "MP-365 works with mid-size and enterprise businesses in construction, manufacturing, healthcare and more. Clients include federal and state government organizations.",
+    "story": [
+      "Large consulting firms come with layers of management and slow-moving processes. MP-365 was built the other way around: a focused team of specialists that jumps in quickly and treats your time as the most valuable asset.",
+      "The work centers on Dynamics 365 Sales and Customer Service, integrations with ERP systems, Power Platform, SharePoint automation and Copilot. Every project ends with your team trained and the build documented, so you own what was delivered."
+    ],
+    "quote": "The goal: your team spends its time on the business, not on the system.",
+    "quoteLabel": "How MP-365 measures a project",
+    "pillars": [
+      {
+        "tag": "WHO WE ARE",
+        "title": "Focused specialists",
+        "desc": "A focused team of Microsoft specialists, with no layers of management between you and the people doing the work."
+      },
+      {
+        "tag": "HOW WE OPERATE",
+        "title": "Fast starts",
+        "desc": "MP-365 gets access and starts working, with no waiting for kickoff meetings and no long planning phases."
+      },
+      {
+        "tag": "WHAT WE DELIVER",
+        "title": "Results you own",
+        "desc": "A working first version early, refined with your users, then deployed, documented and handed off to your team."
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": "8",
+      "unit": "Service Areas",
+      "label": "From Dynamics 365 CRM to tenant migration"
+    },
+    {
+      "value": "28",
+      "unit": "Services",
+      "label": "Each with a defined scope and delivery steps"
+    },
+    {
+      "value": "13h to 4h",
+      "unit": "At OTIS Elevator",
+      "label": "Dynamics deployment time"
+    },
+    {
+      "value": "1 Week",
+      "unit": "At Carlisle",
+      "label": "To stabilize Dynamics and SharePoint operations"
+    }
+  ],
+  "philosophy": {
+    "title": "Built around how Microsoft projects actually succeed",
+    "subtitle": "Three things set the way MP-365 works apart from a large consulting firm.",
+    "cards": [
+      {
+        "tag": "NO LAYERS",
+        "title": "You work with the people doing the work",
+        "description": "MP-365 is not a large firm with layers of management. The specialists you talk to are the ones who build and fix your Microsoft systems.",
+        "highlight": "Talk to a specialist"
+      },
+      {
+        "tag": "FAST STARTS",
+        "title": "A working version, not a long plan",
+        "description": "MP-365 captures the business goal in one focused session, then builds a quick first version so your team can react to something real.",
+        "highlight": "See how pricing works"
+      },
+      {
+        "tag": "PROVEN",
+        "title": "Trusted across industries",
+        "description": "Clients include OTIS Elevator, Carlisle Construction, Hunter Panels, the US Department of Transportation and the Connecticut Department of Public Health.",
+        "highlight": "See client results"
+      }
+    ]
+  },
   "locationCard": {
     "eyebrow": "HEADQUARTERS & SERVICE AREA",
     "title": "Based in Connecticut, working across the United States",

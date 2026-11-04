@@ -1,0 +1,42 @@
+{
+  "title": "Planned with IT leaders,\nfelt by every employee.",
+  "subtitle": "A Microsoft project lands differently on every role. MP-365 writes for the business problem first, then proves the technical detail.",
+  "personas": [
+    {
+      "eyebrow": "SALES & SERVICE LEADERS",
+      "title": "One process.\nLive dashboards.",
+      "description": "Sales tracking with one process and live dashboards for leadership, and case tracking that replaces email-based support with one system showing owner, status and urgency.",
+      "linkText": "See Dynamics 365 Sales",
+      "href": "/services/dynamics-365-crm/sales/",
+      "image": "/images/mp365/personas/finance-operations-dynamics-365.webp",
+      "alt": "A sales leader reviewing live dashboards"
+    },
+    {
+      "eyebrow": "IT LEADERSHIP",
+      "title": "A Microsoft project\nyou can hand off.",
+      "description": "Your team already has a day job. MP-365 does the hands-on work, then trains your people and documents the build, so you own it when the project ends.",
+      "linkText": "See all services",
+      "href": "/services/",
+      "image": "/images/mp365/personas/it-leadership-microsoft-migration.webp",
+      "alt": "An IT leader planning a Microsoft project at a whiteboard"
+    },
+    {
+      "eyebrow": "M&A INTEGRATION",
+      "title": "Two companies.\nOne Microsoft 365.",
+      "description": "Email, files, Teams and accounts move between tenants for mergers, acquisitions and divestitures, with coexistence planned so people keep working during the move.",
+      "linkText": "See tenant migration",
+      "href": "/services/tenant-to-tenant-migration/",
+      "image": "/images/mp365/personas/ma-integration-tenant-migration.webp",
+      "alt": "An integration team planning a tenant migration"
+    },
+    {
+      "eyebrow": "END USERS",
+      "title": "Log in Monday,\nfind your work waiting.",
+      "description": "Files, mail and Teams arrive where people expect them, organized with metadata and version control instead of scattered across old shares.",
+      "linkText": "See Microsoft 365 migration",
+      "href": "/services/microsoft-365-migration/",
+      "image": "/images/mp365/personas/end-users-microsoft-365-adoption.webp",
+      "alt": "An employee working comfortably in Microsoft 365"
+    }
+  ]
+}

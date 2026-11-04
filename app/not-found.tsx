@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 const LINKS = [
   { href: "/services/", label: "Services" },
+  { href: "/solutions/", label: "Solutions" },
+  { href: "/industries/", label: "Industries" },
   { href: "/clients/", label: "Clients" },
   { href: "/pricing/", label: "Pricing" },
   { href: "/contact/", label: "Contact" },

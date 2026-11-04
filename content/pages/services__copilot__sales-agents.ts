@@ -236,10 +236,6 @@ export const page: PageContent = {
       q: "Does the agent replace our sales development team?",
       a: "No. Microsoft states the agent does not replace human judgment. It handles research and first contact so sellers spend time on leads that show intent. Your team still owns relationships, pricing and closing, and still reviews the leads that the agent hands over.",
     },
-    {
-      q: "Which sales team should not use these agents?",
-      a: "Teams with few leads, unreliable CRM data or no Dynamics 365 Sales should wait. The agents amplify the process you already have. If lead sources, statuses and owners are inconsistent, MP-365 will recommend fixing those first before any agent goes live.",
-    },
   ],
   closing:
     "Microsoft Dynamics 365 AI for sales pays off when the CRM data is clean and the hand-off rules are clear. MP-365 can review your lead process, recommend the right agents and set them up with your sellers in mind.",

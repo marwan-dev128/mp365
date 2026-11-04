@@ -34,6 +34,7 @@ export function Header({
 }: HeaderProps = {}) {
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
   const [renderedGroup, setRenderedGroup] = useState<string | null>(null);
+  const [activeColumn, setActiveColumn] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
@@ -66,6 +67,7 @@ export function Header({
       timeoutRef.current = null;
     }
     isClosingRef.current = false;
+    if (id !== renderedGroup) setActiveColumn(0);
     setActiveGroup(id);
     setRenderedGroup(id);
   };
@@ -84,6 +86,7 @@ export function Header({
       const next = current === id ? null : id;
       if (next) {
         isClosingRef.current = false;
+        if (next !== renderedGroup) setActiveColumn(0);
         setRenderedGroup(next);
       }
       return next;
@@ -219,6 +222,13 @@ export function Header({
     prevGroupRef.current = renderedGroup;
   }, [renderedGroup, megaMenuGroups]);
 
+  // Fade the service cards in when the visitor moves between areas.
+  useEffect(() => {
+    const area = contentRef.current?.querySelector(".mega-menu-area");
+    if (!area || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.fromTo(area, { opacity: 0, x: 8 }, { opacity: 1, x: 0, duration: 0.2, ease: "power2.out" });
+  }, [activeColumn]);
+
   // Keyboard accessibility: Escape closes menus
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -345,17 +355,6 @@ export function Header({
   }, []);
 
   const activeGroupData = megaMenuGroups.find((g) => g.id === renderedGroup);
-
-  const getCardWidthClass = (group?: MegaMenuGroup) => {
-    if (!group) return "max-w-[1380px] w-full";
-    if (group.width === "compact" || group.columns.length === 1) {
-      return "max-w-[840px]";
-    }
-    if (group.width === "medium" || group.columns.length === 2) {
-      return "max-w-[1140px]";
-    }
-    return "max-w-[1380px] w-full";
-  };
 
   return (
     <>
@@ -520,7 +519,7 @@ export function Header({
         {/* Desktop Mega Menu Dropdown Panel */}
         {activeGroupData && (
           <div
-            className="absolute top-full left-0 right-0 w-full pt-2.5 pb-8 z-50 pointer-events-auto"
+            className="absolute top-full left-0 right-0 w-full pb-8 z-50 pointer-events-auto"
             onMouseEnter={() => {
               if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
@@ -529,72 +528,112 @@ export function Header({
             }}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12">
+            <div className="w-full">
               <div
                 ref={cardRef}
-                className={`overflow-hidden rounded-[28px] border border-black/10 bg-[#fdfdfc] p-7 sm:p-8 lg:p-9 shadow-[0_32px_80px_-16px_rgba(14,42,43,0.25),0_0_0_1px_rgba(0,0,0,0.04)] transition-[max-width] duration-300 ease-out ${getCardWidthClass(
-                  activeGroupData
-                )}`}
+                className="w-full overflow-hidden rounded-b-[28px] border-b border-t border-black/10 bg-[#fdfdfc] shadow-[0_32px_80px_-16px_rgba(14,42,43,0.25)]"
               >
-                <div ref={contentRef} className="flex flex-col lg:flex-row gap-8 lg:gap-10">
-                  {/* Categorized Columns */}
-                  <div
-                    className={`flex-1 grid gap-y-7 ${
-                      activeGroupData.columns.length === 1
-                        ? "grid-cols-1 max-w-md gap-x-8"
-                        : activeGroupData.columns.length === 2
-                        ? "grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-14"
-                        : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6"
-                    }`}
-                  >
-                    {activeGroupData.columns.map((col) => (
-                      <div key={col.title} className="flex flex-col">
-                        {col.href ? (
-                          <Link
-                            href={col.href}
-                            onClick={closeAll}
-                            className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04] hover:bg-mp-petrol hover:text-white transition-colors"
+                <div
+                  ref={contentRef}
+                  className="mx-auto grid max-w-[1440px] gap-8 px-8 py-8 lg:grid-cols-[290px_minmax(0,1fr)_300px] lg:px-12 xl:grid-cols-[320px_minmax(0,1fr)_330px] xl:gap-10"
+                >
+                  {/* Left rail: the service areas. Hover or focus shows an area; click opens it. */}
+                  <div className="flex flex-col gap-1 border-r border-black/[0.07] pr-6 xl:pr-8">
+                    <Link
+                      href={activeGroupData.href}
+                      onClick={closeAll}
+                      className="mb-3 inline-flex items-center gap-1 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/70 hover:text-mp-petrol"
+                    >
+                      All {activeGroupData.label.toLowerCase()} <span aria-hidden="true">→</span>
+                    </Link>
+                    {activeGroupData.columns.map((col, idx) => {
+                      const isActive = idx === activeColumn;
+                      return (
+                        <Link
+                          key={col.title}
+                          href={col.href ?? activeGroupData.href}
+                          onClick={closeAll}
+                          onMouseEnter={() => setActiveColumn(idx)}
+                          onFocus={() => setActiveColumn(idx)}
+                          className={`mega-menu-item flex items-center gap-3 rounded-2xl p-2 transition-colors duration-150 ${
+                            isActive ? "bg-mp-petrol text-white" : "text-mp-ink hover:bg-mp-parchment/80"
+                          }`}
+                        >
+                          <span
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-150 ${
+                              isActive ? "bg-white/12 text-mp-mint" : "border border-black/[0.06] bg-white text-mp-petrol shadow-2xs"
+                            }`}
                           >
-                            {col.title}
-                          </Link>
-                        ) : (
-                          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-mp-parchment text-[11px] font-bold uppercase tracking-[0.14em] text-mp-petrol/90 mb-3 w-fit border border-black/[0.04]">
-                            {col.title}
+                            <MegaMenuIcon name={col.icon} className="h-4 w-4" />
                           </span>
-                        )}
-                        <div className="flex flex-col gap-1">
+                          <span className="min-w-0 flex-1 text-[13.5px] font-bold leading-snug">{col.title}</span>
+                          <span
+                            className={`text-[11px] font-semibold tabular-nums ${isActive ? "text-white/60" : "text-mp-secondary/60"}`}
+                          >
+                            {col.items.length}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Center: the active area's services as cards. */}
+                  {(() => {
+                    const col = activeGroupData.columns[activeColumn] ?? activeGroupData.columns[0];
+                    return (
+                      <div key={col.title} className="mega-menu-area min-w-0">
+                        <div className="mb-5 flex items-start justify-between gap-6">
+                          <div>
+                            <p className="font-display text-[22px] font-bold leading-tight tracking-[-0.02em] text-mp-petrol">
+                              {col.title}
+                            </p>
+                            {col.description && (
+                              <p className="mt-1.5 max-w-[52ch] text-[13.5px] leading-relaxed text-mp-secondary">
+                                {col.description}
+                              </p>
+                            )}
+                          </div>
+                          {col.href && (
+                            <Link
+                              href={col.href}
+                              onClick={closeAll}
+                              className="shrink-0 whitespace-nowrap pt-1 text-[12.5px] font-bold text-mp-petrol underline underline-offset-4 hover:opacity-70"
+                            >
+                              View overview
+                            </Link>
+                          )}
+                        </div>
+                        <div className="grid gap-3 md:grid-cols-2">
                           {col.items.map((item) => (
                             <Link
                               key={item.href}
                               href={item.href}
                               onClick={closeAll}
-                              className="mega-menu-item group/item -mx-2.5 flex items-start gap-2.5 rounded-xl p-1.5 hover:bg-mp-parchment/80 transition-all duration-200"
+                              className="mega-menu-item group/item flex items-start gap-3.5 rounded-[18px] border border-black/[0.07] bg-white p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-mp-petrol/30 hover:shadow-[0_10px_24px_-14px_rgba(14,42,43,0.35)]"
                             >
-                              {/* Squircle Icon Badge */}
-                              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white border border-black/[0.06] text-mp-petrol group-hover/item:bg-mp-petrol group-hover/item:text-mp-mint group-hover/item:border-mp-petrol transition-all duration-200 shadow-2xs">
-                                <MegaMenuIcon name={item.icon} className="h-3.5 w-3.5" />
-                              </div>
-                              {/* Item Text */}
-                              <div className="flex flex-col flex-1 min-w-0 pt-0.5">
-                                <span className="text-[13px] font-semibold leading-snug text-mp-ink group-hover/item:text-mp-petrol transition-colors">
+                              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-mp-parchment text-mp-petrol transition-colors duration-200 group-hover/item:bg-mp-petrol group-hover/item:text-mp-mint">
+                                <MegaMenuIcon name={item.icon} className="h-[18px] w-[18px]" />
+                              </span>
+                              <span className="flex min-w-0 flex-1 flex-col">
+                                <span className="text-[13.5px] font-bold leading-snug text-mp-ink group-hover/item:text-mp-petrol">
                                   {item.label}
                                 </span>
                                 {item.description && (
-                                  <span className="mt-0.5 text-[12px] leading-snug text-mp-secondary/90 line-clamp-2">
+                                  <span className="mt-1 text-[12px] leading-snug text-mp-secondary/90">
                                     {item.description}
                                   </span>
                                 )}
-                              </div>
+                              </span>
                             </Link>
                           ))}
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    );
+                  })()}
 
                   {/* Right Feature Card */}
                   {activeGroupData.featureCard && (
-                    <div className="mega-menu-feature w-full lg:w-[330px] shrink-0">
+                    <div className="mega-menu-feature w-full">
                       <div className="relative flex flex-col justify-between overflow-hidden rounded-[24px] bg-mp-petrol p-6 text-white min-h-[290px] h-full shadow-md border border-white/10">
                         {activeGroupData.featureCard.bgImage && (
                           <div className="absolute inset-0 z-0">

@@ -99,7 +99,7 @@ export function CustomerStoriesShowcase({
                       onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/10 backdrop-blur-md px-5 py-2.5 text-[13.5px] font-semibold text-white hover:bg-white hover:text-mp-ink transition-colors duration-200"
                     >
-                      <span>Read more</span>
+                      <span>See the result</span>
                       <span className="text-sm">›</span>
                     </Link>
                     <Link

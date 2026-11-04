@@ -224,10 +224,6 @@ export const page: PageContent = {
       q: "How much does a SharePoint extranet cost?",
       a: "The cost depends on the number of partner types, sites, automations and approval rules. Using a site template lowers the cost of each added partner. MP-365 gives a written estimate after discovery. Microsoft licenses are billed separately by Microsoft or your license provider.",
     },
-    {
-      q: "Does MP-365 provide security or identity management services?",
-      a: "No. MP-365 designs sharing settings, permission groups and the portal structure, but it does not provide cybersecurity or identity and access management services. Your security team keeps ownership of identity policies, and MP-365 works within them.",
-    },
   ],
   closing:
     "A SharePoint extranet works when every outside company has its own space, a named owner on your side and a way to be removed when the work ends. MP-365 designs and builds that structure on the Microsoft 365 licenses you already own.",

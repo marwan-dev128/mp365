@@ -216,10 +216,6 @@ export const page: PageContent = {
       q: "Does MP-365 migrate between two Microsoft 365 tenants?",
       a: "Yes. MP-365 handles tenant moves for mergers, acquisitions and divestitures, including mailboxes, OneDrive, SharePoint content and domain cutover. Microsoft's own tools have limits, especially for Teams. The [cross-tenant migration page](/services/tenant-to-tenant-migration/mailbox-teams-files/) explains what moves and what does not.",
     },
-    {
-      q: "What is not part of Microsoft 365 migration services from MP-365?",
-      a: "MP-365 does not provide managed IT services, a help desk, cybersecurity services or license resale. It also does not implement ERP systems. The work covers planning, migration, cutover and handoff for Microsoft 365 workloads, with your team owning day-to-day administration afterward.",
-    },
   ],
   closing:
     "Good Microsoft 365 migration services keep your users working, report every failure and leave your team in control of the new environment. MP-365 starts with an inventory of what you have, then sequences email, files and tenant moves around your business calendar.",

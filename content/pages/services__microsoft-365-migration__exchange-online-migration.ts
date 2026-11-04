@@ -234,10 +234,6 @@ export const page: PageContent = {
       q: "What happens to public folders and shared mailboxes?",
       a: "Shared and resource mailboxes are part of the inventory and move with the users who rely on them. Public folders move separately from user mailboxes, so MP-365 scopes them as their own task. Both need a check after migration, because permissions are easy to miss.",
     },
-    {
-      q: "How much does an Exchange Online migration cost?",
-      a: "Cost depends on mailbox count, Exchange version, coexistence needs and data cleanup. Microsoft license fees are separate, and MP-365 does not resell licenses. The [pricing page](/pricing/) explains how MP-365 scopes engagements, and a discovery call turns your details into a written scope.",
-    },
   ],
   closing:
     "A good Exchange Online migration keeps mail flowing, tells users exactly what changes and leaves your team with a clean Microsoft 365 setup. MP-365 chooses the method from your real mailbox count and Exchange version, then runs the pilot, batches and cutover with you.",

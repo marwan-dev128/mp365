@@ -1,0 +1,56 @@
+{
+  "title": "Industries MP-365 serves",
+  "subtitle": "Mid-size and enterprise organizations in construction, manufacturing, healthcare, elevator and facilities services, and government.",
+  "cards": [
+    {
+      "id": "construction",
+      "variant": "photo",
+      "image": "/images/mp365/industries/construction-engineering.webp",
+      "imageAlt": "Construction team reviewing a project on a tablet",
+      "title": "Construction",
+      "description": "Carlisle Construction had its Dynamics and SharePoint operations stabilized within a week, with no long discovery phase.",
+      "linkText": "See construction",
+      "href": "/industries/construction-engineering/"
+    },
+    {
+      "id": "manufacturing",
+      "variant": "photo",
+      "image": "/images/mp365/industries/manufacturing.webp",
+      "imageAlt": "Manufacturing plant floor",
+      "title": "Manufacturing",
+      "description": "Hunter Panels gets Dynamics CRM support that aligns the platform with the business, cuts manual work and improves performance.",
+      "linkText": "See manufacturing",
+      "href": "/industries/manufacturing/"
+    },
+    {
+      "id": "elevator",
+      "variant": "photo",
+      "image": "/images/mp365/industries/engineer-factory-floor.webp",
+      "imageAlt": "Engineer testing equipment on a factory floor",
+      "title": "Elevator and facilities",
+      "description": "OTIS Elevator gets platform and operations leadership for Dynamics. Deployments dropped from 13 hours to 4.",
+      "linkText": "See client results",
+      "href": "/clients/"
+    },
+    {
+      "id": "government",
+      "variant": "photo",
+      "image": "/images/mp365/industries/energy-utilities.webp",
+      "imageAlt": "Operations team in a control room",
+      "title": "Federal and state government",
+      "description": "MP-365 manages and supports Dynamics 365 CRM for the US Department of Transportation, and works with the Connecticut Department of Public Health.",
+      "linkText": "See government",
+      "href": "/industries/government/"
+    },
+    {
+      "id": "healthcare",
+      "variant": "photo",
+      "image": "/images/mp365/industries/healthcare.webp",
+      "imageAlt": "Healthcare staff working at a desk",
+      "title": "Healthcare",
+      "description": "MP-365 builds permission models, access audits and document control on Microsoft 365 for healthcare organizations.",
+      "linkText": "See healthcare",
+      "href": "/industries/healthcare/"
+    }
+  ]
+}

@@ -247,10 +247,6 @@ export const page: PageContent = {
       q: "Does information architecture affect Microsoft 365 Copilot?",
       a: "Yes. Copilot only uses content a person can access, so oversharing becomes visible in answers. Clear structure, owners and labels also make good content easier to find. The AI data governance audit reviews access before rollout, and structure work supports it.",
     },
-    {
-      q: "Do you create the content as well?",
-      a: "No. MP-365 designs the structure, templates and rules and trains owners, but your people write and maintain the content. MP-365 does not offer content writing or web design agency work. Page owners need time to apply the model, so MP-365 plans that into rollout.",
-    },
   ],
   closing:
     "Good SharePoint information architecture makes the right file easy to find through navigation, search and filters that all agree. MP-365 reviews what people cannot find today, redesigns the structure and metadata, and tests the result with the same searches.",

@@ -85,6 +85,39 @@
     {
       "groups": [
         {
+          "title": "Solutions and industries",
+          "links": [
+            {
+              "label": "All solutions",
+              "href": "/solutions/"
+            },
+            {
+              "label": "All industries",
+              "href": "/industries/"
+            },
+            {
+              "label": "Modern Company Intranet",
+              "href": "/solutions/sharepoint-intranet/"
+            },
+            {
+              "label": "Rapid CRM Deployment",
+              "href": "/solutions/crm-implementation/"
+            },
+            {
+              "label": "Manufacturing",
+              "href": "/industries/manufacturing/"
+            },
+            {
+              "label": "Federal Government",
+              "href": "/industries/government/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
           "title": "Company",
           "links": [
             {

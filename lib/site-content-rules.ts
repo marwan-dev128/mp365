@@ -35,6 +35,10 @@ const BANNED: [RegExp, string][] = [
   [/—/, "no em dashes"],
 ];
 
+// The client does no ERP work, so Solutions and Industries do not mention it at all.
+const ERP_TERMS =
+  /\bERPs?\b|\bBusiness Central\b|\bFinance and Operations\b|\bSupply Chain Management\b|\bDynamics GP\b|\bNetSuite\b|\bSAP\b|\bSage\b/;
+
 const VAGUE_HEADING = /^(overview|more info|introduction|other|summary|details|about)$/i;
 
 function blockText(b: ContentBlock): string[] {
@@ -60,6 +64,8 @@ export function pageText(page: PageContent): string[] {
     page.cta.body,
     page.cta.text,
     ...Object.values(page.atAGlance ?? {}),
+    ...(page.triggers ?? []).flatMap((t) => [t.title, t.body]),
+    ...Object.values(page.childSummaries ?? {}),
     ...page.blocks.flatMap((b) => [b.heading ?? "", ...blockText(b)]),
     ...page.faqs.flatMap((f) => [f.q, f.a]),
   ];
@@ -77,6 +83,8 @@ export function validatePage(page: PageContent): string[] {
   const plan = getSitePage(page.path);
   const isContact = page.path === "/contact/";
   const isService = plan.type === "Service";
+  const isSolutionOrIndustry =
+    plan.type === "Solution" || plan.type === "Industry" || page.path === "/solutions/" || page.path === "/industries/";
 
   const allText = pageText(page);
   const blob = allText.join("\n");
@@ -131,8 +139,8 @@ export function validatePage(page: PageContent): string[] {
   }
 
   // FAQs.
-  const minFaqs = isContact ? 5 : 10;
-  ok(page.faqs.length >= minFaqs, `${page.faqs.length} FAQs, want at least ${minFaqs}`);
+  // 6 to 10 per the SEO team's feedback, which replaces the plan's "at least 10".
+  ok(page.faqs.length >= 6 && page.faqs.length <= 10, `${page.faqs.length} FAQs, want 6 to 10`);
   for (const f of page.faqs) {
     const n = words(f.a);
     ok(n >= 30 && n <= 75, `FAQ answer is ${n} words, want about 40 to 60: "${f.q}"`);
@@ -155,7 +163,7 @@ export function validatePage(page: PageContent): string[] {
     ok(LIVE_PATHS.has(href), `link to "${href}", which is not a live page`);
     ok(href !== page.path, `page links to itself: ${href}`);
   }
-  if (isService && plan.parent_path) {
+  if ((isService || plan.type === "Solution" || plan.type === "Industry") && plan.parent_path) {
     ok(links.includes(plan.parent_path), `link up to the parent ${plan.parent_path} in body text`);
   }
   for (const child of childrenOf(page.path)) {
@@ -169,5 +177,24 @@ export function validatePage(page: PageContent): string[] {
     ok(!m, `${why}: "${m?.[0]}"`);
   }
   ok(!/&amp;|&lt;|&gt;/.test(blob), "HTML entity in copy");
+
+  // Solutions and Industries.
+  if (isSolutionOrIndustry) {
+    const erp = plain.match(ERP_TERMS);
+    ok(!erp, `no ERP on Solutions or Industries: "${erp?.[0]}"`);
+    ok(page.blocks.some((b) => b.type === "table"), "needs a table");
+  }
+  if (plan.type === "Industry") {
+    ok((page.triggers?.length ?? 0) === 4, `${page.triggers?.length ?? 0} triggers, want 4`);
+  } else {
+    ok(!page.triggers, "only industry pages use triggers");
+  }
+  if (page.path === "/solutions/" || page.path === "/industries/") {
+    for (const child of childrenOf(page.path)) {
+      ok(page.childSummaries?.[child.path], `childSummaries needs ${child.path}`);
+    }
+  } else {
+    ok(!page.childSummaries, "only the Solutions and Industries overviews use childSummaries");
+  }
   return errs;
 }

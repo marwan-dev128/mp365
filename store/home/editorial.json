@@ -1,0 +1,27 @@
+{
+  "title": "Let's get specific",
+  "subtitle": "Who MP-365 works with, how projects are priced, and everything the team does.",
+  "insights": [
+    {
+      "title": "See the work MP-365 has done",
+      "description": "Client results from OTIS Elevator, Carlisle Construction, Hunter Panels and government organizations.",
+      "linkText": "See client results",
+      "href": "/clients/",
+      "image": "/images/mp365/insights/microsoft-case-studies-illustration.webp"
+    },
+    {
+      "title": "How a project is priced",
+      "description": "The three engagement models, what drives cost, how to compare bids, and an estimator you can try now.",
+      "linkText": "See how pricing works",
+      "href": "/pricing/",
+      "image": "/images/mp365/insights/tenant-migration-questions-answered-illustration.webp"
+    },
+    {
+      "title": "Every service, in one place",
+      "description": "All 28 services under their eight areas, with a guide to where to start for your situation.",
+      "linkText": "See all services",
+      "href": "/services/",
+      "image": "/images/mp365/insights/ma-tenant-migration-risks-illustration.webp"
+    }
+  ]
+}

@@ -109,7 +109,7 @@ export const page: PageContent = {
     },
   ],
   closing:
-    "MP-365 gives mid-size and enterprise teams Dynamics 365 consulting from a small, senior group that starts fast and stays hands-on. Pick the area that matches your problem, or tell the team what is going wrong and let them point you to the right starting place.",
+    "MP-365 gives mid-size and enterprise teams Dynamics 365 consulting from a small, senior group that starts fast and stays hands-on. Pick the area that matches your problem, or tell the team what is going wrong and let them point you to the right starting place. To start from a business problem or your sector, see [Microsoft solutions](/solutions/) or [solutions by industry](/industries/).",
   cta: {
     heading: "Talk to MP-365 about your Dynamics 365 setup",
     body: "Describe one problem. MP-365 will tell you whether it can help and what the first step looks like.",

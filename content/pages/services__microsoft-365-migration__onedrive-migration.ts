@@ -223,10 +223,6 @@ export const page: PageContent = {
       q: "Can OneDrive accounts move between Microsoft 365 tenants?",
       a: "Yes. Microsoft's cross-tenant OneDrive migration moves accounts during mergers and divestitures. It is a one-time move without incremental passes, needs a per-user license, and is not supported for GCC, GCC High or DoD. See [cross-tenant migration](/services/tenant-to-tenant-migration/mailbox-teams-files/) for the full picture.",
     },
-    {
-      q: "How much does a OneDrive migration cost?",
-      a: "Cost depends on user count, data volume, source cleanliness and the tool used. Microsoft license fees are separate and MP-365 does not resell licenses. The [pricing page](/pricing/) explains the engagement models, and a discovery call produces a written scope for your files.",
-    },
   ],
   closing:
     "A OneDrive migration succeeds when files arrive where users expect them, in a structure that does not break. MP-365 scans the source, fixes what would fail and chooses the right Microsoft tool for each group of users.",

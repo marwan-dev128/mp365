@@ -233,14 +233,6 @@ export const page: PageContent = {
       q: "How often should we repeat the review?",
       a: "Microsoft recommends running site permission snapshot reports quarterly and sharing activity reports monthly. MP-365 sets that routine during handover. Repeat sooner after a merger, a reorganization or a large Copilot expansion, because each of those changes who can reach what.",
     },
-    {
-      q: "Does the audit include Dynamics 365?",
-      a: "Yes. Copilot and agents can draw on CRM data, so MP-365 also reviews Dynamics 365 security roles and flags users with broader access than their jobs need. The detailed role work follows the approach in the [Dynamics 365 security roles audit](/services/dynamics-365-crm/security-roles-audit/).",
-    },
-    {
-      q: "How much does the audit cost?",
-      a: "Cost depends on how many sites, users and Dynamics 365 environments are in scope. MP-365 does not publish a fixed price. Microsoft license fees are separate. The [pricing page](/pricing/) explains the engagement models, and a discovery call gives a scoped answer.",
-    },
   ],
   closing:
     "Copilot data protection comes down to accurate permissions on the content Copilot can reach. MP-365's audit finds the gaps, ranks them and helps your owners close them, so Copilot launches on data you have reviewed.",

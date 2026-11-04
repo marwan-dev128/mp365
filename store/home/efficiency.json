@@ -1,0 +1,50 @@
+{
+  "title": "Problems MP-365 has solved",
+  "subtitle": "The same problems come up again and again. These are the ones teams usually call about.",
+  "cards": [
+    {
+      "id": "sales-tracking",
+      "hasImage": true,
+      "image": "/images/mp365/why/governance-approvals-workflow.webp",
+      "imageAlt": "A sales team with one shared process",
+      "imageType": "contain",
+      "title": "Sales tracked in spreadsheets",
+      "description": "One sales process in Dynamics 365, with live dashboards for leadership instead of reports compiled by hand.",
+      "linkText": "See Dynamics 365 Sales",
+      "href": "/services/dynamics-365-crm/sales/"
+    },
+    {
+      "id": "intranet",
+      "hasImage": true,
+      "image": "/images/mp365/automation/microsoft-data-integration.webp",
+      "imageAlt": "Organized company content",
+      "imageType": "contain",
+      "title": "An intranet nobody uses",
+      "description": "A modern intranet with a clear information architecture, a simpler security model and faster content updates.",
+      "linkText": "See intranet development",
+      "href": "/services/sharepoint/intranet-development/"
+    },
+    {
+      "id": "case-tracking",
+      "hasImage": false,
+      "image": "",
+      "imageAlt": "",
+      "imageType": "none",
+      "title": "Support run from a shared inbox",
+      "description": "Case tracking that replaces email with one system showing owner, status and urgency.",
+      "linkText": "See Dynamics 365 Customer Service",
+      "href": "/services/dynamics-365-crm/customer-service/"
+    },
+    {
+      "id": "contracts",
+      "hasImage": true,
+      "image": "/images/mp365/automation/power-automate-process-flow.webp",
+      "imageAlt": "A contract approval workflow",
+      "imageType": "cover",
+      "title": "Contracts lost in email",
+      "description": "Contract management with defined stages, owners, reminders and dashboards for legal and finance.",
+      "linkText": "See Power Automate",
+      "href": "/services/power-platform/power-automate/"
+    }
+  ]
+}

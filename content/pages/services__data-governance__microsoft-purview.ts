@@ -239,10 +239,6 @@ export const page: PageContent = {
       q: "Does MP-365 provide cybersecurity or compliance certification?",
       a: "No. MP-365 does permission models, labels and DLP policies as data governance work. It does not run security operations, monitor threats, certify compliance or audit against standards. Your security or compliance team can rely on these controls as part of their own program.",
     },
-    {
-      q: "Can you cover Dynamics 365 and SharePoint in one project?",
-      a: "Yes. SharePoint and Microsoft 365 permissions are handled under this service, and Dynamics 365 roles under the CRM security roles audit. MP-365 can plan both together so the same people and groups are named consistently in each system.",
-    },
   ],
   closing:
     "A Microsoft Purview implementation succeeds when labels are few, permissions are simple and policies are tested before they block anyone. MP-365 builds that foundation and leaves your team able to run it.",

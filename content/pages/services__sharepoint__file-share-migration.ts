@@ -213,10 +213,6 @@ export const page: PageContent = {
       q: "Can version history replace our old backups?",
       a: "No, not completely. Version history shows earlier edits of a file, and the recycle bin restores deleted files for a limited period. These help with mistakes but are not a full backup strategy. MP-365 does not provide backup services or managed IT.",
     },
-    {
-      q: "What does MP-365 not do on a file share migration?",
-      a: "MP-365 does not manage hardware, Azure infrastructure or backups, and it does not provide cybersecurity services. It designs the SharePoint structure and permissions, runs the migration, and hands off documentation so your administrators run it afterward.",
-    },
   ],
   closing:
     "To migrate file share to SharePoint Online well, clean up first, design for how people search, and set permissions at the library level. MP-365 handles the scan, the design and the staged copy, and trains your team to run the result.",

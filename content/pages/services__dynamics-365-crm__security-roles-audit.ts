@@ -210,14 +210,6 @@ export const page: PageContent = {
       q: "Is this a cybersecurity service?",
       a: "No. The audit covers Dynamics 365 roles, teams, business units and related Microsoft 365 permissions. MP-365 does not provide security operations, threat monitoring, identity management or compliance certification. It is a practical review of who can do what in your CRM.",
     },
-    {
-      q: "Will the audit break anything for our users?",
-      a: "It should not. MP-365 tests new roles in a sandbox with real tasks before changing production, then moves users in agreed batches with sign-off. If a user loses access they need, the change is reversible and gets fixed quickly because the role design is documented.",
-    },
-    {
-      q: "What access does MP-365 need to run the audit?",
-      a: "The first review is read-only: MP-365 needs to see users, roles, teams and business units in each environment. Changes happen later, with your approval, in a sandbox first. You keep control of your tenant, and MP-365 uses named accounts, not shared logins.",
-    },
   ],
   closing:
     "Dynamics 365 security roles stay manageable when each role matches a job, access flows through teams, and someone checks the list on a schedule. MP-365 sets that up and gives you the report to keep it that way.",

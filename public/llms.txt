@@ -42,6 +42,30 @@
   - [Legacy Application Migration](https://mp-365.com/services/application-modernization/legacy-migration/)
   - [DevOps & Release Automation](https://mp-365.com/services/application-modernization/devops-release-automation/)
 
+## Solutions
+
+- [Solutions](https://mp-365.com/solutions/)
+  - [Modern Company Intranet](https://mp-365.com/solutions/sharepoint-intranet/)
+  - [Executive Dashboards & Analytics](https://mp-365.com/solutions/executive-dashboards/)
+  - [Rapid CRM Deployment](https://mp-365.com/solutions/crm-implementation/)
+  - [Classic CRM Modernization](https://mp-365.com/solutions/dynamics-365-migration/)
+  - [Contract Management Automation](https://mp-365.com/solutions/contract-management-automation/)
+  - [M&A IT Integration & Separation](https://mp-365.com/solutions/m-and-a-it-integration/)
+  - [CRM & Systems Integration](https://mp-365.com/solutions/crm-systems-integration/)
+
+## Industries
+
+- [Industries](https://mp-365.com/industries/)
+  - [Manufacturing](https://mp-365.com/industries/manufacturing/)
+  - [Logistics & Supply Chain](https://mp-365.com/industries/logistics-supply-chain/)
+  - [Energy & Utilities](https://mp-365.com/industries/energy-utilities/)
+  - [Construction & Engineering](https://mp-365.com/industries/construction-engineering/)
+  - [Financial Services & Credit Unions](https://mp-365.com/industries/financial-services/)
+  - [Federal Government](https://mp-365.com/industries/government/)
+  - [Medical Devices](https://mp-365.com/industries/medical-devices/)
+  - [Retail](https://mp-365.com/industries/retail/)
+  - [Healthcare](https://mp-365.com/industries/healthcare/)
+
 ## Company
 
 - [Clients](https://mp-365.com/clients/)

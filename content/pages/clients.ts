@@ -12,13 +12,13 @@ export const page: PageContent = {
       rows: [
         [
           "Carlisle Construction",
-          "Construction",
+          "[Construction](/industries/construction-engineering/)",
           "Stepped into Dynamics and SharePoint operations with no long discovery phase.",
           "Operations were stabilized within a week.",
         ],
         [
           "Hunter Panels",
-          "Manufacturing",
+          "[Manufacturing](/industries/manufacturing/)",
           "Supports Dynamics CRM so the platform fits how the business works.",
           "Less manual work and better performance.",
         ],
@@ -30,13 +30,13 @@ export const page: PageContent = {
         ],
         [
           "US Department of Transportation",
-          "Federal government",
+          "[Federal government](/industries/government/)",
           "Manages and supports Dynamics 365 CRM.",
           "Ongoing support of the agency's CRM platform.",
         ],
         [
           "Connecticut Department of Public Health",
-          "State government",
+          "[State government](/industries/government/)",
           "Client work for a state agency.",
           "State government work.",
         ],

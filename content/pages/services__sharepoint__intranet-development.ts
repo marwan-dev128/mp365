@@ -221,13 +221,9 @@ export const page: PageContent = {
       q: "How are permissions handled on a SharePoint intranet?",
       a: "MP-365 sets a small number of permission groups with named owners. Most intranet content is readable by everyone in the company, while sensitive sites such as HR or finance have tighter access. Hub sites do not change permissions, so each site keeps its own.",
     },
-    {
-      q: "Does MP-365 provide ongoing intranet support?",
-      a: "MP-365 does not provide managed services or a help desk. It can return in support mode when something breaks or needs improvement, and it hands off documentation so your administrators run the intranet day to day. Engagement options are described on the pricing page.",
-    },
   ],
   closing:
-    "SharePoint intranet services should leave you with an intranet that people open on purpose: structured sites, named owners and search that finds the right page. MP-365 builds it on the Microsoft 365 licenses you already own and trains your team to run it.",
+    "SharePoint intranet services should leave you with an intranet that people open on purpose: structured sites, named owners and search that finds the right page. MP-365 builds it on the Microsoft 365 licenses you already own and trains your team to run it. Still deciding whether to build or buy? The [SharePoint intranet guide](/solutions/sharepoint-intranet/) compares the options.",
   cta: {
     heading: "Plan your SharePoint intranet with MP-365",
     body: "Tell us who the intranet is for and what is broken today. We will outline a first version you can react to.",

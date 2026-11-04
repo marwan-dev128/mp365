@@ -234,10 +234,6 @@ export const page: PageContent = {
       q: "Who should be involved from our side?",
       a: "Involve a business sponsor, a SharePoint or Microsoft 365 administrator and one leader from each pilot department. Site owners join briefly to confirm access on their sites. The total time asked of each person is small, but owner decisions are what keep the cleanup moving.",
     },
-    {
-      q: "Can you run the readiness work and the rollout?",
-      a: "Yes. MP-365 can run the assessment, carry out approved permission fixes, support the pilot and train users. You can also take the plan and run it yourselves. Both options are valid, and the plan is written so a different team could follow it.",
-    },
   ],
   closing:
     "A Microsoft 365 Copilot readiness assessment turns a vague worry about oversharing into a ranked list your team can act on. If you are planning a Copilot pilot, MP-365 can scope the assessment around your tenant and your first use cases.",

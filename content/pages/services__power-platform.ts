@@ -170,14 +170,6 @@ export const page: PageContent = {
       q: "Can Power Platform replace our custom software?",
       a: "Sometimes. Internal tools for approvals, tracking and field work often run well on Power Apps and Power Automate at lower effort than custom code. Products you sell, or systems with very high transaction loads, usually need a software team. MP-365 works in low-code and will say when a project is not a fit.",
     },
-    {
-      q: "Does MP-365 also build custom Copilot agents?",
-      a: "Yes. MP-365 builds custom Copilot agents with Microsoft tools, connected to Dynamics 365 and Microsoft 365 data. Agents often use Power Automate flows to take action. See [custom Copilot agent development](/services/copilot/custom-agents/) for what that work includes.",
-    },
-    {
-      q: "How is MP-365 different from a large consulting firm?",
-      a: "MP-365 is a small, senior team of Microsoft specialists. You work with the people who build your solution, not layers of management. The team jumps in quickly, often stabilizing a platform before a long discovery phase, as it did for Carlisle Construction.",
-    },
   ],
   closing:
     "Power Platform consulting works best when it starts with one real problem and a small first version. MP-365 can look at your processes, rank the four services by payoff and build the first piece on your existing Microsoft data.",

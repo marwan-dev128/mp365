@@ -224,14 +224,6 @@ export const page: PageContent = {
       q: "Can we import LinkedIn leads into Dynamics 365?",
       a: "Yes. Microsoft provides the Dynamics 365 Connector for LinkedIn Lead Gen Forms, which syncs leads from LinkedIn forms into Dynamics 365 Sales. MP-365 maps the form fields and source value so those leads follow the same scoring and routing as every other channel.",
     },
-    {
-      q: "What is the difference between a lead and a contact?",
-      a: "A lead is someone you have not yet qualified. A contact is a person you have an established relationship with, usually tied to an account. Qualifying a lead can create the contact. Keeping the two separate stops unproven names from cluttering your customer data.",
-    },
-    {
-      q: "Can we report leads and revenue by source?",
-      a: "Yes, if the source is captured as a controlled value and carried from the lead to the opportunity. MP-365 builds source and funnel dashboards in Dynamics 365 or [Power BI](/services/power-platform/power-bi/), so leaders see lead volume, conversion and closed revenue for each channel.",
-    },
   ],
   closing:
     "Dynamics 365 lead scoring helps only when the lead process around it is clear: every lead captured once, scored, routed to an owner and tied to a source. MP-365 builds that process, then tunes it with your team's results.",

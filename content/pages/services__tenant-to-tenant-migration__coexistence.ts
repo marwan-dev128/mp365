@@ -232,10 +232,6 @@ export const page: PageContent = {
       q: "What happens to email addresses at cutover?",
       a: "Users get their familiar address back when the domain moves to the target tenant. Until then, they use target-tenant addresses. After removal from the source, source accounts revert to onmicrosoft.com addresses. Outlook profiles on migrated mailboxes need rebuilding, and MP-365 provides the instructions for every user.",
     },
-    {
-      q: "What stops a domain from being removed from a tenant?",
-      a: "Any remaining use of the domain stops the removal. Microsoft lists users, shared mailboxes, resource mailboxes, contacts, Microsoft 365 groups, distribution lists, teams and admin sign-ins, and the domain cannot be the default. MP-365 inventories every use first and uses PowerShell for large user counts so none are missed.",
-    },
   ],
   closing:
     "Microsoft 365 tenant coexistence works when each sharing need has a named owner and an end date. MP-365 designs the temporary layer, runs the domain cutover and removes the scaffolding so your target tenant stays clean.",

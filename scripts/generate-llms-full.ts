@@ -41,6 +41,10 @@ function short() {
     lines.push(`- [${c.name}](${SITE_URL}${c.path})`);
     for (const s of childrenOf(c.path)) lines.push(`  - [${s.name}](${SITE_URL}${s.path})`);
   }
+  for (const [title, hub] of [["Solutions", "/solutions/"], ["Industries", "/industries/"]]) {
+    lines.push("", `## ${title}`, "", `- [${getSitePage(hub).name}](${SITE_URL}${hub})`);
+    for (const s of childrenOf(hub)) lines.push(`  - [${s.name}](${SITE_URL}${s.path})`);
+  }
   lines.push("", "## Company", "");
   for (const path of ["/clients/", "/pricing/", "/about/", "/contact/", "/blog/"]) {
     lines.push(`- [${getSitePage(path).name}](${SITE_URL}${path})`);

@@ -199,10 +199,6 @@ export const page: PageContent = {
       q: "What size of company does MP-365 work with?",
       a: "MP-365 works with mid-size and enterprise organizations in the United States, including construction, manufacturing, healthcare and government clients. It is a focused team of Microsoft specialists, not a large consulting firm with layers of management.",
     },
-    {
-      q: "Does MP-365 manage SharePoint after the project ends?",
-      a: "MP-365 does not provide managed services or outsourced IT support. It can return in support mode when something breaks or needs improvement, and it documents the build so your own administrators can run it. Ongoing engagement models are explained on the pricing page.",
-    },
   ],
   closing:
     "SharePoint consulting services work best when they start with one clear problem and a structure designed before anything is built. If you are weighing an intranet, a migration, a portal or a search fix, MP-365 can help you choose the first step.",

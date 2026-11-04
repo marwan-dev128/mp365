@@ -1,0 +1,38 @@
+{
+  "stats": [
+    {
+      "id": "otis",
+      "iconBg": "#5FE3C8",
+      "iconSrc": "/images/mp365/icons/migration-continuity-icon.webp",
+      "iconAlt": "Faster deployments",
+      "titleLines": [
+        "13 hours",
+        "down to 4"
+      ],
+      "description": "OTIS Elevator's Dynamics deployments, with manual errors reduced to near zero."
+    },
+    {
+      "id": "carlisle",
+      "iconBg": "#F2A93B",
+      "iconSrc": "/images/mp365/icons/data-governance-shield-icon.webp",
+      "iconAlt": "Stabilized operations",
+      "titleLines": [
+        "Within",
+        "a week"
+      ],
+      "description": "Carlisle Construction's Dynamics and SharePoint operations stabilized."
+    },
+    {
+      "id": "areas",
+      "iconBg": "#9BD9E3",
+      "iconSrc": "/images/mp365/icons/senior-delivery-team-icon.webp",
+      "iconAlt": "Service areas",
+      "titleLines": [
+        "28 services",
+        "in 8 areas"
+      ],
+      "description": "From Dynamics 365 CRM to tenant migration, all with one team."
+    }
+  ],
+  "footnote": "Client results are on the Clients page."
+}

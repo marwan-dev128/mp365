@@ -253,10 +253,6 @@ export const page: PageContent = {
       q: "Can the source admin still access a mailbox after it moves?",
       a: "No. Microsoft deletes the source mailbox after a successful move, so it is not available, discoverable or accessible in the source tenant, and eDiscovery there stops working. If the source needs a copy, copy the content to another mailbox before the move. MP-365 flags this during scoping.",
     },
-    {
-      q: "Do archive mailboxes move across tenants?",
-      a: "Yes, archives move with the user. The archive GUID must be present on the target user, and Microsoft supports users with up to 12 auxiliary archives. If a source mailbox expands during the move, the migration fails and the user must be resubmitted. MP-365 checks archives before batches start.",
-    },
   ],
   closing:
     "Cross-tenant mailbox migration is predictable when you know its limits before the first batch. MP-365 prepares both tenants, moves the data Microsoft's tools support, and gives your users a plain guide for the parts that change.",

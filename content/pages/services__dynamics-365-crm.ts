@@ -191,17 +191,9 @@ export const page: PageContent = {
       q: "Who pays for Dynamics 365 licenses?",
       a: "You do, directly to Microsoft or to your license provider. Microsoft sets license prices, and they are separate from consulting fees. MP-365 does not resell licenses or manage subscriptions, but it can help you work out which Dynamics 365 apps your team needs.",
     },
-    {
-      q: "Can MP-365 work alongside our internal IT team?",
-      a: "Yes. MP-365 often acts as an extension of an internal team: the specialist who handles the Dynamics 365 work while your IT staff keep their other priorities. The standard engagement model uses a flat rate with no forced minimum, so you can scale the help up or down.",
-    },
-    {
-      q: "What happens after go-live?",
-      a: "MP-365 stays available for fixes, small changes and improvements, using the same support mode it uses for urgent issues. After release, the team reviews results against the goals set at the start and agrees the next step. You can also stop at hand-off.",
-    },
   ],
   closing:
-    "Dynamics 365 CRM consulting works best when it starts with one clear problem and a small first release. If you know which area hurts most, pick it from the list above. If you are unsure, describe the problem and MP-365 will tell you where to begin.",
+    "Dynamics 365 CRM consulting works best when it starts with one clear problem and a small first release. If you know which area hurts most, pick it from the list above. If you are unsure, describe the problem and MP-365 will tell you where to begin. If speed is the priority, read about [CRM implementation services](/solutions/crm-implementation/).",
   cta: {
     heading: "Talk to MP-365 about your Dynamics 365 setup",
     body: "Describe the problem you want fixed first. MP-365 will tell you which service fits and what a sensible first release looks like.",

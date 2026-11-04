@@ -1,0 +1,84 @@
+{
+  "title": "Dynamics 365 consulting services across eight areas",
+  "description": "MP-365 helps mid-size and enterprise teams get more from Dynamics 365, Microsoft 365 and Copilot, with faster decisions, cleaner data and less manual work.",
+  "tabs": [
+    {
+      "id": "build",
+      "label": "Build",
+      "description": "Dynamics 365 Sales, Customer Service and Customer Insights, plus integrations that connect the CRM to ERP and other systems. Power Apps, Power Automate, Power BI and custom Copilot agents build on the Microsoft data you already have.",
+      "linkText": "See Dynamics 365 CRM",
+      "linkHref": "/services/dynamics-365-crm/",
+      "video": "/videos/mp365/dynamics-365-power-platform-build.mp4",
+      "videoPoster": "/images/mp365/posters/dynamics-365-power-platform-build.webp",
+      "proof": {
+        "logoSrc": "",
+        "logoAlt": "",
+        "metrics": [
+          {
+            "value": "13h to 4h",
+            "label": "deployment time at OTIS Elevator"
+          },
+          {
+            "value": "Near zero",
+            "label": "manual errors"
+          }
+        ],
+        "quote": "Faster, smoother Dynamics deployments, with manual errors reduced to near zero.",
+        "author": "OTIS Elevator, platform and operations leadership for Dynamics",
+        "caseStudyHref": "/clients/"
+      }
+    },
+    {
+      "id": "migrate",
+      "label": "Migrate",
+      "description": "Exchange and OneDrive moves into Microsoft 365, SharePoint Server upgrades and file share migrations, and tenant to tenant migration for mergers, acquisitions and divestitures.",
+      "linkText": "See Microsoft 365 migration",
+      "linkHref": "/services/microsoft-365-migration/",
+      "video": "/videos/mp365/microsoft-365-migration-console.mp4",
+      "videoPoster": "/images/mp365/posters/microsoft-365-migration-console.webp",
+      "proof": {
+        "logoSrc": "",
+        "logoAlt": "",
+        "metrics": [
+          {
+            "value": "4",
+            "label": "SharePoint versions upgraded"
+          },
+          {
+            "value": "100,000s",
+            "label": "of files organized"
+          }
+        ],
+        "quote": "SharePoint 2007, 2010, 2013 and 2016 moved to Microsoft 365 in stages, and file shares moved into organized libraries with metadata and version control.",
+        "author": "MP-365 client projects",
+        "caseStudyHref": "/clients/"
+      }
+    },
+    {
+      "id": "govern",
+      "label": "Govern",
+      "description": "Permission models, Microsoft Purview and CRM data quality, so people see only what they should. Legacy applications move to Azure with safer, automated releases for Dynamics 365 and Power Platform.",
+      "linkText": "See data governance",
+      "linkHref": "/services/data-governance/",
+      "video": "/videos/mp365/microsoft-purview-compliance-console.mp4",
+      "videoPoster": "/images/mp365/posters/microsoft-purview-compliance-console.webp",
+      "proof": {
+        "logoSrc": "",
+        "logoAlt": "",
+        "metrics": [
+          {
+            "value": "2",
+            "label": "governance services"
+          },
+          {
+            "value": "2",
+            "label": "modernization services"
+          }
+        ],
+        "quote": "CRM access control with an approval process, documented access levels and automatic access reports.",
+        "author": "MP-365 client project",
+        "caseStudyHref": "/clients/"
+      }
+    }
+  ]
+}

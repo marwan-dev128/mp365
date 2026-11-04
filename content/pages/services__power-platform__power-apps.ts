@@ -223,10 +223,6 @@ export const page: PageContent = {
       q: "Who maintains the app after go-live?",
       a: "You decide. A named owner in your team can handle small changes after training, and MP-365 can support the app on an ad hoc or ongoing basis for bigger fixes and new features. Either way, the app is documented and deployed through a managed solution so changes stay controlled.",
     },
-    {
-      q: "How does MP-365 keep apps from becoming unmanaged sprawl?",
-      a: "MP-365 builds each app in a defined environment with a named owner, documentation and a data policy for its connectors. Apps ship through solutions rather than direct edits in production. That structure makes it clear which apps exist, who owns them and what data they touch.",
-    },
   ],
   closing:
     "Good Power Apps consulting services start with one painful process and a small first app that people want to use. MP-365 can map your process, choose the right data home and build the first version on your existing Microsoft data.",

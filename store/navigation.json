@@ -44,34 +44,42 @@
             {
               "label": "Dynamics 365 Sales",
               "href": "/services/dynamics-365-crm/sales/",
-              "icon": "users"
+              "icon": "chart",
+              "description": "Pipeline, forecasting and lead handling."
             },
             {
               "label": "Dynamics 365 Customer Service",
               "href": "/services/dynamics-365-crm/customer-service/",
-              "icon": "users"
+              "icon": "clipboard-check",
+              "description": "Cases, queues and service levels in one place."
             },
             {
               "label": "Dynamics 365 Customer Insights",
               "href": "/services/dynamics-365-crm/customer-insights/",
-              "icon": "users"
+              "icon": "compass",
+              "description": "Marketing journeys and customer data."
             },
             {
               "label": "Lead Management & Attribution",
               "href": "/services/dynamics-365-crm/lead-management/",
-              "icon": "users"
+              "icon": "git-compare",
+              "description": "Capture, score, route and attribute leads."
             },
             {
               "label": "Dynamics 365 Security Roles & Access Audit",
               "href": "/services/dynamics-365-crm/security-roles-audit/",
-              "icon": "users"
+              "icon": "shield",
+              "description": "Who can see what, and who should not."
             },
             {
               "label": "Dynamics 365 Integration Services",
               "href": "/services/dynamics-365-crm/integration-services/",
-              "icon": "users"
+              "icon": "refresh",
+              "description": "Connect the CRM to your other business systems."
             }
-          ]
+          ],
+          "icon": "users",
+          "description": "Sales, service and marketing on one CRM, connected to your other systems."
         },
         {
           "title": "SharePoint & Intranets",
@@ -80,29 +88,36 @@
             {
               "label": "SharePoint Intranet Development",
               "href": "/services/sharepoint/intranet-development/",
-              "icon": "layout"
+              "icon": "layout",
+              "description": "A modern intranet people actually use."
             },
             {
               "label": "SharePoint Server Upgrade & Migration",
               "href": "/services/sharepoint/migration/",
-              "icon": "layout"
+              "icon": "cloud-refresh",
+              "description": "Move SharePoint Server to SharePoint Online."
             },
             {
               "label": "File Share to SharePoint Migration",
               "href": "/services/sharepoint/file-share-migration/",
-              "icon": "layout"
+              "icon": "file-text",
+              "description": "Turn file shares into organized libraries."
             },
             {
               "label": "SharePoint Supplier & Partner Portals",
               "href": "/services/sharepoint/supplier-partner-portals/",
-              "icon": "layout"
+              "icon": "users",
+              "description": "Shared sites for suppliers and partners."
             },
             {
               "label": "SharePoint Search & Information Architecture",
               "href": "/services/sharepoint/information-architecture/",
-              "icon": "layout"
+              "icon": "compass",
+              "description": "Site structure and search that find things."
             }
-          ]
+          ],
+          "icon": "layout",
+          "description": "Intranets, upgrades and file moves that make work easy to find."
         },
         {
           "title": "Microsoft Copilot & AI",
@@ -111,29 +126,36 @@
             {
               "label": "Microsoft 365 Copilot Readiness",
               "href": "/services/copilot/readiness/",
-              "icon": "sparkles"
+              "icon": "clipboard-check",
+              "description": "Get data and permissions ready for Copilot."
             },
             {
               "label": "Dynamics 365 Sales Agents",
               "href": "/services/copilot/sales-agents/",
-              "icon": "sparkles"
+              "icon": "chart",
+              "description": "AI agents that work your sales pipeline."
             },
             {
               "label": "Custom Copilot Agent Development",
               "href": "/services/copilot/custom-agents/",
-              "icon": "sparkles"
+              "icon": "code",
+              "description": "Agents built with Copilot Studio."
             },
             {
               "label": "Copilot Cowork",
               "href": "/services/copilot/cowork/",
-              "icon": "sparkles"
+              "icon": "users",
+              "description": "Rollout, permissions and training."
             },
             {
               "label": "AI Data Governance Audit",
               "href": "/services/copilot/ai-data-governance-audit/",
-              "icon": "sparkles"
+              "icon": "shield",
+              "description": "Review data access before Copilot."
             }
-          ]
+          ],
+          "icon": "sparkles",
+          "description": "Copilot readiness, rollout and custom agents on your Microsoft data."
         },
         {
           "title": "Power Platform",
@@ -142,24 +164,30 @@
             {
               "label": "Power Apps Development",
               "href": "/services/power-platform/power-apps/",
-              "icon": "zap"
+              "icon": "layers",
+              "description": "Low-code apps your team runs on."
             },
             {
               "label": "Power Pages Portal Development",
               "href": "/services/power-platform/power-pages/",
-              "icon": "zap"
+              "icon": "layout",
+              "description": "Portals for customers and partners."
             },
             {
               "label": "Power Automate Workflow Automation",
               "href": "/services/power-platform/power-automate/",
-              "icon": "zap"
+              "icon": "zap",
+              "description": "Approvals, notifications and data moves."
             },
             {
               "label": "Power BI Consulting & Dashboards",
               "href": "/services/power-platform/power-bi/",
-              "icon": "zap"
+              "icon": "chart",
+              "description": "Live dashboards instead of spreadsheet reports."
             }
-          ]
+          ],
+          "icon": "zap",
+          "description": "Apps, portals, automation and dashboards on the data you already have."
         },
         {
           "title": "Microsoft 365 Migration",
@@ -168,14 +196,18 @@
             {
               "label": "Exchange to Microsoft 365 Migration",
               "href": "/services/microsoft-365-migration/exchange-online-migration/",
-              "icon": "cloud"
+              "icon": "cloud",
+              "description": "Move mailboxes to Exchange Online."
             },
             {
               "label": "OneDrive Migration",
               "href": "/services/microsoft-365-migration/onedrive-migration/",
-              "icon": "cloud"
+              "icon": "file-text",
+              "description": "Move personal files into OneDrive."
             }
-          ]
+          ],
+          "icon": "cloud",
+          "description": "Exchange and OneDrive moves, planned to keep your users working."
         },
         {
           "title": "M&A Tenant Migration",
@@ -184,14 +216,18 @@
             {
               "label": "Cross-Tenant Mailbox, Teams & File Migration",
               "href": "/services/tenant-to-tenant-migration/mailbox-teams-files/",
-              "icon": "cloud-refresh"
+              "icon": "refresh",
+              "description": "Email, Teams and files between tenants."
             },
             {
               "label": "Tenant Coexistence & Domain Cutover",
               "href": "/services/tenant-to-tenant-migration/coexistence/",
-              "icon": "cloud-refresh"
+              "icon": "calendar",
+              "description": "Shared calendars and domain cutover."
             }
-          ]
+          ],
+          "icon": "cloud-refresh",
+          "description": "Tenant moves for mergers, acquisitions and divestitures."
         },
         {
           "title": "Data Governance",
@@ -200,14 +236,18 @@
             {
               "label": "Microsoft Purview & Permission Models",
               "href": "/services/data-governance/microsoft-purview/",
-              "icon": "shield"
+              "icon": "shield",
+              "description": "Labels, data loss prevention and permissions."
             },
             {
               "label": "Data Quality Management",
               "href": "/services/data-governance/data-quality-management/",
-              "icon": "shield"
+              "icon": "clipboard-check",
+              "description": "CRM cleanup and duplicate detection."
             }
-          ]
+          ],
+          "icon": "shield",
+          "description": "Permissions, Microsoft Purview and clean CRM data."
         },
         {
           "title": "Application Modernization & DevOps",
@@ -216,14 +256,18 @@
             {
               "label": "Legacy Application Migration",
               "href": "/services/application-modernization/legacy-migration/",
-              "icon": "code"
+              "icon": "cloud",
+              "description": "Move legacy applications to Azure."
             },
             {
               "label": "DevOps & Release Automation",
               "href": "/services/application-modernization/devops-release-automation/",
-              "icon": "code"
+              "icon": "git-compare",
+              "description": "Pipelines, testing and release notes."
             }
-          ]
+          ],
+          "icon": "code",
+          "description": "Legacy applications on Azure, with safer automated releases."
         }
       ],
       "bottomLinks": [
@@ -231,7 +275,197 @@
           "label": "See all services →",
           "href": "/services/"
         }
-      ]
+      ],
+      "featureCard": {
+        "tag": "Client result",
+        "title": "OTIS Elevator: deployments from 13 hours to 4",
+        "description": "Platform and operations leadership for Dynamics, with manual errors reduced to near zero.",
+        "href": "/clients/",
+        "ctaText": "See client results",
+        "bgImage": "/images/mp365/case-studies/otis-elevator-application-modernization.webp"
+      }
+    },
+    {
+      "id": "solutions",
+      "label": "Solutions",
+      "href": "/solutions/",
+      "width": "full",
+      "columns": [
+        {
+          "title": "CRM",
+          "icon": "users",
+          "description": "Go live, modernize and connect your Dynamics 365 CRM.",
+          "items": [
+            {
+              "label": "Rapid CRM Deployment",
+              "href": "/solutions/crm-implementation/",
+              "icon": "chart",
+              "description": "Put Dynamics 365 live using templates and tested releases."
+            },
+            {
+              "label": "Classic CRM Modernization",
+              "href": "/solutions/dynamics-365-migration/",
+              "icon": "cloud-refresh",
+              "description": "Move classic Dynamics CRM to Dynamics 365 online."
+            },
+            {
+              "label": "CRM & Systems Integration",
+              "href": "/solutions/crm-systems-integration/",
+              "icon": "refresh",
+              "description": "Connect the CRM to marketing and third-party tools."
+            }
+          ]
+        },
+        {
+          "title": "Intranet and documents",
+          "icon": "layout",
+          "description": "One trusted place for company news, files and contracts.",
+          "items": [
+            {
+              "label": "Modern Company Intranet",
+              "href": "/solutions/sharepoint-intranet/",
+              "icon": "layout",
+              "description": "Build on Microsoft 365 or buy intranet software."
+            },
+            {
+              "label": "Contract Management Automation",
+              "href": "/solutions/contract-management-automation/",
+              "icon": "file-text",
+              "description": "Stages, owners and renewal reminders for every contract."
+            }
+          ]
+        },
+        {
+          "title": "Reporting",
+          "icon": "chart",
+          "description": "Live numbers for leaders, instead of spreadsheet reports.",
+          "items": [
+            {
+              "label": "Executive Dashboards & Analytics",
+              "href": "/solutions/executive-dashboards/",
+              "icon": "chart",
+              "description": "Live sales, service and operations KPIs in Power BI."
+            }
+          ]
+        },
+        {
+          "title": "Mergers and acquisitions",
+          "icon": "cloud-refresh",
+          "description": "Combine or split Microsoft 365 tenants during a deal.",
+          "items": [
+            {
+              "label": "M&A IT Integration & Separation",
+              "href": "/solutions/m-and-a-it-integration/",
+              "icon": "cloud-refresh",
+              "description": "IT integration and separation on Microsoft 365."
+            }
+          ]
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "See all solutions →",
+          "href": "/solutions/"
+        }
+      ],
+      "featureCard": {
+        "tag": "Client result",
+        "title": "Carlisle Construction: stable within a week",
+        "description": "Dynamics and SharePoint operations stabilized with no long discovery phase.",
+        "href": "/clients/",
+        "ctaText": "See client results",
+        "bgImage": "/images/mp365/case-studies/carlisle-construction-microsoft-365.webp"
+      }
+    },
+    {
+      "id": "industries",
+      "label": "Industries",
+      "href": "/industries/",
+      "width": "full",
+      "columns": [
+        {
+          "title": "Operations and industrial",
+          "icon": "layers",
+          "description": "Quotes, accounts, projects and service across busy operations.",
+          "items": [
+            {
+              "label": "Manufacturing",
+              "href": "/industries/manufacturing/",
+              "icon": "layers",
+              "description": "Quotes, distributor accounts and pipeline reporting."
+            },
+            {
+              "label": "Logistics & Supply Chain",
+              "href": "/industries/logistics-supply-chain/",
+              "icon": "refresh",
+              "description": "Customer accounts, quotes and service cases."
+            },
+            {
+              "label": "Energy & Utilities",
+              "href": "/industries/energy-utilities/",
+              "icon": "zap",
+              "description": "Customer accounts, service requests and shared files."
+            },
+            {
+              "label": "Construction & Engineering",
+              "href": "/industries/construction-engineering/",
+              "icon": "layout",
+              "description": "Bids, clients, projects and project documents."
+            },
+            {
+              "label": "Retail",
+              "href": "/industries/retail/",
+              "icon": "chart",
+              "description": "Customer service, reporting and connected systems."
+            }
+          ]
+        },
+        {
+          "title": "Regulated and public sector",
+          "icon": "shield",
+          "description": "Permission models, access audits and document control.",
+          "items": [
+            {
+              "label": "Financial Services & Credit Unions",
+              "href": "/industries/financial-services/",
+              "icon": "shield",
+              "description": "Member records, advisor workflows and documents."
+            },
+            {
+              "label": "Federal Government",
+              "href": "/industries/government/",
+              "icon": "clipboard-check",
+              "description": "Case and constituent tracking with clear permissions."
+            },
+            {
+              "label": "Medical Devices",
+              "href": "/industries/medical-devices/",
+              "icon": "compass",
+              "description": "Sales, contracts and clean customer data."
+            },
+            {
+              "label": "Healthcare",
+              "href": "/industries/healthcare/",
+              "icon": "users",
+              "description": "Service requests, document control and permissions."
+            }
+          ]
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "See all industries →",
+          "href": "/industries/"
+        }
+      ],
+      "featureCard": {
+        "tag": "Client result",
+        "title": "Hunter Panels: less manual work",
+        "description": "Dynamics CRM support that aligns the platform with the business and improves performance.",
+        "href": "/clients/",
+        "ctaText": "See client results",
+        "bgImage": "/images/mp365/case-studies/hunter-panels-dynamics-365.webp"
+      }
     }
   ],
   "rightActions": {

@@ -225,14 +225,6 @@ export const page: PageContent = {
       q: "Does Dynamics 365 Customer Service include Copilot?",
       a: "Yes. Microsoft Learn (2026) lists Copilot features in Copilot Service workspace that help agents find information, summarize cases and conversations, and complete tasks. Availability depends on your licenses. MP-365 turns them on after knowledge articles and case data are tidy, since Copilot answers from that content.",
     },
-    {
-      q: "Can we bring in cases from our current help desk or inbox?",
-      a: "Yes, selectively. MP-365 imports the case history worth keeping, such as open cases, key customers and recurring issues, and leaves old noise behind. Migrating everything rarely helps. The team agrees the cutoff with you so agents get useful history without a cluttered system.",
-    },
-    {
-      q: "Can Customer Service connect to our ERP?",
-      a: "Yes. MP-365 integrates Dynamics 365 with ERP systems such as Business Central so agents can see orders, invoices or serial numbers from the case. This is an integration, not ERP implementation. The [integration services](/services/dynamics-365-crm/integration-services/) page explains how it works.",
-    },
   ],
   closing:
     "A good Dynamics 365 Customer Service setup is simple: every issue has an owner, a status and a deadline. MP-365 builds that foundation first, then adds routing, knowledge and a portal as your team is ready.",

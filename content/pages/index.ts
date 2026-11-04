@@ -42,9 +42,27 @@ import { page as p38 } from "./services__data-governance__data-quality-managemen
 import { page as p39 } from "./services__application-modernization";
 import { page as p40 } from "./services__application-modernization__legacy-migration";
 import { page as p41 } from "./services__application-modernization__devops-release-automation";
+import { page as p42 } from "./solutions";
+import { page as p43 } from "./industries";
+import { page as p44 } from "./solutions__sharepoint-intranet";
+import { page as p45 } from "./solutions__executive-dashboards";
+import { page as p46 } from "./solutions__crm-implementation";
+import { page as p47 } from "./solutions__dynamics-365-migration";
+import { page as p48 } from "./solutions__contract-management-automation";
+import { page as p49 } from "./solutions__m-and-a-it-integration";
+import { page as p50 } from "./solutions__crm-systems-integration";
+import { page as p51 } from "./industries__manufacturing";
+import { page as p52 } from "./industries__logistics-supply-chain";
+import { page as p53 } from "./industries__energy-utilities";
+import { page as p54 } from "./industries__construction-engineering";
+import { page as p55 } from "./industries__financial-services";
+import { page as p56 } from "./industries__government";
+import { page as p57 } from "./industries__medical-devices";
+import { page as p58 } from "./industries__retail";
+import { page as p59 } from "./industries__healthcare";
 
 export const PAGE_CONTENT: PageContent[] = [
-  p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41,
+  p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50, p51, p52, p53, p54, p55, p56, p57, p58, p59,
 ];
 
 export function getPageContent(path: string): PageContent {

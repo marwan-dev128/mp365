@@ -25,11 +25,14 @@ export function SiteHero({
   h1,
   eyebrow,
   breadcrumbs,
+  ctaText,
   children,
 }: {
   h1: string;
   eyebrow: string;
   breadcrumbs: HeroCrumb[];
+  /** The page call to action, repeated at the top. */
+  ctaText?: string;
   /** The opening paragraph. */
   children: ReactNode;
 }) {
@@ -55,6 +58,15 @@ export function SiteHero({
               <p className="mt-5 text-[16px] leading-[1.65] text-mp-secondary sm:text-[17.5px]">
                 {children}
               </p>
+              {ctaText && (
+                <Link
+                  href="/contact/"
+                  data-track="hero_cta_click"
+                  className="mt-7 inline-flex items-center gap-2 rounded-full bg-mp-saffron px-7 py-3.5 text-sm font-bold text-mp-ink transition-colors hover:bg-mp-saffron-hover"
+                >
+                  {ctaText} <span aria-hidden="true">›</span>
+                </Link>
+              )}
             </div>
 
             <div

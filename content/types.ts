@@ -24,6 +24,10 @@ export type PageContent = {
   intro: string;
   /** Service pages only: the same labels on every page. */
   atAGlance?: AtAGlance;
+  /** Industry pages: the moments that make a team in this industry call. */
+  triggers?: { title: string; body: string }[];
+  /** Solutions and Industries overviews: one or two sentences for each child's card, by path. */
+  childSummaries?: Record<string, string>;
   blocks: ContentBlock[];
   faqs: Faq[];
   /** Closing paragraph, placed before the call to action. */

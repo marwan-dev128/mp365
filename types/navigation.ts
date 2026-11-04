@@ -30,6 +30,8 @@ export interface MegaMenuColumn {
   title: string;
   /** Column headings link to their category page. */
   href?: string;
+  description?: string;
+  icon?: string;
   items: MegaMenuItem[];
 }
 

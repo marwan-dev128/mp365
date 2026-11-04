@@ -197,14 +197,6 @@ export const page: PageContent = {
       q: "Does Copilot work with Dynamics 365 Sales?",
       a: "Yes. Microsoft offers sales agents that research leads and summarize opportunities, and full capabilities require Microsoft 365 Copilot. Their output depends on CRM data quality. MP-365 cleans the data first, then sets up [Dynamics 365 Sales Agents](/services/copilot/sales-agents/).",
     },
-    {
-      q: "What data should we prepare before a Sales implementation?",
-      a: "Gather your account and contact lists, open deals, product or price lists and a plain description of your sales stages. Messy data is normal. MP-365 removes duplicates and standardizes fields during import, so the main preparation is deciding which records still matter.",
-    },
-    {
-      q: "Who owns the system after MP-365 hands it off?",
-      a: "You do. MP-365 documents what it built, trains your administrators and users, and leaves the environment in your Microsoft tenant. Many clients keep MP-365 on call for fixes and changes, but nothing locks you in. You can run it yourself or ask for help when needed.",
-    },
   ],
   closing:
     "Microsoft Dynamics 365 Sales pays off when the process is simple, the data is clean and reps use it daily. MP-365 builds it that way, starting small and expanding as the team adopts it.",

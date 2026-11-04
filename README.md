@@ -15,7 +15,7 @@ Next.js 16 (App Router) site for MP-365 (Modern Partners 365), built from the SE
 
 ## Live pages
 
-Home, About, Contact, Blog, Pricing, Clients, the Services overview, 8 category pages and 28 service pages. `lib/site-data.ts` decides what is live. Solutions, Industries and How We Work stay in `site-data.json` for later, with no route, so nothing may link to them.
+Home, About, Contact, Blog, Pricing, Clients, the Services overview, 8 category pages, 28 service pages, the Solutions overview with 7 solutions, and the Industries overview with 9 industries. `lib/site-data.ts` decides what is live. How We Work stays in `site-data.json` for later, with no route, so nothing may link to it. Solutions and Industries never mention ERP, because the client does no ERP work, and `lib/site-content-rules.ts` enforces that.
 
 ## Editing and checking copy
 
@@ -25,7 +25,7 @@ Edit the page's file in `content/pages/`, then run:
 npx tsx scripts/check-page.ts <id>
 ```
 
-The check applies the plan's rules: keyword placement, FAQ count and length, heading rules, live links only, and no unconfirmed facts. `lib/site-content-rules.ts` holds the rules, and `npm test` runs them on every page.
+The check applies the plan's rules: keyword placement, FAQ count (6 to 10) and length, heading rules, live links only, and no unconfirmed facts. `lib/site-content-rules.ts` holds the rules, and `npm test` runs them on every page.
 
 ## Rules that must hold
 

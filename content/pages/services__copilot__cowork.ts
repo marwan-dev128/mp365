@@ -226,14 +226,6 @@ export const page: PageContent = {
       q: "Do we need a readiness assessment before Cowork?",
       a: "It is strongly advised. Cowork amplifies whatever access users already have, so a permissions problem becomes a faster problem. A [readiness assessment](/services/copilot/readiness/) is a sensible first step for tenants that have never reviewed sharing and site ownership.",
     },
-    {
-      q: "What can Copilot Cowork not do?",
-      a: "Microsoft lists known limits. Cowork cannot access files stored only on a local device, cannot delete files or folders in OneDrive or SharePoint, cannot read encrypted files even when the user has access, and accepts attachments under 200 MB. Plan tasks around these limits.",
-    },
-    {
-      q: "How long does a Copilot Cowork rollout take?",
-      a: "It depends on how clean your permissions are, how many users join the pilot and how much billing setup is needed. MP-365 confirms the schedule after a discovery call and a first look at your data access reports, because that review decides most of the work.",
-    },
   ],
   closing:
     "Copilot Cowork consulting is mostly about preparation: access, data permissions, approvals and training. MP-365 can scope a pilot for your tenant and leave you with settings, a playbook and users who know how to delegate.",

@@ -21,5 +21,15 @@ export * from "./SmoothScroll";
 
 // Home Page Sections
 export * from "./home/CustomerStoriesShowcase";
+export * from "./home/StackedPersonaCards";
+export * from "./home/SolutionCarousel";
+export * from "./home/WhyUsempCarousel";
+export * from "./home/PlatformShowcase";
+export * from "./home/FeatureGrid4Col";
+export * from "./home/BoostEfficiencyGrid";
+export * from "./home/GetExtraSupportGrid";
+export * from "./home/HaveBetterVisibilityGrid";
+export * from "./home/EditorialInsightCards";
+export * from "./home/FlexiTravelStats";
 export * from "./home/DarkHighlightBanner";
 export * from "./home/LocationPresenceMarquee";

@@ -1,0 +1,32 @@
+{
+  "cards": [
+    {
+      "icon": "/images/mp365/icons/senior-delivery-team-icon.webp",
+      "alt": "Senior team",
+      "category": "SENIOR TEAM",
+      "title": "A small,\nsenior team",
+      "description": "You work with specialists who do the work, not layers of management and slow processes."
+    },
+    {
+      "icon": "/images/mp365/icons/migration-continuity-icon.webp",
+      "alt": "Fast starts",
+      "category": "FAST STARTS",
+      "title": "In the problem\nfrom day one",
+      "description": "MP-365 jumps into the problem first. Carlisle Construction had its Dynamics and SharePoint operations stabilized within a week."
+    },
+    {
+      "icon": "/images/mp365/icons/user-adoption-icon.webp",
+      "alt": "Hands-on delivery",
+      "category": "HANDS-ON",
+      "title": "A working first version, early",
+      "description": "The team builds something real, then refines it with your users instead of writing long planning documents."
+    },
+    {
+      "icon": "/images/mp365/icons/data-governance-shield-icon.webp",
+      "alt": "Your time",
+      "category": "YOUR TIME",
+      "title": "Your time\ncomes first",
+      "description": "The aim is that your people spend their time on the business, not on the system."
+    }
+  ]
+}

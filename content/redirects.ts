@@ -6,8 +6,6 @@
 export type PlannedRedirect = {
   source: string;
   destination: string;
-  /** The planned page to point at instead, once it has been built. */
-  laterDestination?: string;
 };
 
 /** Old pages that move, one to one with the closest live page. */
@@ -21,45 +19,37 @@ export const PAGE_REDIRECTS: PlannedRedirect[] = [
   { source: "/services/mergers-and-acquisitions/", destination: "/services/tenant-to-tenant-migration/" },
   {
     source: "/services/contract-management-enablement/",
-    destination: "/services/power-platform/power-automate/",
-    laterDestination: "/solutions/contract-management-automation/",
+    destination: "/solutions/contract-management-automation/",
   },
 
-  // Old solution pages. The Solutions section is not being published yet.
-  { source: "/solutions/", destination: "/services/", laterDestination: "/solutions/" },
+  // Old solution pages.
   { source: "/solutions/sharepoint/", destination: "/services/sharepoint/" },
   {
     source: "/solutions/intranet/",
-    destination: "/services/sharepoint/intranet-development/",
-    laterDestination: "/solutions/sharepoint-intranet/",
+    destination: "/solutions/sharepoint-intranet/",
   },
   {
     source: "/solutions/automated-crm/",
-    destination: "/services/dynamics-365-crm/",
-    laterDestination: "/solutions/crm-implementation/",
+    destination: "/solutions/crm-implementation/",
   },
   {
     source: "/solutions/data-analytics/",
-    destination: "/services/power-platform/power-bi/",
-    laterDestination: "/solutions/executive-dashboards/",
+    destination: "/solutions/executive-dashboards/",
   },
   {
     source: "/solutions/financial-management/",
-    destination: "/services/",
-    laterDestination: "/industries/financial-services/",
+    destination: "/industries/financial-services/",
   },
 
   // Old industry pages, which lived under /solutions/.
-  { source: "/solutions/healthcare/", destination: "/services/", laterDestination: "/industries/healthcare/" },
+  { source: "/solutions/healthcare/", destination: "/industries/healthcare/", },
   {
     source: "/solutions/manufacturing-it-solutions/",
-    destination: "/services/",
-    laterDestination: "/industries/manufacturing/",
+    destination: "/industries/manufacturing/",
   },
   {
     source: "/solutions/it-services-solutions-for-retail/",
-    destination: "/services/",
-    laterDestination: "/industries/retail/",
+    destination: "/industries/retail/",
   },
 
   // Blog categories. The new blog has no category pages.
@@ -84,6 +74,7 @@ export const PATTERN_REDIRECTS: PlannedRedirect[] = [
 /** Live URLs that exist at the same path on the new site, so they need nothing. */
 export const UNCHANGED_PATHS = [
   "/",
+  "/solutions/",
   "/contact/",
   "/blog/",
   "/services/",

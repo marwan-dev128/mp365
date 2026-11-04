@@ -216,10 +216,6 @@ export const page: PageContent = {
       q: "Does MP-365 host or manage our SharePoint servers?",
       a: "No. MP-365 does not provide Azure infrastructure, hosting management or managed IT services. It plans and carries out the migration, hands off documentation, and can return in support mode when something needs fixing. SharePoint Online is run by Microsoft.",
     },
-    {
-      q: "What does the SharePoint Migration Assessment Tool check?",
-      a: "Microsoft's assessment tool scans a SharePoint Server 2010, 2013 or 2016 farm from the command line and reports issues that could affect a move to SharePoint Online, with links to fixes. It runs in the background and does not affect production. MP-365 adds a manual review for custom code.",
-    },
   ],
   closing:
     "SharePoint migration consulting helps you leave an unsupported farm with a plan, not a rush. MP-365 assesses what you have, rebuilds what will not move, and cuts over in stages so your teams keep working.",

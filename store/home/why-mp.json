@@ -1,0 +1,41 @@
+{
+  "autoplayDuration": 6000,
+  "cards": [
+    {
+      "id": "team",
+      "title": "The specialists do the work",
+      "description": "MP-365 is a focused team of Microsoft specialists, not a large consulting firm with layers of management.",
+      "image": "/images/mp365/why/senior-microsoft-delivery-team.webp",
+      "imageType": "contain",
+      "linkText": "About MP-365",
+      "href": "/about/"
+    },
+    {
+      "id": "areas",
+      "title": "Eight service areas, one team",
+      "description": "CRM, SharePoint, Copilot, Power Platform, migration, governance and modernization all sit with the same team.",
+      "image": "/images/mp365/why/one-microsoft-partner-eight-services.webp",
+      "imageType": "contain",
+      "linkText": "See all services",
+      "href": "/services/"
+    },
+    {
+      "id": "focus",
+      "title": "A Microsoft focus",
+      "description": "MP-365 (Modern Partners 365) is a Microsoft Solutions Partner working on Dynamics 365, Microsoft 365, Power Platform and Copilot.",
+      "image": "/images/mp365/why/governance-approvals-workflow.webp",
+      "imageType": "contain",
+      "linkText": "About MP-365",
+      "href": "/about/"
+    },
+    {
+      "id": "hand-off",
+      "title": "You own what gets built",
+      "description": "Every project ends with go-live, training and documentation, so your team can run it without MP-365.",
+      "image": "/images/mp365/why/day-1-tsa-exit-migration-timeline.webp",
+      "imageType": "contain",
+      "linkText": "See client results",
+      "href": "/clients/"
+    }
+  ]
+}

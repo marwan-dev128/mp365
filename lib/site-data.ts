@@ -1,7 +1,7 @@
 // Read access to content/site-data.json, the source of truth for URLs,
 // metadata, breadcrumbs and keywords. The plan holds 62 pages; LIVE_PATHS is
-// the subset being published now. Solutions, Industries and How We Work stay in
-// the data for later but have no route, so nothing may link to them.
+// the subset being published now. How We Work stays in the data for later but
+// has no route, so nothing may link to it.
 import data from "../content/site-data.json";
 
 export type SitePage = (typeof data.pages)[number];
@@ -9,7 +9,12 @@ export type SitePage = (typeof data.pages)[number];
 const NON_SERVICE_LIVE = new Set(["/", "/about/", "/contact/", "/blog/", "/pricing/", "/clients/"]);
 
 export function isLivePath(path: string) {
-  return NON_SERVICE_LIVE.has(path) || path.startsWith("/services/");
+  return (
+    NON_SERVICE_LIVE.has(path) ||
+    path.startsWith("/services/") ||
+    path.startsWith("/solutions/") ||
+    path.startsWith("/industries/")
+  );
 }
 
 export const ALL_PAGES: SitePage[] = data.pages;

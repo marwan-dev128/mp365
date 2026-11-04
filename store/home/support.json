@@ -1,0 +1,46 @@
+{
+  "title": "How MP-365 runs a project",
+  "subtitle": "Four steps, built around getting something real in front of your team early.",
+  "cards": [
+    {
+      "id": "understand",
+      "variant": "lime",
+      "image": "/images/mp365/automation/microsoft-data-integration.webp",
+      "imageAlt": "Microsoft data and systems mapped together",
+      "title": "Understand the problem",
+      "description": "MP-365 learns how your team works today and what is going wrong.",
+      "linkText": "Talk to MP-365",
+      "href": "/contact/"
+    },
+    {
+      "id": "first-version",
+      "variant": "parchment",
+      "image": "/images/mp365/delivery/named-senior-engagement-team.webp",
+      "imageAlt": "A named team working on the project",
+      "title": "Build a quick first version",
+      "description": "The team delivers a working minimum viable product early, so you see real progress.",
+      "linkText": "",
+      "href": ""
+    },
+    {
+      "id": "refine",
+      "variant": "headline",
+      "image": "",
+      "imageAlt": "",
+      "title": "Validate\nand refine",
+      "description": "Your users test it, and MP-365 adjusts it until it fits how they work.",
+      "linkText": "See how pricing works",
+      "href": "/pricing/"
+    },
+    {
+      "id": "hand-off",
+      "variant": "parchment",
+      "image": "/images/mp365/automation/power-automate-process-flow.webp",
+      "imageAlt": "A finished process flow",
+      "title": "Deploy and hand off",
+      "description": "MP-365 releases the solution, trains your people and hands it over with clear documentation.",
+      "linkText": "See client results",
+      "href": "/clients/"
+    }
+  ]
+}

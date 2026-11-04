@@ -230,10 +230,6 @@ export const page: PageContent = {
       q: "Does MP-365 certify a portal for compliance?",
       a: "No. MP-365 builds permission models and checks that roles see only what they should, but it does not certify portals or provide cybersecurity services. If you must meet a framework such as HIPAA or FedRAMP, your compliance team should review the design with MP-365.",
     },
-    {
-      q: "Can a portal trigger workflows in our back office?",
-      a: "Yes. Portal submissions create Dataverse records, and Power Automate flows can then assign owners, send approvals and notify staff. For example, a new application can start an approval and email the applicant at each stage. This is where the portal and the CRM join up.",
-    },
   ],
   closing:
     "Power Pages consulting pays off when outside users need to act on your data, not just read files. MP-365 can list who needs access, design the permissions and build the first portal on your Dynamics 365 or Dataverse tables.",

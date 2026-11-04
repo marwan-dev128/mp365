@@ -242,13 +242,9 @@ export const page: PageContent = {
       q: "What is the difference between coexistence and migration?",
       a: "Migration moves the data. Coexistence keeps the two companies working together before, during and after the move, with shared directory visibility, calendar sharing and mail routing. Most deals need both. MP-365 covers coexistence in its tenant coexistence and domain cutover service.",
     },
-    {
-      q: "Will our users keep their email addresses?",
-      a: "Eventually, yes, if the domain moves to the surviving tenant. During the migration, users have target-tenant addresses because only one tenant can own a domain. At cutover, the domain is released from the source tenant and added to the target tenant, and users sign in with the final address.",
-    },
   ],
   closing:
-    "Tenant to tenant migration works when you know early what Microsoft's tools carry and what they leave behind. MP-365 scopes the gaps first, then runs mail, files and the domain cutover to fit your deal calendar.",
+    "Tenant to tenant migration works when you know early what Microsoft's tools carry and what they leave behind. MP-365 scopes the gaps first, then runs mail, files and the domain cutover to fit your deal calendar. For the wider deal, read about [M&A IT integration and separation](/solutions/m-and-a-it-integration/).",
   cta: {
     heading: "Plan your tenant to tenant migration",
     body: "Tell MP-365 about the deal: which tenants, how many users and which Microsoft 365 workloads matter most. You will get a clear list of what moves and what needs rebuilding.",

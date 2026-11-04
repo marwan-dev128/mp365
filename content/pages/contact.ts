@@ -47,6 +47,10 @@ export const page: PageContent = {
       q: "Can I ask about a single small issue?",
       a: "Yes. The Ad hoc engagement model has no commitment, no minimum and no retainer, so you pay only when you engage MP-365. Describe the issue in your message, and the team will tell you whether it can help. See the [services overview](/services/) for the range of work.",
     },
+    {
+      q: "Where is MP-365 based?",
+      a: "MP-365 is based in Vernon, Connecticut, and works with clients across the United States. Most of the work runs remotely, so your location does not limit the project. The office address and phone number are on this page.",
+    },
   ],
   closing:
     "To contact MP-365, send a short message about the problem you want solved. The team reads it, replies with next steps and, if it is a fit, scopes the work with you.",

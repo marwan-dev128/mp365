@@ -221,10 +221,6 @@ export const page: PageContent = {
       q: "Do you clean ERP or other non-CRM data?",
       a: "No. MP-365's data quality work focuses on Dynamics 365. Where an ERP system such as Business Central feeds the CRM, MP-365 looks at how records are matched and passed through the integration, but it does not cleanse the ERP system itself.",
     },
-    {
-      q: "Who needs to be involved from our side?",
-      a: "You need a business owner who can make match and merge decisions, a Dynamics 365 administrator, and a few record owners from sales or service who check proposed merges. The time required is modest if the decisions are made quickly and in advance.",
-    },
   ],
   closing:
     "CRM cleanup is worth doing once and then protecting. MP-365 fixes the records you have, sets the rules for the records you will create and leaves your team with a data standard to follow.",

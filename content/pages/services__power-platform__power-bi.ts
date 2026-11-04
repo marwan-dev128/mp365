@@ -238,13 +238,9 @@ export const page: PageContent = {
       q: "Is Power BI the same as Excel?",
       a: "No. Excel works well for ad hoc analysis by one person, while Power BI is built for shared, refreshed reports with a governed data model and role-based access. Many teams keep using Excel for analysis and use Power BI for the numbers leaders review each week.",
     },
-    {
-      q: "What should we look for in a Power BI consultant?",
-      a: "Look for someone who asks about decisions before charts, understands your source systems, reconciles totals to the source and explains security. Ask what you will own at handover. MP-365 works inside Dynamics 365 and SharePoint, so the person building your Power BI dashboards also understands the data behind them.",
-    },
   ],
   closing:
-    "Power BI consulting works when it starts with the decisions your leaders make and ends with numbers they trust. MP-365 can build the first dashboard on your Dynamics 365 data, reconcile it to the source and set up the security around it.",
+    "Power BI consulting works when it starts with the decisions your leaders make and ends with numbers they trust. MP-365 can build the first dashboard on your Dynamics 365 data, reconcile it to the source and set up the security around it. For what leaders should see first, read about [executive dashboards](/solutions/executive-dashboards/).",
   cta: {
     heading: "Talk to MP-365 about your dashboards",
     body: "Tell us which report takes the longest to produce. We will outline a dashboard and where the data would come from.",

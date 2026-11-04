@@ -199,7 +199,7 @@ export const page: PageContent = {
     },
   ],
   closing:
-    "Microsoft 365 consulting from MP-365 spans eight areas, and each one has detailed pages for the work you may need. Use the situation table to pick a starting point, or describe your problem and let the team recommend one.",
+    "Microsoft 365 consulting from MP-365 spans eight areas, and each one has detailed pages for the work you may need. Use the situation table to pick a starting point, or describe your problem and let the team recommend one. To start from a business problem or your sector instead, see [Microsoft solutions](/solutions/) or [solutions by industry](/industries/).",
   cta: {
     heading: "Not sure which service fits?",
     body: "Tell MP-365 what is going wrong. The team will point you to the right starting service.",

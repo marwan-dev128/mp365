@@ -202,10 +202,6 @@ export const page: PageContent = {
       q: "What licenses do we need for Copilot Studio?",
       a: "Licensing depends on the type of agent you build and how it is used, and Microsoft sets those terms in its Copilot Studio licensing documentation. You buy from Microsoft or your license provider. MP-365 does not resell licenses, but it will list what your design requires.",
     },
-    {
-      q: "Can the agent take actions, or only answer questions?",
-      a: "It can do both. Agents use tools and agent flows to act, for example creating a record or sending a message. MP-365 starts most agents in a read-only mode, then adds actions one at a time after the answers are reliable and the approvals are clear.",
-    },
   ],
   closing:
     "Custom Copilot agents work best when they have one job, clean data and a named owner. If you have a process in mind, MP-365 can tell you whether Copilot Studio fits and what the build would involve.",

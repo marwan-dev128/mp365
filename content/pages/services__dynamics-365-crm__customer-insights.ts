@@ -208,14 +208,6 @@ export const page: PageContent = {
       q: "Is Customer Insights - Journeys a good fit for a mid-size company?",
       a: "Yes, when you have a marketing owner, a contact list large enough to segment and a sales team that follows up leads in Dynamics 365. It is less suitable if you send a few messages a year. MP-365 keeps the first setup small so the team can run it.",
     },
-    {
-      q: "Does MP-365 write and send the campaigns?",
-      a: "No. MP-365 builds and supports the system: sending setup, segments, forms, journeys and reporting. Your marketers write messages and choose audiences, and MP-365 trains them to do it. This keeps campaign knowledge in your team and keeps the system simple to run.",
-    },
-    {
-      q: "Can we see campaign results next to pipeline?",
-      a: "Yes. Because engagement and opportunities sit on linked records, MP-365 can report on which journeys produced leads and deals, not only opens and clicks. Dashboards in [Power BI](/services/power-platform/power-bi/) bring those numbers together for marketing and sales leaders.",
-    },
   ],
   closing:
     "If you were running Microsoft Dynamics 365 Marketing before the rename, the job now sits in Customer Insights - Journeys, and some assets need rebuilding. MP-365 handles the setup, the rebuild and the connection to Sales.",
