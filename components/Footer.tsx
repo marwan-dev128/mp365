@@ -202,10 +202,10 @@ export function Footer({
             </div>
           </div>
 
-          {/* Navigation, split the way the menu is */}
+          {/* Navigation: Services with Company under it, then Solutions, then Industries */}
           <nav
             aria-label="Footer"
-            className="grid grid-cols-2 gap-x-6 gap-y-10 py-10 sm:gap-x-10 sm:gap-y-12 sm:py-12 lg:grid-cols-12 lg:py-14"
+            className="grid grid-cols-2 gap-x-6 gap-y-10 py-10 sm:gap-x-10 sm:gap-y-12 sm:py-12 lg:grid-cols-[1.7fr_1fr_1fr] lg:gap-x-14 lg:py-14"
           >
             {sections.map((section) => {
               const isServices =
@@ -213,11 +213,9 @@ export function Footer({
               return (
                 <div
                   key={section.href}
-                  className={
-                    isServices ? "col-span-2 lg:col-span-5" : "col-span-1 lg:col-span-2"
-                  }
+                  className={isServices ? "col-span-2 lg:col-span-1" : "col-span-1"}
                 >
-                  <FooterHeading href={section.href}>
+                  <FooterHeading href={section.href} allLabel="View all">
                     {section.title}
                   </FooterHeading>
                   {section.groups.map((group) => (
@@ -270,42 +268,35 @@ export function Footer({
                       </ul>
                     </div>
                   ))}
-                  <Link
-                    href={section.href}
-                    className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-white/25 px-4 py-1.5 text-[12.5px] font-semibold text-white transition-colors hover:bg-white hover:text-mp-petrol"
-                  >
-                    {section.allLabel} <span aria-hidden="true">›</span>
-                  </Link>
+                  {isServices && company && (
+                    <div className="mt-10 border-t border-white/15 pt-8 sm:mt-12">
+                      <FooterHeading>{company.title}</FooterHeading>
+                      <p className="mb-5 max-w-lg text-[13px] leading-[1.6] text-white/65">
+                        {company.blurb}
+                      </p>
+                      <ul className="flex flex-wrap gap-x-6 gap-y-2.5">
+                        {company.links.map((link) => (
+                          <li key={link.href}>
+                            <Link
+                              href={link.href}
+                              className="text-[13.5px] text-white/85 underline-offset-4 transition-colors hover:text-mp-mint hover:underline"
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href={`mailto:${company.email}`}
+                        className="mt-5 inline-block text-[13.5px] font-semibold text-mp-mint underline-offset-4 hover:underline"
+                      >
+                        {company.email}
+                      </a>
+                    </div>
+                  )}
                 </div>
               );
             })}
-
-            {company && (
-              <div className="col-span-2 lg:col-span-3">
-                <FooterHeading>{company.title}</FooterHeading>
-                <p className="mb-5 text-[13px] leading-[1.6] text-white/65">
-                  {company.blurb}
-                </p>
-                <ul className="flex flex-wrap gap-x-5 gap-y-2.5 lg:flex-col">
-                  {company.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-[13.5px] text-white/85 underline-offset-4 transition-colors hover:text-mp-mint hover:underline"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`mailto:${company.email}`}
-                  className="mt-6 block text-[13.5px] font-semibold text-mp-mint underline-offset-4 hover:underline"
-                >
-                  {company.email}
-                </a>
-              </div>
-            )}
           </nav>
         </div>
 
@@ -411,21 +402,39 @@ export function Footer({
 
 function FooterHeading({
   href,
+  allLabel,
   children,
 }: {
   href?: string;
+  allLabel?: string;
   children: ReactNode;
 }) {
   const className =
-    "mb-5 block font-display text-[18px] font-bold tracking-[-0.02em] text-mp-mint";
-  return href ? (
-    <Link
-      href={href}
-      className={`${className} hover:underline underline-offset-4`}
-    >
-      {children}
-    </Link>
-  ) : (
-    <p className={className}>{children}</p>
+    "font-display text-[18px] font-bold tracking-[-0.02em] text-mp-mint";
+  if (!href) return <p className={`mb-5 ${className}`}>{children}</p>;
+  return (
+    <div className="mb-5 flex items-baseline justify-between gap-3 border-b border-white/10 pb-3">
+      <Link
+        href={href}
+        className={`${className} underline-offset-4 hover:underline`}
+      >
+        {children}
+      </Link>
+      {allLabel && (
+        <Link
+          href={href}
+          className="group/va inline-flex shrink-0 items-center gap-1 text-[12.5px] font-semibold text-white/70 transition-colors hover:text-mp-mint"
+        >
+          {allLabel}
+          <span
+            aria-hidden="true"
+            className="transition-transform group-hover/va:translate-x-0.5"
+          >
+            ›
+          </span>
+          <span className="sr-only"> {String(children)}</span>
+        </Link>
+      )}
+    </div>
   );
 }

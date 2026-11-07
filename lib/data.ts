@@ -19,6 +19,7 @@ export const CLUSTER_LABELS: Record<PrismaBlogCluster, string> = {
   Dynamics365: "Dynamics 365",
   PowerPlatform: "Power Platform",
   DataGovernance: "Data Governance",
+  CopilotAI: "Copilot & AI",
 };
 
 export type ClusterCta = {

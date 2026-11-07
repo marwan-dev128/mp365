@@ -33,7 +33,9 @@ Facts the published pages leave out until the client confirms them. Pages are wr
 
 ## Planned later
 
-- Import the existing blog posts into `prisma/seed-data/blog.ts`, then add their internal links.
+- Done: the 26 blog posts are imported in `prisma/seed-data/blog-posts/` with their slugs, SEO clean-up, links to the service pages, and no ERP or prices (`npx tsx scripts/check-blog-post.ts --all`).
+- Blog images: 4 featured images were dropped because the artwork shows ERP or a price (`dynamics-365-sales-quote-delays-crm-erp-client-fix`, `what-is-microsoft-dynamics-365`, `what-is-dynamics-365-sales-premium`, `microsoft-copilot-for-business-dynamics-365-automation`), and `how-to-use-microsoft-copilot-to-supercharge-your-productivity` never had one. These 5 posts use the site's default card until new artwork is made.
+- Blog facts to confirm: statistics kept from the old posts (McKinsey and survey percentages in `ai-sales-tools-guide`, "80 to 95% of AI projects fail" style figures, the "positive return within the first month" claim in `how-to-use-microsoft-copilot-to-supercharge-your-productivity`, the Gartner line in `what-is-dynamics-365-sales-enterprise`).
 - How We Work stays in `content/site-data.json` with no route. Add it when the client wants it, and restore its links from each page's `internal_links`.
 - **Solutions and Industries proof gaps:** no named client result exists for logistics, energy and utilities, financial services, medical devices, retail or M&A deals. Those pages use anonymized stories or results from another industry, and say so. Real examples would make them stronger.
 - **ERP on the service pages:** Solutions and Industries never mention ERP. Service pages, Home and About still mention connecting the CRM to ERP systems, as integration only, following the plan. Confirm with the client whether that wording should stay.

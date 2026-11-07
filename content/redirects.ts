@@ -84,8 +84,8 @@ export const UNCHANGED_PATHS = [
 ];
 
 /**
- * Live blog posts. They keep their URLs, so they get no redirect, but each one
- * returns 404 on the new site until it is imported.
+ * Live blog posts. They keep their URLs, so they get no redirect. All 26 are
+ * imported in prisma/seed-data/blog-posts/.
  */
 export const LIVE_BLOG_POSTS = [
   "dynamics-365-sla-breaches",

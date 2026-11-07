@@ -1,13 +1,13 @@
 type Faq = { q: string; a: string };
 import type { MarketingBlock } from "../../lib/marketing-blocks";
 
-// Blog content. Empty until the existing posts are imported from the live site.
+// Blog content: the posts imported from the live site.
 
 export type BlogPost = {
   slug: string;
   title: string;
   metaDescription: string;
-  cluster: "M&A Migration" | "Dynamics 365" | "Power Platform" | "Data Governance";
+  cluster: "M&A Migration" | "Dynamics 365" | "Power Platform" | "Data Governance" | "Copilot & AI";
   authorSlug: "mp365-team";
   datePublished: string; // ISO
   dateModified: string; // ISO
@@ -34,4 +34,6 @@ export type BlogPost = {
   faqs: Faq[];
 };
 
-export const blogPosts: BlogPost[] = [];
+// One file per post in ./blog-posts, imported from the live WordPress blog with
+// the same slugs. scripts/check-blog-post.ts checks them.
+export { blogPosts } from "./blog-posts";

@@ -7,7 +7,7 @@
 // missing, so a new cluster can never break a live article.
 
 export type BlogClusterCtaSeed = {
-  cluster: "M&A Migration" | "Dynamics 365" | "Power Platform" | "Data Governance";
+  cluster: "M&A Migration" | "Dynamics 365" | "Power Platform" | "Data Governance" | "Copilot & AI";
   /** Small uppercase eyebrow above the title. */
   tag: string;
   title: string;
@@ -45,5 +45,12 @@ export const blogClusterCtas: BlogClusterCtaSeed[] = [
     title: "Need the data picture before you commit?",
     body: "Purview, DLP and retention assessed against what your deal or audit actually requires.",
     ctaText: "Talk to a governance lead",
+  },
+  {
+    cluster: "Copilot & AI",
+    tag: "Copilot & AI",
+    title: "Getting ready for Copilot?",
+    body: "MP-365 checks your data, permissions and people before Copilot or a custom agent goes live.",
+    ctaText: "Book a free consultation",
   },
 ];

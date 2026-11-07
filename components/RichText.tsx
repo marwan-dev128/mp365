@@ -55,6 +55,18 @@ export function RichText({ text }: { text: string }) {
               <RichText text={part.value} />
             </strong>
           );
+        if (part.href.startsWith("https://"))
+          return (
+            <a
+              key={i}
+              href={part.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-azure hover:underline"
+            >
+              {part.label}
+            </a>
+          );
         return (
           <Link key={i} href={part.href} className="font-semibold text-azure hover:underline">
             {part.label}

@@ -80,6 +80,7 @@ test("inline links use the grammar the renderer supports", () => {
     const parsed = [...blob.matchAll(inlineTokenPattern())].map((m) => m[2]).filter(Boolean);
     const raw = [...blob.matchAll(/\]\(([^)]*)\)/g)].map((m) => m[1]);
     assert.equal(parsed.length, raw.length, `${p.path}: a link the renderer cannot parse`);
+    assert.ok(parsed.every((h) => h.startsWith("/")), `${p.path}: site pages link internally only`);
   }
 });
 

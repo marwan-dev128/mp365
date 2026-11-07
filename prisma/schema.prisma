@@ -337,6 +337,7 @@ enum BlogCluster {
   Dynamics365
   PowerPlatform
   DataGovernance
+  CopilotAI
 }
 
 model BlogPost {

@@ -2,14 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { stripInlineMarkup } from "./richtext";
+import { INLINE_TOKEN_SOURCE, stripInlineMarkup } from "./richtext";
 
 // RichText is a .tsx React component, so rather than importing JSX into the
 // node test runner we re-derive its token grammar here and assert the seeded
 // content actually matches it. The regression this guards: blog list items
 // used to render `{item}` directly, printing raw `**bold**` and `[label](/x/)`
 // onto three live articles and silently dropping two internal links.
-const TOKEN = /\[([^\]]+)\]\((\/[^)]*)\)|\*\*([^*]+)\*\*/g;
+const TOKEN = /\[([^\]]+)\]\(((?:\/|https:\/\/)[^)\s]*)\)|\*\*([^*]+)\*\*/g;
 
 function unparsedMarkup(text: string): string[] {
   // Repeat until stable: bold can wrap a link, so one pass isn't enough.
@@ -45,6 +45,9 @@ test("every string in page copy and blog posts is fully parseable, with no lefto
   const dir = join(process.cwd(), "content/pages");
   const src = [
     readFileSync(join(process.cwd(), "prisma/seed-data/blog.ts"), "utf8"),
+    ...readdirSync(join(process.cwd(), "prisma/seed-data/blog-posts"))
+      .filter((f) => f.endsWith(".ts"))
+      .map((f) => readFileSync(join(process.cwd(), "prisma/seed-data/blog-posts", f), "utf8")),
     ...readdirSync(dir)
       .filter((f) => f.endsWith(".ts"))
       .map((f) => readFileSync(join(dir, f), "utf8")),
@@ -61,4 +64,8 @@ test("every string in page copy and blog posts is fully parseable, with no lefto
     if (issues.length) bad.push(`${issues.join(", ")} in: ${text.slice(0, 70)}…`);
   }
   assert.deepEqual(bad, [], `unparseable inline markup found:\n${bad.join("\n")}`);
+});
+
+test("this test's copy of the grammar matches the renderer's", () => {
+  assert.equal(TOKEN.source, INLINE_TOKEN_SOURCE);
 });

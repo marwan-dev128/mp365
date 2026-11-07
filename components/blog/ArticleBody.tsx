@@ -135,7 +135,28 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
       const firstColIsRowHeader = section.headers[0] === "";
       const label = section.heading ? stripInlineMarkup(section.heading) : "Comparison table";
       return (
-        <div className="my-6 overflow-hidden rounded-[24px] border border-mp-border bg-white shadow-2xs">
+        <>
+        {/* Phones: each row is a card with its column labels, so nothing scrolls sideways. */}
+        <ul aria-label={label} className="my-6 flex flex-col gap-2.5 rounded-[24px] bg-mp-parchment p-2.5 md:hidden">
+          {section.rows.map((row, j) => (
+            <li key={j} className="rounded-[18px] bg-white px-5 py-4">
+              <p className="font-display text-[15.5px] font-bold leading-snug tracking-[-0.015em] text-mp-ink">
+                <RichText text={row[0]} />
+              </p>
+              {row.slice(1).map((cell, k) => (
+                <p key={k} className="mt-2.5 text-[14px] leading-[1.55] text-mp-secondary">
+                  {section.headers[k + 1] && (
+                    <span className="mb-0.5 block text-[10.5px] font-bold uppercase tracking-[0.12em] text-mp-muted">
+                      {section.headers[k + 1]}
+                    </span>
+                  )}
+                  <RichText text={cell} />
+                </p>
+              ))}
+            </li>
+          ))}
+        </ul>
+        <div className="my-6 hidden overflow-hidden rounded-[24px] border border-mp-border bg-white shadow-2xs md:block">
           <div
             role="group"
             tabIndex={0}
@@ -186,6 +207,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
             </table>
           </div>
         </div>
+        </>
       );
     }
 

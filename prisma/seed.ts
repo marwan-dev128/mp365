@@ -13,6 +13,7 @@ const CLUSTER_MAP: Record<string, BlogCluster> = {
   "Dynamics 365": BlogCluster.Dynamics365,
   "Power Platform": BlogCluster.PowerPlatform,
   "Data Governance": BlogCluster.DataGovernance,
+  "Copilot & AI": BlogCluster.CopilotAI,
 };
 
 async function main() {

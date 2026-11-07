@@ -1,5 +1,6 @@
 // Shared grammar for the lightweight inline markup used in seeded copy:
 //   [label](/path/)  -> internal link
+//   [label](https://…) -> external link (blog posts cite Microsoft docs), opens in a new tab
 //   **text**         -> emphasis
 //
 // Two consumers must stay in lockstep:
@@ -9,7 +10,7 @@
 // Emitting the raw source into either place leaks `**` and `[](…)` to users
 // and to search engines.
 
-export const INLINE_TOKEN_SOURCE = String.raw`\[([^\]]+)\]\((\/[^)]*)\)|\*\*([^*]+)\*\*`;
+export const INLINE_TOKEN_SOURCE = String.raw`\[([^\]]+)\]\(((?:\/|https:\/\/)[^)\s]*)\)|\*\*([^*]+)\*\*`;
 
 /** A fresh RegExp per call — a shared one's lastIndex is unsafe across renders. */
 export function inlineTokenPattern() {
