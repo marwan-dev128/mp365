@@ -240,6 +240,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Copilot pilot with MP-365",
     body: "Tell us about your tenant and the teams that will use Copilot first. MP-365 will scope the readiness assessment.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

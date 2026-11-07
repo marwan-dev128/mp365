@@ -57,6 +57,6 @@ export const page: PageContent = {
   cta: {
     heading: "Ready to talk to MP-365?",
     body: "Tell the team about your project and what you want to change.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

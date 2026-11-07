@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
  * and hides at the footer, so it never covers the contact details there.
  * Fixed-position, so it causes no layout shift.
  */
-export function StickyConsultBar({ label = "Book a discovery call" }: { label?: string }) {
+export function StickyConsultBar({ label = "Book a free consultation" }: { label?: string }) {
   const [pastHero, setPastHero] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
 
@@ -35,16 +35,17 @@ export function StickyConsultBar({ label = "Book a discovery call" }: { label?: 
   return (
     <div
       aria-hidden={!show}
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/15 bg-mp-petrol px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-transform duration-300 lg:hidden ${
-        show ? "translate-y-0" : "translate-y-full"
+      className={`pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(0.875rem,env(safe-area-inset-bottom))] transition-transform duration-300 lg:hidden ${
+        show ? "translate-y-0" : "translate-y-[150%]"
       }`}
     >
       <Link
         href="/contact/"
         tabIndex={show ? 0 : -1}
         data-track="sticky_cta_click"
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-mp-saffron px-5 py-3 text-sm font-bold text-mp-ink transition-colors hover:bg-mp-saffron-hover"
+        className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-mp-saffron py-2 pl-2 pr-4 text-[13px] font-bold text-mp-ink shadow-[0_6px_20px_rgba(8,40,48,0.28)] transition-colors hover:bg-mp-saffron-hover"
       >
+        <span className="rounded-full bg-mp-ink px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-[0.12em] text-mp-saffron">Free</span>
         {label} <span aria-hidden="true">›</span>
       </Link>
     </div>

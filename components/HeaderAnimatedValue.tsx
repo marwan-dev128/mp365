@@ -15,7 +15,7 @@ export interface HeaderAnimatedValueProps {
 export function HeaderAnimatedValue({
   title,
   description = "A small, senior team that starts fast and builds with your users.",
-  buttonText = "Book a discovery call",
+  buttonText = "Book a free consultation",
   buttonHref = "/contact/",
   buttonTarget,
   className,

@@ -248,6 +248,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your tenant to tenant migration",
     body: "Tell MP-365 about the deal: which tenants, how many users and which Microsoft 365 workloads matter most. You will get a clear list of what moves and what needs rebuilding.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

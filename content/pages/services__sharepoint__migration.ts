@@ -222,6 +222,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your SharePoint migration with MP-365",
     body: "Share which SharePoint Server version you run and what is customized. We will tell you what is involved and in what order to move.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

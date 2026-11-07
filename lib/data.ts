@@ -33,7 +33,7 @@ export const DEFAULT_BLOG_CTA: ClusterCta = {
   tag: "Direct guidance",
   title: "Working through this on a real project?",
   body: "Tell us what you are dealing with and we will point you at the right next step.",
-  ctaText: "Book a discovery call",
+  ctaText: "Book a free consultation",
   ctaHref: "/contact/",
 };
 

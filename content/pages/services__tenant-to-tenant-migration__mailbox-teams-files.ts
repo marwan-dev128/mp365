@@ -259,6 +259,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your cross-tenant migration",
     body: "Share the number of users, the workloads in scope and any holds. MP-365 will return a list of what moves and what is rebuilt.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

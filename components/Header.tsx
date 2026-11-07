@@ -769,7 +769,7 @@ export function Header({
                 onClick={closeAll}
                 className="flex items-center justify-center gap-1.5 rounded-full bg-mp-lime py-3 text-[13.5px] font-bold text-mp-ink hover:bg-mp-lime-hover transition-colors shadow-2xs"
               >
-                <span>Book a discovery call</span>
+                <span>Book a free consultation</span>
                 <span className="text-sm font-semibold">›</span>
               </Link>
             </div>

@@ -24,11 +24,14 @@ export interface SolutionCarouselProps {
 const DEFAULT_SLIDES: ExpandableSlideItem[] = defaultData.slides;
 const DEFAULT_AUTOPLAY_DURATION = defaultData.autoplayDuration || 6500;
 
-const PHASE1_SLIDE_DURATION = 750; // time to slide previous card away & move next card into place (ms)
-const PHASE2_EXPAND_DURATION = 750; // time to expand the card width to 860px (ms)
+const DESKTOP_SPEED = 750; // slide, then expand, on desktop (ms)
+const MOBILE_SPEED = 420; // phones have no expand step, so the move is quicker
+const MOBILE_AUTOPLAY_MAX = 3500;
 
 const DESKTOP_COLLAPSED_WIDTH = 420;
 const DESKTOP_GAP = 20;
+const MOBILE_GAP = 12;
+const MOBILE_MAX_WIDTH = 300;
 
 export function SolutionCarousel({
   slides = DEFAULT_SLIDES,
@@ -52,6 +55,19 @@ export function SolutionCarousel({
   const [isAnimating, setIsAnimating] = useState(false);
   const [enableTransition, setEnableTransition] = useState(true);
 
+  // Phones get a narrower card, measured so the track offset matches the real width.
+  const [mobileWidth, setMobileWidth] = useState<number | null>(null);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setMobileWidth(mq.matches ? Math.min(MOBILE_MAX_WIDTH, window.innerWidth - 72) : null);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  const speed = mobileWidth ? MOBILE_SPEED : DESKTOP_SPEED;
+  const slideDuration = mobileWidth ? Math.min(autoplayDuration, MOBILE_AUTOPLAY_MAX) : autoplayDuration;
+
+  const touchStartX = useRef<number | null>(null);
   const phaseTimerRef = useRef<NodeJS.Timeout | null>(null);
   const snapTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -95,10 +111,10 @@ export function SolutionCarousel({
               });
             });
           }
-        }, PHASE2_EXPAND_DURATION);
-      }, PHASE1_SLIDE_DURATION);
+        }, speed);
+      }, speed);
     },
-    [expandedIndex, isAnimating, virtualIndex]
+    [expandedIndex, isAnimating, virtualIndex, speed, TOTAL_SLIDES]
   );
 
   const handlePrev = useCallback(() => {
@@ -127,7 +143,7 @@ export function SolutionCarousel({
 
     let animFrameId: number;
     let startTimestamp: number | null = null;
-    const duration = autoplayDuration;
+    const duration = slideDuration;
 
     const tick = (now: number) => {
       if (startTimestamp === null) {
@@ -153,7 +169,7 @@ export function SolutionCarousel({
         cancelAnimationFrame(animFrameId);
       }
     };
-  }, [expandedIndex, handleNext, isAnimating, isPaused, inView]);
+  }, [expandedIndex, handleNext, isAnimating, isPaused, inView, slideDuration]);
 
   // Clean up timers on unmount
   useEffect(() => {
@@ -164,15 +180,14 @@ export function SolutionCarousel({
   }, []);
 
   // Compute precise track offset based on virtualIndex
-  const trackOffset = virtualIndex * (DESKTOP_COLLAPSED_WIDTH + DESKTOP_GAP);
+  const gap = mobileWidth ? MOBILE_GAP : DESKTOP_GAP;
+  const trackOffset = virtualIndex * ((mobileWidth ?? DESKTOP_COLLAPSED_WIDTH) + gap);
 
   return (
     <section
       ref={viewRef}
       className="w-full bg-white py-16 sm:py-24 overflow-hidden"
       data-component="expandableCarousel"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4">
         {/* ------------------------------------------------ Section Header */}
@@ -189,7 +204,23 @@ export function SolutionCarousel({
       </div>
 
       {/* ------------------------------------------------ Animated Carousel Viewport (Infinite Loop) */}
-      <div className="w-full relative overflow-hidden">
+      <div
+        className="w-full relative overflow-hidden touch-pan-y"
+        onTouchStart={(e) => {
+          touchStartX.current = e.touches[0].clientX;
+          setIsPaused(true);
+        }}
+        onTouchEnd={(e) => {
+          const start = touchStartX.current;
+          touchStartX.current = null;
+          setIsPaused(false);
+          if (start === null) return;
+          const dx = e.changedTouches[0].clientX - start;
+          if (Math.abs(dx) < 40) return;
+          if (dx < 0) handleNext();
+          else handlePrev();
+        }}
+      >
         <div className="overflow-hidden ml-5 sm:ml-8 lg:ml-[max(3rem,calc((100vw-1440px)/2+3rem))]">
           <div
             className={`flex items-stretch ${
@@ -199,7 +230,8 @@ export function SolutionCarousel({
             } will-change-transform`}
             style={{
               transform: `translate3d(-${trackOffset}px, 0px, 0px)`,
-              gap: `${DESKTOP_GAP}px`,
+              gap: `${gap}px`,
+              transitionDuration: `${speed}ms`,
             }}
           >
             {DISPLAY_SLIDES.map((slide, displayIdx) => {
@@ -211,7 +243,10 @@ export function SolutionCarousel({
                 <div
                   key={`${slide.cloneSet}-${slide.id}-${displayIdx}`}
                   onClick={() => transitionToVirtual(displayIdx)}
-                  className={`group shrink-0 relative bg-[#F1EBDF] h-[460px] md:h-[430px] rounded-[24px] md:rounded-[28px] overflow-hidden cursor-pointer ${
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
+                  style={{ transitionDuration: `${speed}ms`, ...(mobileWidth ? { width: mobileWidth } : {}) }}
+                  className={`group shrink-0 relative bg-[#F1EBDF] h-[340px] md:h-[430px] rounded-[24px] md:rounded-[28px] overflow-hidden cursor-pointer ${
                     enableTransition
                       ? "transition-[width,opacity,border-color,box-shadow] duration-[750ms] ease-[cubic-bezier(0.25,1,0.35,1)]"
                       : ""
@@ -224,7 +259,7 @@ export function SolutionCarousel({
                   data-current={isCurrent}
                 >
                   {/* Left Column Content */}
-                  <div className="flex flex-col justify-between h-full p-6 md:p-8 max-w-[340px] z-[2]">
+                  <div className="flex flex-col justify-between h-full p-5 md:p-8 max-w-[340px] z-[2]">
                     {/* Top Pill */}
                     <div className="shrink-0 mb-auto rounded-full border border-mp-ink/20 bg-white/80 backdrop-blur-xs py-1.5 px-3 w-fit flex items-center gap-1.5 shadow-2xs">
                       <svg
@@ -301,7 +336,13 @@ export function SolutionCarousel({
       </div>
 
       {/* ------------------------------------------------ Bottom Controls: Dots Progress + Arrow Buttons */}
-      <div className="relative mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4 mt-8 sm:mt-12 flex items-center justify-center">
+      <p aria-hidden="true" className="mt-6 flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-mp-muted md:hidden">
+        <span>Swipe or tap a card</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className="mp-swipe-nudge">
+          <path d="M5 12h12m0 0-4-4m4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </p>
+      <div className="relative mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4 mt-3 md:mt-12 flex items-center justify-center">
         {/* Centered Dynamic Progress Indicators (Always 7 Dots) */}
         <div className="flex items-center gap-2.5 justify-center">
           {slides.map((slide, idx) => {

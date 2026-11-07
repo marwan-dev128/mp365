@@ -168,6 +168,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your utility CRM with MP-365",
     body: "Tell us how accounts, requests and documents work today. We will show how Dynamics 365 and SharePoint can fit.",
-    text: "Talk to MP-365 about energy and utilities",
+    text: "Book a free energy and utilities consultation",
   },
 };

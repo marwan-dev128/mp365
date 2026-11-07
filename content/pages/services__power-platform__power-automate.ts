@@ -227,6 +227,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about automating your first process",
     body: "Name the task your team repeats the most. We will tell you whether a flow fits and how a first version would work.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

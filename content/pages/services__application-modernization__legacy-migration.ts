@@ -245,6 +245,6 @@ export const page: PageContent = {
   cta: {
     heading: "Start with an application inventory",
     body: "Send MP-365 the list of systems that worry you, and we will propose a path for each.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

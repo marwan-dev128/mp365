@@ -646,3 +646,14 @@ html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+/* A small nudge on the "Swipe for more" hint under phone sliders. */
+@keyframes mp-swipe-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+.mp-swipe-nudge {
+  animation: mp-swipe-nudge 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-swipe-nudge { animation: none; }
+}

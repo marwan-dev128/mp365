@@ -160,6 +160,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your manufacturing CRM with MP-365",
     body: "Tell us how RFQs, quotes and distributor accounts work today. We will show how Dynamics 365 can fit your process.",
-    text: "Talk to MP-365 about manufacturing",
+    text: "Book a free manufacturing consultation",
   },
 };

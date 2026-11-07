@@ -1,6 +1,55 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { RichText } from "./RichText";
 import defaultFooter from "@/store/footer.json";
+import navigation from "@/store/navigation.json";
+
+type FooterLink = { label: string; href: string; description?: string };
+type FooterGroup = { title: string; description?: string; links: FooterLink[] };
+type FooterSection = {
+  title: string;
+  href: string;
+  allLabel: string;
+  groups: FooterGroup[];
+};
+
+/**
+ * The footer follows the menu: Services lists its eight categories (not every
+ * service, or the footer becomes a page of its own), and Solutions and
+ * Industries keep the menu's groups. Built from navigation.json so the two never drift.
+ */
+function sectionsFromMenu(): FooterSection[] {
+  return navigation.megaMenuGroups.map((group) => {
+    const all = {
+      title: group.label,
+      href: group.href,
+      allLabel: `All ${group.label.toLowerCase()}`,
+    };
+    if (group.id === "services") {
+      return {
+        ...all,
+        groups: [
+          {
+            title: "",
+            links: group.columns.map((c) => ({
+              label: c.title,
+              href: ("href" in c ? c.href : group.href) as string,
+              description: c.description,
+            })),
+          },
+        ],
+      };
+    }
+    return {
+      ...all,
+      groups: group.columns.map((c) => ({
+        title: c.title,
+        description: c.description,
+        links: c.items.map((i) => ({ label: i.label, href: i.href })),
+      })),
+    };
+  });
+}
 
 export interface FooterProps {
   helpSection?: {
@@ -16,12 +65,13 @@ export interface FooterProps {
     href: string;
   };
   marqueeText?: string;
-  navigationSections?: {
-    groups: {
-      title: string;
-      links: { label: string; href: string }[];
-    }[];
-  }[];
+  sections?: FooterSection[];
+  company?: {
+    title: string;
+    blurb: string;
+    links: { label: string; href: string }[];
+    email: string;
+  };
   legal?: {
     brand: string;
     badge?: string;
@@ -36,7 +86,8 @@ export function Footer({
   socials = defaultFooter.socials,
   appButton = defaultFooter.appButton,
   marqueeText = defaultFooter.marqueeText,
-  navigationSections = defaultFooter.navigationSections,
+  sections = sectionsFromMenu(),
+  company = defaultFooter.company,
   legal = defaultFooter.legal,
 }: FooterProps = {}) {
   const renderSocialIcon = (name: string) => {
@@ -148,34 +199,114 @@ export function Footer({
                   <span>{appButton.label}</span>
                 </a>
               )}
-
-             
             </div>
           </div>
 
-          {/* Navigation Columns */}
-          <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 text-[13.5px]">
-            {navigationSections?.map((sec, secIdx) => (
-              <div key={secIdx}>
-                {sec.groups.map((group, grpIdx) => (
-                  <div key={group.title} className={grpIdx > 0 ? "mt-8" : ""}>
-                    <p className="font-bold text-mp-mint mb-3 text-[14px]">
-                      {group.title}
-                    </p>
-                    <ul className="flex flex-col gap-2 text-white/80">
-                      {group.links.map((link) => (
-                        <li key={link.label + link.href}>
-                          <Link href={link.href} className="hover:text-white hover:underline transition-colors">
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+          {/* Navigation, split the way the menu is */}
+          <nav
+            aria-label="Footer"
+            className="grid grid-cols-2 gap-x-6 gap-y-10 py-10 sm:gap-x-10 sm:gap-y-12 sm:py-12 lg:grid-cols-12 lg:py-14"
+          >
+            {sections.map((section) => {
+              const isServices =
+                section.groups.length === 1 && !section.groups[0].title;
+              return (
+                <div
+                  key={section.href}
+                  className={
+                    isServices ? "col-span-2 lg:col-span-5" : "col-span-1 lg:col-span-2"
+                  }
+                >
+                  <FooterHeading href={section.href}>
+                    {section.title}
+                  </FooterHeading>
+                  {section.groups.map((group) => (
+                    <div
+                      key={group.title || section.href}
+                      className="mt-6 first:mt-0"
+                    >
+                      {group.title && (
+                        <div className="mb-3">
+                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/55">
+                            {group.title}
+                          </p>
+                          {group.description && (
+                            <p className="mt-1 hidden text-[12.5px] leading-[1.5] text-white/45 sm:block">
+                              {group.description}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                      <ul
+                        className={
+                          isServices
+                            ? "grid grid-cols-2 gap-x-5 gap-y-3 sm:gap-x-8 sm:gap-y-5"
+                            : "flex flex-col gap-2.5"
+                        }
+                      >
+                        {group.links.map((link) => (
+                          <li key={link.href}>
+                            <Link
+                              href={link.href}
+                              className="group/fl inline-block"
+                            >
+                              <span
+                                className={`${
+                                  isServices
+                                    ? "text-[13.5px] font-semibold text-white sm:text-[14.5px]"
+                                    : "text-[13.5px] text-white/85"
+                                } underline-offset-4 transition-colors group-hover/fl:text-mp-mint group-hover/fl:underline`}
+                              >
+                                {link.label}
+                              </span>
+                              {link.description && (
+                                <span className="mt-1 hidden text-[12.5px] leading-[1.5] text-white/55 sm:block">
+                                  {link.description}
+                                </span>
+                              )}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  <Link
+                    href={section.href}
+                    className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-white/25 px-4 py-1.5 text-[12.5px] font-semibold text-white transition-colors hover:bg-white hover:text-mp-petrol"
+                  >
+                    {section.allLabel} <span aria-hidden="true">›</span>
+                  </Link>
+                </div>
+              );
+            })}
+
+            {company && (
+              <div className="col-span-2 lg:col-span-3">
+                <FooterHeading>{company.title}</FooterHeading>
+                <p className="mb-5 text-[13px] leading-[1.6] text-white/65">
+                  {company.blurb}
+                </p>
+                <ul className="flex flex-wrap gap-x-5 gap-y-2.5 lg:flex-col">
+                  {company.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-[13.5px] text-white/85 underline-offset-4 transition-colors hover:text-mp-mint hover:underline"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={`mailto:${company.email}`}
+                  className="mt-6 block text-[13.5px] font-semibold text-mp-mint underline-offset-4 hover:underline"
+                >
+                  {company.email}
+                </a>
               </div>
-            ))}
-          </div>
+            )}
+          </nav>
         </div>
 
         {/* Huge Animated Marquee */}
@@ -238,7 +369,6 @@ export function Footer({
             <div>
               <span className="font-display text-[32px] font-extrabold tracking-[-0.04em] text-mp-ink">
                 {legal?.brand}
-               
               </span>
               <p className="mt-2 text-xs font-semibold text-mp-ink/70">
                 {legal?.copyright}
@@ -276,5 +406,26 @@ export function Footer({
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterHeading({
+  href,
+  children,
+}: {
+  href?: string;
+  children: ReactNode;
+}) {
+  const className =
+    "mb-5 block font-display text-[18px] font-bold tracking-[-0.02em] text-mp-mint";
+  return href ? (
+    <Link
+      href={href}
+      className={`${className} hover:underline underline-offset-4`}
+    >
+      {children}
+    </Link>
+  ) : (
+    <p className={className}>{children}</p>
   );
 }

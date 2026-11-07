@@ -166,6 +166,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about Copilot",
     body: "Tell us which Microsoft 365 and Dynamics 365 tools you use today and what you want Copilot to do. MP-365 will recommend where to start.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

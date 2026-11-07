@@ -261,6 +261,6 @@ export const page: PageContent = {
   cta: {
     heading: "Fix your release process",
     body: "Tell MP-365 how changes reach production today, and we will show you where the risk sits.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

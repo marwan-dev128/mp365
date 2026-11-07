@@ -15,7 +15,7 @@ export function SidebarCta({
   tag = "Next step",
   title = "Talk to MP-365 about your project",
   body = "Tell us what you are working on and we will tell you what we would do first.",
-  ctaText = "Book a discovery call",
+  ctaText = "Book a free consultation",
   ctaHref = "/contact/",
 }: {
   tag?: string;

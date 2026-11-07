@@ -81,7 +81,7 @@ export function AboutHero({
               href="/contact/"
               className="inline-flex items-center gap-2.5 rounded-full bg-mp-saffron px-7 py-3.5 text-sm font-bold text-mp-ink hover:bg-mp-saffron-hover shadow-sm transition-all mp-press hover:scale-[1.02]"
             >
-              <span>Book a discovery call</span>
+              <span>Book a free consultation</span>
               <span className="text-base font-bold leading-none">›</span>
             </Link>
             <Link

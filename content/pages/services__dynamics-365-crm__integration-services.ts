@@ -220,6 +220,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about connecting your systems",
     body: "List the systems that should share data with Dynamics 365. MP-365 will tell you which connection to build first.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

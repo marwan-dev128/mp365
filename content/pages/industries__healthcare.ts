@@ -170,6 +170,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about healthcare administration",
     body: "Tell us how requests, referrals and documents move through your organization today. We will outline a first version you can react to.",
-    text: "Talk to MP-365 about healthcare",
+    text: "Book a free healthcare consultation",
   },
 };

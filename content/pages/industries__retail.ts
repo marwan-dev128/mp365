@@ -170,6 +170,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your retail CRM",
     body: "Tell us how shoppers reach you and which reports your team rebuilds by hand. We will outline a first version you can react to.",
-    text: "Talk to MP-365 about retail",
+    text: "Book a free retail consultation",
   },
 };

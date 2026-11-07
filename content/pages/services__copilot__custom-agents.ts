@@ -208,6 +208,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about a custom agent",
     body: "Describe the task you want an agent to handle and where its data lives. MP-365 will tell you if it is a good fit.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

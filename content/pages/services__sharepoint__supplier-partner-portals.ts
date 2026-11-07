@@ -230,6 +230,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your vendor and partner portal with MP-365",
     body: "Tell us who you share with and what moves back and forth. We will recommend SharePoint or Power Pages and outline the first version.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

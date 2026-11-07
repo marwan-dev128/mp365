@@ -239,6 +239,6 @@ export const page: PageContent = {
   cta: {
     heading: "Review your data access before Copilot",
     body: "Tell MP-365 which sites and Dynamics 365 environments Copilot will touch. We will scope a data access and permissions review.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

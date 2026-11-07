@@ -205,6 +205,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your SharePoint project",
     body: "Tell us what is broken or missing in SharePoint today. We will recommend one starting point and explain what it involves.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

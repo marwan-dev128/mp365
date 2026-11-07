@@ -240,6 +240,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Exchange Online migration",
     body: "Share your Exchange version, mailbox count and domains. MP-365 will recommend a method and show you the steps.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

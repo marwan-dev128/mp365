@@ -123,6 +123,6 @@ export const page: PageContent = {
   cta: {
     heading: "Tell MP-365 which problem to fix first",
     body: "Describe the problem your team deals with most, and MP-365 will suggest the solution and the first step.",
-    text: "Talk to MP-365",
+    text: "Book a free consultation",
   },
 };

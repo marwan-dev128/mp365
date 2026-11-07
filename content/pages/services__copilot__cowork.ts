@@ -232,6 +232,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Copilot Cowork pilot",
     body: "Tell MP-365 how many users hold Copilot licenses and which teams want Cowork first. We will outline a safe pilot.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

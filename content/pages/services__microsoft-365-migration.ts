@@ -53,7 +53,7 @@ export const page: PageContent = {
         "**Files sit on file servers or local PCs.** Start with OneDrive for personal files, and move shared departmental folders into SharePoint libraries.",
         "**You run SharePoint Server.** Plan the site migration first, because Microsoft ended support for SharePoint Server 2016 and 2019 on July 14, 2026.",
         "**A deal is closing.** Start with the tenant plan. The surviving tenant and the domain decision shape every other step.",
-        "**You are unsure.** Book a discovery call and bring a list of your systems. MP-365 will map them to a sequence.",
+        "**You are unsure.** Book a free consultation and bring a list of your systems. MP-365 will map them to a sequence.",
       ],
     },
     {
@@ -222,6 +222,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Microsoft 365 migration",
     body: "Tell MP-365 what you are moving and from where. You will get a clear view of the method, the risks and the order of work.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

@@ -227,6 +227,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your SharePoint intranet with MP-365",
     body: "Tell us who the intranet is for and what is broken today. We will outline a first version you can react to.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

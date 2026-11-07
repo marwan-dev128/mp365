@@ -236,6 +236,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your customer or partner portal",
     body: "Tell us who needs to sign in and what they need to do. We will outline the portal, the permissions and a sensible first release.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

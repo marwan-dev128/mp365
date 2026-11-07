@@ -230,6 +230,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your lead process",
     body: "Bring a sample of recent leads. MP-365 will show you where they stall and what to fix first.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

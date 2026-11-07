@@ -229,6 +229,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your first Power App",
     body: "Describe the process that costs your team the most time. We will propose the smallest app that would help.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

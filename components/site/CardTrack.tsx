@@ -62,7 +62,15 @@ export function CardTrack({ label, children }: { label: string; children: ReactN
       </div>
 
       {overflows && (
-        <div className="relative mt-8 flex items-center justify-center sm:mt-10">
+        <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10">
+          {!canPrev && (
+            <p aria-hidden="true" className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-mp-muted sm:hidden">
+              <span>Swipe for more</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className="mp-swipe-nudge">
+                <path d="M5 12h12m0 0-4-4m4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </p>
+          )}
           <div aria-hidden="true" className="h-1.5 w-40 overflow-hidden rounded-full bg-mp-petrol/15 sm:w-56">
             <div
               className="h-full rounded-full bg-mp-petrol transition-[width] duration-200"

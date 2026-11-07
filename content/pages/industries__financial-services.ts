@@ -159,6 +159,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk through your member and advisor workflows",
     body: "Share how members, advisors and documents move through your organization today, and MP-365 will suggest where to start.",
-    text: "Talk to MP-365 about financial services",
+    text: "Book a free financial services consultation",
   },
 };

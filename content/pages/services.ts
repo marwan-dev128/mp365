@@ -203,6 +203,6 @@ export const page: PageContent = {
   cta: {
     heading: "Not sure which service fits?",
     body: "Tell MP-365 what is going wrong. The team will point you to the right starting service.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

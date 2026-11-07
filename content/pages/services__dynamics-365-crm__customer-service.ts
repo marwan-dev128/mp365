@@ -231,6 +231,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Dynamics 365 Customer Service rollout",
     body: "Describe how requests reach your team today. MP-365 will show you the smallest case setup that fixes the biggest gap.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

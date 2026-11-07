@@ -188,6 +188,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your application moves",
     body: "List the applications that worry you most, and MP-365 will suggest a path and an order.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

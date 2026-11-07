@@ -219,6 +219,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your file share move with MP-365",
     body: "Tell us how large your shares are and who uses them. We will outline what to clean up and how to organize the new libraries.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

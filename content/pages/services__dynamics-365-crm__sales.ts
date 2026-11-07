@@ -203,6 +203,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Dynamics 365 Sales project",
     body: "Tell MP-365 how your reps sell today. You will get a straight view of what to build first and what can wait.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

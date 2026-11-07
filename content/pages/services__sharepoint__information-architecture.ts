@@ -253,6 +253,6 @@ export const page: PageContent = {
   cta: {
     heading: "Fix SharePoint structure and search with MP-365",
     body: "Tell us which files people cannot find. We will review your busiest sites and show where the structure breaks.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

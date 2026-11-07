@@ -164,6 +164,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your logistics CRM with MP-365",
     body: "Tell us how quotes, shipper accounts and service issues flow today. We will show where Dynamics 365 and Microsoft 365 fit.",
-    text: "Talk to MP-365 about logistics",
+    text: "Book a free logistics consultation",
   },
 };

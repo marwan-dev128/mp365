@@ -151,6 +151,6 @@ export const page: PageContent = {
   cta: {
     heading: "Review your agency's CRM and access setup",
     body: "Tell MP-365 how your team tracks cases and who can reach which records today, and the team will outline a first step.",
-    text: "Talk to MP-365 about government",
+    text: "Book a free government consultation",
   },
 };

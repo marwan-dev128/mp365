@@ -162,6 +162,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your device sales process",
     body: "Tell us how your reps, distributors and contracts work today. We will outline a first version of the CRM you can react to.",
-    text: "Talk to MP-365 about medical devices",
+    text: "Book a free medical devices consultation",
   },
 };

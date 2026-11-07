@@ -227,6 +227,6 @@ export const page: PageContent = {
   cta: {
     heading: "Start with a data profile",
     body: "Tell MP-365 which reports you no longer trust, and we will show you what a cleanup would involve.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

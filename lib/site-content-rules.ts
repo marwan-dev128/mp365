@@ -24,7 +24,11 @@ const BANNED: [RegExp, string][] = [
   [/\b(4 to 8|0 to 4) hours?\b/i, "response times are unconfirmed"],
   [/\b\d+( to \d+)? (weeks?|months?)\b/i, "timelines are unconfirmed; write the copy without the figure"],
   [/[$£€]\s?\d/, "no prices"],
-  [/\bfree\b|\bguaranteed?\b|#1\b|\bbest-in-class\b|\bcutting-edge\b|\bworld-class\b/i, "banned claim wording"],
+  // The client confirmed one offer: a free consultation. "free" stays banned everywhere else.
+  [
+    /\bfree\b(?! (?:[a-z&]+ ){0,3}consultation\b)|\bguaranteed?\b|#1\b|\bbest-in-class\b|\bcutting-edge\b|\bworld-class\b/i,
+    "banned claim wording",
+  ],
   [/\bkey takeaways\b|\bTBD\b|\[CLIENT|in today's fast-paced|have you ever wondered/i, "banned filler or placeholder"],
   [/\bGoogle Workspace\b|\bContact Center\b|\bField Service\b|\bpenetration test/i, "out-of-scope service"],
   [

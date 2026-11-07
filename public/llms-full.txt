@@ -251,7 +251,7 @@ A: Choose Standard for a small project or a known pain, since it is the recommen
 Q: What does the Dynamics 365 cost estimator do?
 A: The estimator asks about your project and returns a suggested engagement model, a complexity tier of light, standard or complex, and the cost drivers that apply. It is guidance, not a quote. You can send the answers with your message to MP-365.
 Q: How do I get an accurate quote?
-A: Book a discovery call and describe the problem. MP-365 then scopes the work with you, covering users, integrations, data and environments, and sends a written estimate. A precise figure is only possible after that scoping step.
+A: Book a free consultation and describe the problem. MP-365 then scopes the work with you, covering users, integrations, data and environments, and sends a written estimate. A precise figure is only possible after that scoping step.
 Q: Why is one bid much cheaper than another?
 A: Differences usually come from scope. A cheaper bid may exclude data migration, testing, training or hand-off, or use less senior staff. Compare who does the work, what is excluded, how changes are handled and how success is measured before you judge on price.
 Q: Can I start small and expand later?
@@ -2753,7 +2753,7 @@ Tenant to tenant migration for mergers | Mergers, acquisitions and divestitures 
 - Files sit on file servers or local PCs. Start with OneDrive for personal files, and move shared departmental folders into SharePoint libraries.
 - You run SharePoint Server. Plan the site migration first, because Microsoft ended support for SharePoint Server 2016 and 2019 on July 14, 2026.
 - A deal is closing. Start with the tenant plan. The surviving tenant and the domain decision shape every other step.
-- You are unsure. Book a discovery call and bring a list of your systems. MP-365 will map them to a sequence.
+- You are unsure. Book a free consultation and bring a list of your systems. MP-365 will map them to a sequence.
 
 ### How MP-365 approaches a Microsoft 365 migration
 1. Inventory the source: List mailboxes, shared mailboxes, file shares, sites, sizes and owners, so nothing is found for the first time on cutover day.

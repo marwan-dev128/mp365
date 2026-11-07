@@ -153,8 +153,6 @@ export function WhyUsempCarousel({
     <section
       ref={viewRef}
       className="w-full bg-white py-16 sm:py-24 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 py-4">
         {/* ------------------------------------------------ Section Header */}
@@ -186,6 +184,8 @@ export function WhyUsempCarousel({
                 <div
                   key={`${card.cloneSet}-${card.id}-${displayIdx}`}
                   onClick={() => navigateToVirtual(displayIdx)}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
                   style={{ width: `${CARD_WIDTH}px` }}
                   className={`shrink-0 rounded-[28px] sm:rounded-[32px] p-7 sm:p-8 flex flex-col justify-between min-h-[500px] cursor-pointer transition-all duration-600 ease-[cubic-bezier(0.25,1,0.35,1)] will-change-[transform,opacity] ${
                     isActive

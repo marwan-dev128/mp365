@@ -244,6 +244,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your dashboards",
     body: "Tell us which report takes the longest to produce. We will outline a dashboard and where the data would come from.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

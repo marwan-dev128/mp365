@@ -155,6 +155,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your data",
     body: "Tell us where information is overshared, messy or hard to trust, and we will suggest the first step.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

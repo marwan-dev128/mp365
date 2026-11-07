@@ -197,6 +197,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your Dynamics 365 setup",
     body: "Describe the problem you want fixed first. MP-365 will tell you which service fits and what a sensible first release looks like.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

@@ -43,7 +43,7 @@ export const SOLUTION_PATTERNS: Pattern[] = [
     title: "Deploy and hand off",
     subtitle: "You own the result",
     body: "MP-365 releases the solution, trains your team and documents the build, then stays available for continuous improvement.",
-    linkText: "Book a discovery call",
+    linkText: "Book a free consultation",
     linkHref: "/contact/",
   },
 ];

@@ -3,7 +3,7 @@
     "title": "How can we help?",
     "links": [
       {
-        "label": "Book a discovery call",
+        "label": "Book a free consultation",
         "href": "/contact/"
       },
       {
@@ -19,7 +19,23 @@
   "socials": [
     {
       "name": "LinkedIn",
-      "href": "https://www.linkedin.com/company/mp-365/"
+      "href": "https://www.linkedin.com/company/72191380/"
+    },
+    {
+      "name": "Facebook",
+      "href": "https://www.facebook.com/profile.php?id=61595581314416"
+    },
+    {
+      "name": "Instagram",
+      "href": "https://www.instagram.com/mkhaliefamk/"
+    },
+    {
+      "name": "X",
+      "href": "https://x.com/mkhaliefamk"
+    },
+    {
+      "name": "YouTube",
+      "href": "https://www.youtube.com/@mp-365"
     }
   ],
   "appButton": {
@@ -27,124 +43,6 @@
     "href": "tel:+18602089537"
   },
   "marqueeText": "Modern Partners 365",
-  "navigationSections": [
-    {
-      "groups": [
-        {
-          "title": "Services",
-          "links": [
-            {
-              "label": "All services",
-              "href": "/services/"
-            },
-            {
-              "label": "Dynamics 365 CRM Consultation",
-              "href": "/services/dynamics-365-crm/"
-            },
-            {
-              "label": "SharePoint & Intranets",
-              "href": "/services/sharepoint/"
-            },
-            {
-              "label": "Microsoft Copilot & AI",
-              "href": "/services/copilot/"
-            },
-            {
-              "label": "Power Platform",
-              "href": "/services/power-platform/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groups": [
-        {
-          "title": "More services",
-          "links": [
-            {
-              "label": "Microsoft 365 Migration",
-              "href": "/services/microsoft-365-migration/"
-            },
-            {
-              "label": "M&A Tenant Migration",
-              "href": "/services/tenant-to-tenant-migration/"
-            },
-            {
-              "label": "Data Governance",
-              "href": "/services/data-governance/"
-            },
-            {
-              "label": "Application Modernization & DevOps",
-              "href": "/services/application-modernization/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groups": [
-        {
-          "title": "Solutions and industries",
-          "links": [
-            {
-              "label": "All solutions",
-              "href": "/solutions/"
-            },
-            {
-              "label": "All industries",
-              "href": "/industries/"
-            },
-            {
-              "label": "Modern Company Intranet",
-              "href": "/solutions/sharepoint-intranet/"
-            },
-            {
-              "label": "Rapid CRM Deployment",
-              "href": "/solutions/crm-implementation/"
-            },
-            {
-              "label": "Manufacturing",
-              "href": "/industries/manufacturing/"
-            },
-            {
-              "label": "Federal Government",
-              "href": "/industries/government/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groups": [
-        {
-          "title": "Company",
-          "links": [
-            {
-              "label": "Clients",
-              "href": "/clients/"
-            },
-            {
-              "label": "Pricing",
-              "href": "/pricing/"
-            },
-            {
-              "label": "Blog",
-              "href": "/blog/"
-            },
-            {
-              "label": "About",
-              "href": "/about/"
-            },
-            {
-              "label": "Contact",
-              "href": "/contact/"
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "legal": {
     "brand": "MP-365",
     "badge": "+",
@@ -182,5 +80,32 @@
       ]
     ],
     "disclaimer": "MP-365 is the trading name of Modern Partners 365, a Microsoft Solutions Partner based at 59 Winding Brook Trail, Vernon, CT 06066, United States. Reach us on (+1) 860-208-9537 or info@mp-365.com. Microsoft, Microsoft 365, Dynamics 365, Power Platform, SharePoint, Azure and Copilot are trademarks of the Microsoft group of companies."
+  },
+  "company": {
+    "title": "Company",
+    "blurb": "A focused team of Microsoft specialists for Dynamics 365, SharePoint, Power Platform, Copilot and Microsoft 365.",
+    "links": [
+      {
+        "label": "Clients",
+        "href": "/clients/"
+      },
+      {
+        "label": "Pricing",
+        "href": "/pricing/"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog/"
+      },
+      {
+        "label": "About",
+        "href": "/about/"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact/"
+      }
+    ],
+    "email": "info@mp-365.com"
   }
 }

@@ -153,6 +153,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan a construction CRM with MP-365",
     body: "Tell MP-365 how your firm tracks bids and project documents today, and the team will outline what to change first.",
-    text: "Talk to MP-365 about construction",
+    text: "Book a free construction consultation",
   },
 };

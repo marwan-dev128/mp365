@@ -245,6 +245,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Microsoft Purview rollout",
     body: "Share your biggest sharing or labeling problem, and MP-365 will tell you where to start.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

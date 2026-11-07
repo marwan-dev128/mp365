@@ -56,7 +56,7 @@ const MILESTONES: MilestoneItem[] = [
       "MP-365 releases the solution, trains your people and documents the build, then stays available for continuous improvement.",
     highlights: ["Change management and training", "Documentation", "Warranty and support"],
     image: "/images/mp365/case-studies/hunter-panels-dynamics-365.webp",
-    linkText: "Book a discovery call",
+    linkText: "Book a free consultation",
     href: "/contact/",
   },
 ];

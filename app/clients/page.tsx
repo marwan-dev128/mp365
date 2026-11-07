@@ -1,4 +1,4 @@
-import { ClientLogos } from "@/components/ClientLogos";
+import { ClientShowcase } from "@/components/site/ClientShowcase";
 import { ContentPage } from "@/components/site/ContentPage";
 import { getPageContent } from "@/content/pages";
 import { planMetadata } from "@/lib/metadata";
@@ -13,7 +13,7 @@ export default function ClientsPage() {
     <ContentPage
       content={getPageContent(PATH)}
       eyebrow="Clients"
-      beforeBlocks={<ClientLogos label={clientsData.label} clients={clientsData.clients} />}
+      beforeBlocks={<ClientShowcase clients={clientsData.clients} />}
     />
   );
 }

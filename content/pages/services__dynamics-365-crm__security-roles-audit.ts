@@ -216,6 +216,6 @@ export const page: PageContent = {
   cta: {
     heading: "Ask MP-365 to review your Dynamics 365 access",
     body: "Find out who holds Admin rights today and whether they need them. The first review is read-only.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

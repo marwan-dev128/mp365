@@ -238,6 +238,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your tenant coexistence and cutover",
     body: "Tell MP-365 which domains, tenants and user groups are involved. You will get a coexistence design and a domain cutover plan.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

@@ -18,7 +18,7 @@ export function getPostInContentCta(): InContentCta {
     title: "Working through this on a real project?",
     description:
       "Tell us what you are dealing with and a Microsoft specialist will tell you what they would do first.",
-    primaryText: "Book a discovery call",
+    primaryText: "Book a free consultation",
     primaryHref: "/contact/",
     secondaryText: "See how pricing works",
     secondaryHref: "/pricing/",

@@ -100,7 +100,12 @@ function StepCards({ steps, label }: { steps: { name: string; description: strin
 
 function DataTable({ headers, rows, caption }: { headers: string[]; rows: string[][]; caption?: string }) {
   return (
-    <div className="rounded-[28px] bg-mp-parchment p-2 sm:rounded-[36px] sm:p-3">
+    <>
+      {/* Phones: each row is a card, so nothing scrolls sideways. */}
+      <div className="rounded-[24px] bg-mp-parchment p-2.5 md:hidden">
+        <StackedRows headers={headers} rows={rows} caption={caption} labelAll />
+      </div>
+      <div className="hidden rounded-[28px] bg-mp-parchment p-2 sm:rounded-[36px] sm:p-3 md:block">
       <div role="group" tabIndex={0} aria-label={caption ?? "Comparison table"} className="overflow-x-auto rounded-[22px] bg-white sm:rounded-[28px]">
         <table className="w-full min-w-[640px] text-[14px]">
           {caption && <caption className="sr-only">{caption}</caption>}
@@ -138,6 +143,7 @@ function DataTable({ headers, rows, caption }: { headers: string[]; rows: string
         </table>
       </div>
     </div>
+    </>
   );
 }
 
@@ -156,10 +162,49 @@ function SubBlockBody({ block }: { block: ContentBlock }) {
         </ul>
       );
     case "table":
-      return <DataTable headers={block.headers} rows={block.rows} caption={block.heading} />;
+      return <StackedRows headers={block.headers} rows={block.rows} caption={block.heading} />;
     default:
       return null;
   }
+}
+
+/**
+ * A table inside a narrow card reads as a stack of rows: the first cell as the
+ * row's title and the rest under it, so nothing scrolls sideways or gets cut.
+ */
+function StackedRows({
+  headers,
+  rows,
+  caption,
+  labelAll = false,
+}: {
+  headers: string[];
+  rows: string[][];
+  caption?: string;
+  labelAll?: boolean;
+}) {
+  return (
+    <ul aria-label={caption} className="flex flex-col gap-2.5">
+      {rows.map((row, i) => (
+        <li
+          key={i}
+          className="rounded-[18px] bg-white px-5 py-4 transition-transform duration-200 hover:-translate-y-0.5 [&_a]:font-bold [&_a]:!text-mp-petrol [&_a]:no-underline hover:[&_a]:underline"
+        >
+          <p className="font-display text-[15.5px] font-bold leading-snug tracking-[-0.015em] text-mp-ink">
+            <RichText text={row[0]} />
+          </p>
+          {row.slice(1).map((cell, j) => (
+            <p key={j} className="mt-2.5 text-[13.5px] leading-[1.55] text-mp-secondary">
+              {(labelAll || row.length > 2) && headers[j + 1] && (
+                <span className="mb-0.5 block text-[10.5px] font-bold uppercase tracking-[0.12em] text-mp-muted">{headers[j + 1]}</span>
+              )}
+              <RichText text={cell} />
+            </p>
+          ))}
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 /** "**Problem:** ..." paragraphs get a small label over the text. */

@@ -229,6 +229,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your OneDrive migration",
     body: "Tell MP-365 where your files live and how many users you have. You will get a scan plan and a recommended tool.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

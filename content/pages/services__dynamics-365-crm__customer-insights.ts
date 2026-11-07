@@ -214,6 +214,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about Customer Insights - Journeys",
     body: "Share what you run today. MP-365 will tell you what to keep, what to rebuild and what to leave out.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

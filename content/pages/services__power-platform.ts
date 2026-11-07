@@ -176,6 +176,6 @@ export const page: PageContent = {
   cta: {
     heading: "Talk to MP-365 about your Power Platform project",
     body: "Tell us which process wastes the most time. We will suggest where to start and what a first version would involve.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };

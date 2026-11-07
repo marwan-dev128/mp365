@@ -126,7 +126,7 @@ export const page: PageContent = {
     },
     {
       q: "How do I get an accurate quote?",
-      a: "Book a discovery call and describe the problem. MP-365 then scopes the work with you, covering users, integrations, data and environments, and sends a written estimate. A precise figure is only possible after that scoping step.",
+      a: "Book a free consultation and describe the problem. MP-365 then scopes the work with you, covering users, integrations, data and environments, and sends a written estimate. A precise figure is only possible after that scoping step.",
     },
     {
       q: "Why is one bid much cheaper than another?",
@@ -142,6 +142,6 @@ export const page: PageContent = {
   cta: {
     heading: "Plan your Dynamics 365 project with MP-365",
     body: "Share your goal, your users and the systems involved. MP-365 will scope it and explain the right engagement model.",
-    text: "Book a discovery call",
+    text: "Book a free consultation",
   },
 };
