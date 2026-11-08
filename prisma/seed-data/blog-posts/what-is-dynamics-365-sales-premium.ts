@@ -7,6 +7,7 @@ export const post: BlogPost = {
     "Dynamics 365 Sales Premium vs Enterprise: see what Premium adds, where Enterprise limits sit and which teams need it. Get a license recommendation from us.",
   cluster: "Dynamics 365",
   authorSlug: "mp365-team",
+  imageUrl: "/images/blog/what-is-dynamics-365-sales-premium.webp",
   datePublished: "2026-10-08",
   dateModified: "2026-11-07",
   excerpt:

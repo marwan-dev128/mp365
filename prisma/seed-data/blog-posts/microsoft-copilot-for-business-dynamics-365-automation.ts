@@ -7,6 +7,7 @@ export const post: BlogPost = {
     "See how Microsoft Copilot for business automates sales and customer service in Dynamics 365, plus the benefits and challenges. Plan your rollout with us.",
   cluster: "Copilot & AI",
   authorSlug: "mp365-team",
+  imageUrl: "/images/blog/microsoft-copilot-for-business-dynamics-365-automation.webp",
   datePublished: "2026-05-13",
   dateModified: "2026-11-07",
   excerpt:

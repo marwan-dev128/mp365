@@ -7,6 +7,7 @@ export const post: BlogPost = {
     "Learn how to use Microsoft Copilot in Word, Excel, Teams and Outlook, with example prompts and a simple prompt framework. Book a free consultation.",
   cluster: "Copilot & AI",
   authorSlug: "mp365-team",
+  imageUrl: "/images/blog/how-to-use-microsoft-copilot-to-supercharge-your-productivity.webp",
   datePublished: "2026-05-10",
   dateModified: "2026-11-07",
   excerpt:

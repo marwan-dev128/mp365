@@ -7,6 +7,7 @@ export const post: BlogPost = {
     "What is Microsoft Dynamics 365? Learn how Sales, Customer Service, Customer Insights and Copilot agents work together in 2026. Talk to our team.",
   cluster: "Dynamics 365",
   authorSlug: "mp365-team",
+  imageUrl: "/images/blog/what-is-microsoft-dynamics-365.webp",
   datePublished: "2026-05-19",
   dateModified: "2026-11-07",
   excerpt:
