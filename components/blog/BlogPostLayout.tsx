@@ -175,6 +175,20 @@ export async function BlogPostLayout({ post }: { post: BlogPost }) {
 
           {/* Article Main Column */}
           <article id="article-top" className="col-span-12 lg:col-span-6 min-w-0">
+            {/* Featured image, carried over from the live post */}
+            {post.imageUrl && (
+              <div className="relative mb-8 aspect-video overflow-hidden rounded-[20px] border border-mp-border bg-mp-parchment sm:mb-10 sm:rounded-[24px]">
+                <Image
+                  src={post.imageUrl}
+                  alt={post.imageAlt ?? post.title}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            )}
+
             {/* Mobile Table of Contents */}
             <div className="lg:hidden">
               <TableOfContents items={toc} variant="mobile" />

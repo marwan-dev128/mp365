@@ -20,7 +20,7 @@ export function ArticleBody({
   const insertionIndex = inContentCta ? getCtaInsertionIndex(sections) : -1;
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col">
       {sections.map((section, i) => {
         const isLead = i === 0 && !section.heading;
         const Heading = section.level === 3 ? "h3" : "h2";
@@ -30,15 +30,15 @@ export function ArticleBody({
           <Fragment key={section.headingId ?? `block-${i}`}>
             <Wrapper
               {...(section.headingId ? { "aria-labelledby": section.headingId } : {})}
-              className={i > 0 && section.heading ? "pt-6" : undefined}
+              className={blockSpacing(i, section)}
             >
             {section.heading && section.headingId && (
               <Heading
                 id={section.headingId}
                 className={`group scroll-mt-32 font-bold tracking-tight text-mp-ink flex items-center gap-2 ${
                   section.level === 3
-                    ? "text-[20px] sm:text-[22px] mb-3.5 mt-8 text-mp-petrol"
-                    : "text-[26px] sm:text-[32px] mb-5 mt-10 text-mp-ink"
+                    ? "text-[20px] sm:text-[22px] mb-3.5 text-mp-petrol"
+                    : "text-[26px] sm:text-[32px] mb-5 text-mp-ink"
                 }`}
               >
                 <span>
@@ -58,13 +58,26 @@ export function ArticleBody({
           </Wrapper>
 
           {i === insertionIndex && inContentCta && (
-            <InContentCta cta={inContentCta} />
+            <div className="mt-12 sm:mt-14 *:my-0">
+              <InContentCta cta={inContentCta} />
+            </div>
           )}
         </Fragment>
       );
     })}
     </div>
   );
+}
+
+/**
+ * One spacing rule for the whole article: a new H2 gets a wide gap, an H3 a
+ * smaller one, and a block that continues its section (a list after its intro
+ * paragraph) sits as close as the paragraphs inside a block.
+ */
+function blockSpacing(i: number, section: BlogSection): string | undefined {
+  if (i === 0) return undefined;
+  if (!section.heading) return "mt-5";
+  return section.level === 3 ? "mt-9" : "mt-14 sm:mt-16";
 }
 
 function BlockContent({ section, isLead }: { section: BlogSection; isLead: boolean }) {
@@ -89,7 +102,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
 
     case "list":
       return (
-        <ul className="flex flex-col gap-3 my-4">
+        <ul className="flex flex-col gap-3">
           {section.items.map((item, j) => (
             <li
               key={j}
@@ -108,7 +121,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
 
     case "steps":
       return (
-        <ol className="flex flex-col gap-4 my-4">
+        <ol className="flex flex-col gap-4">
           {section.steps.map((step, j) => (
             <li
               key={step.name}
@@ -137,7 +150,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
       return (
         <>
         {/* Phones: each row is a card with its column labels, so nothing scrolls sideways. */}
-        <ul aria-label={label} className="my-6 flex flex-col gap-2.5 rounded-[24px] bg-mp-parchment p-2.5 md:hidden">
+        <ul aria-label={label} className="flex flex-col gap-2.5 rounded-[24px] bg-mp-parchment p-2.5 md:hidden">
           {section.rows.map((row, j) => (
             <li key={j} className="rounded-[18px] bg-white px-5 py-4">
               <p className="font-display text-[15.5px] font-bold leading-snug tracking-[-0.015em] text-mp-ink">
@@ -156,7 +169,7 @@ function BlockContent({ section, isLead }: { section: BlogSection; isLead: boole
             </li>
           ))}
         </ul>
-        <div className="my-6 hidden overflow-hidden rounded-[24px] border border-mp-border bg-white shadow-2xs md:block">
+        <div className="hidden overflow-hidden rounded-[24px] border border-mp-border bg-white shadow-2xs md:block">
           <div
             role="group"
             tabIndex={0}
