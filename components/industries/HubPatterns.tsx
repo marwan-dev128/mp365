@@ -15,12 +15,14 @@ export function HubPatterns({
   title,
   subtitle,
   patterns,
+  images = pickIllustrations(patterns.map((p) => p.title)),
 }: {
   title: string;
   subtitle: string;
   patterns: Pattern[];
+  /** Chosen by the page, so the rest of the page can avoid them. */
+  images?: string[];
 }) {
-  const images = pickIllustrations(patterns.map((p) => p.title));
   return (
     <section className="w-full bg-white py-12 sm:py-16">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12">

@@ -18,7 +18,7 @@ import { ArrowUpRight } from "@/components/ui/Icons";
 import { getPageContent } from "@/content/pages";
 import { getSiteSettings } from "@/lib/data";
 import { planMetadata } from "@/lib/metadata";
-import { imageForPath } from "@/lib/page-visuals";
+import { pickIllustrations, imageForPath } from "@/lib/page-visuals";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { childrenOf, getSitePage } from "@/lib/site-data";
 import navigation from "@/store/navigation.json";
@@ -62,6 +62,7 @@ export default async function IndustryPage({ params }: Params) {
   const content = getPageContent(path);
   const settings = await getSiteSettings();
   const triggers = content.triggers ?? [];
+  const triggerImages = pickIllustrations(triggers.map((t) => t.title));
   const ctaText = stripInlineMarkup(content.cta.text);
 
   return (
@@ -89,9 +90,9 @@ export default async function IndustryPage({ params }: Params) {
         </div>
       </IndustryHero>
       <Container className="py-12 sm:py-16">
-        <IndustryTriggerCards industryName={plan.name} triggers={triggers} />
+        <IndustryTriggerCards industryName={plan.name} triggers={triggers} images={triggerImages} />
       </Container>
-      <RichBlocks blocks={content.blocks} path={path} />
+      <RichBlocks blocks={content.blocks} path={path} reserved={triggerImages} />
       <Container className="py-10 sm:py-14">
         <IndustryLeadForm
           industrySlug={slug}

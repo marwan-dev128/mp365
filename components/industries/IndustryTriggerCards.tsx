@@ -11,12 +11,14 @@ import { announceTopic, CONSULT_ANCHOR } from "./topic-event";
 export function IndustryTriggerCards({
   industryName,
   triggers,
+  images = pickIllustrations(triggers.map((t) => t.title)),
 }: {
   industryName: string;
   triggers: { title: string; body: string }[];
+  /** Chosen by the page, so the rest of the page can avoid them. */
+  images?: string[];
 }) {
   if (!triggers.length) return null;
-  const images = pickIllustrations(triggers.map((t) => t.title));
   return (
     <section aria-labelledby="triggers-heading">
       <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">

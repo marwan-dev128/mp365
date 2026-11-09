@@ -86,38 +86,82 @@ export function imagesForPage(path: string) {
 }
 
 const DIR = "/images/mp365/illustrations";
-const ILLUSTRATIONS: [RegExp, string][] = [
-  [/copilot|agent|\bAI\b|assistant/i, `${DIR}/ai-assistant.webp`],
-  [/contract|renew|\bbid|sign|agreement/i, `${DIR}/signed-contract.webp`],
-  [/permission|security|access|role|govern|complian|privacy|protect/i, `${DIR}/security-shield.webp`],
-  [/migrat|move|cloud|online|upgrade|cutover|tenant/i, `${DIR}/cloud-migration.webp`],
-  [/connect|integrat|sync|system|\bAPI\b/i, `${DIR}/connected-systems.webp`],
-  [/intranet|portal|site|sharepoint|home page|news/i, `${DIR}/company-intranet.webp`],
-  [/file|document|folder|librar|paper|record/i, `${DIR}/document-shelves.webp`],
-  [/sales|lead|pipeline|quote|rfq|forecast|account|deal|crm|customer/i, `${DIR}/crm-pipeline.webp`],
-  [/report|dashboard|data|kpi|power bi|numbers/i, "/images/mp365/automation/microsoft-data-integration.webp"],
-  [/inventory|review|scan|assess|search|find|understand|listen|audit|inspect|problem/i, `${DIR}/magnifying-glass.webp`],
-  [/test|validate|check|go-live|pilot|approv|scope|confirm/i, `${DIR}/project-checklist.webp`],
-  [/plan|roadmap|design|structure|deploy|launch|release|stage|build/i, `${DIR}/project-roadmap.webp`],
-  [/team|train|hand|people|user|staff|owner|member|adopt/i, `${DIR}/team-table.webp`],
-  [/automat|workflow|flow|reminder/i, "/images/mp365/automation/power-automate-process-flow.webp"],
+const DATA = "/images/mp365/automation/microsoft-data-integration.webp";
+const FLOW = "/images/mp365/automation/power-automate-process-flow.webp";
+const i = (name: string) => `${DIR}/${name}.webp`;
+
+// Most specific wording first. Each topic can hold more than one picture, so
+// two cards on the same theme, or the same theme on two pages, still differ.
+const ILLUSTRATIONS: [RegExp, string[]][] = [
+  [/copilot|agent|AI|assistant/i, [i("ai-assistant")]],
+  [/merger|acquisition|divest|two companies|both tenants|surviving tenant|buyer/i, [i("two-buildings")]],
+  [/duplicate|merge|dedup|clean|quality|stale|dead record/i, [i("duplicate-merge")]],
+  [/spreadsheet|excel|by hand|re-?key|re-?type|manual|twice/i, [i("spreadsheet-grid")]],
+  [/mail routing|mailbox|exchange|outlook|PST|domain|signature/i, [i("mail-routing")]],
+  [/e-?mail|inbox/i, [i("email-inbox")]],
+  [/SLA|timer|late|slow|takes? days|too long|costs days|wait|delay|cold|idle/i, [i("stopwatch-alarm")]],
+  [/case|service request|ticket|support|complaint|returns and|request/i, [i("support-desk")]],
+  [/licens|identity|sign-in|login|entra|badge|onboard|offboard/i, [i("id-badge")]],
+  [/server|on-prem|file share|NAS|farm|aging|2016|2019|legacy|hardware/i, [i("server-rack")]],
+  [/contract|renew|bid|agreement/i, [i("signed-contract")]],
+  [/label|tag|segment|classif|content type/i, [i("labelled-folder")]],
+  [/permission|security|access|role|govern|complian|privacy|protect|oversharing|exposure|guardrail/i, [i("security-shield")]],
+  [/campaign|journey|marketing|news|announce|outreach|consent|loyalty/i, [i("megaphone")]],
+  [/migrat|move|cloud|online|upgrade|tenant/i, [i("cloud-migration")]],
+  [/connect|integrat|sync|system|API/i, [i("connected-systems")]],
+  [/intranet|portal|site|sharepoint|home page/i, [i("company-intranet")]],
+  [/file|document|folder|librar|paper|record/i, [i("document-shelves")]],
+  [/report|dashboard|kpi|power bi|numbers|trend|metric/i, [i("laptop-dashboard"), DATA]],
+  [/data/i, [DATA]],
+  [/sales|lead|pipeline|quote|rfq|forecast|account|deal|crm|customer|shopper/i, [i("crm-pipeline")]],
+  [/pilot|test|sandbox|QA|validate/i, [i("test-lab")]],
+  [/schedule|calendar|wave|batch|weekend|timeline|peak|season/i, [i("calendar-schedule")]],
+  [/go live|go-live|launch|release|deploy|ship|cut ?over/i, [i("rocket-launch")]],
+  [/agree|terms|scope|hand-?off|hand over|handover|supplier|partner/i, [i("handshake")]],
+  [/relationship|referral|network|member|constituent|contacts|knowledge/i, [i("people-network")]],
+  [/configur|setting|admin|set up|setup|rule/i, [i("settings-gears")]],
+  [/unsure|begin|idea|outcome|honest|why/i, [i("lightbulb-idea")]],
+  [/inventory|review|scan|assess|search|find|understand|listen|audit|inspect|problem/i, [i("magnifying-glass")]],
+  [/check|approv|confirm/i, [i("project-checklist")]],
+  [/plan|roadmap|design|structure|stage|build/i, [i("project-roadmap")]],
+  [/team|train|people|user|staff|owner|adopt|executive|leader/i, [i("team-table"), i("people-network")]],
+  [/automat|workflow|flow|reminder/i, [FLOW]],
 ];
 const ILLUSTRATION_FALLBACKS = [
-  "/images/mp365/insights/microsoft-case-studies-illustration.webp",
-  "/images/mp365/insights/ma-tenant-migration-risks-illustration.webp",
-  "/images/mp365/insights/tenant-migration-questions-answered-illustration.webp",
-  "/images/mp365/why/one-microsoft-partner-eight-services.webp",
-  "/images/mp365/delivery/named-senior-engagement-team.webp",
-  "/images/mp365/why/governance-approvals-workflow.webp",
-  ...ILLUSTRATIONS.map(([, image]) => image),
+  ...new Set([
+    ...ILLUSTRATIONS.flatMap(([, images]) => images),
+    "/images/mp365/insights/microsoft-case-studies-illustration.webp",
+    "/images/mp365/insights/ma-tenant-migration-risks-illustration.webp",
+    "/images/mp365/insights/tenant-migration-questions-answered-illustration.webp",
+    "/images/mp365/why/one-microsoft-partner-eight-services.webp",
+  ]),
 ];
 
-/** One illustration per label, matched to its wording, with no repeats in a row. */
-export function pickIllustrations(labels: string[]) {
-  const used = new Set<string>();
+/** A stable number from the card labels, so each section starts somewhere different. */
+function seedOf(labels: string[]) {
+  return [...labels.join("|")].reduce((sum, c) => (sum * 31 + c.charCodeAt(0)) >>> 0, 7);
+}
+
+/**
+ * One illustration per label, matched to its wording, never repeated inside a
+ * section, or across a page when the page passes one shared `used` set. Cards
+ * with no matching wording take the next unused picture from a rotating start,
+ * so sections across the site do not all land on the same one.
+ */
+export function pickIllustrations(labels: string[], used = new Set<string>()) {
+  const seed = seedOf(labels);
+  const fallbacks = [
+    ...ILLUSTRATION_FALLBACKS.slice(seed % ILLUSTRATION_FALLBACKS.length),
+    ...ILLUSTRATION_FALLBACKS.slice(0, seed % ILLUSTRATION_FALLBACKS.length),
+  ];
   return labels.map((label) => {
-    const match = ILLUSTRATIONS.find(([pattern, image]) => pattern.test(label) && !used.has(image))?.[1];
-    const image = match ?? ILLUSTRATION_FALLBACKS.find((f) => !used.has(f)) ?? ILLUSTRATION_FALLBACKS[0];
+    let match: string | undefined;
+    for (const [pattern, images] of ILLUSTRATIONS) {
+      if (!pattern.test(label)) continue;
+      match = images.find((image) => !used.has(image));
+      if (match) break;
+    }
+    const image = match ?? fallbacks.find((f) => !used.has(f)) ?? fallbacks[0];
     used.add(image);
     return image;
   });

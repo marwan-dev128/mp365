@@ -6,7 +6,7 @@ import { HubGrid, HubHero, HubPatterns, SOLUTION_PATTERNS } from "@/components/i
 import { RichBlocks } from "@/components/site/RichBlocks";
 import { StickyConsultBar } from "@/components/site/StickyConsultBar";
 import { getPageContent } from "@/content/pages";
-import { imageForPath } from "@/lib/page-visuals";
+import { imageForPath, pickIllustrations } from "@/lib/page-visuals";
 import { planMetadata } from "@/lib/metadata";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { childrenOf, getSitePage } from "@/lib/site-data";
@@ -32,6 +32,7 @@ export default function SolutionsPage() {
     group: groupOf(p.path),
   }));
 
+  const patternImages = pickIllustrations(SOLUTION_PATTERNS.map((p) => p.title));
   return (
     <>
       <HubHero
@@ -59,8 +60,9 @@ export default function SolutionsPage() {
           items={items}
         />
       </Container>
-      <RichBlocks blocks={content.blocks} path={PATH} />
+      <RichBlocks blocks={content.blocks} path={PATH} reserved={patternImages} />
       <HubPatterns
+        images={patternImages}
         title="The same three stages, whatever the problem"
         subtitle="Each project gets something real in front of your team early, and ends with you owning the result."
         patterns={SOLUTION_PATTERNS}

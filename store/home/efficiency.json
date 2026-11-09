@@ -5,8 +5,8 @@
     {
       "id": "sales-tracking",
       "hasImage": true,
-      "image": "/images/mp365/why/governance-approvals-workflow.webp",
-      "imageAlt": "A sales team with one shared process",
+      "image": "/images/mp365/illustrations/spreadsheet-grid.webp",
+      "imageAlt": "A spreadsheet grid with a pencil",
       "imageType": "contain",
       "title": "Sales tracked in spreadsheets",
       "description": "One sales process in Dynamics 365, with live dashboards for leadership instead of reports compiled by hand.",
@@ -16,8 +16,8 @@
     {
       "id": "intranet",
       "hasImage": true,
-      "image": "/images/mp365/automation/microsoft-data-integration.webp",
-      "imageAlt": "Organized company content",
+      "image": "/images/mp365/illustrations/company-intranet.webp",
+      "imageAlt": "A company intranet on a tablet",
       "imageType": "contain",
       "title": "An intranet nobody uses",
       "description": "A modern intranet with a clear information architecture, a simpler security model and faster content updates.",

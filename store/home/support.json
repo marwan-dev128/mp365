@@ -5,8 +5,8 @@
     {
       "id": "understand",
       "variant": "lime",
-      "image": "/images/mp365/automation/microsoft-data-integration.webp",
-      "imageAlt": "Microsoft data and systems mapped together",
+      "image": "/images/mp365/illustrations/magnifying-glass.webp",
+      "imageAlt": "A magnifying glass inspecting the current setup",
       "title": "Understand the problem",
       "description": "MP-365 learns how your team works today and what is going wrong.",
       "linkText": "Talk to MP-365",
@@ -35,8 +35,8 @@
     {
       "id": "hand-off",
       "variant": "parchment",
-      "image": "/images/mp365/automation/power-automate-process-flow.webp",
-      "imageAlt": "A finished process flow",
+      "image": "/images/mp365/illustrations/rocket-launch.webp",
+      "imageAlt": "A rocket lifting off at go-live",
       "title": "Deploy and hand off",
       "description": "MP-365 releases the solution, trains your people and hands it over with clear documentation.",
       "linkText": "See client results",

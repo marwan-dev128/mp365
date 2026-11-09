@@ -75,10 +75,10 @@ export function InContentCta({ cta }: { cta: InContentCtaType }) {
           />
         </div>
 
-        {/* Bottom-Right: Business Central 3D icon */}
+        {/* Bottom-Right: Power Platform icon */}
         <div className="absolute right-2 bottom-2 w-14 h-14 sm:w-18 sm:h-18 rotate-12 transition-transform duration-300 hover:rotate-0">
           <Image
-            src="/hero-section-icons/66433f09a327b088760628d9_business-central-logo.png"
+            src="/hero-section-icons/microsoft-power-platform-icons.png"
             alt=""
             width={72}
             height={72}

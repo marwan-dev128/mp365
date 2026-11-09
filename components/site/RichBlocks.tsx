@@ -63,9 +63,9 @@ function parseLabel(item: string) {
 const SLIDE = "w-[84%] shrink-0 snap-start sm:w-[calc(50%-10px)] lg:w-[calc((100%-60px)/4)]";
 
 /** Up to four items sit in one row; more slide sideways, so no row ends half empty. */
-function ListCards({ items, label }: { items: string[]; label: string }) {
+function ListCards({ items, label, used }: { items: string[]; label: string; used: Set<string> }) {
   const parsed = items.map(parseLabel);
-  const images = pickIllustrations(parsed.map((p) => p.label ?? p.body));
+  const images = pickIllustrations(parsed.map((p) => p.label ?? p.body), used);
   const cards = (className: string) =>
     parsed.map((item, i) => (
       <HomeCard key={items[i]} look={lookForIndex(i)} image={images[i]} title={item.label ?? "What this means"} className={className}>
@@ -78,8 +78,16 @@ function ListCards({ items, label }: { items: string[]; label: string }) {
 }
 
 /** The numbered project steps, in the same cards. */
-function StepCards({ steps, label }: { steps: { name: string; description: string }[]; label: string }) {
-  const images = pickIllustrations(steps.map((step) => step.name));
+function StepCards({
+  steps,
+  label,
+  used,
+}: {
+  steps: { name: string; description: string }[];
+  label: string;
+  used: Set<string>;
+}) {
+  const images = pickIllustrations(steps.map((step) => step.name), used);
   return (
     <CardTrack label={label}>
       {steps.map((step, i) => (
@@ -228,12 +236,12 @@ function LabelledParagraphs({ block }: { block: ProseBlock }) {
 
 const STORY_SLIDE = "w-[84%] shrink-0 snap-start sm:w-[calc(50%-10px)] lg:w-[calc((100%-40px)/3)]";
 
-function SubCards({ blocks, label }: { blocks: ContentBlock[]; label: string }) {
+function SubCards({ blocks, label, used }: { blocks: ContentBlock[]; label: string; used: Set<string> }) {
   const stories = blocks.filter((b): b is ProseBlock & ContentBlock => b.type === "prose");
 
   // Written sub-sections become Home's cards, sliding when there are more than three.
   if (stories.length === blocks.length) {
-    const images = pickIllustrations(stories.map((b) => b.heading ?? ""));
+    const images = pickIllustrations(stories.map((b) => b.heading ?? ""), used);
     const cards = (className: string) =>
       stories.map((b, i) => (
         <HomeCard key={b.heading} look={lookForIndex(i)} image={images[i]} title={stripInlineMarkup(b.heading ?? "")} className={className}>
@@ -296,11 +304,22 @@ function groupBlocks(blocks: ContentBlock[]) {
   return groups;
 }
 
-export function RichBlocks({ blocks, path }: { blocks: ContentBlock[]; path: string }) {
+export function RichBlocks({
+  blocks,
+  path,
+  reserved = [],
+}: {
+  blocks: ContentBlock[];
+  path: string;
+  /** Illustrations other sections of the page already show. */
+  reserved?: string[];
+}) {
   const images = imagesForPage(path);
   let nextImage = 0;
   let splitIndex = 0;
   const takeImage = () => images[nextImage++ % images.length];
+  // One list for the whole page, so no illustration shows twice on it.
+  const used = new Set<string>(reserved);
 
   return (
     <>
@@ -312,7 +331,7 @@ export function RichBlocks({ blocks, path }: { blocks: ContentBlock[]; path: str
             <section key={heading} className="w-full bg-white py-14 sm:py-20">
               <div className={WRAP}>
                 <CenteredHeading>{heading}</CenteredHeading>
-                <StepCards steps={main.steps} label={heading} />
+                <StepCards steps={main.steps} label={heading} used={used} />
               </div>
             </section>
           );
@@ -372,8 +391,8 @@ export function RichBlocks({ blocks, path }: { blocks: ContentBlock[]; path: str
             <section key={heading} className="w-full bg-white py-12 sm:py-16">
               <div className={WRAP}>
                 <CenteredHeading>{heading}</CenteredHeading>
-                <ListCards items={main.items} label={heading} />
-                {subs.length > 0 && <SubCards blocks={subs} label={heading} />}
+                <ListCards items={main.items} label={heading} used={used} />
+                {subs.length > 0 && <SubCards blocks={subs} label={heading} used={used} />}
               </div>
             </section>
           );
@@ -385,7 +404,7 @@ export function RichBlocks({ blocks, path }: { blocks: ContentBlock[]; path: str
               <div className={WRAP}>
                 <CenteredHeading>{heading}</CenteredHeading>
                 <DataTable headers={main.headers} rows={main.rows} caption={heading} />
-                {subs.length > 0 && <SubCards blocks={subs} label={heading} />}
+                {subs.length > 0 && <SubCards blocks={subs} label={heading} used={used} />}
               </div>
             </section>
           );
@@ -396,7 +415,7 @@ export function RichBlocks({ blocks, path }: { blocks: ContentBlock[]; path: str
             <section key={heading} className="w-full bg-white py-8 sm:py-12">
               <div className={WRAP}>
                 <SplitFeature block={main} image={takeImage()} index={splitIndex++} />
-                {subs.length > 0 && <SubCards blocks={subs} label={heading} />}
+                {subs.length > 0 && <SubCards blocks={subs} label={heading} used={used} />}
               </div>
             </section>
           );

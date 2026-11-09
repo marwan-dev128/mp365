@@ -6,7 +6,7 @@ import { HubGrid, HubHero, HubPatterns, INDUSTRY_PATTERNS } from "@/components/i
 import { RichBlocks } from "@/components/site/RichBlocks";
 import { StickyConsultBar } from "@/components/site/StickyConsultBar";
 import { getPageContent } from "@/content/pages";
-import { imageForPath } from "@/lib/page-visuals";
+import { imageForPath, pickIllustrations } from "@/lib/page-visuals";
 import { planMetadata } from "@/lib/metadata";
 import { stripInlineMarkup } from "@/lib/richtext";
 import { childrenOf, getSitePage } from "@/lib/site-data";
@@ -32,6 +32,7 @@ export default function IndustriesPage() {
     group: groupOf(p.path),
   }));
 
+  const patternImages = pickIllustrations(INDUSTRY_PATTERNS.map((p) => p.title));
   return (
     <>
       <HubHero
@@ -59,8 +60,9 @@ export default function IndustriesPage() {
           items={items}
         />
       </Container>
-      <RichBlocks blocks={content.blocks} path={PATH} />
+      <RichBlocks blocks={content.blocks} path={PATH} reserved={patternImages} />
       <HubPatterns
+        images={patternImages}
         title="What stays the same in all nine"
         subtitle="The vocabulary changes between industries. These three foundations do not."
         patterns={INDUSTRY_PATTERNS}
