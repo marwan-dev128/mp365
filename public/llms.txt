@@ -66,6 +66,11 @@
   - [Retail](https://mp-365.com/industries/retail/)
   - [Healthcare](https://mp-365.com/industries/healthcare/)
 
+## Compare tiers
+
+- [Dynamics 365 Sales Professional vs Enterprise vs Premium](https://mp-365.com/dynamics-365-sales-tiers/): Dynamics 365 Sales Professional vs Enterprise vs Premium, feature by feature: forecasting, Copilot, agents, limits and mixing rules. Find your tier.
+- [Dynamics 365 Customer Service Professional vs Enterprise vs Premium](https://mp-365.com/dynamics-365-customer-service-tiers/): Dynamics 365 Customer Service Professional vs Enterprise vs Premium: routing, channels, Copilot, agents and mixing rules side by side. Find your tier.
+
 ## Company
 
 - [Clients](https://mp-365.com/clients/)

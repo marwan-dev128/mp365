@@ -8,11 +8,12 @@ import { CardTrack } from "@/components/site/CardTrack";
 import { HomeCard, lookForIndex } from "@/components/site/HomeCard";
 import { SiteHero } from "@/components/site/SiteHero";
 import { StickyConsultBar } from "@/components/site/StickyConsultBar";
-import { Check } from "@/components/ui/Icons";
+import { Check, Shield } from "@/components/ui/Icons";
 import type { TierPage } from "@/content/tiers/types";
 import { pickIllustrations } from "@/lib/page-visuals";
-import { webPageSchema } from "@/lib/schema";
+import { tierPageSchema } from "./schema";
 import { TierFinder } from "./TierFinder";
+import { TierMockup } from "./TierMockup";
 import { TierMatrix } from "./TierMatrix";
 
 const WRAP = "mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12";
@@ -50,10 +51,11 @@ function TierCards({ page }: { page: TierPage }) {
         return (
           <article
             key={t.id}
-            className={`flex flex-col rounded-[28px] p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-8 ${
+            className={`group flex flex-col overflow-hidden rounded-[28px] p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-8 ${
               mint ? "bg-mp-band" : "bg-mp-parchment"
             }`}
           >
+            <TierMockup kind={t.mockup} mint={mint} />
             <div className="flex items-center justify-between gap-3">
               <p className={`text-[11px] font-bold uppercase tracking-[0.14em] ${mint ? "text-mp-ink/70" : "text-mp-muted"}`}>
                 Tier {i + 1} of {page.tiers.length}
@@ -63,7 +65,7 @@ function TierCards({ page }: { page: TierPage }) {
               )}
             </div>
             <h3
-              className="mt-8 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-mp-ink sm:text-[48px]"
+              className="mt-5 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-mp-ink sm:text-[48px]"
             >
               {t.name}
             </h3>
@@ -134,6 +136,13 @@ function Ladder({ page }: { page: TierPage }) {
   );
 }
 
+const JUMPS = [
+  { href: "#tier-finder", label: "Tier finder" },
+  { href: "#compare", label: "Full comparison" },
+  { href: "#mixing", label: "Mixing and upgrades" },
+  { href: "#faq-heading", label: "Questions" },
+];
+
 const SLIDE = "w-[84%] shrink-0 snap-start sm:w-[calc(50%-10px)] lg:w-[calc((100%-60px)/4)]";
 
 /**
@@ -147,33 +156,62 @@ export function TierComparePage({ page }: { page: TierPage }) {
 
   return (
     <>
-      <JsonLd
-        data={webPageSchema({
-          path: page.path,
-          name: page.h1,
-          description: page.description,
-          dateModified: page.reviewedIso,
-          lastReviewed: page.reviewedIso,
-        })}
-      />
+      <JsonLd data={tierPageSchema(page)} />
       <SiteHero h1={page.h1} eyebrow="Compare tiers" breadcrumbs={page.breadcrumbs} ctaText={page.cta.text}>
         <RichText text={page.intro} />
       </SiteHero>
 
-      <div className="w-full border-b border-mp-border-subtle bg-white">
-        <div className={`${WRAP} flex flex-col gap-3 py-4 text-[12.5px] text-mp-secondary sm:flex-row sm:items-center sm:justify-between`}>
-          <p className="flex items-center gap-2">
-            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-mp-mint" />
-            Checked against Microsoft&apos;s licensing guide and documentation, {page.reviewed}.
-          </p>
-          <nav aria-label="On this page" className="flex flex-wrap gap-x-5 gap-y-1.5 font-semibold text-mp-petrol">
-            <a href="#tier-finder" className="hover:underline">Tier finder</a>
-            <a href="#compare" className="hover:underline">Full comparison</a>
-            <a href="#mixing" className="hover:underline">Mixing and upgrades</a>
-            <a href="#faq-heading" className="hover:underline">Questions</a>
-          </nav>
+      <div className="w-full bg-white pt-6 sm:pt-8">
+        <div className={WRAP}>
+          <div className="flex flex-col gap-2 rounded-[24px] bg-mp-parchment p-2 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-center gap-3.5 rounded-[18px] bg-white px-4 py-3 sm:px-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mp-mint text-mp-petrol">
+                <Shield className="h-5 w-5" />
+              </span>
+              <span className="flex flex-col">
+                <span className="text-[13.5px] font-bold leading-tight text-mp-ink">
+                  Verified against Microsoft&apos;s Dynamics 365 Licensing Guide
+                </span>
+                <span className="mt-1 text-[12px] leading-tight text-mp-muted">
+                  Updated {page.reviewed} <span aria-hidden="true">·</span>{" "}
+                  <a href="#sources" className="font-semibold text-mp-petrol hover:underline">
+                    See sources
+                  </a>
+                </span>
+              </span>
+            </div>
+            <nav aria-label="On this page" className="flex gap-1 overflow-x-auto px-1 pb-1 [scrollbar-width:none] lg:pb-0 [&::-webkit-scrollbar]:hidden">
+              {JUMPS.map((j, i) => (
+                <a
+                  key={j.href}
+                  href={j.href}
+                  className="group inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold text-mp-ink transition-colors hover:bg-white"
+                >
+                  <span className="text-[11px] font-bold tabular-nums text-mp-petrol-2/60 group-hover:text-mp-petrol">0{i + 1}</span>
+                  {j.label}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
       </div>
+
+      <section aria-labelledby="short-answer" className="w-full bg-white pt-10 sm:pt-14">
+        <div className={WRAP}>
+          <div className="rounded-[28px] bg-mp-petrol p-6 text-white sm:p-9">
+            <h2 id="short-answer" className="font-display text-[22px] font-bold tracking-[-0.025em] text-white sm:text-[26px]">
+              <RichText text={page.shortAnswer.heading} />
+            </h2>
+            <ul className="mt-6 grid gap-5 md:grid-cols-3 md:gap-0 md:divide-x md:divide-white/15">
+              {page.shortAnswer.items.map((item, i) => (
+                <li key={page.tiers[i]?.id ?? i} className="text-[14.5px] leading-[1.65] text-white/80 md:px-7 md:first:pl-0 md:last:pr-0 [&_strong]:mb-1.5 [&_strong]:block [&_strong]:font-display [&_strong]:text-[20px] [&_strong]:text-mp-mint">
+                  <RichText text={item} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <Section>
         <Heading block={page.overview} />
@@ -194,7 +232,7 @@ export function TierComparePage({ page }: { page: TierPage }) {
         <Heading block={page.matrix} />
         <div className="mx-auto max-w-5xl">
           <TierMatrix page={page} />
-          <p className="mt-6 text-[12.5px] leading-[1.6] text-mp-muted">
+          <p id="sources" className="mt-6 scroll-mt-28 text-[12.5px] leading-[1.6] text-mp-muted">
             Prices are left out on purpose: Microsoft sets them, and they vary by region and agreement. See{" "}
             <a href={page.priceHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-mp-petrol underline">
               Microsoft&apos;s {page.product} plans

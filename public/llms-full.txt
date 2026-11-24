@@ -230,7 +230,7 @@ How much your team can help | Fast answers and available testers shorten the wor
 - How success is measured. Agree on a result you can check, such as hours saved, errors removed or reports produced automatically.
 
 ### Microsoft licenses are priced separately
-Microsoft sets Dynamics 365 and Microsoft 365 license prices, and you pay them to Microsoft or your license provider. MP-365 does not resell licenses, so license fees never appear in an MP-365 estimate. Check Microsoft's current price list for those figures.
+Microsoft sets Dynamics 365 and Microsoft 365 license prices, and you pay them to Microsoft or your license provider. MP-365 does not resell licenses, so license fees never appear in an MP-365 estimate. Check Microsoft's current price list for those figures. To choose the right license tier first, see the Dynamics 365 Sales tiers and Customer Service tiers comparisons.
 
 ### Estimate your project complexity
 The short estimator below helps you size a Dynamics 365 or Microsoft 365 project. It asks about the service area, users, systems to connect, data and timeline. It then suggests an engagement model and a complexity tier, and lists the cost drivers that apply to your answers. Results are guidance, not a quote, and you do not need to enter an email address.
@@ -531,7 +531,7 @@ howItStarts: A discovery call about your sales process, then a review of your cu
 
 ### What is Microsoft Dynamics 365 Sales?
 Microsoft Dynamics 365 Sales is a cloud CRM that runs on Microsoft Dataverse and is built as a Power Apps model-driven app. Sellers use it to manage accounts, contacts, leads, opportunities and quotes, and leaders use it to see the pipeline and forecast revenue.
-Microsoft sells Dynamics 365 Sales in tiers. According to Microsoft Learn (2026), Sales Enterprise automates the process from lead to cash, Sales Premium adds AI features such as predictive scoring and relationship intelligence, and Sales Professional is a lighter app that includes a subset of the Enterprise tables. Which tier fits depends on your process, not your company size.
+Microsoft sells Dynamics 365 Sales in tiers. According to Microsoft Learn (2026), Sales Enterprise automates the process from lead to cash, Sales Premium adds AI features such as predictive scoring and relationship intelligence, and Sales Professional is a lighter app that includes a subset of the Enterprise tables. Which tier fits depends on your process, not your company size, and the Dynamics 365 Sales tiers comparison sets them side by side.
 
 ### Sales problems this work solves
 - The pipeline lives in spreadsheets: each rep keeps a private version, so leadership cannot see the real number.
@@ -613,7 +613,7 @@ howItStarts: A discovery call about how requests reach you today, then a review 
 
 ### What is Dynamics 365 Customer Service?
 Dynamics 365 Customer Service is Microsoft's case management app for support teams. It turns each request into a case, records every interaction against it, and lets agents share answers from a knowledge base.
-According to Microsoft Learn (2026), the app also covers unified routing, service level agreements (SLAs), entitlements, conversations across channels including voice, and collaboration in Microsoft Teams. Copilot Service workspace is the main app for service representatives. For new organizations with Enterprise licenses, it replaces the older Customer Service Hub.
+According to Microsoft Learn (2026), the app also covers unified routing, service level agreements (SLAs), entitlements, conversations across channels including voice, and collaboration in Microsoft Teams. Copilot Service workspace is the main app for service representatives. For new organizations with Enterprise licenses, it replaces the older Customer Service Hub. Routing, Copilot and channels depend on the license, and the Customer Service tiers comparison shows what Professional, Enterprise and Premium each include.
 
 ### How case management works in Dynamics 365 Customer Service
 1. A request arrives: A customer emails a monitored mailbox, calls, chats or submits a portal form.
@@ -5232,3 +5232,222 @@ Q: How do you track service requests in a healthcare organization?
 A: Log each request as a case with a requester, owner, category, status and urgency. Queues route requests to the right team, and dashboards show what is overdue. Dynamics 365 Customer Service supports this, and MP-365 configures categories and routing to match how your departments work.
 
 Dynamics 365 healthcare projects work best when the scope stays on administrative work: requests, referrals, provider relations and controlled documents. MP-365 builds that on Dynamics 365 and Microsoft 365, and says clearly what it leaves to your clinical and compliance teams.
+
+## Dynamics 365 Sales Professional vs Enterprise vs Premium
+URL: https://mp-365.com/dynamics-365-sales-tiers/
+Last reviewed: November 2026
+
+Dynamics 365 Sales Professional vs Enterprise comes down to process: Professional covers a straightforward pipeline, Enterprise adds forecasting, territories and Copilot, and Premium removes the AI limits and includes Copilot Credits for agents. Compare the three tiers below, or answer six questions and see which one fits your team.
+
+### Dynamics 365 Sales tiers: the short answer
+- Professional fits a team that sells one way, through one pipeline, with standard forms and no need for forecasting, territories or Copilot.
+- Enterprise fits teams that forecast against quota, sell by territory or product line, customize heavily, or want Copilot in Dynamics 365, Outlook and Teams.
+- Premium fits teams that run sequences, predictive scoring and sales agents across the whole pipeline every day.
+
+### Dynamics 365 Sales Professional
+Microsoft: "Core sales force automation, Microsoft 365 interoperation, reporting, and dashboards."
+One clean pipeline for a team with a simple sales process.
+- Pick it when: You sell one way, through one pipeline
+- Pick it when: Leads, opportunities and quotes cover the job
+- Pick it when: Standard forms with a few extra fields are enough
+- Think twice if: You need forecasts against quota, territories or Copilot. Professional has none of them.
+
+### Dynamics 365 Sales Enterprise
+Microsoft: "Industry-leading sales force automation with contextual insights, AI, and advanced customization."
+The full Sales Hub for teams with several stages, regions or product lines.
+- Pick it when: Managers forecast against quota by team
+- Pick it when: Deals route by territory or product family
+- Pick it when: Sellers want Copilot in Dynamics 365, Outlook and Teams
+- Think twice if: Your sellers will run sequences or AI scoring on more than 1,500 records a month.
+
+### Dynamics 365 Sales Premium
+Microsoft: "Advanced sales intelligence, agentic insights and automation."
+Enterprise plus unlimited sales AI and Copilot Credits for agents.
+- Pick it when: Sequences and predictive scoring run at volume
+- Pick it when: Leaders want predictive forecasting and relationship health
+- Pick it when: Sales agents will work leads every day
+- Think twice if: Nobody will use the AI yet. The extra cost buys capacity your team will not touch.
+
+### Dynamics 365 Sales tiers, feature by feature
+Feature | Professional | Enterprise | Premium
+Core sales records: Accounts, contacts and activities | Yes | Yes | Yes
+Core sales records: Leads and opportunities | Yes | Yes | Yes
+Core sales records: Quotes, orders and invoices | Yes | Yes | Yes
+Core sales records: Products, price lists and bundles | Yes | Yes | Yes
+Core sales records: Product families and relationships | No | Yes | Yes
+Core sales records: Competitors, sales goals and sales literature | No | Yes | Yes
+Core sales records: Territories | No | Yes | Yes
+Core sales records: Marketing lists and quick campaigns | Yes | Yes | Yes
+Pipeline and forecasting: Business process flows | Up to 5 | Yes | Yes
+Pipeline and forecasting: Forecasting against quota | No | Yes | Yes
+Pipeline and forecasting: Premium predictive forecasting | No | No | Yes
+Pipeline and forecasting: Mobile app | Yes | Yes | Yes
+Pipeline and forecasting: Mobile offline | No | Yes | Yes
+Selling tools and AI: Sales accelerator and sequences | No | 1,500 records a month | No limit
+Selling tools and AI: Predictive lead and opportunity scoring | No | 1,500 records a month | No limit
+Selling tools and AI: Conversation intelligence | No | Yes | Yes
+Selling tools and AI: Relationship analytics | No | Basic | Advanced, with health scores
+Selling tools and AI: Email engagement and auto capture | No | Yes | Yes
+Selling tools and AI: Copilot in Dynamics 365 Sales | No | Yes | Yes
+Selling tools and AI: Copilot in Outlook and Teams | No | Yes | Yes
+Selling tools and AI: Sales agents | Credits bought separately | Credits bought separately | 1,000 credits per user a month
+Selling tools and AI: AI-powered data enrichment | No | No | Yes
+Customization and platform: Custom tables | Up to 15 | No limit | No limit
+Customization and platform: Custom reports, charts and dashboards | Up to 5 | Yes | Yes
+Customization and platform: Custom apps | No | Yes | Yes
+Customization and platform: Embedded intelligence | No | Yes | Yes
+Customization and platform: Customer Voice surveys | No | 2,000 responses a month | 2,000 responses a month
+Customization and platform: App your sellers use | Sales Professional app | Sales Hub | Sales Hub
+Dataverse storage: Database, default per tenant | 30 GB | 30 GB | 45 GB
+Dataverse storage: Database, added per user license | No | 250 MB | 500 MB
+Dataverse storage: File, default per tenant | 40 GB | 40 GB | 60 GB
+Dataverse storage: File, added per user license | No | 2 GB | 2 GB
+
+### Signs Professional will hold your sales team back
+- The forecast lives in a spreadsheet: Professional has no forecasting. If managers already roll up commitments by team, they will keep doing it outside the CRM.
+- You sell by region or product line: Territories and product families are Enterprise features. Without them, ownership rules end up in people's heads.
+- Table 16 is on the roadmap: Professional allows up to 15 custom tables and no custom apps. Industry-specific records such as projects, sites or equipment fill that fast.
+- Sellers ask for Copilot: Copilot in Dynamics 365 Sales, Outlook and Teams starts at Enterprise. On Professional, the answer to that request is an upgrade.
+- Service is moving onto Enterprise: Professional and Enterprise users cannot share an environment. If Customer Service Enterprise is coming, a Professional sales team ends up on its own island.
+
+### Mixing Dynamics 365 Sales tiers and moving up
+- One environment, one family: Microsoft does not allow Enterprise and Professional users in the same environment. You can run both in one tenant, in separate environments, and each user reaches only the environment their license covers.
+- Premium and Enterprise mix: Premium includes everything in Enterprise, and both use the Sales Hub app. The guide's rule against combining tiers in one environment is written about Professional.
+- The base license is the priciest one: Every full user needs a base license, and it must be the highest-priced app they use. A second Dynamics 365 app is then added at a lower attach price.
+How an upgrade from Professional works:
+1. Buy the new licenses: Purchase Sales Enterprise or Sales Premium for the users who move.
+2. Assign them: Assign the new licenses in the Microsoft 365 admin center.
+3. Install the Sales Hub: Install the app that matches the new license. Data is kept when you switch.
+4. Remove the old solution: Remove the Sales Professional solution, then rebuild the forms, views and app settings it held.
+
+### Copilot and AI agents in each Dynamics 365 Sales tier
+- Professional: No Copilot in the app. Sales agents can still run if you buy Copilot Credits separately, but sellers get no Copilot summaries, email help or meeting prep inside Dynamics 365.
+- Enterprise: Copilot is built in. Record summaries, meeting prep and email help in Dynamics 365, Outlook and Teams. Sequences and AI scoring cover 1,500 records a month. Agents run on Copilot Credits you buy.
+- Premium: AI without the limits. No cap on sequences or scoring, predictive forecasting, relationship health, and 1,000 Copilot Credits per user each month to run the sales agents.
+
+### Frequently Asked Questions
+Q: What is the difference between Dynamics 365 Sales Professional and Enterprise?
+A: Professional covers core records: accounts, contacts, leads, opportunities, quotes, orders and invoices. Enterprise adds forecasting, territories, competitors, sales goals, Copilot, the sales accelerator, conversation intelligence and unlimited custom tables. Professional users work in the Sales Professional app, Enterprise users in the Sales Hub.
+Q: What does Sales Premium add over Sales Enterprise?
+A: Premium removes the 1,500-record monthly limit on sequences and predictive scoring, and adds premium predictive forecasting, advanced relationship analytics with health scores, AI data enrichment, extra Dataverse storage and 1,000 Copilot Credits per user each month for the sales agents.
+Q: Is Copilot included in Dynamics 365 Sales Professional?
+A: No. According to Microsoft's licensing guide, Copilot in Dynamics 365 Sales and Copilot in Outlook and Teams start at Sales Enterprise. Professional users can still use sales agents if the organization buys Copilot Credits separately, but they get no Copilot inside the app.
+Q: Can we mix Sales Professional and Sales Enterprise users?
+A: Not in the same environment. Microsoft allows both tiers in one tenant only in separate environments, and each user can reach only the environment their license covers. Enterprise and Premium users can share an environment, because Premium includes everything in Enterprise.
+Q: Can we upgrade from Sales Professional to Enterprise later?
+A: Yes. You buy and assign the new licenses, install the Sales Hub app and remove the Sales Professional solution. Microsoft says your data is kept. Forms, views and app settings tied to the old solution need rebuilding, so plan the move instead of treating it as a license swap.
+Q: How many custom tables does Sales Professional allow?
+A: Up to 15 custom tables per application, on top of the standard tables. Professional also caps customized business process flows at 5 and custom reports, charts and dashboards at 5, and it allows no custom apps. Enterprise and Premium have no limit on custom tables.
+Q: Is LinkedIn Sales Navigator included in any Sales tier?
+A: Not in Professional, Enterprise or Premium. Microsoft bundles LinkedIn Sales Navigator Advanced Plus only in Microsoft Relationship Sales, which pairs Sales Enterprise with Sales Navigator and needs at least 10 seats. Dynamics 365 agents are not included in that bundle.
+Q: Which Dynamics 365 Sales tier is right for a mid-size B2B company?
+A: It depends on process, not size. A single pipeline with standard forms fits Professional. Forecasts by team, territories or Copilot need Enterprise. Premium pays off when sellers run sequences, scoring or agents across the whole pipeline every day. The tier finder above maps your answers to a tier.
+
+Sources: Dynamics 365 Licensing Guide, November 2026 (https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/bizapps/Dynamics365LicensingGuide.pdf); Microsoft Learn: Dynamics 365 Sales overview (https://learn.microsoft.com/en-us/dynamics365/sales/overview); Microsoft Learn: upgrade your Sales license (https://learn.microsoft.com/en-us/dynamics365/sales/upgrade-sales-license)
+
+Choosing between Dynamics 365 Sales Professional vs Enterprise vs Premium is a licensing decision that shapes your whole CRM, so make it on process and AI use, not on headcount. If a lower tier covers your team, MP-365 will say so before you buy more.
+
+## Dynamics 365 Customer Service Professional vs Enterprise vs Premium
+URL: https://mp-365.com/dynamics-365-customer-service-tiers/
+Last reviewed: November 2026
+
+Dynamics 365 Customer Service Professional vs Enterprise comes down to how cases reach your team: Professional covers case and knowledge management, Enterprise adds routing, a multisession workspace, Copilot and analytics, and Premium adds voice and digital channels with Copilot Credits for agents. Compare the three tiers below, or answer six questions and see which one fits.
+
+### Dynamics 365 Customer Service tiers: the short answer
+- Professional fits a team that works email and web cases from one shared queue, with standard case forms.
+- Enterprise fits teams that route cases by skill or priority, handle several sessions at once, want Copilot, or need KPIs and workforce planning.
+- Premium fits teams that run phone, chat and messaging in one workspace, with service agents working cases every day.
+
+### Dynamics 365 Customer Service Professional
+Microsoft: "Streamlined case management resources for service representatives and self-service in simpler scenarios."
+Cases and knowledge for a team that works one queue.
+- Pick it when: Cases arrive by email and web form
+- Pick it when: Representatives pick work from a shared queue
+- Pick it when: Standard case forms fit your process
+- Think twice if: You need routing by skill, Teams, Copilot or live chat. Professional includes none of them.
+
+### Dynamics 365 Customer Service Enterprise
+Microsoft: "Advanced AI-based customer service resources for representatives and self-service for complex scenarios."
+Routing, a multisession workspace, Copilot and analytics for a growing service team.
+- Pick it when: Cases route by skill, priority or customer
+- Pick it when: Representatives handle several sessions at once
+- Pick it when: Leaders want KPIs, forecasting and quality reviews
+- Think twice if: Chat and voice are core to your service. Enterprise adds them only through paid add-ons.
+
+### Dynamics 365 Customer Service Premium
+Microsoft: "Transform customer engagement with an integrated contact center and CRM service solution, all powered by generative AI."
+Enterprise plus voice and digital channels, bots, IVR and Copilot Credits.
+- Pick it when: Phone, chat and messaging run in one workspace
+- Pick it when: Self-service bots and IVR take the first contact
+- Pick it when: Service agents will handle work every day
+- Think twice if: You run email cases only. Premium's channels and credits would go unused.
+
+### Dynamics 365 Customer Service tiers, feature by feature
+Feature | Professional | Enterprise | Premium
+Cases and knowledge: Case management | Yes | Yes | Yes
+Cases and knowledge: Knowledge management and authoring | Yes | Yes | Yes
+Cases and knowledge: Outlook, Exchange, Excel and SharePoint | Yes | Yes | Yes
+Cases and knowledge: Microsoft Teams integration | No | Yes | Yes
+Cases and knowledge: Embedded intelligence | No | Yes | Yes
+Routing and workspace: Unified routing | No | Yes | Yes
+Routing and workspace: Multisession workspace | No | Yes | Yes
+Channels: Live chat, messaging and social | No | Add-on | Yes
+Channels: Voice | No | Add-on | Yes
+Channels: Self-service bots and IVR | No | Add-on | Yes
+Copilot and agents: Copilot in Customer Service | No | Yes | Yes
+Copilot and agents: Copilot side chat in the app | No | Yes | Yes
+Copilot and agents: Service agents | Credits bought separately | Credits bought separately | 1,000 credits per user a month
+Analytics and operations: Analytics and KPI reporting | No | Yes | Yes
+Analytics and operations: Customer Service Insights | No | Yes | Yes
+Analytics and operations: Workforce engagement management | No | Yes | Yes
+Analytics and operations: Power BI | Yes | Yes | Yes
+Analytics and operations: Customer Voice surveys | Add-on | 2,000 responses a month | No
+Customization and storage: Custom tables | Up to 15 | No limit | No limit
+Customization and storage: Custom apps with Power Apps | No | Yes | Yes
+Customization and storage: Workflow automation with Power Automate | No | Yes | Yes
+Customization and storage: Dataverse database, default per tenant | 30 GB | 30 GB | 30 GB
+Customization and storage: Dataverse database, added per user license | No | 250 MB | 250 MB
+
+### Signs Professional will hold your service team back
+- Urgent cases wait behind easy ones: Professional has no unified routing. Everyone picks from the same queue, so priority depends on who looks first.
+- Customers ask for chat: Chat, messaging and voice are not available on Professional. The channel add-ons require an Enterprise deployment.
+- Representatives juggle tabs: The multisession workspace and Teams integration start at Enterprise. On Professional, a representative works one case at a time.
+- Leaders want real KPIs: Analytics, Customer Service Insights and workforce engagement management are Enterprise features. Professional leaders build their reports by hand.
+- Sales is on Enterprise: Professional and Enterprise users cannot share an environment. If your sales team runs Sales Enterprise, a Professional service team sits apart from it.
+
+### Mixing Dynamics 365 Customer Service tiers and moving up
+- One environment, one family: Microsoft does not allow Enterprise and Professional users in the same environment. Both can live in one tenant in separate environments, and each user reaches only the environment their license covers.
+- Channel add-ons need Enterprise: Enterprise users can add digital channels, voice or both. The add-ons require a Customer Service Enterprise deployment, so they are not an option on Professional.
+- Enterprise can step up to Premium: Microsoft added a step-up from Customer Service Enterprise to Premium in March 2026, for teams that grow into voice and digital channels.
+How a move between tiers works:
+1. Decide who moves: Choose the representatives and supervisors who need the higher tier, environment by environment.
+2. Buy and assign licenses: Purchase the new licenses and replace the old ones in the Microsoft 365 admin center.
+3. Set up the new features: Configure routing, the workspace, Copilot or channels. A license unlocks them; it does not configure them.
+4. Check the licensing guide: Microsoft Learn asks admins to review the guide after a move, since use rights change with the tier.
+
+### Copilot and AI agents in each Customer Service tier
+- Professional: No Copilot in the app. The four service agents can still run if you buy Copilot Credits separately, but representatives get no Copilot summaries or drafted replies.
+- Enterprise: Copilot is built in. Case and conversation summaries, drafted emails and chat replies, and answers from your knowledge base. Agents run on Copilot Credits you buy.
+- Premium: Copilot plus credits. Everything in Enterprise, voice and chat for Copilot to work in, and 1,000 Copilot Credits per user each month to run the service agents.
+
+### Frequently Asked Questions
+Q: What is the difference between Customer Service Professional and Enterprise?
+A: Professional covers case management, knowledge management and Microsoft 365 integration. Enterprise adds unified routing, the multisession workspace, Teams integration, Copilot, analytics and KPIs, workforce engagement management, custom apps and unlimited custom tables. Enterprise is also the only base for the chat and voice add-ons.
+Q: What does Customer Service Premium include over Enterprise?
+A: Premium bundles Enterprise with Microsoft's voice and digital channels: live chat, messaging, social, voice, self-service bots and IVR. It also includes 1,000 Copilot Credits per user each month for the service agents. One difference runs the other way: Customer Voice surveys are included with Enterprise but not with Premium.
+Q: Does Customer Service Professional include Copilot?
+A: No. Microsoft's feature table lists Copilot in Customer Service for Enterprise and Premium only, and Copilot side chat in the app needs an Enterprise or Premium license. Professional users can still use service agents if the organization buys Copilot Credits separately.
+Q: Can we mix Customer Service Professional and Enterprise users?
+A: Not in the same environment. Microsoft's licensing guide and Microsoft Learn both say Enterprise and Professional users cannot share one. You can run both tiers in one tenant in separate environments, and each user can access only the environment their license covers.
+Q: Does Customer Service Professional support live chat or voice?
+A: No. Live chat, messaging, social, voice, bots and IVR are not available on Professional. Enterprise users can buy digital and voice add-ons, which require an Enterprise deployment, and Premium includes both channels in the license.
+Q: Which tier includes unified routing?
+A: Enterprise and Premium. Unified routing classifies incoming work and assigns it by skill, priority or capacity, and Microsoft's licensing guide lists 50 record routes per user each month with Enterprise. Professional has no unified routing, so representatives pick work from shared queues.
+Q: How do Copilot Credits work for the service agents?
+A: The Case Management, Customer Intent, Knowledge Management and Quality Evaluation agents use Copilot Credits. Premium includes 1,000 credits per user each month, pooled at the tenant level. On Professional and Enterprise you buy credits separately, through a pre-purchase plan or pay-as-you-go. Unused credits do not carry over.
+Q: Which Customer Service tier is right for a growing support team?
+A: Start from how cases arrive and how they should be assigned. Email cases picked from one queue fit Professional. Routing by skill, multisession work, Copilot or real KPIs need Enterprise. Premium fits teams running phone and chat in one workspace. The tier finder above maps your answers.
+
+Sources: Dynamics 365 Licensing Guide, November 2026 (https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/bizapps/Dynamics365LicensingGuide.pdf); Microsoft: Customer Service plans and features (https://www.microsoft.com/en-us/dynamics-365/products/customer-service/pricing); Microsoft Learn: unified routing overview (https://learn.microsoft.com/en-us/dynamics365/customer-service/administer/overview-unified-routing)
+
+Choosing between Dynamics 365 Customer Service Professional vs Enterprise vs Premium is a decision about channels, routing and AI, not headcount. If a lower tier covers your service team, MP-365 will say so before you buy more.

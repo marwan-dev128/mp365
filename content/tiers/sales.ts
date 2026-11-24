@@ -31,6 +31,7 @@ export const SALES_TIERS: TierPage = {
   tiers: [
     {
       id: "professional",
+      mockup: "pipeline",
       name: "Professional",
       shortName: "Pro",
       quote: "Core sales force automation, Microsoft 365 interoperation, reporting, and dashboards.",
@@ -44,6 +45,7 @@ export const SALES_TIERS: TierPage = {
     },
     {
       id: "enterprise",
+      mockup: "forecast",
       name: "Enterprise",
       quote: "Industry-leading sales force automation with contextual insights, AI, and advanced customization.",
       role: "The full Sales Hub for teams with several stages, regions or product lines.",
@@ -57,6 +59,7 @@ export const SALES_TIERS: TierPage = {
     },
     {
       id: "premium",
+      mockup: "agents",
       name: "Premium",
       quote: "Advanced sales intelligence, agentic insights and automation.",
       role: "Enterprise plus unlimited sales AI and Copilot Credits for agents.",
@@ -69,6 +72,15 @@ export const SALES_TIERS: TierPage = {
     },
   ],
   highlight: 1,
+  productHref: "https://www.microsoft.com/en-us/dynamics-365/products/sales",
+  shortAnswer: {
+    heading: "Dynamics 365 Sales tiers: the short answer",
+    items: [
+      "**Professional** fits a team that sells one way, through one pipeline, with standard forms and no need for forecasting, territories or Copilot.",
+      "**Enterprise** fits teams that forecast against quota, sell by territory or product line, customize heavily, or want Copilot in Dynamics 365, Outlook and Teams.",
+      "**Premium** fits teams that run sequences, predictive scoring and sales agents across the whole pipeline every day.",
+    ],
+  },
   overview: {
     heading: "Three Dynamics 365 Sales tiers, three different jobs",
     intro:

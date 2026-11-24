@@ -31,6 +31,7 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
   tiers: [
     {
       id: "professional",
+      mockup: "queue",
       name: "Professional",
       shortName: "Pro",
       quote: "Streamlined case management resources for service representatives and self-service in simpler scenarios.",
@@ -44,6 +45,7 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
     },
     {
       id: "enterprise",
+      mockup: "routing",
       name: "Enterprise",
       quote: "Advanced AI-based customer service resources for representatives and self-service for complex scenarios.",
       role: "Routing, a multisession workspace, Copilot and analytics for a growing service team.",
@@ -57,6 +59,7 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
     },
     {
       id: "premium",
+      mockup: "channels",
       name: "Premium",
       quote: "Transform customer engagement with an integrated contact center and CRM service solution, all powered by generative AI.",
       role: "Enterprise plus voice and digital channels, bots, IVR and Copilot Credits.",
@@ -69,6 +72,15 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
     },
   ],
   highlight: 1,
+  productHref: "https://www.microsoft.com/en-us/dynamics-365/products/customer-service",
+  shortAnswer: {
+    heading: "Dynamics 365 Customer Service tiers: the short answer",
+    items: [
+      "**Professional** fits a team that works email and web cases from one shared queue, with standard case forms.",
+      "**Enterprise** fits teams that route cases by skill or priority, handle several sessions at once, want Copilot, or need KPIs and workforce planning.",
+      "**Premium** fits teams that run phone, chat and messaging in one workspace, with service agents working cases every day.",
+    ],
+  },
   overview: {
     heading: "Three Dynamics 365 Customer Service tiers, three different teams",
     intro:

@@ -3,6 +3,8 @@
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { PAGE_CONTENT } from "../content/pages";
+import { TIER_PAGES } from "../content/tiers";
+import type { TierCell, TierPage } from "../content/tiers/types";
 import type { ContentBlock } from "../content/types";
 import { SITE_URL } from "../lib/config";
 import { stripInlineMarkup } from "../lib/richtext";
@@ -45,12 +47,33 @@ function short() {
     lines.push("", `## ${title}`, "", `- [${getSitePage(hub).name}](${SITE_URL}${hub})`);
     for (const s of childrenOf(hub)) lines.push(`  - [${s.name}](${SITE_URL}${s.path})`);
   }
+  lines.push("", "## Compare tiers", "");
+  for (const t of TIER_PAGES) lines.push(`- [${t.h1}](${SITE_URL}${t.path}): ${plain(t.description)}`);
   lines.push("", "## Company", "");
   for (const path of ["/clients/", "/pricing/", "/about/", "/contact/", "/blog/"]) {
     lines.push(`- [${getSitePage(path).name}](${SITE_URL}${path})`);
   }
   lines.push("", "## Not offered", "", ...SITE.out_of_scope_services.map((s) => `- ${s}`), "");
   return lines.join("\n");
+}
+
+const cell = (c: TierCell) => (c === true ? "Yes" : c === false ? "No" : c);
+
+function tierLines(t: TierPage): string[] {
+  const names = t.tiers.map((x) => x.name);
+  const out = [`## ${t.h1}`, `URL: ${SITE_URL}${t.path}`, `Last reviewed: ${t.reviewed}`, "", plain(t.intro), ""];
+  out.push(`### ${plain(t.shortAnswer.heading)}`, ...t.shortAnswer.items.map((i) => `- ${plain(i)}`), "");
+  for (const x of t.tiers) out.push(`### ${t.product} ${x.name}`, `Microsoft: "${x.quote}"`, plain(x.role), ...x.pickWhen.map((p) => `- Pick it when: ${plain(p)}`), `- Think twice if: ${plain(x.thinkTwice)}`, "");
+  out.push(`### ${plain(t.matrix.heading)}`, ["Feature", ...names].join(" | "));
+  for (const g of t.matrix.groups) for (const r of g.rows) out.push([`${g.title}: ${r.feature}`, ...r.cells.map(cell)].join(" | "));
+  out.push("", `### ${plain(t.outgrow.heading)}`, ...t.outgrow.cards.map((c) => `- ${plain(c.title)}: ${plain(c.body)}`), "");
+  out.push(`### ${plain(t.rules.heading)}`, ...t.rules.items.map((r) => `- ${plain(r.title)}: ${plain(r.body)}`));
+  out.push(`${plain(t.rules.stepsHeading)}:`, ...t.rules.steps.map((st, i) => `${i + 1}. ${plain(st.name)}: ${plain(st.description)}`), "");
+  out.push(`### ${plain(t.ai.heading)}`, ...t.ai.columns.map((c, i) => `- ${names[i]}: ${plain(c)}`), "");
+  out.push("### Frequently Asked Questions");
+  for (const f of t.faqs) out.push(`Q: ${plain(f.q)}`, `A: ${plain(f.a)}`);
+  out.push("", `Sources: ${t.sources.map((x) => `${x.label} (${x.href})`).join("; ")}`, "", plain(t.closing), "");
+  return out;
 }
 
 function full() {
@@ -67,6 +90,7 @@ function full() {
     for (const f of page.faqs) lines.push(`Q: ${plain(f.q)}`, `A: ${plain(f.a)}`);
     lines.push("", plain(page.closing), "");
   }
+  for (const t of TIER_PAGES) lines.push(...tierLines(t));
   return lines.join("\n");
 }
 

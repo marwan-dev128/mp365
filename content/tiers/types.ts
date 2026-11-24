@@ -21,6 +21,8 @@ export type TierInfo = {
   thinkTwice: string;
   /** Shown on the highlighted tier only. */
   badge?: string;
+  /** The product mockup drawn at the top of the tier card. */
+  mockup: "pipeline" | "forecast" | "agents" | "queue" | "routing" | "channels";
 };
 
 export type FinderOption = {
@@ -55,6 +57,10 @@ export type TierPage = {
   tiers: TierInfo[];
   /** The tier the matrix and cards highlight. */
   highlight: number;
+  /** Answer-first summary, one line per tier, for readers and answer engines. */
+  shortAnswer: { heading: string; items: string[] };
+  /** The product's page on microsoft.com, for the schema's `about` entity. */
+  productHref: string;
   overview: { heading: string; intro: string };
   ladder: { heading: string; intro: string; steps: { title: string; items: string[] }[] };
   finder: { heading: string; intro: string; questions: FinderQuestion[] };

@@ -84,7 +84,7 @@ export const page: PageContent = {
       type: "prose",
       heading: "Microsoft licenses are priced separately",
       paragraphs: [
-        "Microsoft sets Dynamics 365 and Microsoft 365 license prices, and you pay them to Microsoft or your license provider. MP-365 does not resell licenses, so license fees never appear in an MP-365 estimate. Check Microsoft's current price list for those figures.",
+        "Microsoft sets Dynamics 365 and Microsoft 365 license prices, and you pay them to Microsoft or your license provider. MP-365 does not resell licenses, so license fees never appear in an MP-365 estimate. Check Microsoft's current price list for those figures. To choose the right license tier first, see the [Dynamics 365 Sales tiers](/dynamics-365-sales-tiers/) and [Customer Service tiers](/dynamics-365-customer-service-tiers/) comparisons.",
       ],
     },
     {
