@@ -110,10 +110,10 @@ export function TierMatrix({ page }: { page: TierPage }) {
               <Link
                 href="/contact/"
                 data-track="tier_table_cta_click"
-                className={`inline-flex w-full items-center justify-center rounded-full px-2 py-2.5 text-[11.5px] font-bold transition-colors sm:text-[13px] ${
+                className={`inline-flex items-center justify-center rounded-full px-3 py-1.5 text-[11px] font-bold transition-colors sm:px-4 sm:text-[12px] ${
                   i === highlight
                     ? "bg-mp-saffron text-mp-ink hover:bg-mp-saffron-hover"
-                    : "border-2 border-mp-petrol text-mp-petrol hover:bg-mp-petrol hover:text-white"
+                    : "border border-mp-petrol text-mp-petrol hover:bg-mp-petrol hover:text-white"
                 }`}
               >
                 <span className="sm:hidden">Ask</span>
