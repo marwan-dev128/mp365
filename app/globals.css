@@ -657,3 +657,15 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .mp-swipe-nudge { animation: none; }
 }
+
+/* Tier finder: each question and the result slide in. */
+@keyframes mp-finder-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mp-finder-in {
+  animation: mp-finder-in 0.35s var(--mp-spring-ease) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-finder-in { animation: none; }
+}

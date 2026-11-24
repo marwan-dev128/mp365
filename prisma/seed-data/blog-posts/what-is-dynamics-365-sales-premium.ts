@@ -103,7 +103,7 @@ export const post: BlogPost = {
       type: "prose",
       heading: "Dynamics 365 Sales Premium license options compared",
       paragraphs: [
-        "Premium is the top of the three Dynamics 365 Sales tiers. Compare the tiers by what each one includes and who it suits. For current list prices and regional options, use [Microsoft's Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing), since pricing varies by region and agreement and third-party pages are often out of date.",
+        "Premium is the top of the three Dynamics 365 Sales tiers. [Compare the tiers](/dynamics-365-sales-tiers/) by what each one includes and who it suits. For current list prices and regional options, use [Microsoft's Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing), since pricing varies by region and agreement and third-party pages are often out of date.",
       ],
     },
     {

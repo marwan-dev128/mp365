@@ -247,7 +247,7 @@ export const post: BlogPost = {
       paragraphs: [
         "When those signals appear, the decision is no longer about Enterprise on its own. It becomes a direct comparison against Premium, weighed seat by seat and credit by credit.",
         "Start by pulling your actual agent usage from the past few months, not an estimate. That number, matched against Premium's bundled credits, tells you more than any feature list.",
-        "If Sales Insights or predictive forecasting are the driver instead of AI costs, that comparison tilts differently, since those features have no Enterprise equivalent. A dedicated tier comparison covers that decision head to head, with the seat, the credit math, and the feature gap laid out side by side.",
+        "If Sales Insights or predictive forecasting are the driver instead of AI costs, that comparison tilts differently, since those features have no Enterprise equivalent. A [dedicated tier comparison](/dynamics-365-sales-tiers/) covers that decision head to head, with the seat, the credit math, and the feature gap laid out side by side.",
       ],
     },
     {

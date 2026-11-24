@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/config";
 import { getBlogPosts } from "@/lib/data";
 import { LIVE_PAGES } from "@/lib/site-data";
+import { TIER_PAGES } from "@/content/tiers";
 
 // The date the page copy in content/pages/ was last revised. Update it when the
 // copy changes, so lastmod stays truthful rather than always saying "today".
@@ -12,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();
   return [
     ...LIVE_PAGES.map((p) => ({ url: `${SITE_URL}${p.path}`, lastModified: CONTENT_UPDATED })),
+    ...TIER_PAGES.map((p) => ({ url: `${SITE_URL}${p.path}`, lastModified: new Date(p.reviewedIso) })),
     ...posts.map((p) => ({ url: `${SITE_URL}/blog/${p.slug}/`, lastModified: p.dateModified })),
   ];
 }

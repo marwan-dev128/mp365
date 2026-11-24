@@ -105,7 +105,7 @@ export const post: BlogPost = {
       heading: "How Sales Professional Compares With Higher Tiers",
       paragraphs: [
         "One licensing rule to plan around: D365 for Sales Professional licenses can’t be mixed with Enterprise or Premium licenses inside the same environment. Running both tiers at once, say during a phased upgrade, requires two separate environments, not one shared one.",
-        "Plans and licensing terms change, so check [Microsoft’s Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing) for current details, including what applies if your organization already owns another Dynamics 365 application. Compare tiers by what they include and who they suit: Professional for linear processes and small teams, Enterprise and Premium for customization, AI and territory complexity.",
+        "Plans and licensing terms change, so check [Microsoft’s Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing) for current details, including what applies if your organization already owns another Dynamics 365 application. [Compare tiers](/dynamics-365-sales-tiers/) by what they include and who they suit: Professional for linear processes and small teams, Enterprise and Premium for customization, AI and territory complexity.",
       ],
     },
     {

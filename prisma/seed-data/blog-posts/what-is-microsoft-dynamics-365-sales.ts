@@ -79,7 +79,7 @@ export const post: BlogPost = {
       type: "prose",
       heading: "Microsoft Dynamics 365 Sales licensing tiers at a glance",
       paragraphs: [
-        "**Microsoft Dynamics 365 Sales** is not one-size-fits-all. Microsoft offers it in tiers, so businesses can pay for the level of sophistication they actually need. For current prices, see [Microsoft's Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing).",
+        "**Microsoft Dynamics 365 Sales** is not one-size-fits-all. Microsoft offers it in [tiers](/dynamics-365-sales-tiers/), so businesses can pay for the level of sophistication they actually need. For current prices, see [Microsoft's Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing).",
       ],
     },
     {

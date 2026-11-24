@@ -20,7 +20,7 @@ export const page: PageContent = {
       heading: "What is Dynamics 365 Customer Service?",
       paragraphs: [
         "Dynamics 365 Customer Service is Microsoft's case management app for support teams. It turns each request into a case, records every interaction against it, and lets agents share answers from a knowledge base.",
-        "According to Microsoft Learn (2026), the app also covers unified routing, service level agreements (SLAs), entitlements, conversations across channels including voice, and collaboration in Microsoft Teams. Copilot Service workspace is the main app for service representatives. For new organizations with Enterprise licenses, it replaces the older Customer Service Hub.",
+        "According to Microsoft Learn (2026), the app also covers unified routing, service level agreements (SLAs), entitlements, conversations across channels including voice, and collaboration in Microsoft Teams. Copilot Service workspace is the main app for service representatives. For new organizations with Enterprise licenses, it replaces the older Customer Service Hub. Routing, Copilot and channels depend on the license, and the [Customer Service tiers comparison](/dynamics-365-customer-service-tiers/) shows what Professional, Enterprise and Premium each include.",
       ],
     },
     {

@@ -235,7 +235,7 @@ export const post: BlogPost = {
     },
     {
       q: "How do Dynamics 365 Sales and Salesforce plans compare?",
-      a: "Dynamics 365 Sales has three tiers: Professional, Enterprise and Premium, with more AI included at each step. Salesforce Sales Cloud runs from Starter Suite and Pro Suite up to Enterprise, Unlimited and Agentforce 1 Sales. Compare like for like, such as Premium against Enterprise plus the Agentforce add-on.",
+      a: "Dynamics 365 Sales has [three tiers](/dynamics-365-sales-tiers/): Professional, Enterprise and Premium, with more AI included at each step. Salesforce Sales Cloud runs from Starter Suite and Pro Suite up to Enterprise, Unlimited and Agentforce 1 Sales. Compare like for like, such as Premium against Enterprise plus the Agentforce add-on.",
     },
     {
       q: "What costs are hidden beyond the per-seat license?",

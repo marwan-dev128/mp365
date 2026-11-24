@@ -39,6 +39,18 @@ const BANNED: [RegExp, string][] = [
   [/—/, "no em dashes"],
 ];
 
+/** Banned wording found in plain text, as "why: match" strings. Shared with the tier pages. */
+export function bannedHits(text: string, skip: RegExp[] = []): string[] {
+  const plain = stripInlineMarkup(text);
+  return BANNED.filter(([re]) => !skip.includes(re)).flatMap(([re, why]) => {
+    const m = plain.match(re);
+    return m ? [`${why}: "${m[0]}"`] : [];
+  });
+}
+
+/** The out-of-scope services rule, which a quote of Microsoft's own wording may break. */
+export const OUT_OF_SCOPE = BANNED.find(([, why]) => why === "out-of-scope service")![0];
+
 // The client does no ERP work, so Solutions and Industries do not mention it at all.
 const ERP_TERMS =
   /\bERPs?\b|\bBusiness Central\b|\bFinance and Operations\b|\bSupply Chain Management\b|\bDynamics GP\b|\bNetSuite\b|\bSAP\b|\bSage\b/;

@@ -113,7 +113,7 @@ export const post: BlogPost = {
       type: "prose",
       heading: "Dynamics 365 Customer Service plans for 2026",
       paragraphs: [
-        "Dynamics 365 Customer Service comes in three plans, licensed per user and billed annually. For current list prices, see [Microsoft's Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing). Here is how the plans compare:",
+        "Dynamics 365 Customer Service comes in [three plans](/dynamics-365-customer-service-tiers/), licensed per user and billed annually. For current list prices, see [Microsoft's Dynamics 365 pricing page](https://www.microsoft.com/en-us/dynamics-365/pricing). Here is how the plans compare:",
       ],
     },
     {

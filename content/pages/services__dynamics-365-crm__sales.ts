@@ -20,7 +20,7 @@ export const page: PageContent = {
       heading: "What is Microsoft Dynamics 365 Sales?",
       paragraphs: [
         "Microsoft Dynamics 365 Sales is a cloud CRM that runs on Microsoft Dataverse and is built as a Power Apps model-driven app. Sellers use it to manage accounts, contacts, leads, opportunities and quotes, and leaders use it to see the pipeline and forecast revenue.",
-        "Microsoft sells Dynamics 365 Sales in tiers. According to Microsoft Learn (2026), Sales Enterprise automates the process from lead to cash, Sales Premium adds AI features such as predictive scoring and relationship intelligence, and Sales Professional is a lighter app that includes a subset of the Enterprise tables. Which tier fits depends on your process, not your company size.",
+        "Microsoft sells Dynamics 365 Sales in tiers. According to Microsoft Learn (2026), Sales Enterprise automates the process from lead to cash, Sales Premium adds AI features such as predictive scoring and relationship intelligence, and Sales Professional is a lighter app that includes a subset of the Enterprise tables. Which tier fits depends on your process, not your company size, and the [Dynamics 365 Sales tiers comparison](/dynamics-365-sales-tiers/) sets them side by side.",
       ],
     },
     {
