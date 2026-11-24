@@ -102,41 +102,92 @@ function TierCards({ page }: { page: TierPage }) {
   );
 }
 
-/** What each step up adds, drawn as a rising staircase. */
+/** What each step up adds, drawn as a staircase: blocks that rise from one floor, a climbing arrow behind them. */
 function Ladder({ page }: { page: TierPage }) {
-  const offsets = ["lg:mt-28", "lg:mt-14", "lg:mt-0"];
+  const heights = ["lg:min-h-[400px]", "lg:min-h-[480px]", "lg:min-h-[560px]"];
+  const last = page.ladder.steps.length - 1;
   return (
-    <ol className="grid items-start gap-5 lg:grid-cols-3">
-      {page.ladder.steps.map((s, i) => {
-        const top = i === page.ladder.steps.length - 1;
-        return (
-          <li
-            key={s.title}
-            className={`relative flex flex-col rounded-[28px] p-6 sm:p-8 ${offsets[i] ?? ""} ${
-              top ? "bg-mp-petrol text-white" : i === page.highlight ? "bg-mp-band" : "bg-mp-parchment"
-            }`}
-          >
-            <span
-              aria-hidden="true"
-              className={`font-display text-[64px] font-bold leading-none tracking-[-0.05em] ${top ? "text-mp-mint" : "text-mp-petrol/20"}`}
+    <div className="relative">
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1200 300"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-x-[8%] -top-6 hidden h-[260px] w-[84%] lg:block"
+      >
+        <path d="M10 290 C 220 290 260 170 420 170 S 640 60 800 60 S 1060 10 1170 10" fill="none" stroke="#0b3c49" strokeOpacity="0.22" strokeWidth="2.5" strokeDasharray="6 10" strokeLinecap="round" />
+        <path d="M1150 -2 L1178 10 L1152 26" fill="none" stroke="#0b3c49" strokeOpacity="0.35" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+
+      <ol className="relative grid items-end gap-5 lg:grid-cols-3">
+        {page.ladder.steps.map((s, i) => {
+          const top = i === last;
+          const mid = i === page.highlight;
+          const added = s.items.filter((x) => !/^note:/i.test(x)).length;
+          return (
+            <li
+              key={s.title}
+              className={`group relative flex flex-col overflow-hidden rounded-[28px] p-6 transition-transform duration-300 hover:-translate-y-1.5 sm:p-8 ${heights[i] ?? ""} ${
+                top ? "bg-mp-petrol text-white" : mid ? "bg-mp-band" : "bg-mp-parchment"
+              }`}
             >
-              0{i + 1}
-            </span>
-            <h3 className={`mt-4 font-display text-[24px] font-bold tracking-[-0.025em] ${top ? "text-white" : "text-mp-ink"}`}>{s.title}</h3>
-            <ul className="mt-5 flex flex-col gap-3">
-              {s.items.map((item) => (
-                <li key={item} className={`flex gap-3 text-[14px] leading-[1.5] ${top ? "text-white/85" : "text-mp-ink/85"}`}>
-                  <span aria-hidden="true" className={`mt-[3px] font-bold ${top ? "text-mp-mint" : "text-mp-petrol"}`}>
-                    {i === 0 ? "•" : "+"}
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </li>
-        );
-      })}
-    </ol>
+              <span
+                aria-hidden="true"
+                className={`pointer-events-none absolute -bottom-10 -right-3 select-none font-display text-[190px] font-bold leading-none tracking-[-0.06em] text-transparent transition-transform duration-500 group-hover:-translate-y-2 ${
+                  top ? "[-webkit-text-stroke:1.5px_rgba(95,227,200,0.35)]" : "[-webkit-text-stroke:1.5px_rgba(11,60,73,0.16)]"
+                }`}
+              >
+                0{i + 1}
+              </span>
+
+              <div className="relative flex items-center justify-between gap-3">
+                <span
+                  className={`rounded-full px-3.5 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.14em] ${
+                    top ? "bg-mp-mint text-mp-petrol" : "bg-mp-ink text-white"
+                  }`}
+                >
+                  Step 0{i + 1}
+                </span>
+                {i > 0 && (
+                  <span className={`text-[12px] font-bold ${top ? "text-mp-mint" : "text-mp-petrol"}`}>+{added} new</span>
+                )}
+              </div>
+
+              <h3 className={`relative mt-6 font-display text-[28px] font-bold tracking-[-0.03em] sm:text-[32px] ${top ? "text-white" : "text-mp-ink"}`}>
+                {s.title}
+              </h3>
+              <ul className="relative mt-6 flex flex-col gap-3">
+                {s.items.map((item) => {
+                  const note = /^note:/i.test(item);
+                  const text = note ? item.replace(/^note:\s*/i, "") : item;
+                  return (
+                    <li key={item} className={`flex items-start gap-3 text-[14px] leading-[1.5] ${note ? (top ? "text-white/55" : "text-mp-muted") : top ? "text-white/90" : "text-mp-ink/85"}`}>
+                      <span
+                        aria-hidden="true"
+                        className={`mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[12px] font-bold leading-none ${
+                          note
+                            ? top
+                              ? "border border-white/30 text-white/60"
+                              : "border border-mp-ink/25 text-mp-muted"
+                            : i === 0
+                              ? "bg-mp-petrol text-mp-mint"
+                              : top
+                                ? "bg-mp-mint text-mp-petrol"
+                                : "bg-mp-petrol text-mp-mint"
+                        }`}
+                      >
+                        {note ? "−" : i === 0 ? <Check className="h-3 w-3" /> : "+"}
+                      </span>
+                      {text}
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        })}
+      </ol>
+      <div aria-hidden="true" className="mt-5 hidden h-2 rounded-full bg-mp-parchment lg:block" />
+    </div>
   );
 }
 
