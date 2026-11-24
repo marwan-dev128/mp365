@@ -669,3 +669,18 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .mp-finder-in { animation: none; }
 }
+
+/* Tier cards: the dots in the card head float and the spark breathes. */
+@keyframes mp-decor-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes mp-decor-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+.mp-decor-float { animation: mp-decor-float 6s ease-in-out infinite; transform-box: fill-box; }
+.mp-decor-pulse { animation: mp-decor-pulse 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .mp-decor-float, .mp-decor-pulse { animation: none; }
+}

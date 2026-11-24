@@ -13,7 +13,7 @@ import type { TierPage } from "@/content/tiers/types";
 import { pickIllustrations } from "@/lib/page-visuals";
 import { tierPageSchema } from "./schema";
 import { TierFinder } from "./TierFinder";
-import { TierMockup } from "./TierMockup";
+import { TierDecor } from "./TierDecor";
 import { TierMatrix } from "./TierMatrix";
 
 const WRAP = "mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12";
@@ -51,21 +51,25 @@ function TierCards({ page }: { page: TierPage }) {
         return (
           <article
             key={t.id}
-            className={`group flex flex-col overflow-hidden rounded-[28px] p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-8 ${
-              mint ? "bg-mp-band" : "bg-mp-parchment"
+            className={`group relative isolate flex flex-col overflow-hidden rounded-[28px] p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-8 ${
+              mint ? "bg-mp-band ring-2 ring-mp-petrol lg:-my-3 lg:py-11" : "bg-mp-parchment"
             }`}
           >
-            <TierMockup kind={t.mockup} mint={mint} />
-            <div className="flex items-center justify-between gap-3">
-              <p className={`text-[11px] font-bold uppercase tracking-[0.14em] ${mint ? "text-mp-ink/70" : "text-mp-muted"}`}>
+            <TierDecor level={i} mint={mint} />
+            {mint ? (
+              <span className="flex items-center gap-1.5 self-start rounded-full bg-mp-petrol px-3.5 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-mp-mint">
+                <svg viewBox="0 0 12 12" className="h-3 w-3" aria-hidden="true">
+                  <path d="M6 0.8l1.55 3.3 3.6.42-2.66 2.47.7 3.56L6 8.77 2.81 10.55l.7-3.56L.85 4.52l3.6-.42L6 .8z" fill="currentColor" />
+                </svg>
+                Recommended
+              </span>
+            ) : (
+              <span className="self-start rounded-full bg-mp-ink px-3.5 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-white">
                 Tier {i + 1} of {page.tiers.length}
-              </p>
-              {t.badge && (
-                <span className="rounded-full bg-mp-petrol px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-mp-mint">{t.badge}</span>
-              )}
-            </div>
+              </span>
+            )}
             <h3
-              className="mt-5 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-mp-ink sm:text-[48px]"
+              className={`mt-16 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-mp-ink sm:text-[48px]`}
             >
               {t.name}
             </h3>

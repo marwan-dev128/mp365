@@ -31,7 +31,6 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
   tiers: [
     {
       id: "professional",
-      mockup: "queue",
       name: "Professional",
       shortName: "Pro",
       quote: "Streamlined case management resources for service representatives and self-service in simpler scenarios.",
@@ -45,7 +44,6 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
     },
     {
       id: "enterprise",
-      mockup: "routing",
       name: "Enterprise",
       quote: "Advanced AI-based customer service resources for representatives and self-service for complex scenarios.",
       role: "Routing, a multisession workspace, Copilot and analytics for a growing service team.",
@@ -59,7 +57,6 @@ export const CUSTOMER_SERVICE_TIERS: TierPage = {
     },
     {
       id: "premium",
-      mockup: "channels",
       name: "Premium",
       quote: "Transform customer engagement with an integrated contact center and CRM service solution, all powered by generative AI.",
       role: "Enterprise plus voice and digital channels, bots, IVR and Copilot Credits.",

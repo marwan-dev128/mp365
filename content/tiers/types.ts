@@ -21,8 +21,6 @@ export type TierInfo = {
   thinkTwice: string;
   /** Shown on the highlighted tier only. */
   badge?: string;
-  /** The product mockup drawn at the top of the tier card. */
-  mockup: "pipeline" | "forecast" | "agents" | "queue" | "routing" | "channels";
 };
 
 export type FinderOption = {

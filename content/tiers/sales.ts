@@ -31,7 +31,6 @@ export const SALES_TIERS: TierPage = {
   tiers: [
     {
       id: "professional",
-      mockup: "pipeline",
       name: "Professional",
       shortName: "Pro",
       quote: "Core sales force automation, Microsoft 365 interoperation, reporting, and dashboards.",
@@ -45,7 +44,6 @@ export const SALES_TIERS: TierPage = {
     },
     {
       id: "enterprise",
-      mockup: "forecast",
       name: "Enterprise",
       quote: "Industry-leading sales force automation with contextual insights, AI, and advanced customization.",
       role: "The full Sales Hub for teams with several stages, regions or product lines.",
@@ -59,7 +57,6 @@ export const SALES_TIERS: TierPage = {
     },
     {
       id: "premium",
-      mockup: "agents",
       name: "Premium",
       quote: "Advanced sales intelligence, agentic insights and automation.",
       role: "Enterprise plus unlimited sales AI and Copilot Credits for agents.",
