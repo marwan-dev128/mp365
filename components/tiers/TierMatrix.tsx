@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment } from "react";
 import { Check } from "@/components/ui/Icons";
 import type { TierCell, TierPage } from "@/content/tiers/types";
@@ -101,6 +102,27 @@ export function TierMatrix({ page }: { page: TierPage }) {
           </Fragment>
         ))}
       </tbody>
+      <tfoot>
+        <tr>
+          <td className="pr-3 pt-6" />
+          {tiers.map((t, i) => (
+            <td key={t.id} className={`px-1 pb-2 pt-6 text-center align-top sm:px-3 ${tint(i)} ${i === highlight ? "rounded-b-[18px]" : ""}`}>
+              <Link
+                href="/contact/"
+                data-track="tier_table_cta_click"
+                className={`inline-flex w-full items-center justify-center rounded-full px-2 py-2.5 text-[11.5px] font-bold transition-colors sm:text-[13px] ${
+                  i === highlight
+                    ? "bg-mp-saffron text-mp-ink hover:bg-mp-saffron-hover"
+                    : "border-2 border-mp-petrol text-mp-petrol hover:bg-mp-petrol hover:text-white"
+                }`}
+              >
+                <span className="sm:hidden">Ask</span>
+                <span className="hidden whitespace-nowrap sm:inline">Ask about {t.shortName ?? t.name}</span>
+              </Link>
+            </td>
+          ))}
+        </tr>
+      </tfoot>
     </table>
   );
 }

@@ -94,6 +94,17 @@ function TierCards({ page }: { page: TierPage }) {
                 <span className="font-bold text-mp-ink">Think twice if: </span>
                 {t.thinkTwice}
               </p>
+              <Link
+                href="/contact/"
+                data-track="tier_card_cta_click"
+                className={`mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold transition-colors ${
+                  mint
+                    ? "bg-mp-saffron text-mp-ink hover:bg-mp-saffron-hover"
+                    : "border-2 border-mp-petrol text-mp-petrol hover:bg-mp-petrol hover:text-white"
+                }`}
+              >
+                Ask about {t.name} <span aria-hidden="true">›</span>
+              </Link>
             </div>
           </article>
         );
