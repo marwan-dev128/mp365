@@ -6,6 +6,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 import { MicrosoftLogo, ChevronDown, Menu, Close, Phone } from "@/components/ui/Icons";
 import { MegaMenuIcon } from "@/components/ui/MegaMenuIcons";
+import { COMPARE_TIERS, CompareTiersPromo } from "@/components/CompareTiersPromo";
 import type {
   AnnouncementData,
   BrandLogoData,
@@ -622,6 +623,7 @@ export function Header({
                             </Link>
                           ))}
                         </div>
+                        {col.href === COMPARE_TIERS.column && <CompareTiersPromo variant="menu" onNavigate={closeAll} />}
                       </div>
                     );
                   })()}
@@ -728,6 +730,7 @@ export function Header({
                                 </div>
                               </Link>
                             ))}
+                            {col.href === COMPARE_TIERS.column && <CompareTiersPromo variant="mobile" onNavigate={closeAll} />}
                           </div>
                         ))}
                         <Link

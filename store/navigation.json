@@ -468,6 +468,22 @@
       }
     }
   ],
+  "compareTiers": {
+    "tag": "New",
+    "title": "Which Dynamics 365 tier fits?",
+    "description": "Professional, Enterprise and Premium compared, with a six-question tier finder.",
+    "column": "/services/dynamics-365-crm/",
+    "links": [
+      {
+        "label": "Sales tiers",
+        "href": "/dynamics-365-sales-tiers/"
+      },
+      {
+        "label": "Customer Service tiers",
+        "href": "/dynamics-365-customer-service-tiers/"
+      }
+    ]
+  },
   "rightActions": {
     "login": {
       "label": "Contact",

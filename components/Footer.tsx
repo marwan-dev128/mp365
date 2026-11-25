@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { CompareTiersPromo } from "./CompareTiersPromo";
 import { RichText } from "./RichText";
 import defaultFooter from "@/store/footer.json";
 import navigation from "@/store/navigation.json";
@@ -268,6 +269,7 @@ export function Footer({
                       </ul>
                     </div>
                   ))}
+                  {isServices && <CompareTiersPromo variant="footer" />}
                   {isServices && company && (
                     <div className="mt-10 border-t border-white/15 pt-8 sm:mt-12">
                       <FooterHeading>{company.title}</FooterHeading>
